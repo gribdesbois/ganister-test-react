@@ -1,0 +1,85 @@
+<div ng-controller="kanbanViewController" class="kanbanView-container">
+  <nav class="navbar navbar-default ">
+    <div class="container-fluid">
+      <div class='btn-group'>
+        <button type='button' class='btn btn-default btn-info btn-sm  navbar-btn' ng-click="refresh()" title="Refresh">
+            <span class='glyphicon glyphicon-refresh' aria-hidden='true'></span>
+        </button>
+        <button type='button' class='btn btn-default btn-success btn-sm  navbar-btn'
+          ng-disabled="!isLatestVersion || (!lockedByCurrentUser && rel._definition.lockLinked)"
+          ng-click="createAsRelationship(rel._definition.name)"
+          title="Create New">
+          <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+          <span data-i18n='relationships.buttons.create' />
+        </button>
+        <button type='button' class='btn btn-default btn-success btn-sm  navbar-btn'
+          ng-disabled="!isLatestVersion || (!lockedByCurrentUser && rel._definition.lockLinked)"
+          ng-click="addAsRelationship()"
+          title="Attach">
+          <span class='glyphicon glyphicon-log-in' aria-hidden='true'></span>
+          <span data-i18n='relationships.buttons.attach' />
+        </button>
+        <button type='button' class='btn btn-default btn-success btn-sm  navbar-btn'
+          ng-disabled="!isLatestVersion || (!lockedByCurrentUser && rel._definition.lockLinked)"
+          ng-click="toggleKanbanListSetup()"
+          title="Edit Lists">
+          <span class='glyphicon glyphicon-th-list' aria-hidden='true'></span>
+          <span data-i18n='relationships.buttons.list' />
+        </button>
+      </div>
+    </div>
+    <div class="container-fluid" ng-show="_showKanbanLists">
+      <div class="input-group navbar-btn">
+        <span class="input-group-addon">Lists:</span>
+        <input type="text" style="height: 34px;" placeholder="Enter lists separated by comma" class="form-control" autofocus
+          ng-disabled="!isLatestVersion || (!lockedByCurrentUser && rel._definition.lockLinked)"
+          ng-model="_kanbanLists" 
+          ng-model-options="{updateOn: 'blur'}"
+        />
+        <span class="input-group-btn">
+          <button type='button' class='btn btn-success'
+            ng-disabled="!isLatestVersion || (!lockedByCurrentUser && rel._definition.lockLinked)"
+            ng-click="saveKanbanListSetup()">
+            <span class='glyphicon glyphicon-floppy-disk' aria-hidden='true'></span>
+            <span data-i18n='relationships.buttons.attach' />
+          </button>
+        </span>
+      </div>
+    </div>
+  </nav>
+  <div ng-show="kanbanSuccess && !rel.kanbasCard" class="alert alert-warning alert-dismissible" style="margin-top: -20px;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    A default card design used, showing ref only, please setup your custom design in datamodel!
+  </div>
+  <div ng-show="!kanbanSuccess"  style="padding-top:15px;">
+    <h4 ng-bind-html="kanbanErrorMsg"></h4>
+  </div>
+  <div class="kanban-board" ng-show="kanbanSuccess" style="padding-top:15px;display: flex; flex-wrap: nowrap; overflow: auto;min-height: 500px;">
+    <div ng-repeat="list in _kanbanListsArray" style="width: 280px; flex: 0 0 auto; margin: 6px; vertical-align:top;">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{list.name}}</h3>
+        </div>
+        <div class="panel-body" style="padding:0px; max-height: 80%; overflow-y: auto;overflow-x: hidden;">
+          <ul style="min-height: 42px; padding-left: 0px; margin-bottom:0px;"
+            dnd-list="list.nodes"
+            dnd-drop="dropCallback(index, item, external, type, list)">
+            <li ng-repeat="node in list.nodes"
+              dnd-draggable="node"
+              dnd-moved="list.nodes.splice($index, 1)"
+              class="assignment"
+              ng-dblclick="openNode(node)">
+              <dnd-nodrag>
+                <div dnd-handle class="handle" bind-html-compile="cardRenderer"></div>
+              </dnd-nodrag>
+            </li>
+            <li class="dndPlaceholder">
+              Drop any card here
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'app/shared/modals/relationshipModal/relationshipModal.html'"></div>
+</div>

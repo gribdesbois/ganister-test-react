@@ -1,0 +1,78 @@
+<div ng-controller="nodeformTabsController" ng-show="rels.length>0;">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" ng-repeat="rel in rels | orderBy:'order'" ng-class="{active:selectedTab == $index}"
+            ng-if="rel.visibility"  >
+            <a aria-controls="{{rel.name}}-{{node._id}}-{{node._version}}"
+                data-target="#{{rel.name}}-{{node._id}}-{{node._version}}" role="tab" data-toggle="tab"
+                ng-click="selectTab($index, rel)"
+                ng-class="{tabHasContent:relCount[rel.name]>0,tabHasNoContent:relCount[rel.name]==0,tabNotLoaded:relCount[rel.name]===undefined}">
+                {{rel.label | translate }} <span class="badge"
+                    ng-show="relCount[rel.name] && relCount[rel.name] > 0">{{relCount[rel.name]}}</span>
+                <div class="miniMessageDiv" ng-show="(rel.autoloads!==false) && !relCount[rel.name] && relCount[rel.name]!=0"><img
+                        src="images/Ellipsis-1s-20px.gif" style="margin-left: 4px;" /></div>
+                <div class="miniMessageDiv" style="margin-left: 4px;"
+                    ng-show="relCount[rel.name] && relCount[rel.name] === -1"> <i class="fa fa-exclamation-triangle"
+                        style="color:red" aria-hidden="true"></i></div>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane" id="{{rel.name}}-{{node._id}}-{{node._version}}"
+            ng-class="{active:selectedTab == $index}" ng-repeat="rel in rels | orderBy:'order'" ng-if="rel.visibility">
+            <!-- {{rel.type}} -->
+            <div ng-if="rel.tabContentType=='relatedObject' || rel.tabContentType === 'undirectedRelationship'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/relatedObject/relatedObject.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'customTableView'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/customTableView/customTableView.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'customTreeGridView'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/customTreeGridView/customTreeGridView.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'multilevelView'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/multilevelView/multilevelView.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'reverseRelationships'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/reverseRelationship/reverseRelationship.html'">
+                </div>
+            </div>
+            <div ng-if="rel.tabContentType == 'reverseECOs'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/reverseEcos/reverseEcos.html'">
+                </div>
+            </div>
+            <div ng-if="rel.tabContentType == 'ECOimpactMatrix'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/ECOimpactMatrix/ECOimpactMatrix.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'ganttView'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/ganttView/ganttView.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'graphView'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/graphView/graphView.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'fileGallery'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/fileGallery/fileGallery.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'kanbanView'" style="background: #F3F9FE; padding-bottom:15px;">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/kanbanView/kanbanView.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'klayGraphView'" style="background: #F3F9FE; padding-bottom:15px;">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/klayGraphView/klayGraphView.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'externalAPI' && rel.externalAPI == 'github'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/external-apis/github/github.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'externalAPI' && rel.externalAPI == 'gitlab'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/external-apis/gitlab/gitlab.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'externalAPI' && rel.externalAPI == 'element14'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/external-apis/element14/element14.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'externalAPI' && rel.externalAPI == 'ihs'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/external-apis/ihs/ihs.html'"></div>
+            </div>
+            <div ng-if="rel.tabContentType == 'externalAPI' && rel.externalAPI == 'z2Data'">
+                <div ng-include="'app/components/tabs/node/nodeFormTabs/external-apis/z2Data/z2Data.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

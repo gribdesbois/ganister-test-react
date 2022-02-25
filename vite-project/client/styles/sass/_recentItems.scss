@@ -1,0 +1,16 @@
+/* Same height columns */
+.row.equal {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.recentItem-grid {
+  text-align: center;
+  margin-bottom: 10px;
+  overflow-x: hidden;
+  font-size: 11px;
+}
+
+.recentItemGridIcon {
+  max-height: 48px;
+}

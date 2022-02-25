@@ -1,0 +1,659 @@
+{
+	"package": "syseng",
+	"dependencies": [],
+	"name": "requirements",
+	"category": 1,
+	"elementType": "node",
+	"codification": {
+		"prefixes": [
+			{
+				"type": "text",
+				"value": "REQ"
+			}
+		],
+		"value": {
+			"size": "6",
+			"fillWith": "0",
+			"type": "highest"
+		},
+		"prefix": "REQS",
+		"size": 8,
+		"fillWith": "0"
+	},
+	"actions": [],
+	"lifecycle": {
+		"states": [
+			{
+				"name": "new",
+				"label": "new",
+				"labelClass": "Primary",
+				"start": true,
+				"lockable": true,
+				"id": "state_535e4223a2b29e3170dd2c58dbc51f6a",
+				"positionY": 150,
+				"positionX": 0,
+				"ui_color": "primary",
+				"owner": "role_f1d4ba4546319403482dd2136c1d8081"
+			},
+			{
+				"name": "inprogress",
+				"label": "In Progress",
+				"start": false,
+				"lockable": true,
+				"id": "state_caf70ad9f9a2e4985d5d0e9e2a77284b",
+				"ui_color": "info",
+				"positionY": 150,
+				"positionX": 100,
+				"tracked": true,
+				"owner": "role_f1d4ba4546319403482dd2136c1d8081"
+			},
+			{
+				"name": "cancelled",
+				"label": "cancelled",
+				"start": false,
+				"lockable": true,
+				"id": "state_ba356d1ee5c645ad3fb4299f0ed70284",
+				"positionY": 215.7673220447546,
+				"positionX": 299.2714295015163
+			},
+			{
+				"name": "inreview",
+				"label": "In Review",
+				"start": false,
+				"lockable": true,
+				"id": "state_1d29c4648ecb8ec29e16671e7a4eb963",
+				"positionY": 151.86133930315341,
+				"positionX": 205.07169553917504,
+				"ui_color": "warning",
+				"tracked": true,
+				"owner": "role_bf837d368660186e8bf0c60cbf96f099"
+			},
+			{
+				"name": "superseded",
+				"label": "Superseded",
+				"start": false,
+				"lockable": false,
+				"id": "state_1034c7cd921f0234c7b0bb8aa679dcae",
+				"positionY": 105.32785672431766,
+				"positionX": 403.10223217192237
+			},
+			{
+				"name": "validated",
+				"label": "Validated",
+				"start": false,
+				"lockable": false,
+				"id": "state_5dd87e3b4cea07858ca948b36e182ab4",
+				"positionY": 104.70741028993315,
+				"positionX": 302.6980338657363,
+				"ui_color": "success",
+				"released": true
+			}
+		],
+		"transitions": [
+			{
+				"from": "state_535e4223a2b29e3170dd2c58dbc51f6a",
+				"to": "state_caf70ad9f9a2e4985d5d0e9e2a77284b",
+				"method": "",
+				"id": "trans_569ccf8db892c3fcaf00e5ebcc4d498b"
+			},
+			{
+				"from": "state_caf70ad9f9a2e4985d5d0e9e2a77284b",
+				"to": "state_1d29c4648ecb8ec29e16671e7a4eb963",
+				"method": "",
+				"id": "trans_3f941ce0405bacd384e19bbf86956f74"
+			},
+			{
+				"from": "state_1d29c4648ecb8ec29e16671e7a4eb963",
+				"to": "state_caf70ad9f9a2e4985d5d0e9e2a77284b",
+				"method": "",
+				"id": "trans_84ad933a1ec9f1220731daf800418346"
+			},
+			{
+				"from": "state_1d29c4648ecb8ec29e16671e7a4eb963",
+				"to": "state_ba356d1ee5c645ad3fb4299f0ed70284",
+				"method": "",
+				"id": "trans_63a3c5b79bfa83da7f0945d52fe440ee"
+			},
+			{
+				"from": "state_1d29c4648ecb8ec29e16671e7a4eb963",
+				"to": "state_5dd87e3b4cea07858ca948b36e182ab4",
+				"method": "",
+				"id": "trans_d1f1a3d617e3f30d505c31463036251d"
+			},
+			{
+				"from": "state_5dd87e3b4cea07858ca948b36e182ab4",
+				"to": "state_1034c7cd921f0234c7b0bb8aa679dcae",
+				"method": "",
+				"id": "trans_0ec49c3ec191f1edbfaa8e68bd2b908f"
+			}
+		],
+		"roles": [
+			{
+				"name": "writer",
+				"label": "Writer",
+				"id": "role_f1d4ba4546319403482dd2136c1d8081"
+			},
+			{
+				"name": "manager",
+				"label": "Manager",
+				"id": "role_bf837d368660186e8bf0c60cbf96f099"
+			}
+		]
+	},
+	"properties": [
+		{
+			"id": "prop_376efbe4c47504348ac9ad0dc4d48e9f",
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"id": "prop_5bd2f982d01f1e37efac0221eba7a7f8",
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "codification",
+			"core": true,
+			"group": "Identification",
+			"translations": {
+				"default": "Ref",
+				"fr": "Ref",
+				"el": "ref"
+			}
+		},
+		{
+			"id": "prop_0c7b22186a989959710a2ed22eaa969c",
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "State",
+				"fr": "Statut",
+				"el": "State"
+			}
+		},
+		{
+			"id": "prop_4f259f66593f3371bfe2b64a8eaf03e6",
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"group": "Traceability",
+			"translations": {
+				"default": "_createdOn",
+				"en": "Created On",
+				"fr": "Créé le"
+			}
+		},
+		{
+			"id": "prop_ffa766f0508a84bada08fc98e78c11fe",
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"group": "Traceability",
+			"translations": {
+				"default": "_modifiedOn",
+				"en": "Modified On",
+				"fr": "Modifié le"
+			}
+		},
+		{
+			"id": "prop_5fae58d859953f212333d3e555acc3d2",
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"id": "prop_30aeb5cb6792a81167833e4c732025a5",
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"id": "prop_19cff3574a55b04871cc3b9282d26d86",
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"translations": {
+				"default": "Lock"
+			}
+		},
+		{
+			"name": "_thumbnail",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"relationship": "nt_5d79e3adnkcd25615637df85e122bcac",
+			"id": "prop_b7be8ab0-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_thumbnail",
+				"fr": "Vignette"
+			}
+		},
+		{
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7be8ab1-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_releasedOn",
+				"en": "Released On",
+				"fr": "Validé le"
+			}
+		},
+		{
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7be8ab2-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_version",
+				"en": "Version",
+				"fr": "Révision"
+			}
+		},
+		{
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7be8ab3-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_versionedOn",
+				"fr": "Révisé le"
+			}
+		},
+		{
+			"name": "_history",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7be8ab5-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_history",
+				"fr": "Historique"
+			}
+		},
+		{
+			"name": "_promotions",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7be8ab6-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_promotions"
+			}
+		},
+		{
+			"name": "_serialized",
+			"type": "multiselect",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_b7be8ab7-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_serialized"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7be8ab8-c426-11e9-9ce5-63afa77a96d0",
+			"group": "Traceability",
+			"translations": {
+				"default": "_createdBy",
+				"en": "Created By",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_lockedBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7be8ab9-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedBy"
+			}
+		},
+		{
+			"name": "_lockedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7be8aba-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedOn"
+			}
+		},
+		{
+			"id": "prop_cd81e2d0-1024-11ea-bd93-6bb18cca51eb",
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created By Name",
+				"en": "Created By",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_releasedUntil",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"id": "prop_46ea86e0-6556-11eb-94db-07bad80f0c9e",
+			"translations": {
+				"default": "_releasedUntil",
+				"fr": "Valide jusqu'à"
+			}
+		},
+		{
+			"name": "type",
+			"label": "type",
+			"type": "select",
+			"id": "prop_842643a19183ec9e17d0f3d172ea3dc2",
+			"core": false,
+			"group": "Identification",
+			"listSource": "requirementType",
+			"translations": {
+				"default": "Type",
+				"fr": "Type",
+				"el": "type"
+			}
+		},
+		{
+			"name": "title",
+			"label": "title",
+			"type": "text",
+			"id": "prop_110d523331c984187534de30f1c1cd84",
+			"mandatory": true,
+			"core": false,
+			"group": "Identification",
+			"translations": {
+				"default": "Title",
+				"fr": "Titre",
+				"el": "title"
+			}
+		},
+		{
+			"name": "description",
+			"label": "description",
+			"type": "richText",
+			"id": "prop_5d8bf17e80d6398aa8a284ee73c398af",
+			"core": false,
+			"group": "Identification",
+			"translations": {
+				"default": "Description",
+				"fr": "Description",
+				"el": "description"
+			}
+		}
+	],
+	"ui": {
+		"defaultThumbnail": "images/requirementsLogo.png",
+		"gridColumns": [
+			{
+				"id": "uigc_9f71aaa0-bfd4-11ea-929a-bdfe3e20fbfc",
+				"type": "version",
+				"order": 1,
+				"property": "requirements._version",
+				"cellRendered": true,
+				"width": 70
+			},
+			{
+				"id": "uigc_9a9724b0-bfd4-11ea-929a-bdfe3e20fbfc",
+				"type": "state",
+				"order": 2,
+				"property": "requirements._state",
+				"cellRendered": true,
+				"width": 90
+			},
+			{
+				"label": "type",
+				"type": "dropdown",
+				"id": "uigc_c80c14f71cf0a695d64ed6ebe7ada143",
+				"property": "requirements.type",
+				"order": 3,
+				"width": 110,
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_74e05aa272faa92f3b77f01e1d54d6d4",
+				"type": "string",
+				"property": "requirements._ref",
+				"order": 4,
+				"width": 160
+			},
+			{
+				"label": "title",
+				"type": "string",
+				"id": "uigc_83363b6b6fefbd24f72d78e329ec7576",
+				"width": 400,
+				"property": "requirements.title",
+				"order": 5
+			},
+			{
+				"id": "uigc_a9329d60-bfd4-11ea-929a-bdfe3e20fbfc",
+				"type": "date",
+				"order": 6,
+				"property": "requirements._createdOn",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_ab8ba890-bfd4-11ea-929a-bdfe3e20fbfc",
+				"type": "date",
+				"order": 7,
+				"property": "requirements._modifiedOn",
+				"cellRendered": true
+			}
+		],
+		"form": {
+			"definition": {
+				"A": [
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "false",
+						"id": "co_9a784238-c244-4d70-a42d-7677fa9edf36",
+						"label": "Identification",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_b7f1d614-18a7-4c5f-8a2e-dbc7409781ff",
+									"property": "_ref",
+									"size": "2",
+									"propertyType": "string",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_c38bab9c-416e-47ba-8642-a57ba30c9e4e",
+									"property": "type",
+									"size": "2",
+									"propertyType": "select",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_4141f339-efc6-43fd-a056-22c04cf9bfb4",
+									"property": "title",
+									"size": "3",
+									"propertyType": "text",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_d1817c28-60ac-4214-8149-8ee16b9347a9",
+									"property": "description",
+									"size": "12",
+									"propertyType": "richText",
+									"readOnly": false,
+									"textareaRows": 6,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					},
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "true",
+						"id": "co_6b289ac9-04e4-4676-8d20-0654ac700c22",
+						"label": "Traceability",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_c7cbc53d-f073-403d-8737-fcec95129837",
+									"property": "_createdOn",
+									"size": "2",
+									"propertyType": "date",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_c188e71a-8a6a-4ac2-a9bf-a56566777e0e",
+									"property": "_modifiedOn",
+									"size": "2",
+									"propertyType": "date",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_a75424e3-7a0e-4503-a447-bd04d3fbb52f",
+									"property": "_createdByName",
+									"size": "2",
+									"propertyType": "text",
+									"readOnly": true,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					}
+				]
+			},
+			"ng": {},
+			"labelCase": "capitalize"
+		},
+		"tabs": [
+			{
+				"id": "tab_57ae83c9f50ad537ab159948f6f4bf06",
+				"name": "references",
+				"tabContentType": "multilevelView",
+				"relationships": [
+					"nt_30c634f91c218efefecc38f04246857f"
+				],
+				"translations": {
+					"default": "references",
+					"fr": "Références"
+				}
+			},
+			{
+				"id": "tab_124a50572340a7a0770abcdea4bd3e99",
+				"name": "referencedBy",
+				"tabContentType": "reverseRelationships",
+				"relationships": [
+					"nt_30c634f91c218efefecc38f04246857f",
+					"nt_2208712bbc2c7284ae2ca7bf63ec5eda"
+				],
+				"translations": {
+					"default": "referencedBy",
+					"en": "Referenced By",
+					"fr": "Référencé par"
+				}
+			}
+		]
+	},
+	"id": "nt_c00965284520e8a0b563290d3e426e08",
+	"maidenName": {
+		"elements": [
+			"_ref",
+			"title"
+		],
+		"separator": "-"
+	},
+	"versionnable": true,
+	"changeMethod": "manual",
+	"versioningRule": {
+		"major": "nonInterchangeable",
+		"minor": "interchangeable"
+	},
+	"methods": [],
+	"translations": {
+		"default": "Requirements",
+		"en": "Requirements",
+		"fr": "Exigence",
+		"el": "Απαιτήσεις"
+	}
+}

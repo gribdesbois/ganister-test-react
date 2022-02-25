@@ -1,0 +1,584 @@
+$infoColor : #5bc0de;
+$primaryColor : #337ab7;
+$successColor: #5cb85c;
+$brand-warning: #f0ad4e;
+$dangerColor: #d9534f;
+$defaultColor: #ddd;
+$tabContentBGColor: #dff0d8;
+$tabNoContentBGColor: #fcf8e3;
+$userAccessBG: #CEDBE5;
+$permissionSetBG: #ccc;
+$lightGray: #eee;
+$detailsColor: #96999d;
+$cytoscapeDivShadow: rgba(100, 100, 100, 0.3);
+$sliderRoundShadow: rgba(51, 51, 51, 0.6);
+$sliderRoundShadowBefore: #333;
+$sliderRoundBorder: #888;
+
+.nodeFormTab {
+
+  @import "./nodeform/nodeFormNavbar";
+  @import "./nodeform/fileGallery";
+  @import "./nodeform/schemaForm";
+  @import "./nodeform/kanbanView";
+  @import "./nodeform/nodeformTabs/EcoImpactMatrix";
+  @import "./nodeform/nodeformTabs/customTreeGrid";
+  @import "./nodeform/nodeformTabs/graphView";
+  @import "./nodeform/timeline";
+
+
+  .lifecycleMandatoryProp {
+    float: left;
+    margin: 1px;
+  }
+
+  a.tabHasContent {
+    background-color: $tabContentBGColor !important;
+    color: $primaryColor;
+  }
+
+  a.tabHasNoContent {
+    background-color: $tabNoContentBGColor !important;
+    color: $primaryColor;
+  }
+
+  a.tabNotLoaded {
+    color: $sliderRoundBorder;
+  }
+
+
+  .promotionGraph {
+    height: 350px;
+  }
+
+
+
+  .ui-select-container {
+    height: unset !important;
+  }
+
+  .ui-select-choices {
+    position: static;
+  }
+
+  /* Parts Form */
+
+  .partDetailCtrl,
+  .ecoDetailCtrl,
+  .fcoDetailCtrl,
+  documentDetailCtrl {
+    margin-top: 20px;
+  }
+
+  .nodeTypeFormButtons {
+    margin-bottom: 10px;
+  }
+
+  .lowtabs div.tab-content {
+    margin-top: 10px;
+  }
+
+
+  /* user access badges */
+
+  .userAccess {
+    border: 3px solid $primaryColor;
+    background-color: $userAccessBG;
+    border-radius: 8px;
+  }
+
+  .permissionSet {
+    border: 3px solid $primaryColor;
+    background-color: $permissionSetBG;
+    border-radius: 8px;
+  }
+
+
+  details {
+    overflow: hidden;
+    position: relative;
+    border: 1px solid $lightGray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: all .3s;
+  }
+
+  details+details {
+    margin-top: 20px;
+  }
+
+  details[open] {
+    min-height: 50px;
+    -webkit-touch-callout: inherit;
+    -webkit-user-select: inherit;
+    -khtml-user-select: inherit;
+    -moz-user-select: inherit;
+    -ms-user-select: inherit;
+    user-select: inherit;
+  }
+
+  details {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  details p {
+    color: $detailsColor;
+    font-weight: 300;
+  }
+
+  summary {
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  /* removed outline as for codepen only
+    don't remove focus on elements
+    it's bad accessibility
+    don't be _that_ guy
+  */
+  summary:focus {
+    outline: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none
+  }
+
+  summary::after {
+    padding: 5px;
+    position: absolute;
+    top: -5px;
+    right: 0;
+    font-family: "Font Awesome 5 Free";
+    font-size: 15px;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-ligatures: normal;
+    font-weight: 900;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    content: "\f078";
+  }
+
+  details[open] summary::after {
+    content: "\f077";
+    top: -5px;
+  }
+
+  details[open] summary:hover::after {
+    animation: pulse 1s ease;
+  }
+
+  .schema-form-section>.panel>.panel-heading {
+    padding: 2px 5px !important;
+  }
+
+  @keyframes pulse {
+    25% {
+      transform: scale(1.1);
+    }
+
+    50% {
+      transform: scale(1);
+    }
+
+    75% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .partDetailCtrl,
+  .ecoDetailCtrl,
+  .fcoDetailCtrl,
+  documentDetailCtrl {
+    margin-top: 20px;
+  }
+
+  .nodeTypeFormButtons {
+    margin-bottom: 10px;
+  }
+
+  .lowtabs div.tab-content {
+    margin-top: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 0px;
+  }
+
+  .vis-timeline {
+    overflow: visible !important;
+  }
+
+  .nodeEntryFirstButton {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 38px;
+    height: 28px;
+    z-index: 10;
+  }
+
+  .nodeEntrySecondButton {
+    display: none;
+    position: absolute;
+    top: 20px;
+    height: 28px;
+    right: 15px;
+    z-index: 10;
+  }
+
+  .Cytoscape>div {
+    height: 320px;
+    box-shadow: -1px 2px 10px 3px $cytoscapeDivShadow inset;
+    border-radius: 4px;
+
+  }
+
+  .Cytoscape>div>canvas {
+
+    margin: 1px;
+  }
+
+  .modal-body.modal-body-lifecycle {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .modal-footer.modal-footer-lifecycle {
+    margin-top: 0px;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 34px;
+    line-height: 2.4;
+  }
+
+  .switch.boolean {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 28px;
+    line-height: 2.2;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $infoColor;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider.boolean {
+    background-color: $defaultColor;
+  }
+
+
+  input.boolean:checked~.slider {
+    background-color: $successColor;
+  }
+
+  input.boolean:focus~.slider {
+    box-shadow: 0 0 1px $successColor;
+  }
+
+  label {
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider.boolean:before {
+      border: solid 1px gray;
+      height: 24px;
+      width: 24px;
+      left: 2px;
+      bottom: 2px;
+    }
+  }
+
+
+  label.indeterminate {
+
+    .slider.boolean:before {
+      border: dotted 1px #666;
+      left: 28px;
+    }
+  }
+
+  .state {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 50px;
+    bottom: 4px;
+    background: url(../images/read24.png);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .state.waiting {
+    background: url(../images/wait24.png);
+  }
+
+  .state:before {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 4px;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+
+
+  input:checked~.slider {
+    background-color: $brand-warning;
+  }
+
+  input:focus~.slider {
+    box-shadow: 0 0 1px $brand-warning;
+  }
+
+  input.boolean:checked~.slider:before {
+    -webkit-transform: translateX(52px);
+    -ms-transform: translateX(52px);
+    transform: translateX(52px);
+  }
+
+  input:checked~.slider:before {
+    -webkit-transform: translateX(45px);
+    -ms-transform: translateX(45px);
+    transform: translateX(45px);
+  }
+
+  input:checked~.state {
+    -webkit-transform: translateX(-43px);
+    -ms-transform: translateX(-43px);
+    transform: translateX(-43px);
+    background: url(../images/write24.png);
+  }
+
+  .itemAccessModal {
+    input:checked~.state {
+      background: url(../images/switchUsers.png);
+      background-repeat: no-repeat;
+    }
+
+    input:checked~.state.waiting {
+      background: url(../images/wait24.png);
+      background-repeat: no-repeat;
+    }
+
+    .state {
+      background: url(../images/switchTeam.png);
+      background-repeat: no-repeat;
+    }
+
+    .state.waiting {
+      background: url(../images/wait24.png);
+      background-repeat: no-repeat;
+    }
+
+    .switch {
+      margin-left: 20px;
+      margin-top: 15px;
+
+    }
+
+  }
+
+  input:checked~.state.waiting {
+    background: url(../images/wait24.png);
+  }
+
+  input:focus~.state {
+    box-shadow: 0 0 1px $brand-warning;
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+    box-shadow: $sliderRoundShadow 0px 0px 4px 1px inset;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px $sliderRoundShadowBefore;
+    border: solid 1px $sliderRoundBorder;
+  }
+
+  /* Serialized Switch */
+  .serialized-switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 34px;
+    line-height: 2.4;
+  }
+
+  .serialized-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .serialized-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $defaultColor;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .serialized-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .serialized-state {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 50px;
+    bottom: 4px;
+    background: url(../images/notItemLogo48.png);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .serialized-state.waiting {
+    background: url(../images/wait24.png);
+  }
+
+  .serialized-state:before {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 4px;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+
+
+  input:checked~.serialized-slider {
+    background-color: $successColor;
+  }
+
+  input:focus~.serialized-slider {
+    /* box-shadow: 0 0 1px $brand-warning;*/
+  }
+
+  input:checked~.serialized-slider:before {
+    -webkit-transform: translateX(45px);
+    -ms-transform: translateX(45px);
+    transform: translateX(45px);
+  }
+
+  input:checked~.serialized-state {
+    -webkit-transform: translateX(-43px);
+    -ms-transform: translateX(-43px);
+    transform: translateX(-43px);
+    background: url(../images/itemLogo48.png);
+    user-select: none;
+  }
+
+  input:checked~.serialized-state.waiting {
+    background: url(../images/wait24.png);
+    user-select: none;
+  }
+
+  input:focus~.serialized-state {
+    /* box-shadow: 0 0 1px $brand-warning;*/
+  }
+
+  .serialized-slider.round {
+    border-radius: 34px;
+    box-shadow: $sliderRoundShadow 0px 0px 4px 1px inset;
+  }
+
+  .serialized-slider.round:before {
+    border-radius: 50%;
+    // box-shadow: 0px 0px 4px #333;
+    border: solid 1px $sliderRoundBorder;
+  }
+
+  .nodeGraph {
+    height: 500px;
+
+  }
+
+  .versionBtn {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 4px 10px 3px 10px;
+    color: white;
+  }
+
+  .formThumbnail {
+    text-align: center;
+
+  }
+
+  .formThumbnail:hover .formThumbnailButtons {
+    text-align: center;
+    visibility: visible;
+
+  }
+
+  .formThumbnailButtons {
+    visibility: hidden;
+    position: absolute;
+    left: 15px;
+
+  }
+
+}

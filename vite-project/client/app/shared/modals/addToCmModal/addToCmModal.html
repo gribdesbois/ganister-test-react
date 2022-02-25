@@ -1,0 +1,32 @@
+<div class="modal fade" id="modal-addToCmModal-{{modal.id}}" ng-controller="addToCmModalController" tabindex="-1"
+    role="dialog" aria-labelledby="{{modal.modalLabel}}" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">{{ 'default.shared.close' | translate }}</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">{{modal.modalLabel | capitalize}} :</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12" ng-show="changeElement =='eco'">
+                    <select class="form-control " ng-options="ECO as ECO.fullName for ECO in ECOs | orderBy:'fullName' track by ECO._id" ng-model="selection"
+                        placeholder="Select">
+                    </select>
+                </div>
+
+                <div class="col-md-12" ng-show="changeElement =='pr'">
+                    <select class="form-control " ng-options="PR as PR.fullName for PR in PRs | orderBy:'fullName' track by PR._id" ng-model="selection"
+                        placeholder="Select">
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'default.shared.close' | translate }}</button>
+                <button type="button" class="btn btn-primary" id="ModalAdd" ng-click="addToChangeElement(changeElement, modal.nodeId, modal.nodeVersion, selection._id)">{{ 'default.shared.add' | translate }}</button>
+                <button type="button" class="btn btn-success" id="ModalNew" ng-click="addToChangeElement(changeElement, modal.nodeId, modal.nodeVersion, 'new')">{{ 'default.shared.createNew' | translate }}</button>
+           </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="container-fluid " ng-controller="categoriesController">
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="panel panel-default transparent">
+      <div class="panel-body">
+        <button class="btn btn-primary btn-sm" ng-click="addCategory()" style="margin-bottom:15px;">Add
+          Category</button>
+        <button class="btn btn-success btn-sm" ng-click="saveCategories()" style="margin-bottom:15px;">Save
+          Menu</button>
+        <table class="table table-responsive table-striped table-bordered" style="background:white;">
+          <thead>
+            <tr>
+              <th>Icon</th>
+              <th>Category ID</th>
+              <th>Visibility</th>
+              <th>Label</th>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in categories">
+              <td style="text-align:center;">
+                <a href="#" ng-click="updateCategoryIcon(item)">
+                  <i ng-show="!item.icon" class="fab fa-question-circle"></i>
+                  <i class="{{item.icon}}"></i>
+                </a>
+              </td>
+              <td style="text-align:center;">
+                {{item.catid}}
+              </td>
+              <td style="text-align:center;">
+                <a href="#" ng-click="toggleCategoryVisibility(item)">
+                  <i ng-show="item.hidden" class="fas fa-eye-slash text-muted"></i>
+                  <i ng-show="!item.hidden" class="fas fa-eye text-success"></i>
+                </a>
+              </td>
+              <td>
+                {{item.label}}
+                <i class="glyphicon glyphicon-pencil" ng-click="updateCategoryLabel(item)"></i>
+              </td>
+              <td>
+                {{item.name}}
+              </td>
+              <td>
+                <i class="glyphicon glyphicon-download" ng-click="orderCategoryDown(item)"></i>
+                <i class="glyphicon glyphicon-upload" ng-click="orderCategoryUp(item)"></i>
+                <i class="glyphicon glyphicon-remove-circle" ng-click="removeCategory(item)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

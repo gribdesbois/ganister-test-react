@@ -1,0 +1,113 @@
+<div class="row-container" ng-controller="methodController" ng-keydown="keyDownFunc($event)">
+	<div class="col-lg-3 col-md-4 col-sm-5">
+		<div class="panel panel-default transparent ">
+			<div class="panel-heading">
+				Methods
+				<div class="btn-group right" style="margin-left:10px;" role="group" aria-label="...">
+					<button type="button" class="btn btn-success" ng-click="newMethod()">
+						<span class="glyphicon glyphicon-plus" title="Create new method" aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+			<div class="panel-body">
+				<form>
+          <div class="form-group">
+            <input type="text" ng-model="methodFilterName" class="form-control" placeholder="Filter by name">
+          </div>
+        </form>
+				<div class="list-group">
+					<button title="{{method.serverOrClient}} method" type="button" ng-repeat="method in methods | orderBy:'name' | filter : methodFilterName"
+						ng-class="{'list-group-item-warning':method.serverOrClient=='client','list-group-item-info':method.serverOrClient=='server'}"
+						ng-dblClick="openMethod(method)" class="methods list-group-item">
+						<h5 class="list-group-item-heading col-md-11" style="overflow: hidden; text-overflow: ellipsis; margin-bottom: 0px;"> {{method.name}}
+						</h5>
+						<i class="glyphicon glyphicon-pencil col-md-1" style="visibility: hidden;" ng-click="renameMethod(method)"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-9 col-md-8 col-sm-7" ng-if="selectedMethod">
+		<ul class="nav nav-tabs">
+			<li ng-repeat="method in methods" ng-class="{'active':method.selected}" ng-if="method.opened" class="methodTab"><a
+					ng-click="selectMethod(method)" style="float: left;" data-toggle="tab" href=""><span ng-if="method.dirty">🔴</span><span ng-if="!method.dirty">✔️</span> {{method.name}}</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active">
+				<div class="panel panel-primary transparent ">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="btn-group push-right" style="margin-left:10px;" role="group" aria-label="...">
+									<button type="button" class="btn btn-sm btn-success" title="Save" ng-click="saveMethod()">
+										<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+									</button>
+									<button type="button" class="btn btn-sm btn-warning" title="Close" ng-click="closeMethodTab()"><span
+											class="glyphicon glyphicon-remove-circle"></span>
+									</button>
+									<button type="button" class="btn btn-sm btn-warning" title="Cancel Changes" ng-click="cancelMethodChanges()"><span
+											class="glyphicon glyphicon-fast-backward"></span>
+									</button>
+									<button type="button" class="btn btn-sm btn-danger" title="Remove method" ng-click="removeMethod()">
+										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									</button>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<form class="form-horizontal">
+									<div class="form-group" style="margin-bottom: 0px">
+										<label for="serverOrClient" class="col-sm-4 control-label">Execution</label>
+										<div class="col-sm-8">
+											<select class="form-control" ng-model="selectedMethod.serverOrClient">
+												<option value="server">Server</option>
+												<option value="client">Client</option>
+											</select>
+										</div>
+									</div>
+								</form>
+							</div>
+
+							<div class="col-md-3">
+								<form class="form-horizontal">
+									<div class="form-group" style="margin-bottom: 0px">
+										<label for="inputEmail3" class="col-sm-4  control-label">Package</label>
+										<div class="col-sm-8 ">
+											<select class="form-control" ng-model="selectedMethod.package"
+												ng-options="item.name as item.label for item in datamodel.packages | orderBy:'name'"></select>
+										</div>
+									</div>
+								</form>
+							</div>
+							
+							<div class="col-md-3">
+								<form class="form-horizontal">
+									<div class="form-group" style="margin-bottom: 0px">
+										<label for="inputEmail3" class="col-sm-4 control-label">Theme</label>
+										<div class="col-sm-8">
+											<select class="form-control" ng-model="theme" ng-change="switchTheme(theme)"
+												ng-options="theme as theme for theme in availableThemes"></select>
+										</div>
+									</div>
+								</form>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="panel-body">
+						<div ui-codemirror="{ onLoad : codemirrorLoaded }" cm="form" ui-codemirror-opts="editorOptions"
+							height="700">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-primary" ng-show="methodUsedIn">
+				<div class="panel-heading">Method Used In</div>
+				<div class="panel-body">
+					<div ag-grid="gridOptions" class="ag-theme-balham" style="height: 400px;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

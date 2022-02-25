@@ -1,0 +1,63 @@
+<div id="fileViewer" ng-controller="fileviewer">
+    <div id="fileViewerTools">
+        <div class=" fileViewerIcons no-border" ng-click="closePanel()" style="height: 120px;">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <div class="rotateTextClose">{{ 'default.shared.close' | translate }} </div>
+        </div>
+        <div class="fileViewerIcons firstFileViewerIcon" ng-click="resizePanel(3)">
+            <span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+        </div>
+        <div class="fileViewerIcons" ng-click="resizePanel(1)">
+            <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+        </div>
+        <div class="fileViewerIcons" ng-click="resizePanel(0)">
+            <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+        </div>
+        <div class="fileViewerIcons" ng-click="resizePanel(2)">
+            <span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span>
+        </div>
+    </div>
+    
+    <div id="fileViewerContent">
+        <div id="fileViewerName" style="font-weight: 600; width: 100%; text-align: center; padding: 10px; height: 40px;"></div>
+        <div id="fileViewerCADOptions" style="padding: 20px;">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <label>Camera Type</label>
+                    <select class="form-control" ng-model="cadViewerOptions.cameraType">
+                        <option value="isometric">Isometric</option>
+                        <option value="perspective">Perspective</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <label>Display Mode</label>
+                    <select class="form-control" ng-model="cadViewerOptions.displayMode">
+                        <option value="auto">Auto</option>
+                        <option value="wireframe">Wireframe</option>
+                        <option value="shaded">Shaded</option>
+                        <option value="shadedWithBoundaries">Shaded With Boundaries</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <label>Representation</label>
+                    <select class="form-control" ng-model="cadViewerOptions.representation">
+                        <option value="auto">Auto</option>
+                        <option value="brep">Brep</option>
+                        <option value="finePoly">FinePoly</option>
+                        <option value="mediumPoly">MediumPoly</option>
+                        <option value="coarsePoly">CoarsePoly</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <label>Background</label>
+                    <select class="form-control" ng-model="cadViewerOptions.bg">
+                        <option value="#ffffff">White</option>
+                        <option value="#000000">Black</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="fileViewerItem"></div>
+    </div>
+    
+</div>

@@ -1,0 +1,213 @@
+{
+	"name": "supplierDocs",
+	"package": "purchasing",
+	"versionnable": false,
+	"promotionControlled": false,
+	"ui": {
+		"defaultThumbnail": "images/partLogo.png",
+		"gridColumns": [],
+		"form": {
+			"definition": {},
+			"ng": {}
+		},
+		"tabs": []
+	},
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"category": null,
+	"configuration": false,
+	"classification": [],
+	"properties": [
+		{
+			"id": "prop_376efbe4c47504348ac9ad0dc4d48e9f",
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"id": "prop_4f259f66593f3371bfe2b64a8eaf03e6",
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_createdOn"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f15980-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f15981-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd697271-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e01be-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e01bf-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37e01c0-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		},
+		{
+			"id": "prop_5bd2f982d01f1e37efac0221eba7a7f8",
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": false,
+			"core": false,
+			"translations": {
+				"default": "_ref"
+			}
+		},
+		{
+			"id": "prop_0c7b22186a989959710a2ed22eaa969c",
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "_state"
+			}
+		},
+		{
+			"id": "prop_ffa766f0508a84bada08fc98e78c11fe",
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "_modifiedOn"
+			}
+		},
+		{
+			"id": "prop_5fae58d859953f212333d3e555acc3d2",
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"id": "prop_30aeb5cb6792a81167833e4c732025a5",
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"id": "prop_19cff3574a55b04871cc3b9282d26d86",
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": false,
+			"translations": {
+				"default": "_lockState"
+			}
+		}
+	],
+	"maidenName": {
+		"elements": [],
+		"separator": "-"
+	},
+	"actions": [],
+	"elementType": "relationship",
+	"lockLinked": true,
+	"linkName": "documentedBy",
+	"id": "nt_924f4d3671b29ba9ba9e9df8b835d4ed",
+	"directions": [
+		{
+			"source": "nt_9a36454795be674e7f03bb02b4b60164",
+			"target": "nt_a029737d551a7a46b1444c8e8e46cab4"
+		}
+	],
+	"translations": {
+		"default": "supplierDocs"
+	}
+}

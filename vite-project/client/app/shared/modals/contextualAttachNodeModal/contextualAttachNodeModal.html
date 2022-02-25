@@ -1,0 +1,21 @@
+<div class="modal fade" id="{{modal.name}}" ng-controller="contextualAttachNodeModalController"  role="dialog" aria-labelledby="{{modal.modalLabel}}" aria-hidden="true" >
+    <div class="modal-dialog modal-lg modal-90-lg"  >
+        <div class="modal-content">
+            <div class="modal-header">
+                  <a class="navbar-brand navbar-left">{{ 'default.nodetype.'+modal.nodetype.name | translate }} </a>
+                  <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <button class="btn" title="Result Count / Query Max limit" ng-class="{'btn-info':!modal.maxResultsClass,'btn-danger':modal.maxResultsClass}" ng-click="editMaxResult();"><span ng-show="waitingResults" class="glyphicon glyphicon-hourglass"></span><span ng-show="!waitingResults" > {{modal.gridOptions.data.length}} </span>/ {{modal.maxResults}}</span></h3>
+                        </button>
+                    </div>
+                    <button type="submit" class="btn btn-success" title="{{ 'default.nodeListing.runSearch' | translate }}" ng-click="modal.executeFilter()"><span class="glyphicon glyphicon-search"></span></button>
+                    <button type="submit" class="btn btn-warning" title="{{ 'default.nodeListing.clearCriterias' | translate }}" ng-click="modal.clearFilters()"><span class="glyphicon glyphicon-erase"></span></button>
+                </form>
+            </div>
+             <div ag-grid="modal.gridOptions" class="ag-theme-balham" style="height: 400px;margin:5px;"></div>
+            <div class="modal-footer">
+                 <button type="button" class="btn btn-primary" id="ModalAdd" ng-click="addMultiRelationship()" ng-disabled="rowSelected">{{ 'default.shared.add' | translate }}</button>
+            </div>
+        </div>
+    </div>
+  </div>

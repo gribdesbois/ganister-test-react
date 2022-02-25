@@ -1,0 +1,77 @@
+<div class="row-container" ng-controller="translationsController">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
+        <div class="form-group">
+            <label for="select-categories">Categories</label>
+            <select class="form-control" id="select-categories" ng-change="getCategoryOptions()"
+                ng-model="selectedCategory" ng-options="item as item for item in categories | orderBy:'name'">
+            </select>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
+        <div class="form-group">
+            <label for="select-options">Category Options</label>
+            <select class="form-control" id="select-options" ng-change="renderAgGrid()" ng-model="selectedOption"
+                ng-options="item as item for item in options | orderBy:'toString()'">
+            </select>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-1">
+        <div class="form-group">
+            <label for="select-options">Add New Row</label>
+            <button class="btn btn-success form-control" ng-click="addRow()">Add</button>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+        <div class="form-group">
+            <label for="select-options">Add or Remove Languages</label>
+            <button class="btn btn-success form-control" data-toggle="modal" data-target="#modal-languages">Open
+                Languages</button>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+        <div class="form-group">
+            <label for="select-options">Reset Translation for Core Properties</label>
+            <button class="btn btn-success form-control" ng-click="resetTranslationForCoreProperties()">Reset
+                Translation</button>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        <button class="btn btn-danger form-control" ng-click="deleteRows()">Delete Selected Rows</button>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div ag-grid="gridOptions" class="ag-theme-balham" style="height: 600px; margin-top: 30px;"
+            id="table-translations"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal-languages" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg modal-90-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add or Remove Languages</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin-bottom:30px">
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <button class="btn btn-success form-control" ng-click="addLanguage()">Add Language</button>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <button class="btn btn-danger form-control" ng-click="removeLanguage()">Remove
+                                Language</button>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <button class="btn btn-warning form-control" ng-click="resetTranslations()">Reset Default
+                                Language</button>
+                        </div>
+                    </div>
+
+                    <div ag-grid="languagesGridOptions" class="ag-theme-balham" id="table-languages"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

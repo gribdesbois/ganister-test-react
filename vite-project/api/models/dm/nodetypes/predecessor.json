@@ -1,0 +1,210 @@
+{
+	"name": "predecessor",
+	"package": "core",
+	"elementType": "relationship",
+	"lockLinked": true,
+	"versionnable": false,
+	"promotionControlled": false,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_c321d5b0-3b6d-11ea-949d-9db19d4dd03d",
+				"property": "assignment.name"
+			},
+			{
+				"label": "progress",
+				"type": "progress",
+				"id": "uigc_c321d5b1-3b6d-11ea-949d-9db19d4dd03d",
+				"property": "assignment.progress",
+				"cellRendered": true
+			},
+			{
+				"label": "description",
+				"type": "text",
+				"id": "uigc_c321d5b2-3b6d-11ea-949d-9db19d4dd03d",
+				"property": "assignment.description"
+			},
+			{
+				"id": "uigc_c321d5b3-3b6d-11ea-949d-9db19d4dd03d",
+				"type": "string",
+				"property": "assignment.category"
+			},
+			{
+				"label": "start Date",
+				"type": "date",
+				"id": "uigc_c321d5b4-3b6d-11ea-949d-9db19d4dd03d",
+				"property": "assignment.startDate",
+				"cellRendered": true
+			},
+			{
+				"label": "due date",
+				"type": "date",
+				"id": "uigc_c321d5b5-3b6d-11ea-949d-9db19d4dd03d",
+				"property": "assignment.dueDate",
+				"cellRendered": true
+			},
+			{
+				"label": "estimated Date",
+				"type": "date",
+				"id": "uigc_c321d5b6-3b6d-11ea-949d-9db19d4dd03d",
+				"property": "assignment.estimatedDate",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_c321d5b7-3b6d-11ea-949d-9db19d4dd03d",
+				"type": "node",
+				"property": "assignment.actor",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_c321d5b8-3b6d-11ea-949d-9db19d4dd03d",
+				"type": "node",
+				"property": "assignment.requestor",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_c321d5b9-3b6d-11ea-949d-9db19d4dd03d",
+				"type": "state",
+				"property": "assignment._state",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_c321d5ba-3b6d-11ea-949d-9db19d4dd03d",
+				"type": "string",
+				"property": "assignment.newlist"
+			}
+		],
+		"tabs": [],
+		"form": {
+			"definition": {},
+			"ng": {}
+		}
+	},
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"category": null,
+	"configuration": false,
+	"classification": [],
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f159a6-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f159a7-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_createdOn"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f159a8-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f159a9-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd69c092-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e01a9-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e01aa-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37e01ab-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		}
+	],
+	"maidenName": {
+		"elements": [],
+		"separator": "-"
+	},
+	"actions": [],
+	"id": "nt_5d79e3ad56cd25615633df69e122bb0a",
+	"linkName": "hasPredecessor",
+	"directions": [
+		{
+			"source": "nt_61eabb0b9f2187dd62c8bbbeee396cb6",
+			"target": "nt_61eabb0b9f2187dd62c8bbbeee396cb6"
+		}
+	],
+	"translations": {
+		"default": "predecessor"
+	}
+}

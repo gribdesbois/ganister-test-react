@@ -1,0 +1,38 @@
+{
+	"logo": "images/LogoGanisterColorSquare.webp",
+	"logoSmaller": "images/LogoGanisterColorSquare.webp",
+	"appLogo": "images/ganisterHorizontalNoSub.webp",
+	"nodetypeNameLocation": "L",
+	"notificationTime": "10000",
+	"defaultPaginationSize": "1000",
+	"paginationEnabled": true,
+	"versioningLabels": [
+		{
+			"value": "fork",
+			"name": "fork"
+		},
+		{
+			"value": "supFork",
+			"name": "supFork"
+		},
+		{
+			"value": "patch",
+			"name": "patch"
+		},
+		{
+			"value": "minor",
+			"name": "minor"
+		},
+		{
+			"value": "major",
+			"name": "major"
+		},
+		{
+			"value": "obsolete",
+			"name": "obsolete"
+		}
+	],
+	"activeGoogleLogin": false,
+	"hideOrganicPermissionsInNode": false,
+	"promotionByNodeManager": true
+}

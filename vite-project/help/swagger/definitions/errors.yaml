@@ -1,0 +1,29 @@
+Error:
+  properties:
+    title:
+      type: string
+      description: Error Title
+      example: Nodetype Error
+    message:
+      type: string
+      description: Error Message
+      example: Nodetype not found.
+    error:
+      type: boolean
+      description: Error True or False
+UnauthenticatedError:
+  type: string
+  example: Unauthorized
+UnauthorizedError:
+  properties:
+    title:
+      type: string
+      description: Error Title
+      example: Can't Access Node
+    message:
+      type: string
+      description: Error Message
+      example: You don't have access to this node.
+    error:
+      type: boolean
+      description: Error True or False

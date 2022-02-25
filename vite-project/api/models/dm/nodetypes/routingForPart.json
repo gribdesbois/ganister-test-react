@@ -1,0 +1,138 @@
+{
+	"name": "routingForPart",
+	"package": "mpp",
+	"elementType": "relationship",
+	"versionnable": false,
+	"promotionControlled": false,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [],
+		"tabs": [],
+		"form": {
+			"definition": {},
+			"ng": {}
+		}
+	},
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"category": null,
+	"configuration": false,
+	"classification": [],
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_15628c30-c510-11ea-b9ba-e7a8359acfdf",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_15628c31-c510-11ea-b9ba-e7a8359acfdf",
+			"translations": {
+				"default": "_createdOn"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_15628c32-c510-11ea-b9ba-e7a8359acfdf",
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_15628c33-c510-11ea-b9ba-e7a8359acfdf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_15628c34-c510-11ea-b9ba-e7a8359acfdf",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": false,
+			"id": "prop_15628c35-c510-11ea-b9ba-e7a8359acfdf",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_15628c36-c510-11ea-b9ba-e7a8359acfdf",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_15628c37-c510-11ea-b9ba-e7a8359acfdf",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		}
+	],
+	"maidenName": [],
+	"actions": [],
+	"id": "nt_3d98f980-bfdb-11ea-b465-9d99458a95f9",
+	"linkName": "produces",
+	"lockLinked": true,
+	"directions": [
+		{
+			"source": "nt_1c1a488741f3b01fb261f1a402f8c2bc",
+			"target": "nt_d118235ccf0285283a2b679200ac375a"
+		}
+	],
+	"translations": {
+		"default": "routingForPart"
+	}
+}

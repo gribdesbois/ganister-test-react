@@ -1,0 +1,166 @@
+{
+	"package": "cmii",
+	"name": "ecoDocument",
+	"elementType": "relationship",
+	"lockLinked": true,
+	"gridColumnsHeader": "",
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132b3-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132b4-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created On",
+				"fr": "Créé le"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132b5-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created By",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f132b6-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd694b66-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e01af-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e01b0-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37e01b1-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		}
+	],
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"category": null,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [
+			{
+				"label": "_ref",
+				"type": "text",
+				"id": "uigc_7d8d8571256c44d40a84d3d189761d00",
+				"property": "document._ref"
+			},
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_03fe6da4203b2f14b8282148927beda0",
+				"property": "document.name"
+			},
+			{
+				"label": "description",
+				"type": "text",
+				"id": "uigc_88c25b516a3b8774cb3de8244827d464",
+				"property": "document.description"
+			},
+			{
+				"label": "Version",
+				"type": "version",
+				"width": 60,
+				"cellRendered": true,
+				"cellStyle": {
+					"text-align": "center"
+				},
+				"id": "uigc_fc473876f3d2f639931aa4a1d070cd3b",
+				"property": "document._version"
+			}
+		],
+		"form": {
+			"definition": {},
+			"ng": {}
+		},
+		"tabs": [],
+		"reverseGridColumns": []
+	},
+	"id": "nt_763d2eb5091097b4a4edad0f3aedc8ed",
+	"linkName": "ecoDocumentedWith",
+	"directions": [
+		{
+			"source": "nt_417412cb36773c3659cfc0ac0347f43f",
+			"target": "nt_a029737d551a7a46b1444c8e8e46cab4"
+		}
+	],
+	"translations": {
+		"default": "ecoDocument"
+	}
+}

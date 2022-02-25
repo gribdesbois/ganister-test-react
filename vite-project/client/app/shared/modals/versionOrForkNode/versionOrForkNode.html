@@ -1,0 +1,32 @@
+<div class="modal fade" id="modal-versionOrForkNode-{{modal.id}}"
+  ng-controller="versionOrForkNodeController" tabindex="-1" role="dialog" aria-labelledby="{{modal.modalLabel}}"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">{{ 'default.shared.close' | translate }}</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{modal.modalLabel | capitalize}}</h4>
+      </div>
+      <div class="modal-body">
+        <div ag-grid="modal.gridOptions" class="ag-theme-balham" style="height: 400px;"></div>
+      </div>
+      <div class="modal-footer">
+        <select type="text" class="form-control" style="max-width: 200px; display: inline-block;"
+          ng-model="modal.action"
+          ng-options="obj.value as obj.name for obj in versioningRuleOptions track by obj.value">
+          <option value="" selected="selected">Select Action</option>
+        </select>
+        <input ng-if="modal.action === 'fork' || modal.action === 'supFork'" type="text" class="form-control"
+          style="max-width: 200px; display: inline-block;" ng-model="modal.newReference"
+          placeholder="Enter new Reference Here" />
+        <button type="button" class="btn btn-success btn-md" style="margin-bottom: 4px;" ng-click="runAction()"
+          ng-disabled="!modal.action">{{ 'default.shared.runAction' | translate }}</button>
+        <button type="button" class="btn btn-default btn-md" style="margin-bottom: 4px;" data-dismiss="modal">{{
+          'default.shared.cancel' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

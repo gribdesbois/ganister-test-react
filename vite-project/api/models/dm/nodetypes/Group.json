@@ -1,0 +1,292 @@
+{
+	"package": "core",
+	"name": "Group",
+	"elementType": "node",
+	"category": null,
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf001b-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_b7bf001c-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_ref"
+			}
+		},
+		{
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf001d-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_state"
+			}
+		},
+		{
+			"name": "_thumbnail",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"relationship": "nt_5d79e3adnkcd25615637df85e122bcac",
+			"id": "prop_b7bf001e-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_thumbnail"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0023-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_createdOn",
+				"fr": "Créé le"
+			}
+		},
+		{
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0024-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_modifiedOn"
+			}
+		},
+		{
+			"name": "_history",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0025-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_history"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0028-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0029-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_b7bf002a-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockState"
+			}
+		},
+		{
+			"name": "_lockedBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf002b-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedBy"
+			}
+		},
+		{
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf002c-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"name": "_lockedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf002d-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedOn"
+			}
+		},
+		{
+			"id": "prop_45d8bac0-1024-11ea-8e30-c3802b962786",
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created By Name",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_8c0ea437-282a-11ec-bd11-b101c33f774a",
+			"translations": {}
+		},
+		{
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"default": "1.0.0",
+			"id": "prop_8c0ea438-282a-11ec-bd11-b101c33f774a",
+			"translations": {}
+		},
+		{
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_8c0ea439-282a-11ec-bd11-b101c33f774a",
+			"translations": {}
+		},
+		{
+			"name": "_promotions",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_8c0ea43a-282a-11ec-bd11-b101c33f774a",
+			"translations": {}
+		},
+		{
+			"name": "_serialized",
+			"type": "multiselect",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": [],
+			"id": "prop_8c0ea43b-282a-11ec-bd11-b101c33f774a",
+			"translations": {}
+		},
+		{
+			"id": "prop_81e1bf3b36c547d296f413d5e4b88867",
+			"name": "name",
+			"type": "string",
+			"unique": false,
+			"mandatory": true,
+			"generated": false,
+			"core": true,
+			"translations": {
+				"default": "Name",
+				"fr": "Nom"
+			}
+		},
+		{
+			"id": "prop_81e1bf3b36c547d296f413d5e4b95667",
+			"name": "groupType",
+			"type": "string",
+			"unique": false,
+			"mandatory": true,
+			"generated": false,
+			"default": "Group",
+			"core": true,
+			"translations": {
+				"default": "Name",
+				"fr": "Nom"
+			}
+		}
+	],
+	"lifecycle": {
+		"states": [
+			{
+				"name": "set",
+				"label": "set",
+				"start": true,
+				"lockable": false,
+				"id": "state_c074ccb904a1b470badb9b86f7765882"
+			}
+		],
+		"transitions": [],
+		"roles": []
+	},
+	"ui": {
+		"defaultThumbnail": "images/identityLogo.png",
+		"gridColumns": [
+			{
+				"id": "uigc_637fcc4a87b67bb27230411317fdb549",
+				"type": "string",
+				"property": "Group.name"
+			}
+		],
+		"form": {
+			"definition": {},
+			"ng": {}
+		},
+		"tabs": []
+	},
+	"id": "nt_a606eed3265f48e7db824f9c6c894808",
+	"changeMethod": "none",
+	"translations": {
+		"default": "Group",
+		"fr": "Groupe"
+	}
+}

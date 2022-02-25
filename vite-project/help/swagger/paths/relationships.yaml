@@ -1,0 +1,242 @@
+nodetypeRelationships:
+  parameters:
+    - name: nodetype
+      in: path
+      description: Source Nodetype Name
+      required: true
+      type: string
+    - name: relationshipName
+      in: path
+      description: Relationship Name
+      required: true
+      type: string
+  get:
+    security:
+      - JWT: []
+    description: Get all relationships of the given relationship name
+    tags:
+      - Relationships
+    responses:
+      '200':
+        description: Returns an array of relationships
+        schema:
+          type: array
+          items:
+            $ref: '../definitions/relationships.yaml#/Relationship'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+searchRelationships:
+  parameters:
+    - name: nodetype
+      in: path
+      description: Source Nodetype Name
+      required: true
+      type: string
+    - name: nodeId
+      in: path
+      description: Source Node Id
+      required: true
+      type: string
+    - name: relationships
+      in: body
+      description: Relationships Names
+      required: true
+      type: array
+      items:
+        type: string
+  post:
+    security:
+      - JWT: []
+    description: Get all the relationships with given node as source
+    tags:
+      - Relationships
+    responses:
+      '200':
+        description: Returns an array of relationships
+        schema:
+          type: array
+          items:
+            $ref: '../definitions/relationships.yaml#/Relationship'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+relationships:
+  parameters:
+    - name: nodetype
+      in: path
+      description: Source Nodetype Name
+      required: true
+      type: string
+    - name: nodeId
+      in: path
+      description: Source Node Id
+      required: true
+      type: string
+    - name: relationshipName
+      in: path
+      description: Relationship Name
+      required: true
+      type: string
+  get:
+    security:
+      - JWT: []
+    description: Get all the relationships of the same type (relationship name) with given node as source
+    tags:
+      - Relationships
+    responses:
+      '200':
+        description: Returns an array of relationships
+        schema:
+          type: array
+          items:
+            $ref: '../definitions/relationships.yaml#/Relationship'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+  post:
+    security:
+      - JWT: []
+    description: Create a relationship between the node in path (source) and the node in body (target)
+    tags:
+      - Relationships
+    parameters:
+      - name: target
+        in: body
+        description: Target Node type and Id
+        schema:
+          type: object
+          properties:
+            target:
+              type: object
+              properties:
+                _type:
+                  type: string
+                  description: Target Node type
+                  example: Document
+                _id:
+                  type: string
+                  description: Target Node Id
+                  example: 6402db40-8277-11eb-9d8c-1d076ded8e06
+            properties:
+              type: object
+              description: Properties to set on relationship
+    responses:
+      "200":
+        description: Returns created relationship
+        schema:
+          $ref: '../definitions/relationships.yaml#/Relationship'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+relationship:
+  parameters:
+    - name: nodetype
+      in: path
+      description: Source Nodetype Name
+      required: true
+      type: string
+    - name: nodeId
+      in: path
+      description: Source Node Id
+      required: true
+      type: string
+    - name: relationshipName
+      in: path
+      description: Relationship Name
+      required: true
+      type: string
+    - name: relationshipId
+      in: path
+      description: Relationship Id
+      required: true
+      type: string
+  get:
+    security:
+      - JWT: []
+    description: Get relationship
+    tags:
+      - Relationships
+    responses:
+      "200":
+        description: Returns relationship
+        schema:
+          $ref: '../definitions/relationships.yaml#/Relationship'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  patch:
+    security:
+      - JWT: []
+    description: Update Relationship Properties
+    tags:
+      - Relationships
+    parameters:
+      - name: properties
+        in: body
+        description: Relationship Properties to update
+        schema:
+          type: object
+          properties:
+            properties:
+              type: object
+              description: Updated properties values
+    responses:
+      "200":
+        description: Returns updated relationship
+        schema:
+          $ref: '../definitions/relationships.yaml#/Relationship'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    description: Delete Relationship
+    tags:
+      - Relationships
+    responses:
+      "200":
+        description: "Returns string: 'Successfully deleted.'"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'

@@ -1,0 +1,8 @@
+<div ng-controller="externalAPIsGitlabController">
+  <div ng-if="rel.externalAPIAction == 'Issues: List For Repo'"
+    ng-include="'app/components/tabs/node/nodeFormTabs/external-apis/gitlab/actions/issues/listForRepo.html'">
+  </div>
+  <div ng-if="rel.externalAPIAction == 'Commits: List Commits'"
+    ng-include="'app/components/tabs/node/nodeFormTabs/external-apis/gitlab/actions/commits/listCommits.html'">
+  </div>
+</div>

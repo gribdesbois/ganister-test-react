@@ -1,0 +1,30 @@
+$panelHeaderingBG: #F5F5F5;
+
+.nodetypeBar {
+  .panel-heading{
+    background-color: $panelHeaderingBG;
+    color: black;
+    text-decoration: none;
+  }
+  a:focus {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  .panel-heading:hover {
+    background-color: $brand-info;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  [aria-expanded='true'] .panel-heading{
+    background-color: $brand-success;
+    color: white;
+    a {
+      text-decoration: none;
+
+    }
+  }
+}

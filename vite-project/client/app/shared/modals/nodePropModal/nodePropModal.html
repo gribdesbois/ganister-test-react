@@ -1,0 +1,47 @@
+<div class="modal fade" id="nodePropmodal-{{node._type}}-{{node._id}}" ng-controller="nodePropModalController"
+    role="dialog" aria-labelledby="{{modal.modalLabel}}" aria-hidden="true" data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog modal-lg  modal-90-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">{{ 'default.shared.close' | translate }}</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ 'default.shared.select' | translate }}
+                    {{targetNodetype.name | capitalize}} {{ 'default.shared.below' | translate }}:</h4>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <button class="btn" title="Result Count / Query Max limit"
+                            ng-class="{'btn-info':!maxResultsClass,'btn-danger':maxResultsClass}"
+                            ng-click="editMaxResult();"><span ng-show="waitingResults"
+                                class="glyphicon glyphicon-hourglass"></span><span ng-show="!waitingResults">
+                                {{gridOptions.rowData.length}} </span>/ {{maxResults}}</span></h3>
+                        </button>
+                    </div>
+                    <button type="submit" class="btn btn-success"
+                        title="{{ 'default.nodeListing.runSearch' | translate }}" ng-click="executeFilter()"><span
+                            class="glyphicon glyphicon-search"></span></button>
+                    <button type="submit" class="btn btn-warning"
+                        title="{{ 'default.nodeListing.clearCriterias' | translate }}" ng-click="clearFilters()"><span
+                            class="glyphicon glyphicon-erase"></span></button>
+                </form>
+            </div>
+            <div ag-grid="gridOptions" class="ag-theme-balham" style="height: 400px;margin:5px;"></div>
+
+            <div class="modal-footer">
+
+                <button ng-show="targetNodetype.name==='file' && nodeTypeCreationAllowed" ngf-drop ngf-select  type="button" class="btn btn-success" ng-model="fileUpload" ngf-drag-over-class="'dragover'"
+                    ngf-allow-dir="false" accept="*" data-toggle="tooltip"
+                    title="{{'default.shared.uploadFile' | translate}}" ng-disabled="loading">{{
+                    'default.shared.createNew' | translate }}</button>
+                <button ng-show="targetNodetype.name!=='file' && nodeTypeCreationAllowed"  type="button" class="btn btn-success" ng-click="createNew(targetNodetype)"
+                    ng-disabled="loading">{{ 'default.shared.createNew' | translate }}</button>
+                <button type="button" class="btn btn-warning" ng-click="unselect()" ng-disabled="loading || !node.properties[propertyName]">{{
+                    'default.shared.unselect' | translate }}</button>
+                <button type="button" class="btn btn-primary" ng-click="select()" ng-disabled="loading">{{
+                    'default.shared.select' | translate }}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="loading">{{
+                    'default.shared.close' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

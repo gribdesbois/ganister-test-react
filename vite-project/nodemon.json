@@ -1,0 +1,23 @@
+{
+  "ext": "js json css scss md html",
+  "ignore": [
+    "assets/*",
+    "log/*",
+    "build/*",
+    "api/models/dm/*",
+    "api/models/schemas/*",
+    "api/utils/locales/*",
+    "apps/*",
+    "client/*",
+    "help/_techDoc/*",
+    "help/_generalDoc/*",
+    "help/_internalDoc/*",
+    "help/swagger/*",
+    "test/*",
+    "spec/*",
+    "cypress/*"
+  ],
+  "events": {
+    "restart": "npm run refresh"
+  }
+}

@@ -1,0 +1,1154 @@
+nodetype:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: Nodetype Name to retrieve
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: ""
+        required: true
+        schema:
+          type: object
+          required:
+            - typeDefinition
+          properties:
+            typeDefinition:
+              type: object
+    description: Add Nodetype
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "{nodetype, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  patch:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: Nodetype Id to retrieve
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - property
+          properties:
+            property:
+              type: string
+            value:
+              type: string
+    description: "Patch Nodetype Meta Data"
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "{id, property, value, comment, nodetypes, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: Nodetype Id
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - nodetype
+          properties:
+            nodetype:
+              type: object
+    description: Update Nodetype
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: Returns nothing
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: Nodetype Id
+        required: true
+        type: string
+    description: Delete Nodetype
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "{id, comment, nodetypes, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+updateObject:
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype Name
+        required: true
+        type: string
+    description: Update Nodetype Element
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {item, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+properties:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+
+      - name: content
+        in: body
+        description: property
+        required: true
+        schema:
+          type: object
+          required:
+            - property
+          properties:
+            property:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: attribute to change in property
+                  example: propertyName
+                type:
+                  type: string
+                  description: new value of property attribute
+                  example: integer
+    description: Add Nodetype Property
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+
+property:
+  parameters:
+    - name: nodetype
+      in: path
+      description: The Nodetype's Name
+      required: true
+      type: string
+    - name: id
+      in: path
+      description: The Property Id
+      required: true
+      type: string
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - property
+          properties:
+            property:
+              type: object
+              properties:
+                attribute:
+                  type: string
+                  description: attribute to change in property
+                  example: type
+                newValue:
+                  type: string
+                  description: new value of property attribute
+                  example: integer
+    description: Update Nodetype Property
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    description: Delete Nodetype Property
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+
+methods:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - tab
+          properties:
+            tab:
+              type: object
+    description: Add Nodetype Method
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+
+method:
+  parameters:
+    - name: nodetype
+      in: path
+      description: The Nodetype's Name
+      required: true
+      type: string
+    - name: id
+      in: path
+      description: The Method's Id
+      required: true
+      type: string
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - method
+          properties:
+            method:
+              type: object
+
+    description: Update Nodetype Method
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    description: Delete Nodetype Method
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+
+actions:
+    post:
+      security:
+        - JWT: []
+      parameters:
+        - name: nodetype
+          in: path
+          description: The Nodetype's Name
+          required: true
+          type: string
+        - name: content
+          in: body
+          description: "Relationship Ids"
+          required: true
+          schema:
+            type: object
+            required:
+              - action
+            properties:
+              action:
+                type: object
+      description: Add Nodetype Action
+      tags:
+        - Nodetypes
+      responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+
+action:
+  parameters:
+    - name: nodetype
+      in: path
+      description: The Nodetype's Name
+      required: true
+      type: string
+    - name: id
+      in: path
+      description: The action id
+      required: true
+      type: string
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - action
+          properties:
+            action:
+              type: object
+    description: Update Nodetype Action
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+    description: Delete Nodetype Action
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+
+tabs:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - method
+          properties:
+            method:
+              type: object
+    description: "Add Nodetype Tab"
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+
+moveTab:
+  patch:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - tabIndex
+          properties:
+            tabIndex:
+              type: integer
+            direction:
+              type: string
+              enum:
+                - up
+                - down
+                - index
+            tabId:
+              type: string
+    description: Move Nodetype Tab
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+
+tab:
+  parameters:
+    - name: nodetype
+      in: path
+      description: The Nodetype's Name
+      required: true
+      type: string
+    - name: id
+      in: path
+      description: The Tab's Id
+      required: true
+      type: string
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - tab
+          properties:
+            tab:
+              type: object
+    description: Update Nodetype Tab
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    description: Remove Nodetype Tab
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+
+form:
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - form
+            - oPath
+          properties:
+            form:
+              type: string
+            oPath:
+              type: string
+    description: Update Nodetype Form Definition
+    tags:
+      - Nodetypes
+    responses:
+        "200":
+          description: "Returns object"
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+
+columns:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: gridName
+        in: path
+        description: "The Nodetype's Grid (usually 'gridColumns')"
+        required: true
+        type: string
+      - name: gridColumn
+        in: body
+        description: column properties (id will be generated by server)
+        required: false
+        schema:
+          type: object
+          items:
+            $ref: "#/definitions/UIColumn"
+    description: Add a new UI column for a nodetype
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: array of UI Columns
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/UIColumn"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+moveColumn:
+  patch:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: gridName
+        in: path
+        description: "The Nodetype's Grid (usually 'gridColumns')"
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - columnIndex
+          properties:
+            columnIndex:
+              type: integer
+            direction:
+              type: string
+              enum:
+                - up
+                - down
+                - index
+            propId:
+              type: string
+    description: Move a UI columns for a specific nodetype
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns Nodetype in object {nodetype: Nodetype}"
+        schema:
+          $ref: "#/definitions/Nodetype"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+column:
+  parameters:
+    - name: nodetype
+      in: path
+      description: The Nodetype's Name
+      required: true
+      type: string
+    - name: gridName
+      in: path
+      description: "The Nodetype's Grid (usually 'gridColumns')"
+      required: true
+      type: string
+    - name: columnId
+      in: path
+      description: The UI Column Id
+      required: true
+      type: string
+  patch:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - gridcolumn
+          properties:
+            gridcolumn:
+              type: object
+    description: Update UI Column for a specific nodetype
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {id, comment, column, nodetype, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    description: Delete UI Column for a specific nodetype
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {id, comment, nodetype, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+lifecycleRoles:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+    description: Add Nodetype Lifecycle Role
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {id, role, nodetype, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+lifecycleRole:
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: id
+        in: path
+        description: The Role Id
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - role
+          properties:
+            role:
+              type: object
+    description: Update Nodetype Lifecycle Role
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {id, role, comment, nodetype, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: id
+        in: path
+        description: The Role Id
+        required: true
+        type: string
+    description: Delete Nodetype Lifecycle Role
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {id, comment, nodetype, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+lifecycleStates:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - state
+          properties:
+            state:
+              type: string
+    description: Add Nodetype Lifecycle State
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {id, state, comment, nodetype, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+lifecycleState:
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: id
+        in: path
+        description: The Lifecycle State's Id
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - state
+          properties:
+            state:
+              type: object
+    description: Update Nodetype Lifecycle State
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {id, state, nodetype, change, err}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: id
+        in: path
+        description: The Lifecycle State's Id
+        required: true
+        type: string
+    description: Delete Nodetype Lifecycle State
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {id, comment, nodetype, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+lifecycleTransitions:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: The Nodetype's Name
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - transition
+          properties:
+            transition:
+              type: object
+    description: Add Nodetype Lifecycle Transition
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {id, transition, nodetype, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+lifecycleTransition:
+  parameters:
+    - name: nodetype
+      in: path
+      description: The Nodetype's Name
+      required: true
+      type: string
+    - name: id
+      in: path
+      description: The Nodetype's Licycle Transition Id
+      required: true
+      type: string
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - transition
+          properties:
+            transition:
+              type: object
+
+    description: Update Nodetype Lifecycle Transition
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {id, transition, comment, nodetype, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    description: Delete Nodetype Lifecycle Transition
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: "Returns object {id, comment, nodetype, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+stateConfig:
+  parameters:
+    - name: nodetype
+      in: path
+      description: Nodetype Name
+      required: true
+      type: string
+  put:
+    security:
+      - JWT: []
+    description: Update Nodes Lockable State
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: object
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+permission:
+  parameters:
+    - name: nodetype
+      in: path
+      description: Nodetype Name
+      required: true
+      type: string
+  post:
+    security:
+      - JWT: []
+    description: Create default nodes access through their PermissionSet
+    tags:
+      - Nodetypes
+    responses:
+      "200":
+        description: object
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'

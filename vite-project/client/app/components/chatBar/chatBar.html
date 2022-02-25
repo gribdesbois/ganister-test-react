@@ -1,0 +1,18 @@
+<div style="margin:8px;  height: 100vh;" ng-controller="chatBoxController" style="background-color:#EEE;">
+  <div class="well well-sm">Discuss with {{interlocutor._labelRef}} <div class="btn btn-info btn-sm" ng-click="cleanDiscussion()"><span class="glyphicon glyphicon-trash"></span></div></div>
+  <form ng-submit="sendMessage()">
+    <input ng-model="editedMessage" rows="2" id="m" class="form-control" autocomplete="off" placeholder="message" style="margin-bottom:5px;"></input>
+  </form>
+  <div class="btn btn-primary btn-block" ng-click="sendMessage()">Send <span class="glyphicon glyphicon-envelope"></span></div>
+  <div id="messages" style="margin-top: 10px;">
+    </ul>
+    <div class="panel panel-default" ng-repeat="message in messages | filter:messageFilter track by message.time  " class="col-md-10" ng-class="[{'col-md-offset-2 panel-info':message.mine},{'panel-success':!message.mine}]">
+      <div ng-show="!message.mine" class="panel-heading" style="padding: 2px 2px 2px 8px;">{{message.from._labelRef}} <span class="label label-primary">{{message.visibleTime}}</span></div>
+      <div ng-show="message.mine" class="panel-heading" style="padding: 2px 2px 2px 8px;">Me <span class="label label-primary">{{message.visibleTime}}</span></div>
+      <div class="panel-body" style="padding:  3px 10px 3px 10px;">
+        <p>{{message.msg}}</p>
+        <p><small>{{message.date}}</small></p>
+      </div>
+    </div>
+  </div>
+</div>

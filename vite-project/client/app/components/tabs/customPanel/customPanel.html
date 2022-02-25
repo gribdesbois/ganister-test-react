@@ -1,0 +1,125 @@
+<div class="container-fluid" ng-controller="customController">
+  <div class="col-md-12 dashboard" id='dashboard'>
+    <div class="row">
+      <div class="col-lg-7 col-md-8 mt-20">
+        <div class=" panel panel-success gmailShade">
+          <div class="panel-heading" style="padding:1px 5px 0 10px;">
+            <h4>{{ 'default.dashboard.assignments' | translate }}
+              <button class="btn btn-info btn-xs" ng-click="refreshAssignments()"><span
+                  class="glyphicon glyphicon-refresh"></span></button>
+            </h4>
+          </div>
+          <div class="panel-body " style="padding:0px;">
+            <div class="dashboard_content">
+              <div class="messageDiv" ng-show="assignmentLoading">
+                <div class="lds-ellipsis">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+              <div ng-if="gridWidgets.assignment" ag-grid="gridWidgets.assignment" class="ag-theme-balham"
+                style="height: 300px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="dashboard_recentItems" class="col-lg-5 col-md-4 mt-20">
+        <div class=" panel panel-info gmailShade">
+          <div class="panel-heading" style="padding:1px 5px 0 10px;">
+            <h4>{{ 'default.dashboard.recentItems' | translate }}
+              <button class="btn btn-warning btn-xs" ng-click="removeRecentItems()"><span
+                  class="glyphicon glyphicon-trash"></span></button>
+            </h4>
+          </div>
+          <div class="panel-body ">
+            <div class="row equal">
+              <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 recentItem-grid"
+                ng-repeat="item in recentItems | limitTo: 12">
+                <div class="brightness">
+                  <img ng-src="{{item.nodetypeDefaultThumbnail}}" ng-click="openNodeTab(item)"
+                    class="img-responsive center-block recentItemGridIcon" title="{{item._type}}" />
+                  <span class="tab-versionBadge">{{ item._displayVersion }}
+                    <a class="glyphicon glyphicon-remove-circle recentItemRemoveButtons" aria-hidden="true"
+                      ng-click="removeRecentItem(item)">
+                    </a>
+                  </span>
+                </div>
+                <span>{{item._labelRef | limitTo: 20 }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row ">
+      <div class="col-lg-3 col-md-3">
+        <div class=" panel panel-info gmailShade">
+          <div class="panel-heading" style="padding:1px 5px 0 10px;">
+            <h4>{{ 'default.dashboard.tasksProgress' | translate }}</h4>
+          </div>
+          <div class="panel-body " style="padding:20px;">
+            <div id="dashboard_ECO">
+              <canvas id="taskGraph" class="chart chart-doughnut" chart-data="taskGraph.data"
+                chart-labels="taskGraph.labels" chart-options="taskGraph.options">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3">
+        <div class=" panel panel-info gmailShade">
+          <div class="panel-heading" style="padding:1px 5px 0 10px;">
+            <h4>{{ 'default.dashboard.activeWorkflows' | translate }}</h4>
+          </div>
+          <div class="panel-body " style="padding:20px;">
+            <div id="dashboard_PR">
+              <canvas id="activeWorkflowsGraph" class="chart chart-bar" chart-data="activeWorkflowsGraph.data"
+                chart-labels="activeWorkflowsGraph.labels" chart-options="activeWorkflowsGraph.options">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="dashboard_Worklfows" class="col-lg-6 col-md-6">
+        <div class=" panel panel-warning gmailShade">
+          <div class="panel-heading" style="padding:1px 5px 0 10px;">
+            <h4>{{ 'default.dashboard.workflows' | translate }} <a class="btn btn-info btn-xs"
+                ng-click="refreshWorkflows()"><span class="glyphicon glyphicon-refresh"></span></a>
+              <a ng-show="!showActiveWorkflow" class="btn btn-success btn-xs"
+                title="{{'default.dashboard.showActives' | translate}}" ng-click="switchWorkflow()"><span
+                  class="glyphicon glyphicon-play"></span></a>
+              <a ng-show="showActiveWorkflow" class="btn btn-warning btn-xs"
+                title="{{'default.dashboard.showInactives' | translate}}" ng-click="switchWorkflow()"><span
+                  class="glyphicon glyphicon-time"></span></a>
+            </h4>
+          </div>
+          <div class="panel-body " style="padding:0px;">
+            <div class="messageDiv" ng-show="workflowLoading">
+              <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+            <!-- Nav tabs -->
+            <div class="dashboard_content" ng-show="showActiveWorkflow">
+              <div ng-if="gridWidgets.activeWorkflows" ag-grid="gridWidgets.activeWorkflows" class="ag-theme-balham"
+                style="height: 300px;"></div>
+            </div>
+            <div class="dashboard_content" ng-show="!showActiveWorkflow">
+              <div ng-if="gridWidgets.inactiveWorkflows" ag-grid="gridWidgets.inactiveWorkflows" class="ag-theme-balham"
+                style="height: 300px;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.recentItemRemoveButtons {
+  top: 0px;
+  left: -30px;
+  position: absolute;
+  color: orange;
+  font-weight: bold;
+  cursor: pointer;
+}
+.recentItemRemoveButtons:hover {
+  color: red;
+}

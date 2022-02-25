@@ -1,0 +1,182 @@
+<div ng-controller="lifecycleController">
+  <ul class="nav nav-tabs innerTabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#roles-{{nodetype.name}}" aria-controls="roles-{{nodetype.name}}" role="tab" data-toggle="tab"><span
+          class="glyphicon glyphicon-user" aria-hidden="true"></span> Roles</a>
+    </li>
+    <li role="presentation">
+      <a href="#businessFlow-{{nodetype.name}}" tabContent="cytoscape" aria-controls="businessFlow-{{nodetype.name}}"
+        role="tab" ng-click="fitLifecycleGraph();" data-toggle="tab"><span class="glyphicon glyphicon-play"
+          aria-hidden="true"></span> Business Flow</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="roles-{{nodetype.name}}">
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-success navbar-btn btn-xs" ng-click="addRole()">Add Role
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-danger navbar-btn btn-xs" ng-click="deleteRole()">Delete Role
+          <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div ag-grid="rolesGridOptions" class="ag-theme-balham"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="businessFlow-{{nodetype.name}}">
+      <div id="businessFlowGraph" style="height:300px;width:100%;"></div>
+      <div class="panel panel-default">
+        <div class="panel-heading">Element Details</div>
+        <div class="panel-body">
+          <div ng-show="selectedEltType == 'node'">
+            <div class="form-group row">
+              <label class="col-md-1 control-label">Name</label>
+              <div class="col-md-2">
+                <input type="text" class="form-control" ng-blur="updateState('name')" id="nodeType_Name"
+                  ng-model="state.name">
+              </div>
+              <div class="col-md-3">
+                <label class="col-md-7 control-label">Start</label>
+                <div class="material-switch col-md-5">
+                  <input ng-change="updateState('start')" id="startSwitch" name="startSwitch" type="checkbox"
+                    ng-model="state.start" />
+                  <label for="startSwitch" class="label-success"></label>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <label class="col-md-7 control-label">Lockable</label>
+                <div class="material-switch col-md-5">
+                  <input ng-change="updateState('lockable')" id="lockableSwitch" name="lockableSwitch" type="checkbox"
+                    ng-model="state.lockable" />
+                  <label for="lockableSwitch" class="label-primary"></label>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <label class="col-md-7 control-label">Released</label>
+                <div class="material-switch col-md-5">
+                  <input ng-change="updateState('released')" id="releasedSwitch" name="releasedSwitch" type="checkbox"
+                    ng-model="state.released" />
+                  <label for="releasedSwitch" class="label-primary"></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-1 control-label">Label</label>
+              <div class="col-md-2">
+                <input type="text" class="form-control" ng-blur="updateState('label')" id="nodeType_Label"
+                  ng-model="state.label">
+              </div>
+              <label class="col-md-1 control-label">Owner</label>
+              <div class="col-md-2">
+                <select ng-options="item.id as item.label for item in nodetype.lifecycle.roles" type="text"
+                  class="form-control" ng-change="updateState('owner')" ng-model="state.owner">
+                  <option value="">None</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="col-md-7 control-label">Config Freeze</label>
+                <div class="material-switch col-md-5">
+                  <input ng-change="updateState('configFreeze')" id="configFreezeSwitch" name="configFreezeSwitch"
+                    type="checkbox" ng-model="state.configFreeze" />
+                  <label for="configFreezeSwitch" class="label-primary"></label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label class="col-md-7 control-label">Tracked</label>
+                <div class="material-switch col-md-5">
+                  <input ng-change="updateState('tracked')" id="trackedSwitch" name="trackedSwitch" type="checkbox"
+                    ng-model="state.tracked" />
+                  <label for="trackedSwitch" class="label-primary"></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-1 control-label">Color</label>
+              <div class="col-md-2">
+                <select type="text" class="form-control" ng-change="updateState('ui_color')" ng-model="state.ui_color">
+                  <option value="default">default</option>
+                  <option value="primary">primary</option>
+                  <option value="success">success</option>
+                  <option value="info">info</option>
+                  <option value="danger">danger</option>
+                  <option value="warning">warning</option>
+                </select>
+              </div>
+              <style>
+                select option[value="default"] {
+                  background: #555;
+                  color: white;
+                }
+
+                select option[value="primary"] {
+                  background: #337ab7;
+                  color: white;
+                }
+
+                select option[value="success"] {
+                  background: #5cb85c;
+                  color: white;
+                }
+
+                select option[value="info"] {
+                  background: #5bc0de;
+                  color: white;
+                }
+
+                select option[value="danger"] {
+                  background: #d9534f;
+                  color: white;
+                }
+
+                select option[value="warning"] {
+                  background: #f0ad4e;
+                  color: white;
+                }
+              </style>
+              <label class="col-md-1 control-label">Mandatory Properties</label>
+              <div class="col-md-3">
+                <select type="text" class="form-control" multiple ng-change="updateState('mandatoryProperties')"
+                  ng-model="state.mandatoryProperties"
+                  ng-options="item.name as item.name for item in nodetype.properties | orderBy:'name'">
+                </select>
+              </div>
+              <label class="col-md-1 control-label">Mandatory Rels</label>
+              <div class="col-md-3">
+                <select type="text" class="form-control" multiple ng-change="updateState('mandatoryRels')"
+                  ng-model="state.mandatoryRels"
+                  ng-options="item.name as item.name for item in outRels | orderBy:'name'">
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              
+              <label class="col-md-12 control-label">Promotion Conditions</label>
+              
+              <div class="col-md-12">
+              <textarea class=" form-control" ng-blur="updateState('conditionsMsg')" ng-bind-html="state.conditionsMsg" ng-model="state.conditionsMsg" id="stateConditionsMsg">
+
+              </textarea>
+              </div>
+            </div>
+          </div>
+          <div ng-show="selectedEltType == 'edge'">
+            <div class="btn-group" role="group" aria-label="...">
+              <button type="button" class="btn btn-success navbar-btn btn-xs"
+                ng-click="addLifecycleTransitionMethod(selectedTransition)">Add Method
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+              <button type="button" class="btn btn-danger navbar-btn btn-xs"
+                ng-click="removeLifecycleTransitionMethod(selectedTransition)">Delete
+                Method<span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+            </div>
+            <div class="row row-no-gutters">
+              <div ag-grid="preMethodsGridOptions" class="col-md-6 ag-theme-balham"></div>
+              <div ag-grid="postMethodsGridOptions" class="col-md-6 ag-theme-balham"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

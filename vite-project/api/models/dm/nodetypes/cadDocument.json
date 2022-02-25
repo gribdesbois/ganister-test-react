@@ -1,0 +1,507 @@
+{
+	"name": "cadDocument",
+	"package": "core",
+	"elementType": "node",
+	"versionnable": true,
+	"promotionControlled": false,
+	"ui": {
+		"defaultThumbnail": "images/1594025965815-draw.png",
+		"gridColumns": [
+			{
+				"id": "uigc_89838c40-0d3c-11ea-8ffc-19d4b02fcc44",
+				"type": "image",
+				"property": "cadDocument._thumbnail",
+				"height": 80,
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_9bf07610-0bcd-11ea-a54c-d168f14b84c7",
+				"type": "string",
+				"property": "cadDocument._ref"
+			},
+			{
+				"id": "uigc_58a7d340-0a4b-11ea-a01f-5189694b4102",
+				"type": "string",
+				"property": "cadDocument.name"
+			},
+			{
+				"id": "uigc_68d584b0-0a4b-11ea-9ac7-f1ade122f234",
+				"type": "node",
+				"property": "cadDocument.nativeFile",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_5314c8c0-20b2-11ea-81a3-11bcce870e98",
+				"type": "node",
+				"property": "cadDocument.neutralFile",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_6d1159a0-0a4b-11ea-b106-2d6cf5640f4f",
+				"type": "node",
+				"property": "cadDocument.viewableFile",
+				"cellRendered": true
+			}
+		],
+		"tabs": [
+			{
+				"id": "tab_368e7fc0-0b27-11ea-8790-6137ec8231c7",
+				"name": "References",
+				"tabContentType": "relatedObject",
+				"attachMode": "",
+				"relationships": "nt_31538a50-0b27-11ea-9487-f39c7961feef",
+				"translations": {
+					"default": "References",
+					"fr": "References"
+				}
+			},
+			{
+				"id": "tab_50af5e30-0c3d-11ea-9e75-215828202eee",
+				"name": "cadBOM",
+				"tabContentType": "multilevelView",
+				"attachMode": "",
+				"relationships": [
+					"nt_31538a50-0b27-11ea-9487-f39c7961feef"
+				],
+				"translations": {
+					"default": "cadBOM",
+					"fr": "BOM CAD"
+				}
+			}
+		],
+		"form": {
+			"definition": {
+				"A": [
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "false",
+						"id": "co_d77ff270-8230-4493-a9cc-bdd0401b03c3",
+						"label": "IDENT",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_92024a10-43d8-4042-a977-f3cc2e1f5f29",
+									"property": "_ref",
+									"size": "6",
+									"propertyType": "string",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_85321421-eca8-4d7e-84c2-4b9d018ac046",
+									"property": "name",
+									"size": "6",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_a08312db-233b-4987-9d0d-98f77fac878c",
+									"property": "nativeFile",
+									"size": "4",
+									"propertyType": "node",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_f9aa00f8-c93f-462e-a704-8ade79ea92b7",
+									"property": "neutralFile",
+									"propertyType": "node",
+									"size": "4",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_381633f7-6148-435d-ad95-b6caa2035273",
+									"property": "viewableFile",
+									"size": "4",
+									"propertyType": "node",
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					}
+				]
+			},
+			"ng": {}
+		}
+	},
+	"lifecycle": {
+		"states": [
+			{
+				"id": "state_0da280c2-0a4b-11ea-8bf3-27ea724d6fff",
+				"name": "draft",
+				"label": "Draft",
+				"start": true,
+				"lockable": true,
+				"owner": "role_0da280c1-0a4b-11ea-8bf3-27ea724d6fff",
+				"ui_color": "primary"
+			}
+		],
+		"transitions": [],
+		"roles": [
+			{
+				"id": "role_0da280c1-0a4b-11ea-8bf3-27ea724d6fff",
+				"name": "manager",
+				"label": "Manager"
+			}
+		]
+	},
+	"category": 3,
+	"configuration": false,
+	"classification": [],
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da280c3-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_id",
+				"fr": "ID"
+			}
+		},
+		{
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "codification",
+			"core": true,
+			"id": "prop_0da280c4-0a4b-11ea-8bf3-27ea724d6fff",
+			"group": "IDENT",
+			"translations": {
+				"default": "Ref",
+				"fr": "Ref"
+			}
+		},
+		{
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da280c5-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_state",
+				"fr": "Statut"
+			}
+		},
+		{
+			"name": "_thumbnail",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"relationship": "nt_5d79e3adnkcd25615637df85e122bcac",
+			"id": "prop_0da280c6-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "Thumbnail",
+				"fr": "Vignette"
+			}
+		},
+		{
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da280c7-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "Released On",
+				"fr": "Validé le"
+			}
+		},
+		{
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"default": "1.0.0",
+			"id": "prop_0da280c8-0a4b-11ea-8bf3-27ea724d6fff",
+			"group": "",
+			"translations": {
+				"default": "_version",
+				"fr": "Révision"
+			}
+		},
+		{
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da280c9-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_versionedOn",
+				"fr": "Révisé le"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da280cb-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_createdOn",
+				"fr": "Créé le"
+			}
+		},
+		{
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da280cc-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_modifiedOn",
+				"fr": "Modifié le"
+			}
+		},
+		{
+			"name": "_history",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"default": "[]",
+			"id": "prop_0da2a7d0-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_history",
+				"fr": "Historique"
+			}
+		},
+		{
+			"name": "_promotions",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da2a7d1-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_promotions",
+				"fr": "Promotions"
+			}
+		},
+		{
+			"name": "_serialized",
+			"type": "multiselect",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_0da2a7d2-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_serialized"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da2a7d3-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_createdBy",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da2a7d4-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_0da2a7d5-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_lockState"
+			}
+		},
+		{
+			"name": "_lockedBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da2a7d6-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_lockedBy"
+			}
+		},
+		{
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da2a7d7-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"name": "_lockedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_0da2a7d8-0a4b-11ea-8bf3-27ea724d6fff",
+			"translations": {
+				"default": "_lockedOn"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_af744cd0-3ca0-11ea-bf95-e31ec50430e3",
+			"translations": {
+				"default": "_createdByName",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_releasedUntil",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"id": "prop_6a03e660-6558-11eb-94db-07bad80f0c9e",
+			"translations": {
+				"default": "_releasedUntil",
+				"fr": "Valide jusqu'à"
+			}
+		},
+		{
+			"id": "prop_56de0fc0-0a4b-11ea-a01f-5189694b4102",
+			"name": "name",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": false,
+			"group": "IDENT",
+			"translations": {
+				"default": "Name",
+				"fr": "Nom"
+			}
+		},
+		{
+			"id": "prop_672cb6b0-0a4b-11ea-9ac7-f1ade122f234",
+			"name": "nativeFile",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": false,
+			"relationship": "nt_9b1e7170-0a4b-11ea-984d-e9f35b424d24",
+			"group": "IDENT",
+			"translations": {
+				"default": "Native File",
+				"fr": "Fichier Natif"
+			}
+		},
+		{
+			"id": "prop_6c4b98a0-0a4b-11ea-b106-2d6cf5640f4f",
+			"name": "viewableFile",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": false,
+			"relationship": "nt_b1d67bb0-0a4b-11ea-b3de-8d5b38a11909",
+			"group": "IDENT",
+			"translations": {
+				"default": "Viewable File",
+				"fr": "Visualisable"
+			}
+		},
+		{
+			"id": "prop_521c10e0-20b2-11ea-81a3-11bcce870e98",
+			"name": "neutralFile",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": false,
+			"group": "IDENT",
+			"relationship": "nt_b8f605a0-20b2-11ea-9330-21eb929483fa",
+			"translations": {
+				"default": "Neutral File",
+				"fr": "Fichier Neutre"
+			}
+		}
+	],
+	"actions": [],
+	"id": "nt_0da280c0-0a4b-11ea-8bf3-27ea72ff",
+	"maidenName": {
+		"elements": [
+			"_ref"
+		]
+	},
+	"changeMethod": "manual",
+	"versioningRule": {
+		"major": "nonInterchangeable",
+		"minor": "interchangeable"
+	},
+	"hasThumbnail": true,
+	"codification": {
+		"prefix": "CAD-",
+		"size": 8,
+		"fillWith": "0"
+	},
+	"methods": [],
+	"translations": {
+		"default": "cadDocument",
+		"en": "CAD Document",
+		"fr": "Document CAO"
+	}
+}

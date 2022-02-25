@@ -1,0 +1,597 @@
+{
+	"package": "syseng",
+	"elementType": "node",
+	"name": "requirementSet",
+	"category": 1,
+	"codification": {
+		"prefixes": [
+			{
+				"type": "text",
+				"value": "PREQ"
+			}
+		],
+		"value": {
+			"size": "6",
+			"fillWith": "0",
+			"type": "highest"
+		}
+	},
+	"gridColumnsHeader": "",
+	"lifecycle": {
+		"states": [
+			{
+				"name": "new",
+				"label": "new",
+				"labelClass": "Primary",
+				"start": true,
+				"lockable": true,
+				"id": "state_fc33eb0e37b614e402225906599e10d2",
+				"positionY": 150,
+				"positionX": 0,
+				"ui_color": "info",
+				"owner": "role_3053503dec4760a14fbecd5a3aa00cae"
+			},
+			{
+				"name": "inprogress",
+				"label": "In Progress",
+				"start": false,
+				"lockable": true,
+				"id": "state_35d15ebb177d1317f4041c749ef86dc5",
+				"positionY": 150,
+				"positionX": 100,
+				"ui_color": "warning",
+				"tracked": true,
+				"owner": "role_3053503dec4760a14fbecd5a3aa00cae"
+			},
+			{
+				"name": "onhold",
+				"label": "on hold",
+				"start": false,
+				"lockable": true,
+				"id": "state_82d3a0cc24705bcf827c50d225fb1cf1",
+				"positionY": 220.74778407612033,
+				"positionX": 199.3953180848195,
+				"ui_color": "info",
+				"owner": "role_0cc4dc5dba7c252192848eb45a9e86a1"
+			},
+			{
+				"name": "cancelled",
+				"label": "cancelled",
+				"start": false,
+				"lockable": true,
+				"id": "state_871e31fcafc2202f4e8655c4d3b564af",
+				"positionY": 222.5618298216619,
+				"positionX": 312.09363830361025,
+				"ui_color": "default"
+			},
+			{
+				"name": "commited",
+				"label": "commited",
+				"start": false,
+				"lockable": true,
+				"id": "state_2943796d08aac8c4b63d71197edbca88",
+				"positionY": 104.04417444628082,
+				"positionX": 201.05964990561034,
+				"ui_color": "primary",
+				"tracked": true,
+				"owner": "role_0cc4dc5dba7c252192848eb45a9e86a1"
+			},
+			{
+				"name": "done",
+				"label": "Done",
+				"start": false,
+				"lockable": false,
+				"id": "state_2a03c44d37a3509870db9b26db7c95fa",
+				"positionY": 105.85822019182237,
+				"positionX": 311.9439243788596,
+				"ui_color": "success"
+			}
+		],
+		"transitions": [
+			{
+				"from": "state_fc33eb0e37b614e402225906599e10d2",
+				"to": "state_35d15ebb177d1317f4041c749ef86dc5",
+				"method": "",
+				"id": "trans_da11b6411ac75d84b5e2bfcb7e637de1"
+			},
+			{
+				"from": "state_35d15ebb177d1317f4041c749ef86dc5",
+				"to": "state_82d3a0cc24705bcf827c50d225fb1cf1",
+				"method": "",
+				"id": "trans_7961e77fe071752b6bd688740c7cad5d"
+			},
+			{
+				"from": "state_82d3a0cc24705bcf827c50d225fb1cf1",
+				"to": "state_35d15ebb177d1317f4041c749ef86dc5",
+				"method": "",
+				"id": "trans_4886ffb94161e10ff69e75b8b5dbf21c"
+			},
+			{
+				"from": "state_82d3a0cc24705bcf827c50d225fb1cf1",
+				"to": "state_871e31fcafc2202f4e8655c4d3b564af",
+				"method": "",
+				"id": "trans_8a66eaf8ed43f00d01afa34b86d1e588"
+			},
+			{
+				"from": "state_35d15ebb177d1317f4041c749ef86dc5",
+				"to": "state_871e31fcafc2202f4e8655c4d3b564af",
+				"method": "",
+				"id": "trans_4450e4fef686337528de48a106c64dd6"
+			},
+			{
+				"from": "state_35d15ebb177d1317f4041c749ef86dc5",
+				"to": "state_2943796d08aac8c4b63d71197edbca88",
+				"method": "",
+				"id": "trans_8ca10f5b993da0f933c741cc759c4fae"
+			},
+			{
+				"from": "state_2943796d08aac8c4b63d71197edbca88",
+				"to": "state_2a03c44d37a3509870db9b26db7c95fa",
+				"id": "trans_4d55892a4f0d57868b6ca8c224a788e1"
+			},
+			{
+				"from": "state_2943796d08aac8c4b63d71197edbca88",
+				"to": "state_35d15ebb177d1317f4041c749ef86dc5",
+				"id": "trans_92c13d1f9798a304afce226676055ca8"
+			}
+		],
+		"roles": [
+			{
+				"name": "manager",
+				"label": "Manager",
+				"id": "role_0cc4dc5dba7c252192848eb45a9e86a1"
+			},
+			{
+				"name": "actor",
+				"label": "Actor",
+				"id": "role_3053503dec4760a14fbecd5a3aa00cae"
+			}
+		]
+	},
+	"properties": [
+		{
+			"id": "prop_376efbe4c47504348ac9ad0dc4d48e9f",
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"id": "prop_5bd2f982d01f1e37efac0221eba7a7f8",
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"group": "Identification",
+			"translations": {
+				"default": "Ref",
+				"en": "Ref",
+				"fr": "Ref",
+				"el": "ref"
+			}
+		},
+		{
+			"id": "prop_0c7b22186a989959710a2ed22eaa969c",
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "State",
+				"fr": "Statut",
+				"el": "State"
+			}
+		},
+		{
+			"id": "prop_4f259f66593f3371bfe2b64a8eaf03e6",
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_createdOn",
+				"en": "Created On"
+			}
+		},
+		{
+			"id": "prop_ffa766f0508a84bada08fc98e78c11fe",
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_modifiedOn",
+				"en": "Modified On"
+			}
+		},
+		{
+			"id": "prop_5fae58d859953f212333d3e555acc3d2",
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"id": "prop_30aeb5cb6792a81167833e4c732025a5",
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"id": "prop_19cff3574a55b04871cc3b9282d26d86",
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"translations": {
+				"default": "Lockstate"
+			}
+		},
+		{
+			"name": "_thumbnail",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"relationship": "nt_5d79e3adnkcd25615637df85e122bcac",
+			"id": "prop_b7beb1d6-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_thumbnail"
+			}
+		},
+		{
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1d7-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_releasedOn"
+			}
+		},
+		{
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1d8-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_version"
+			}
+		},
+		{
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1d9-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_versionedOn"
+			}
+		},
+		{
+			"name": "_history",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1db-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_history"
+			}
+		},
+		{
+			"name": "_promotions",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1dc-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_promotions"
+			}
+		},
+		{
+			"name": "_serialized",
+			"type": "multiselect",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_b7beb1dd-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_serialized"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1de-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_lockedBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1df-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedBy"
+			}
+		},
+		{
+			"name": "_lockedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1e0-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedOn"
+			}
+		},
+		{
+			"id": "prop_d6830800-1024-11ea-ba57-ed964e2e634d",
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created By Name",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_releasedUntil",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"id": "prop_480593d0-6556-11eb-94db-07bad80f0c9e",
+			"translations": {
+				"default": "_releasedUntil"
+			}
+		},
+		{
+			"name": "type",
+			"label": "type",
+			"type": "text",
+			"id": "prop_827b446242f95833ca5cf48a5ebf688e",
+			"group": "Identification",
+			"core": false,
+			"translations": {
+				"default": "Type",
+				"fr": "Type",
+				"el": "type"
+			}
+		},
+		{
+			"name": "title",
+			"label": "title",
+			"type": "text",
+			"id": "prop_8f7e82a81b15102b06f9bd88053d0117",
+			"group": "Identification",
+			"core": false,
+			"translations": {
+				"default": "Title",
+				"fr": "Titre",
+				"el": "title"
+			}
+		},
+		{
+			"name": "description",
+			"label": "description",
+			"type": "text",
+			"id": "prop_471997993eadf688cbe6102cac905934",
+			"group": "Identification",
+			"core": false,
+			"translations": {
+				"default": "Description",
+				"fr": "Description",
+				"el": "description"
+			}
+		}
+	],
+	"ui": {
+		"defaultThumbnail": "images/requirementSetLogo.png",
+		"tabs": [
+			{
+				"id": "tab_124a50572340a7a07701c7eba4bd3e99",
+				"name": "reqView",
+				"tabContentType": "multilevelView",
+				"relationships": [
+					"nt_2208712bbc2c7284ae2ca7bf63ec5eda",
+					"nt_30c634f91c218efefecc38f04246857f"
+				],
+				"disableUpdates": false,
+				"translations": {
+					"default": "reqView",
+					"en": "Requirements",
+					"fr": "Vue"
+				}
+			}
+		],
+		"form": {
+			"definition": {
+				"A": [
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "false",
+						"id": 1,
+						"label": "Identification",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": 1,
+									"property": "_ref",
+									"size": "2",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": 2,
+									"property": "type",
+									"size": "2",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": 3,
+									"property": "title",
+									"size": "2",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": 4,
+									"property": "description",
+									"size": "6",
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					}
+				]
+			},
+			"ng": {},
+			"labelCase": "capitalize"
+		},
+		"gridColumns": [
+			{
+				"id": "uigc_e1e6c230-bfd4-11ea-929a-bdfe3e20fbfc",
+				"type": "state",
+				"order": 1,
+				"property": "requirementSet._state",
+				"cellRendered": true,
+				"width": 120
+			},
+			{
+				"id": "uigc_e4d815c0-bfd4-11ea-929a-bdfe3e20fbfc",
+				"type": "version",
+				"order": 2,
+				"property": "requirementSet._version",
+				"cellRendered": true,
+				"width": 80
+			},
+			{
+				"label": "type",
+				"type": "text",
+				"id": "uigc_eb2b9caab5cd8d3b1240359876b8010e",
+				"property": "requirementSet.type",
+				"order": 3
+			},
+			{
+				"id": "uigc_4d1b82eccb274697a45bd03df552ead0",
+				"type": "string",
+				"property": "requirementSet._ref",
+				"order": 4
+			},
+			{
+				"label": "title",
+				"type": "text",
+				"id": "uigc_c03ebaa0bb37ccfbda0545def4337d84",
+				"property": "requirementSet.title",
+				"order": 5,
+				"width": 300
+			},
+			{
+				"label": "description",
+				"type": "text",
+				"id": "uigc_128e4e2f54304ddc17fb60c96ef76ade",
+				"editable": false,
+				"cellRendered": true,
+				"property": "requirementSet.description",
+				"order": 6
+			},
+			{
+				"id": "uigc_f2886b20-bfd4-11ea-929a-bdfe3e20fbfc",
+				"type": "date",
+				"order": 7,
+				"property": "requirementSet._createdOn",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_f2e1d5c0-bfd4-11ea-929a-bdfe3e20fbfc",
+				"type": "date",
+				"order": 8,
+				"property": "requirementSet._modifiedOn",
+				"cellRendered": true
+			}
+		]
+	},
+	"id": "nt_30e99dd7da21b4296c521b809049e042",
+	"maidenName": {
+		"elements": [
+			"_ref",
+			"title"
+		]
+	},
+	"versionnable": true,
+	"changeMethod": "manual",
+	"versioningRule": {
+		"major": "nonInterchangeable",
+		"minor": "interchangeable"
+	},
+	"translations": {
+		"default": "Requirement Set",
+		"en": "Requirement Set",
+		"fr": "Jeu d'Exigences",
+		"el": "Ορισμός Απαιτήσεων"
+	}
+}

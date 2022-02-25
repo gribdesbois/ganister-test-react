@@ -1,0 +1,77 @@
+<!-- user access collapse start -->
+<div class="col-xs-12 col-md-12 collapse" id="userAccessCollapse-{{node._id}}-{{nodeVersion}}">
+  <div class="container-fluid col-md-12">
+    <div class="well " style="padding-bottom:0px;">
+      <span class="wellTitle" title="You have access as {{node.highestAccess}}"> {{ 'default.node.userAccess' | translate }}  [🔑: <b style="color:red;">{{node.user.highestAccess}}</b>]</span>
+      <div class="row" style="overflow-x: auto;white-space: nowrap;margin:3px;">
+        <div style="width: 170px; display:inline-block; margin: 5px;font-size:small;"
+          ng-repeat="nodeRole in node.accessRoles" ng-show="!(nodeRole.permissionSet && appDefinition.uxConfig.hideOrganicPermissionsInNode)">
+          <div class="thumbnail" ng-class="{permissionSet: nodeRole.permissionSet,userAccess: !nodeRole.permissionSet}"
+            title="{{nodeRole.source.properties._labelRef}} accesses as {{nodeRole.properties.role}}">
+            <img ng-src="{{nodeRole.source.properties.pict}}" check-image src="images/userLogo.png"
+              style="object-fit: cover; height: 128px; width: 128px; border-radius: 5px;" alt="...">
+            <div class="caption">
+              <b class="">{{nodeRole.properties.role}}
+                <span class="glyphicon glyphicon-refresh actionnableGlyphicon"
+                  ng-show="!nodeRole.permissionSet && node.user.highestAccess=='manager'" style="margin-right: 5px;"
+                  aria-hidden="true" ng-click="openItemAccessModal(nodeRole.source, nodeRole.properties.role)"></span>
+                <span ng-show="node.user.highestAccess=='manager' && !nodeRole.permissionSet"
+                  class="glyphicon glyphicon-trash actionnableGlyphicon" aria-hidden="true"
+                  ng-click="openRemoveConfirmation(nodeRole.source, nodeRole.properties.role)"></span>
+                <span ng-show="node.user.highestAccess=='manager' && nodeRole.permissionSet"
+                  class="glyphicon glyphicon-trash actionnableGlyphicon" aria-hidden="true"
+                  ng-click="removeOrganicPermission(nodeRole)"></span>
+                <span ng-show="nodeRole.source._type === 'Group' && nodeRole.source.properties.groupType === 'team'"
+                  class="glyphicon glyphicon-search actionnableGlyphicon" aria-hidden="true"
+                  ng-click="fetchTeamMembers(nodeRole,$parent.groupDetailVisible);$parent.groupDetailVisible=!$parent.groupDetailVisible;$parent.selectedGroup=nodeRole;"></span>
+              </b>
+              <p class="">{{ nodeRole.source.properties._labelRef || nodeRole.source.properties.name }}</p>
+            </div>
+          </div>
+        </div>
+        <div style="width: 170px; display:inline-block; margin: 5px;font-size:small;">
+          <div ng-click="openItemAccessModal()" class="thumbnail clickable"
+            ng-show="(node.user.highestAccess=='manager' || appContext.user.properties._isAdmin)  "
+            style="border: 3px dotted #5cb85c; background-color:#CEE5CE; border-radius: 8px;">
+            <img src="images/addUser.png" height="64" alt="...">
+            <div class="caption">
+              <p style="padding-top: 18px;">{{ 'default.node.addAccess' | translate }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- ONLY APPEARS IF PERMISSIONSET HAS BEEN REMOVED-->
+        <div class="activatePermissionSet" ng-show="(node.user.highestAccess=='manager' || appContext.user.properties._isAdmin) && (!node.hasPermissionSet) && !appDefinition.uxconfig.hideOrganicPermissionsInNode" style="width: 170px; display:inline-block; margin: 5px;font-size:small;">
+          <div ng-click="activateOrganicPermission()" class="thumbnail permissionSet clickable" title="Activate Organic Permissions"  style="border: 3px dotted#f0ad4e; background-color:#fcf8e3; border-radius: 8px;">
+            <img src="images/identityLogo.png"
+              style="object-fit: cover; height: 128px; width: 128px; border-radius: 5px;" alt="...">
+            <div class="caption">
+              <b class="">Organic Permissions
+              </b>
+              <p class="">Enable</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-info" ng-show="(selectedGroup && groupDetailVisible)">
+        <div class="panel-body">
+          <div class="container-fluid col-md-12">
+            <span class="teamTitle">Group : {{ selectedGroup.accessor.name }}</span>
+            <div style="width: 170px; display:inline-block; margin: 5px;font-size:small;"
+              ng-repeat="member in selectedGroup.nodes">
+              <div class="thumbnail" ng-class="{permissionSet: member.permissionSet,userAccess: !member.permissionSet}"
+                title="{{member.detail.firstName}} {{member.detail.lastName}} accesses as {{member.role.role}}">
+                <img ng-src="{{member.detail.pict}}" check-image src="images/userLogo.png"
+                  style="object-fit: cover; height: 128px; width: 128px; border-radius: 5px;" alt="...">
+                <div class="caption">
+                  <b class="">{{member.role.name}}</b>
+                  <p class="">{{member.detail.firstName}} {{member.detail.lastName}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- user access collapse end -->

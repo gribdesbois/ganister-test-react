@@ -1,0 +1,89 @@
+Permission:
+  properties:
+    name:
+      type: string
+      description: Permission Name
+    _type:
+      type: string
+      description: Permission Type (PermissionSet or Group)
+History:
+  properties:
+    _modifiedOn:
+      type: integer
+      description: Timestamp of node update
+      example: 1619174230071
+    user:
+      type: object
+      description: User who updated node
+      properties:
+        _labelRef:
+          type: string
+          description: User first name and last name
+          example: Max Mustermann
+        _id:
+          type: string
+          description: User Id
+          example: 5c1e2250-654f-11eb-a8635-fd0dfghjk4a
+    properties:
+      type: object
+      description: Properties Updated
+      properties:
+        current:
+          type: boolean
+          example: false
+Promotion:
+  properties:
+    fromState:
+      type: string
+      description: Previous node state
+      example: draft
+    toState:
+      type: string
+      description: New node state
+      example: inreview
+    comment:
+      type: string
+      description: Comment attached to promotion
+      example: OK for review
+    _version:
+      type: string
+      description: Node version at promotion
+      example: 1.0.0
+    time:
+      type: integer
+      description: Timestamp of the promotion
+      example: 1619174200071
+    user:
+      type: object
+      description: User who promoted node
+      properties:
+        name:
+          type: string
+          description: User name
+          example: Max Mustermann
+        _id:
+          type: string
+          description: User Id
+          example: 5c1e2250-654f-11eb-a8635-fd0dfghjk4a
+
+HistoryItem:
+  properties:
+    startDate:
+      type: integer
+      description: Timestamp of the history change start date
+      example: 1619174200071
+    endDate:
+      type: integer
+      description: Timestamp of the history change end date
+      example: 1619175200071
+    title:
+      type: string
+      description: Description on the history item
+      example: Updated by Max Mustermann
+    type:
+      type: string
+      description: "History item's type: 'update', 'version' or 'relationship'"
+      example: update
+    properties:
+      type: object
+      description: History item's properties

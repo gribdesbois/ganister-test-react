@@ -1,0 +1,193 @@
+<!-- lifecycle collapse start -->
+<div class="col-xs-12 col-md-12 collapse" id="lifecycleCollapse-{{node._id}}-{{nodeVersion}}"
+  ng-controller="lifecycleModalController">
+  <div class="container-fluid col-md-12">
+    <div class="well" style="padding-top:5px;padding-bottom:5px;height:262px; ">
+      <span class="wellTitle">{{ 'default.node.lifecycle' | translate }}</span>
+      <form>
+        <button class="btn btn-success btn-sm promoteBtn"
+          ng-disabled="!promotionEnabled || !lifecycleModal.selectedNode.promotable" style="font-size:1.3em; margin-left: 8px; margin-top: 6px;
+          line-height: 1.3em;" ng-click="runPromotion()">
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        </button>
+      </form>
+      <div class="row">
+        <div class="col-xs-6" style="box-shadow: -1px 2px 10px 3px rgba(100, 100, 100, 0.3) inset; border-radius: 4px;">
+          <div id="cytoscape-{{lifecycleModal.nodeType}}-{{lifecycleModal.nodeId}}" class="col-xs-12"
+            style="padding-left: 2px; height: 250px;"></div>
+          <div ng-if="lifecycleLoading"
+            style="z-index: 10; position: absolute; top: 10px; width: 100%; text-align: center;">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6" style="text-align: center;" ng-show='lifecycleModal.selectedNode'>
+          <div class="row" style="
+          overflow-x: auto;
+          white-space: nowrap;
+          margin:10px;  
+          height: 230px;
+          border: solid 1px;
+          border-radius: 10px;">
+            <div class="col-xs-4" style="
+            height: 100%;
+            border-right: dashed 1px;">
+              <label style="margin:10px;">{{ 'default.node.state' | translate }}</label>
+              <br>
+              <h3 style="margin:10px;">
+                <span class="label label-{{lifecycleModal.selectedNode._state.ui_color || 'default'}}"
+                  style="text-shadow: grey -1px 0px, grey 0px 1px, grey 1px 0px, grey 0px -1px; white-space: normal;">{{lifecycleModal.selectedNode.nodeLabel}}</span>
+              </h3>
+              <hr style="border: dashed 1px">
+              <label>{{ 'default.node.stateOwner' | translate }}</label>
+              <br>
+              <h3 style="margin:10px;">
+                <span class="label label-info" style="white-space: normal;">{{lifecycleModal.selectedNode.ownerLabel}}</span>
+              </h3>
+            </div>
+            <div class="col-xs-8" style="text-align: left;">
+              <div class="row" style="margin: 2px;">
+                <h5 style="  margin-bottom: 6px;" ng-show="lifecycleModal.selectedNode.mandatoryProperties.length>0">
+                  <b>{{ 'default.node.mandatoryProperties' | translate }}</b>
+                </h5>
+                <span class="label label-info lifecycleMandatoryProp" style="margin-right: 5px;
+                font-size: 1.5rem;" ng-repeat="prop in lifecycleModal.selectedNode.mandatoryProperties">
+                  {{prop}}
+                </span>
+              </div>
+              <div class="row" style="margin: 2px;">
+                <h5 style="margin-bottom: 6px;"
+                  ng-show="lifecycleModal.selectedNode.mandatoryRels.length>0">
+                  <b>{{ 'default.node.mandatoryRelationships' | translate }}</b>
+                  <b></b>
+                </h5>
+                <span class="label label-info" style="margin-right: 5px;
+              font-size: 1.5rem;" ng-repeat="rel in lifecycleModal.selectedNode.mandatoryRels">
+                  {{rel}}
+                </span>
+
+              </div>
+
+              <div class="row" style="margin: 2px;">
+                <h5 style="  margin-bottom: 6px;"
+                  ng-show="lifecycleModal.selectedNode._state.conditionsMsg && lifecycleModal.selectedNode._state.conditionsMsg!=''">
+                  <b>Others</b>
+                </h5>
+                <div style="
+              background-color: transparent;
+              border: none;" ng-show="lifecycleModal.selectedNode._state.conditionsMsg 
+                && 
+                lifecycleModal.selectedNode._state.conditionsMsg!=''">
+                  {{lifecycleModal.selectedNode._state.conditionsMsg}}</div>
+
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="col-xs-6" style="text-align: center;" ng-show='!lifecycleModal.selectedNode'>
+          <div class="row" style="overflow-x: auto;white-space: nowrap;margin:10px;">
+            <div style="width: 150px; display:inline-block; margin: 5px;font-size:small;"
+              ng-repeat="lcRole in node.lifecycleRoles">
+              <div class="thumbnail"
+                style="border: 3px solid #f0ad4e; background-color:#E5DBCE;    border-radius: 8px;">
+                <img ng-src="{{lcRole.target.properties.pict}}" check-image src="images/userLogo.png"
+                  style="object-fit: cover; height: 92px; width: 92px; border-radius: 5px;" alt="..."
+                  ng-if="lcRole.target">
+                <img src="images/whoLogo.png"  style="object-fit: cover; height: 92px; width: 92px; border-radius: 5px;" alt="..." ng-if="!lcRole.target">
+                <div class="caption" style="line-height: 9px;">
+                  <b class="notclickable ">{{lcRole.properties.role}}</b>
+                  <p userId="{{lcRole.target._id}}" ng-if="lcRole.target">
+                
+                    <h6 style="text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;" title="{{ lcRole.target.properties._labelRef }}">{{ lcRole.target.properties._labelRef }}</h6>
+                    
+                    <span ng-if="((lcRole.target._id === appContext.user._id) || node.user.highestAccess === 'manager')"
+                    class="glyphicon glyphicon-refresh actionnableGlyphicon" aria-hidden="true"
+                    ng-click="openLCItemAccessModal(lcRole.properties.role)" title="change"></span>
+                  <span ng-if="((lcRole.target._id === appContext.user._id) || node.user.highestAccess === 'manager')"
+                    class="glyphicon glyphicon-trash actionnableGlyphicon" aria-hidden="true" title="remove"
+                    ng-click="removeLCRoleAssignee(lcRole)"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid col-md-12 panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-info">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" ng-click="toggleCollapse()"
+            aria-expanded="false" aria-controls="assignmentsAndHistoryCollapse-{{node._id}}">
+            Assignments and History
+          </a>
+        </h4>
+      </div>
+      <div id="assignmentsAndHistoryCollapse-{{node._id}}" class="panel-collapse collapse" role="tabpanel"
+        aria-labelledby="headingOne">
+        <div class="panel-body">
+          <div class="container-fluid col-md-7 ">
+            <div class="well" style="padding-top:5px;padding-bottom:5px; ">
+              <span class="wellTitle">{{ 'default.dashboard.assignments' | translate }}</span>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class='btn-group'>
+                    <button type='button' class='btn btn-info btn-sm navbar-btn' title="Refresh"
+                      ng-click="fetchAssignments()">
+                      <span class='glyphicon glyphicon-refresh' aria-hidden='true'></span>
+                    </button>
+                    <button type='button' class='btn btn-success btn-sm navbar-btn' title="Add New"
+                      ng-disabled="!lifecycleModal.selectedNode" ng-click="createAsRelationship()">
+                      <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+                      <span data-i18n='relationships.buttons.create'></span>
+                    </button>
+                    <button type='button' class='btn btn-success btn-sm navbar-btn' title="Add Existing"
+                      ng-disabled="!lifecycleModal.selectedNode" ng-click="addAsRelationship()">
+                      <span class='glyphicon glyphicon-log-in' aria-hidden='true'></span>
+                      <span data-i18n='relationships.buttons.attach'></span>
+                    </button>
+                    <button type='button' class='btn btn-warning btn-sm selectionLinked navbar-btn' title="Detach"
+                      ng-click="detachRelationship()" ng-disabled="!assignmentSelected">
+                      <span class='glyphicon glyphicon-log-out' aria-hidden='true'></span>
+                      <span data-i18n='relationships.buttons.unlink'></span>
+                    </button>
+                    <button type='button' class='btn btn-danger btn-sm selectionLinked navbar-btn'
+                      title="Detach & Delete" ng-click="detachAndDelete()" ng-disabled="!assignmentSelected">
+                      <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
+                      <span data-i18n='relationships.buttons.delete'></span>
+                    </button>
+                  </div>
+                  <div class="ag-theme-balham" style="height: 230px; width:100%;" ag-grid="gridLifecycleAssignments">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid col-md-5 ">
+            <div class="well" style="padding-top:5px;padding-bottom:5px; ">
+              <span class="wellTitle">{{ 'default.node.lifecyclePromotions' | translate }}</span>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div ag-grid="gridLifecyclePromotions" class="ag-theme-balham"
+                    style="margin-top:50px; height: 230px; width:100%; "></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'app/shared/modals/assignmentsModal/assignmentsModal.html'"></div>
+</div>
+<!-- lifecycle collapse end -->

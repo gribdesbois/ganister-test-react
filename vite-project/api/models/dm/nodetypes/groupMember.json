@@ -1,0 +1,140 @@
+{
+	"name": "groupMember",
+	"package": "core",
+	"elementType": "relationship",
+	"core": true,
+	"lockLinked": true,
+	"versionnable": false,
+	"promotionControlled": false,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [],
+		"tabs": [],
+		"form": {
+			"definition": {},
+			"ng": {}
+		}
+	},
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"category": null,
+	"configuration": false,
+	"classification": [],
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": true,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f159a6-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": true,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f159a7-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_createdOn"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": true,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f159a8-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": true,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd69c092-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_8c0ea43c-282a-11ec-bd11-b101c33f774a",
+			"translations": {}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": false,
+			"id": "prop_8c0ea43d-282a-11ec-bd11-b101c33f774a",
+			"translations": {}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_8c0ea43e-282a-11ec-bd11-b101c33f774a",
+			"translations": {}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_8c0ea43f-282a-11ec-bd11-b101c33f774a",
+			"translations": {}
+		}
+	],
+	"maidenName": {
+		"elements": [
+			"_id"
+		],
+		"separator": "-"
+	},
+	"actions": [],
+	"id": "nt_5d79e3ad56cd25625637df69e122bb0a",
+	"linkName": "isMemberOf",
+	"directions": [
+		{
+			"source": "nt_a606eed3265f48e7db824f9c6c894808",
+			"target": "nt_a606eed3265f48e7db824f9c6c894808"
+		},
+		{
+			"source": "nt_028c9f0fd1e08b63efd909825c864cd9",
+			"target": "nt_a606eed3265f48e7db824f9c6c894808"
+		}
+	],
+	"translations": {
+		"default": "isMemberOf"
+	}
+}

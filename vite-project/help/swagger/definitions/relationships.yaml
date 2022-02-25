@@ -1,0 +1,41 @@
+Relationship:
+  properties:
+    _id:
+      type: string
+      description: Unique UUID (generated)
+      example: 1a9e34f0-9c60-71ac-9e72-5986f097l678c
+    _type:
+      type: string
+      description: Relationship linkName
+      example: partBOM
+    properties:
+      type: object
+      properties:
+        _coreProperty:
+          type: string
+          description: Core property value
+          example: ABCD-1234
+        customProperty:
+          type: string
+          description: Custom method (set in datamodel)
+          example: custom property value
+        _createdOn:
+          type: integer
+          description: Creation Date (generated)
+          example: 1612267565925
+        _createdBy:
+          type: string
+          description: User Id
+          example: 5c1e2250-654f-11eb-a8635-fd0dfghjk4a
+        _createdByName:
+          type: string
+          description: User Name
+          example: Max Mustermann
+    target:
+      type: object
+      $ref: './nodes.yaml#/Node'
+    source:
+      type: object
+      $ref: './nodes.yaml#/Node'
+
+

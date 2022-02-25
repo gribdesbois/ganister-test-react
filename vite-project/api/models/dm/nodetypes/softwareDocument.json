@@ -1,0 +1,207 @@
+{
+	"package": "pe",
+	"name": "softwareDocument",
+	"elementType": "relationship",
+	"lockLinked": true,
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f1329b-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f1329c-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created On",
+				"fr": "Créé le"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f1329d-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created By",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f1329e-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd699984-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e76d5-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e76d6-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37e76d7-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		}
+	],
+	"linkName": "isDocumentedBy",
+	"gridColumnsHeader": "",
+	"category": null,
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [
+			{
+				"id": "uigc_ad35a920-b105-11eb-b9cf-9f3894bb502a",
+				"type": "state",
+				"order": 1,
+				"property": "document._state",
+				"width": 90,
+				"cellRendered": true
+			},
+			{
+				"label": "version",
+				"type": "version",
+				"width": 60,
+				"cellRendered": true,
+				"cellStyle": {
+					"text-align": "center"
+				},
+				"id": "uigc_ad35a921-b105-11eb-b9cf-9f3894bb502a",
+				"property": "document._version",
+				"order": 2
+			},
+			{
+				"id": "uigc_ad35a922-b105-11eb-b9cf-9f3894bb502a",
+				"type": "dropdown",
+				"property": "document.type",
+				"order": 3,
+				"width": 100
+			},
+			{
+				"id": "uigc_ad35a923-b105-11eb-b9cf-9f3894bb502a",
+				"type": "string",
+				"order": 4,
+				"property": "document._ref",
+				"width": 130
+			},
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_ad35a924-b105-11eb-b9cf-9f3894bb502a",
+				"property": "document.name",
+				"order": 5,
+				"width": 150
+			},
+			{
+				"label": "description",
+				"type": "text",
+				"id": "uigc_ad35d030-b105-11eb-b9cf-9f3894bb502a",
+				"property": "document.description",
+				"order": 6,
+				"width": 300
+			},
+			{
+				"id": "uigc_ad35d031-b105-11eb-b9cf-9f3894bb502a",
+				"type": "date",
+				"order": 7,
+				"property": "document._createdOn",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_ad35d032-b105-11eb-b9cf-9f3894bb502a",
+				"type": "string",
+				"order": 8,
+				"property": "document._createdByName"
+			},
+			{
+				"id": "uigc_ad35d033-b105-11eb-b9cf-9f3894bb502a",
+				"type": "date",
+				"order": 9,
+				"property": "document._modifiedOn",
+				"cellRendered": true
+			}
+		],
+		"form": {
+			"definition": {},
+			"ng": {}
+		},
+		"tabs": []
+	},
+	"id": "nt_500c340fbdba7dda01ea42171d69ad07",
+	"directions": [
+		{
+			"source": "nt_c4c7de1d95f0bc5595425ea44d7e43e1",
+			"target": "nt_a029737d551a7a46b1444c8e8e46cab4"
+		}
+	],
+	"translations": {
+		"default": "softwareDocument"
+	}
+}

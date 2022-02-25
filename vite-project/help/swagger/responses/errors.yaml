@@ -1,0 +1,14 @@
+'401':
+  description: 'Error: Not Authenticated'
+  schema:
+    $ref: '../definitions/errors.yaml#/UnauthenticatedError'
+'403':
+  description: 'Error: Unauthorized Access'
+  schema:
+    $ref: '../definitions/errors.yaml#/UnauthorizedError'
+'404':
+  description: "Returns HTML: 404 'Page Not Found'"
+'500':
+  description: 'Error: Server Error'
+  schema:
+    $ref: '../definitions/errors.yaml#/Error'

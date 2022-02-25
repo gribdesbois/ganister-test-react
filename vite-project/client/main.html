@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app.ganister" class="js">
+
+<head profile="http://www.w3.org/2005/10/profile">
+    <link rel="icon" href="images/G.ico">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Ganister</title>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+
+    <!-- sidebar -->
+    <link rel="stylesheet" href="angular-sidebarjs/dist/angular-sidebarjs.min.css">
+
+    <!-- preloader -->
+    <link href="vendor/introloader/dist/css/introLoader.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- bootstrap switch -->
+    <link href="angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.css" rel="stylesheet">
+
+    <!-- Lightbox 2 -->
+    <link href="lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- standard CSS -->
+    <link href="styles/style.css" rel="stylesheet">
+
+    <!-- angular notify -->
+    <link href="angular-ui-notification/dist/angular-ui-notification.min.css" rel="stylesheet">
+
+    <!-- loading-bar -->
+    <link rel='stylesheet' href='angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
+
+    <!-- vis.js-->
+    <link href="vis/dist/vis.min.css" rel="stylesheet">
+    <link href="vis/dist/vis-timeline-graph2d.min.css" rel="stylesheet">
+    <link href="vis/dist/vis-network.min.css" rel="stylesheet">
+
+    <!-- CodeMirror -->
+    <link rel="stylesheet" type="text/css" href="codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="codemirror/theme/midnight.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="@fortawesome/fontawesome-free/css/all.css">
+
+</head>
+
+<script src="angular/angular.min.js"></script>
+
+
+<script type="text/javascript" src="/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="/tv4/tv4.js"></script>
+<script type="text/javascript" src="/objectpath/lib/ObjectPath.js"></script>
+<script type="text/javascript" src="vendor/angular-schema-form/schema-form.js"></script>
+<script type="text/javascript" src="vendor/angular-schema-form/bootstrap-decorator.min.js"></script>
+<script type="text/javascript" src="/angular-animate/angular-animate.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Product+Sans:300,400,700" rel="stylesheet">
+
+<body>
+    <svg class="hidden">
+        <defs>
+            <symbol id="icon-search" viewBox="0 0 24 24">
+                <title>search</title>
+                <path
+                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+            </symbol>
+            <symbol id="icon-cross" viewBox="0 0 24 24">
+                <title>cross</title>
+                <path
+                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            </symbol>
+        </defs>
+    </svg>
+    <div id="element" class="introLoading"></div>
+
+    <!-- LOGIN SCREEN -->
+    <div id="login" ng-if="!appContext.logged" ng-controller="LoginController">
+
+
+        <img title="{{'default.shared.logoGanister' | translate}}" src="/images/ganisterHorizontalNoSub.webp"
+            style="margin:10px;" />
+
+
+
+        <form class="row-container maindiv " role="form" id="maindiv" ng-keypress="startLogin($event)">
+            <div class="form-signin center-block" ng-show="!oneTimeCodeCheck">
+                <img ng-src=" {{appDefinition.uxConfig.logoSmaller}}" style="max-height: 400px; padding: 10px;"
+                    title="commit: {{appDefinition.app.versionDate}} ({{appDefinition.app.version}})"
+                    class="img-responsive center-block " />
+                <input id="email" autofocus="autofocus" name="email" type="login" pattern="[^ @]*@[^ @]*"
+                    class="form-control input-lg" placeholder="Login" ng-model="user.name">
+                <input name=" password" type="password" class="form-control input-lg" placeholder="Password"
+                    autocomplete="password" ng-model="user.password">
+                <button id="btn-login" type="submit" class="btn btn-primary form-control btn-block"
+                    data-loading-text="<i class='fa fa-spinner fa-spin'></i> Logging in..." ng-click="login(user)"><span
+                        ng-hide="logging">Login</span>
+                    <span ng-show="logging"><i class="fa fa-spinner fa-spin"></i> Logging in...</span></button>
+                <a ng-if="appDefinition.uxConfig.activeGoogleLogin" href="/auth/google"
+                    class="btn btn-danger form-control btn-block" style="margin-top:10px;margin-bottom:10px"
+                    ng-hide="logging">Login with Google</a>
+                <div class="alert alert-warning" style="margin-top: 10px;" ng-show="loginMessage">{{loginMessage}}</div>
+                <p style="margin-top:10px">Forgot Password? <a href="#" onclick="forgotPassword()">Reset Password</a>.
+                </p>
+            </div>
+
+            <div class="form-signin center-block" ng-show="oneTimeCodeCheck">
+                <h2> Verify it's you</h2>
+                <label for="exampleInputEmail1"> We sent a verification code to your email. Enter the code from the
+                    email in
+                    the field below.
+                    6-digit code</label>
+                <input name="onetimecode" type="password" class="form-control input-lg" placeholder="Code" style="letter-spacing: 10px;
+                font-size: 30px;
+                text-align: center;" autocomplete="off" ng-model="user.onetimecode"
+                    ng-keypress="completeLogin($event)">
+                <button id="btn-login" type="submit" class="btn btn-primary form-control btn-block"
+                    data-loading-text="<i class='fa fa-spinner fa-spin'></i> Logging in..."
+                    ng-click="login_2FA_2(user)"><span ng-hide="logging">Submit</span>
+                    <span ng-show="logging"><i class="fa fa-spinner fa-spin"></i> Logging in...</span></button>
+            </div>
+        </form>
+    </div>
+
+    <!-- MAIN LOGGED SCREEN -->
+    <div class="app" id="app" ng-if="appContext.logged" ng-controller="MainController">
+        <main class="main-wrap" ng-class="{'main-wrap--move':search.searchOpen}">
+            <sidebarjs>
+                <nav>
+                    <div ng-include="'app/components/nodetypeBar/nodetypeBar.html'"></div>
+                </nav>
+            </sidebarjs>
+            <div id="leftPanelReducer" sidebarjs-toggle>
+                <img title="commit: {{appDefinition.app.versionDate}} ({{appDefinition.app.version}})"
+                    src="images/G.svg" width="32px;" style="margin-left:4px;margin-bottom:160px; margin-top:8px" />
+                <div class="text-center"
+                    style="font-size:16px;display: flex; align-items: center; height:39.6px;justify-content: center;"
+                    ng-repeat="category in datamodel.categories  | filter:{ hidden: 'false'}">
+                    <i class="{{category.icon}}" style="color:black!important;"></i>
+                </div>
+            </div>
+            <div class="fill" ng-if="appContext.logged" style="margin-left:30px;height:100%;overflow: auto;">
+                <div ng-include="'app/components/topBar/topBar.html'"></div>
+                <div class="col-sm-12 main" id='main'>
+                    <div ng-include="'app/components/tabs/tabs.html'" class="fill"></div>
+                </div>
+            </div>
+
+            <div ng-include="'app/shared/fileViewer/fileViewer.html'"></div>
+            <div ng-include="'app/shared/modals/accountModal/accountModal.html'"></div>
+        </main>
+        <div class="search" ng-class="{'search--open':search.searchOpen}">
+            <button id="btn-search-close" ng-click="search.closeSearch()" class="btn btn--search-close"
+                aria-label="Close search form"><svg class="icon icon--cross">
+                    <use xlink:href="#icon-cross"></use>
+                </svg></button>
+            <form class="search__form">
+                <input class="search__input" name="search" type="search" ng-model="searchTerms" placeholder="Search"
+                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+                <span class="search__info">Hit enter to search or ESC to close</span>
+            </form>
+        </div>
+        <sidebarjs sidebarjs-name="chatBar"
+            sidebarjs-config="{position: 'right',nativeSwipeOpen: false,backdropOpacity: 0.6}"
+            on-close="removeInterlocutor()">
+            <nav style="max-width:400px;background-color: #f3f9ff;  height: 100%;">
+                <div ng-include="'app/components/chatBar/chatBar.html'"></div>
+            </nav>
+        </sidebarjs>
+    </div>
+</body>
+
+
+</html>
+
+<div ng-include="'app/shared/nodeListContextMenu.html'"></div>
+
+<script src="lodash/lodash.js"></script>
+<script src='jquery/dist/jquery.js'></script>
+<script src="socket.io/socket.io.js"></script>
+
+<script src='bootstrap/dist/js/bootstrap.min.js'></script>
+
+<!-- sidebar -->
+<script src="angular-sidebarjs/dist/angular-sidebarjs.min.js"></script>
+
+<script src='moment/min/moment-with-locales.js'></script>
+
+<!-- Angular Translate-->
+<script src="angular-translate/dist/angular-translate.min.js"></script>
+<script src="angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+
+<script src='angular-ui-notification/dist/angular-ui-notification.min.js'></script>
+<script src='angular-loading-bar/build/loading-bar.min.js'></script>
+
+<script src="vendor/contextMenu/contextMenu.js"></script>
+
+<script src='vendor/introloader/dist/jquery.introLoader.pack.min.js'></script>
+<script src='vendor/introloader/dist/helpers/jquery.easing.1.3.js'></script>
+
+<script src='vendor/jquery/DTpicker/js/bootstrap-datepicker.js'></script>
+<script src="angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js"></script>
+
+<!-- Showdown Markdown -->
+<script src="showdown/dist/showdown.js"></script>
+
+<!-- ag-grid -->
+<script src='ag-grid-enterprise/dist/ag-grid-enterprise.min.js'></script>
+
+<!-- angular charts-->
+<script src="chart.js/dist/Chart.min.js"></script>
+<script src="angular-chart.js/dist/angular-chart.min.js"></script>
+
+<script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+<!-- ngCytoscape -->
+<script src="cytoscape/dist/cytoscape.min.js"></script>
+<script src="dagre/dist/dagre.min.js"></script>
+<script src="cytoscape-dagre/cytoscape-dagre.js"></script>
+<script src="https://unpkg.com/klayjs@0.4.1/klay.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-klay@3.1.3/cytoscape-klay.min.js"></script>
+<script src='cytoscape-cxtmenu/cytoscape-cxtmenu.js'></script>
+
+<!-- vis -->
+<script src="vis/dist/vis.min.js"></script>
+
+<!-- File Upload Library -->
+<script src="ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+<script src="ng-file-upload/dist/ng-file-upload.min.js"></script>
+
+<!-- Lightbox 2 -->
+<script src='lightbox2/dist/js/lightbox.min.js'></script>
+
+<!-- CodeMirror -->
+<script src="codemirror/lib/codemirror.js"></script>
+<script type="text/javascript" src="angular-ui-codemirror/src/ui-codemirror.js"></script>
+
+<!-- angular context menu -->
+<script type="text/javascript" src="angular-bootstrap-contextmenu\contextMenu.js"></script>
+
+<!-- angular drag n drop lists for Form designer-->
+<script src='angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js'></script>
+
+<!-- angular bind html -->
+<script src="angular-bind-html-compile/angular-bind-html-compile.min.js"></script>
+
+<!-- ng-idle -->
+<script src="ng-idle/angular-idle.js"></script>
+
+
+<!-- ui-select -->
+<link rel="stylesheet" href="ui-select/dist/select.min.css">
+<!-- angular ui-select -->
+<script type="text/javascript" src="ui-select/dist/select.min.js"></script>
+
+<!-- controlers -->
+<script src="app/components/topBar/topBar.js"></script>
+<script src="app/components/chatBar/chatBar.js"></script>
+<script src="app/components/nodetypeBar/nodetypeBar.js"></script>
+<script src="app/components/tabs/customPanel/customPanel.js"></script>
+<script src="app/components/tabs/searchPanel/searchPanel.js"></script>
+<script src="app/components/tabs/tabs.js"></script>
+<script src="app/components/tabs/mainNodeListing/mainNodeListing.js"></script>
+<script src="app/components/tabs/node/nodeForm/nodeForm.js"></script>
+<script src="app/components/tabs/node/nodeForm/lifecycleCollapse/lifecycleCollapse.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/nodeFormTabs.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/customTableView/customTableView.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/customTreeGridView/customTreeGridView.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/relatedObject/relatedObject.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/fileGallery/fileGallery.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/reverseRelationship/reverseRelationship.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/reverseEcos/reverseEcos.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/multilevelView/multilevelView.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/ganttView/ganttView.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/graphView/graphView.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/kanbanView/kanbanView.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/klayGraphView/klayGraphView.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/ECOimpactMatrix/ECOimpactMatrix.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/github/github.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/github/actions/issues/listForRepo.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/github/actions/commits/listCommits.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/gitlab/gitlab.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/gitlab/actions/issues/listForRepo.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/gitlab/actions/commits/listCommits.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/element14/element14.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/element14/actions/searchTerm/searchTerm.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/ihs/ihs.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/ihs/actions/searchParts/searchParts.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/z2Data/z2Data.js"></script>
+<script src="app/components/tabs/node/nodeFormTabs/external-apis/z2Data/actions/searchParts/searchParts.js"></script>
+<script src="app/shared/modals/addToCmModal/addToCmModal.js"></script>
+<script src="app/shared/modals/versionOrForkNode/versionOrForkNode.js"></script>
+<script src="app/shared/modals/infoDataModal/infoDataModal.js"></script>
+<script src="app/shared/modals/relationshipModal/relationshipModal.js"></script>
+<script src="app/shared/modals/contextualAttachNodeModal/contextualAttachNodeModal.js"></script>
+<script src="app/shared/modals/nodeRelModal/nodeRelModal.js"></script>
+<script src="app/shared/modals/attachNodeModal/attachNodeModal.js"></script>
+<script src="app/shared/modals/itemAccessModal/itemAccessModal.js"></script>
+<script src="app/shared/modals/itemLCAccessModal/itemLCAccessModal.js"></script>
+<script src="app/shared/modals/nodePropModal/nodePropModal.js"></script>
+<script src="app/shared/modals/accountModal/accountModal.js"></script>
+<script src="app/shared/modals/assignmentsModal/assignmentsModal.js"></script>
+<script src="app/shared/modals/ihsModal/ihsModal.js"></script>
+<script src="app/shared/modals/z2dataModal/z2dataModal.js"></script>
+
+<!-- services -->
+<script src="app/services/app.nodes.js"></script>
+<script src="app/services/app.nodetypes.js"></script>
+<script src="app/services/app.userconfig.js"></script>
+<script src="app/services/app.languagesconfig.js"></script>
+<script src='app/services/app.plm.js'></script>
+<script src="app/services/external-apis/app.github.js"></script>
+<script src="app/services/external-apis/app.gitlab.js"></script>
+<script src="app/services/external-apis/app.element14.js"></script>
+<script src="app/services/external-apis/app.ihs.js"></script>
+<script src="app/services/external-apis/app.z2Data.js"></script>
+<script src='app/services/app.clientMethodsService.js'></script>
+
+<!-- tools -->
+<script src="app/tools/tool.aggrid.js"></script>
+<script src="app/shared/helperFunctions.js"></script>
+
+<!-- main angular controler -->
+<script>
+    Swal = Swal.mixin({
+        heightAuto: false,
+    });
+</script>
+
+<script src="app/app.module.js"></script>
+
+<script type="text/javascript">
+    agGrid.LicenseManager.setLicenseKey("Kainotomia_Systems_KS_LTD_Ganister_1Devs11_July_2019__MTU2Mjc5OTYwMDAwMA==4c685e6305ae357738d91af198426c51");
+    const forgotPassword = async () => {
+        const { value: email } = await Swal.fire({
+            title: 'Input email address',
+            input: 'email',
+            type: 'info',
+            inputValue: $('#email').val(),
+            inputPlaceholder: 'Enter your email address',
+            showCancelButton: true,
+            confirmButtonText: 'Reset Password'
+        })
+        if (email) {
+            $.ajax({
+                url: '/api/v0/users/requestchangepassword/',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({ email }),
+                processData: false,
+                complete: (jqXHR, textStatus) => {
+                    if (jqXHR.status === 200) {
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Success',
+                            text: jqXHR.responseText,
+                        })
+                    } else {
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Error',
+                            text: jqXHR.responseText,
+                        })
+                    }
+                }
+            });
+        }
+    }
+</script>

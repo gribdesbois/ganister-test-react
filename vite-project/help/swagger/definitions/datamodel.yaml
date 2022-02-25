@@ -1,0 +1,302 @@
+Datamodel:
+  properties:
+    instanceName:
+      type: string
+      example: 'Ganister'
+    timeStamp:
+      type: string
+      example: 1614200860664
+    nodetypeDefinitions:
+      type: array
+      description: Nodetypes
+      items:
+        $ref: "#/Nodetype"
+    categories:
+      type: array
+      description: Categories
+      items:
+        type: object
+    methods:
+      type: array
+      description: Methods
+      items:
+        type: object
+    listOfValues:
+      type: array
+      description: List of Values
+      items:
+        type: object
+    packages:
+      type: array
+      description: Packages
+      items:
+        type: object
+state:
+  type: object
+  properties:
+    id:
+      type: string
+      description: Lifecycle State Id
+    name:
+      type: string
+      description: Lifecycle State Name
+    label:
+      type: string
+      description: Lifecycle State Label
+    labelClass:
+      type: string
+      description: Lifecycle State Label Class
+    start:
+      type: boolean
+      description: Lifecycle State Start State
+    lockable:
+      type: boolean
+      description: Lifecycle State Lockable State
+transition:
+  type: object
+  properties:
+    id:
+      type: string
+      description: Lifecycle Transitions Id
+    from:
+      type: string
+      description: Lifecycle Transitions State Id From
+    to:
+      type: string
+      description: Lifecycle Transitions State Id To
+    method:
+      type: string
+      description: Lifecycle Transitions Method
+role:
+  type: object
+  properties:
+    id:
+      type: string
+      description: Lifecycle Role Id
+    name:
+      type: string
+      description: Lifecycle Role Name
+    label:
+      type: string
+      description: Lifecycle Role Label
+lifecycle:
+  type: object
+  description: Lifecycle
+  properties:
+    states:
+      type: array
+      description: Lifecycle States
+      items:
+        schema:
+          $ref: "#/state"
+    transitions:
+      type: array
+      description: Lifecycle Transitions
+      items:
+        schema:
+          $ref: "#/transition"
+    roles:
+      type: array
+      description: Lifecycle Roles
+      items:
+        schema:
+          $ref: "#/role"
+property:
+  properties:
+    id:
+      type: string
+      description: Property Id
+    name:
+      type: string
+      description: Property Name
+    type:
+      type: string
+      description: Property Type
+      enum:
+        - string
+        - select
+        - multiListValue
+        - dateTime
+        - date
+        - richText
+        - integer
+        - boolean
+        - nutriscore
+        - double
+        - node
+        - state
+        - image
+        - email
+        - json
+        - tags
+    unique:
+      type: boolean
+      description: Property Unique
+    mandatory:
+      type: boolean
+      description: Property Mandatory
+    generated:
+      type: boolean
+      description: Property Generated
+    core:
+      type: boolean
+      description: Property Core
+codificationPrefix:
+  type: object
+  required:
+    - type
+    - value
+  properties:
+    type:
+      type: string
+      enum:
+        - text
+        - number
+    value:
+      type: string
+
+Nodetype:
+  properties:
+    id:
+      type: string
+      description: Id
+    package:
+      type: number
+      description: Package Number
+    dependencies:
+      type: array
+      description: Packages Dependencies
+    name:
+      type: string
+      description: Name
+    category:
+      type: number
+      description: Category
+    elementType:
+      type: string
+      description: Element Type (node or relationship)
+    codification:
+      type: object
+      description: Codification
+      properties:
+        prefixes:
+          type: array
+          description: "array of objects {type, value}"
+          items:
+            schema:
+              $ref: "#/codificationPrefix"
+        value:
+          type: object
+          description: "array of objects {size, fillWith, type}"
+          properties:
+            size:
+              type: string
+            fillWith:
+              type: string
+            type:
+              type: string
+    actions:
+      type: object
+      description: Actions - array of objects
+      properties:
+        name:
+          type: string
+          description: Action Name
+        method:
+          type: string
+          description: Action Method
+    lifecycle:
+      $ref: "#/lifecycle"
+    properties:
+      type: array
+      description: Properties
+      items:
+        schema:
+          $ref: "#/property"
+    ui:
+      type: object
+      description: UI info
+      properties:
+        defaultThumbnail:
+          type: string
+          description: Default Thumbnail
+        gridColumns:
+          type: array
+          description: Grid Columns - array of objects
+          items:
+            schema:
+              $ref: "#/UIColumn"
+        form:
+          type: object
+          description: Form
+        tabs:
+          type: array
+          description: Tabs
+          items:
+            type: object
+        permissionSet:
+          type: array
+          description: Permission Set
+          items:
+            type: object
+        maidenName:
+          type: array
+          description: Maiden Name
+          items:
+            type: object
+UIColumn:
+  required:
+    - id
+    - name
+    - type
+    - property
+  properties:
+    id:
+      type: string
+      description: ID
+    name:
+      type: string
+      description: Name
+    type:
+      type: string
+      description: "Type"
+      enum:
+        - date
+        - dateTime
+        - dropdown
+        - filesize
+        - image
+        - indice
+        - integer
+        - lock
+        - markdown
+        - mimetype
+        - node
+        - nutriscore
+        - version
+        - state
+        - string
+        - tags
+        - text
+        - user
+    property:
+      type: string
+      description: Property Name
+    editable:
+      type: boolean
+      description: Editable
+    width:
+      type: integer
+      description: Fixed Width
+    height:
+      type: integer
+      description: Fixed Height
+    cellRendered:
+      type: boolean
+      description: Rendered
+    cellClass:
+      type: string
+      description: Cell Class Name
+    cellStyle:
+      type: string
+      description: Cell custom Style

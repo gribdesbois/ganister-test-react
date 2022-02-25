@@ -1,0 +1,11 @@
+<!-- graph view collapse start -->
+<div class="col-xs-12 col-md-12 collapse" id="userAccessPathCollapse-{{node._id}}-{{nodeVersion}}">
+  <div class="col-xs-12 col-md-12 " >
+      <div class="well " style="overflow:auto;padding:0px;">
+          <span class="wellTitle">{{ 'default.node.userAccessPath' | translate }} | {{ 'default.node.highestaccess' | translate }}: {{ node.user.highestAccess }}</span>
+          <div class="messageDiv" ng-show="graphAccessPathLoading"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+          <div id="userAccessPathCollapse-container-{{node._id}}-{{nodeVersion}}" class="nodeGraph"></div>
+      </div>
+  </div>
+</div>
+<!-- graph view collapse end -->

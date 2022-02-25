@@ -1,0 +1,30 @@
+ErrorLog:
+  properties:
+    _id:
+      type: string
+      description: Node Id
+    file:
+      type: string
+      description: File Name
+    statusCode:
+      type: string
+      description: "Status Code eg. 400, 404, 500"
+    error:
+      type: object
+      description: object
+      properties:
+        functionName:
+          type: string
+          description: Function Name
+        title:
+          type: string
+          description: Error Title
+        message:
+          type: string
+          description: Error Message
+        query:
+          type: string
+          description: Query
+        error:
+          type: string
+          description: Error object or boolean

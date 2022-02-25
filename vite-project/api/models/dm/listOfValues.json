@@ -1,0 +1,152 @@
+[
+	{
+		"id": "lovs_2544feb0-bd0b-11ea-96da-cdfde4b9e7fc",
+		"name": "docTypes",
+		"items": [
+			{
+				"value": "Marketing",
+				"label": "Marketing"
+			},
+			{
+				"value": "Engineering",
+				"label": "Engineering"
+			},
+			{
+				"value": "Administration",
+				"label": "Administration"
+			}
+		],
+		"package": "core"
+	},
+	{
+		"id": "lovs_bfaaaf30-68f2-11ea-908e-1949cc1540e3",
+		"name": "ecoTypes",
+		"items": [
+			{
+				"value": "to Fix",
+				"label": "to Fix"
+			},
+			{
+				"value": "to Prevent",
+				"label": "to Prevent"
+			},
+			{
+				"value": "to Improve",
+				"label": "to Improve"
+			},
+			{
+				"value": "Other",
+				"label": "Other"
+			}
+		],
+		"package": "cmii"
+	},
+	{
+		"id": "lovs_609adee0-68f5-11ea-9493-e3411c7cdd77",
+		"name": "techReviewDecision",
+		"items": [
+			{
+				"value": "Problem Confirmed",
+				"label": "Problem Confirmed"
+			},
+			{
+				"value": "Not Confirmed",
+				"label": "Not Confirmed"
+			},
+			{
+				"value": "Another Problem",
+				"label": "Another Problem"
+			},
+			{
+				"value": "Requestor solution is Acceptable",
+				"label": "Requestor solution is Acceptable"
+			},
+			{
+				"value": "Another solution is proposed",
+				"label": "Another solution is proposed"
+			}
+		],
+		"package": "cmii"
+	},
+	{
+		"id": "lovs_737d01f0-68f5-11ea-9493-e3411c7cdd77",
+		"name": "techReviewPriority",
+		"items": [
+			{
+				"value": "1",
+				"label": "1"
+			},
+			{
+				"value": "2",
+				"label": "2"
+			},
+			{
+				"value": "3",
+				"label": "3"
+			},
+			{
+				"value": "4",
+				"label": "4"
+			}
+		],
+		"package": "cmii"
+	},
+	{
+		"id": "lovs_e256da20-6895-11ea-a448-f3eac5bc99d5",
+		"name": "partTypes",
+		"items": [
+			{
+				"value": "Part",
+				"label": "Part"
+			},
+			{
+				"value": "Assembly",
+				"label": "Assembly"
+			},
+			{
+				"value": "Raw material",
+				"label": "Raw material"
+			}
+		],
+		"_action": "add",
+		"package": "pe"
+	},
+	{
+		"id": "lovs_919a5b00-bd10-11ea-af43-b96c1223dbcd",
+		"name": "projectTypes",
+		"items": [
+			{
+				"value": "Internal",
+				"label": "Internal"
+			},
+			{
+				"value": "Customer",
+				"label": "Customer"
+			}
+		],
+		"package": "pm"
+	},
+	{
+		"id": "lovs_d38cf8f0-488e-11ec-a517-25dd9b5cb3ba",
+		"name": "requirementType",
+		"items": [
+			{
+				"value": "Internal",
+				"label": "Internal"
+			},
+			{
+				"value": "Customer",
+				"label": "Customer"
+			},
+			{
+				"value": "Legal",
+				"label": "Legal"
+			},
+			{
+				"value": "Environmental",
+				"label": "Environmental"
+			}
+		],
+		"package": "syseng"
+	}
+]

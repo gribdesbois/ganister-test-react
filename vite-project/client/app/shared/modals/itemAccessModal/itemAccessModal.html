@@ -1,0 +1,140 @@
+<div class="modal  fade itemAccessModal" id="modal-itemAccess-{{modal.nodeId}}"
+  ng-controller="itemAccessModalController" tabindex="-1" role="dialog" aria-labelledby="{{modal.modalLabel}}"
+  aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" ng-show="modalType.add">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">{{ 'default.shared.close' | translate }}</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{modal.modalLabel | capitalize}}
+          {{ 'default.shared.selection' | translate }}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-2 center-block">
+            <!-- access type  switch-->
+            <label class="switch" data-toggle="tooltip" data-placement="bottom">
+              <input type="checkbox" ng-model="selectingUser">
+              <span class="slider round"></span>
+              <span class="state round"></span>
+            </label>
+          </div>
+          <div ng-show="selectingUser" class="col-md-4">
+            <label>{{ 'default.shared.user' | translate }}</label>
+            <select class="form-control "
+              ng-options="user as user.properties._labelRef for user in users | orderBy:'_labelRef' track by user._id"
+              ng-model="modal.user" placeholder="Select">
+            </select>
+          </div>
+          <div ng-show="!selectingUser" class="col-md-offset-1 col-md-6">
+            <label>{{ 'default.shared.team' | translate }}</label>
+            <select class="form-control "
+              ng-options="group as group.properties._labelRef for group in groups | orderBy:'_labelRef' track by group._id"
+              ng-model="modal.group" placeholder="Select">
+            </select>
+          </div>
+          <div class="col-md-4" ng-show="selectingUser">
+            <label>{{ 'default.shared.role' | translate }}</label>
+            <select class="form-control " ng-model="modal.userRole" placeholder="Select">
+              <option value="visitor">Visitor</option>
+              <option value="reader">Reader</option>
+              <option value="writer">Writer</option>
+              <option value="manager">Manager</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="loading">{{
+          'default.shared.close' | translate }}</button>
+        <button type="button" class="btn btn-primary" id="ModalAdd" ng-click="addAccessRole()"
+          ng-disabled="(!modal.user && selectingUser)||(!modal.group && !selectingUser) || !modal.userRole || loading">{{
+          'default.shared.add' | translate }}</button>
+      </div>
+    </div>
+
+    <div class="modal-content" ng-show="modalType.edit">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">{{ 'default.shared.close' | translate }}</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{modal.modalLabel | capitalize}}
+          {{ 'default.shared.selection' | translate }} :</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- <div class="col-md-6">
+            <label>{{ 'default.shared.identityOrUser' | translate }}</label>
+            <select class="form-control " disabled
+              ng-options="identity as identity._labelRef for identity in identities | orderBy:'_labelRef' track by identity._id"
+              ng-model="modal.user" placeholder="Select">
+            </select>
+          </div> -->
+          <div class="col-md-6">
+            <label>{{ 'default.shared.role' | translate }}</label>
+            <select class="form-control " ng-model="modal.userRole" placeholder="Select">
+              <option value="visitor">Visitor</option>
+              <option value="reader">Reader</option>
+              <option value="writer">Writer</option>
+              <option value="manager">Manager</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="loading">{{
+          'default.shared.close' | translate }}</button>
+        <button type="button" class="btn btn-primary" id="ModalAdd" ng-click="editAccessRole()" ng-disabled="loading">{{
+          'default.shared.edit' | translate }}</button>
+      </div>
+    </div>
+    <div class="modal-content" ng-show="modalType.remove">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">{{ 'default.shared.close' | translate }}</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{modal.modalLabel | capitalize}}
+          {{ 'default.shared.selection' | translate }} :</h4>
+      </div>
+      <div class="modal-body">
+        <h3>{{ 'default.shared.confirmRemoveRole' | translate }}</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="loading">{{
+          'default.shared.close' | translate }}</button>
+        <button type="button" class="btn btn-danger" id="ModalAdd" ng-click="removeAccessRole()"
+          ng-disabled="loading">{{ 'default.shared.confirm' | translate }}</button>
+      </div>
+    </div>
+    <div class="modal-content" ng-show="modalType.permissionSet">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">{{ 'default.shared.close' | translate }}</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{modal.modalLabel | capitalize}}
+          {{ 'default.shared.selection' | translate }} :</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <label>{{ 'default.shared.permissionSet' | translate }}</label>
+            <select class="form-control "
+              ng-options="identity as identity._labelRef for identity in identities | orderBy:'_labelRef' track by identity._id"
+              ng-model="modal.user" placeholder="Select">
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="ModalAdd" ng-click="editPermissionSet()"
+          ng-disabled="loading">{{ 'default.shared.edit' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

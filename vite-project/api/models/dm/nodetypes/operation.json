@@ -1,0 +1,553 @@
+{
+	"package": "mpp",
+	"elementType": "node",
+	"name": "operation",
+	"lifecycle": {
+		"states": [
+			{
+				"name": "draft",
+				"label": "Draft",
+				"start": true,
+				"lockable": true,
+				"id": "state_8c297f9ff2f1191eb0a817b681e4fbc5",
+				"positionY": 160,
+				"positionX": -100,
+				"owner": "role_1ae990f3127fb3cf54ba6e8d5e5ee5c4",
+				"ui_color": "info"
+			},
+			{
+				"name": "released",
+				"label": "Released",
+				"start": false,
+				"lockable": false,
+				"id": "state_20bee58e8d2147dcd6211c8bf48f7e6f",
+				"positionY": 160,
+				"positionX": 180,
+				"ui_color": "success"
+			},
+			{
+				"name": "inreview",
+				"label": "In Review",
+				"start": false,
+				"lockable": false,
+				"owner": "role_1ae990f3127fb3cf54ba6e8d5e5ee5c4",
+				"id": "state_8e818240-bf81-11ea-b926-03d996f3eee5",
+				"positionY": 160,
+				"positionX": 0,
+				"tracked": true,
+				"ui_color": "warning"
+			}
+		],
+		"transitions": [
+			{
+				"from": "state_8c297f9ff2f1191eb0a817b681e4fbc5",
+				"to": "state_8e818240-bf81-11ea-b926-03d996f3eee5",
+				"preMethods": [],
+				"postMethods": [],
+				"id": "trans_9ff6a7d0-bf81-11ea-b926-03d996f3eee5"
+			},
+			{
+				"from": "state_8e818240-bf81-11ea-b926-03d996f3eee5",
+				"to": "state_20bee58e8d2147dcd6211c8bf48f7e6f",
+				"preMethods": [],
+				"postMethods": [],
+				"id": "trans_a12d7a20-bf81-11ea-b926-03d996f3eee5"
+			}
+		],
+		"roles": [
+			{
+				"name": "Owner",
+				"label": "Owner",
+				"id": "role_1ae990f3127fb3cf54ba6e8d5e5ee5c4"
+			}
+		]
+	},
+	"properties": [
+		{
+			"id": "prop_376efbe4c47504348ac9ad0dc4d48e9f",
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_id",
+				"fr": "ID"
+			}
+		},
+		{
+			"id": "prop_5bd2f982d01f1e37efac0221eba7a7f8",
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "codification",
+			"core": true,
+			"group": "Identification",
+			"translations": {
+				"default": "_ref",
+				"en": "Ref",
+				"fr": "Ref"
+			}
+		},
+		{
+			"id": "prop_0c7b22186a989959710a2ed22eaa969c",
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_state",
+				"en": "State",
+				"fr": "Statut"
+			}
+		},
+		{
+			"id": "prop_4f259f66593f3371bfe2b64a8eaf03e6",
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"group": "Traceability",
+			"translations": {
+				"default": "_createdOn",
+				"en": "Created On",
+				"fr": "Créé le"
+			}
+		},
+		{
+			"id": "prop_ffa766f0508a84bada08fc98e78c11fe",
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"group": "Traceability",
+			"translations": {
+				"default": "_modifiedOn",
+				"en": "Modified On",
+				"fr": "Modifié le"
+			}
+		},
+		{
+			"id": "prop_5fae58d859953f212333d3e555acc3d2",
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"id": "prop_30aeb5cb6792a81167833e4c732025a5",
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"id": "prop_19cff3574a55b04871cc3b9282d26d86",
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"translations": {
+				"default": "_lockState"
+			}
+		},
+		{
+			"name": "_thumbnail",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"relationship": "nt_5d79e3adnkcd25615637df85e122bcac",
+			"id": "prop_b7bf004f-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_thumbnail",
+				"en": "Thumbnail",
+				"fr": "Vignette"
+			}
+		},
+		{
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0050-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_releasedOn",
+				"en": "Released On",
+				"fr": "Validé le"
+			}
+		},
+		{
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0051-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_version",
+				"en": "Version",
+				"fr": "Révision"
+			}
+		},
+		{
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0052-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_versionedOn",
+				"fr": "Révisé le"
+			}
+		},
+		{
+			"name": "_history",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0054-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_history",
+				"fr": "Historique"
+			}
+		},
+		{
+			"name": "_promotions",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0055-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_promotions",
+				"en": "Promotions",
+				"fr": "Promotions"
+			}
+		},
+		{
+			"name": "_serialized",
+			"type": "multiselect",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_b7bf0056-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_serialized",
+				"en": "Serialized"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0057-c426-11e9-9ce5-63afa77a96d0",
+			"group": "Traceability",
+			"translations": {
+				"default": "_createdBy",
+				"en": "Created By",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_lockedBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0058-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedBy"
+			}
+		},
+		{
+			"name": "_lockedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0059-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedOn"
+			}
+		},
+		{
+			"id": "prop_de96e700-1024-11ea-a9e1-fb7cfccb4903",
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created By Name",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_releasedUntil",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"id": "prop_fd3485d0-6557-11eb-94db-07bad80f0c9e",
+			"translations": {
+				"default": "_releasedUntil",
+				"fr": "Valide jusqu'à"
+			}
+		},
+		{
+			"name": "name",
+			"label": "name",
+			"type": "text",
+			"id": "prop_305ae250c077bd969ac8fead3e4dfd19",
+			"core": false,
+			"group": "Identification",
+			"translations": {
+				"default": "Name",
+				"fr": "Nom"
+			}
+		},
+		{
+			"name": "description",
+			"label": "description",
+			"type": "text",
+			"id": "prop_1c9c909c9f42a8d02a087288b1a38622",
+			"core": false,
+			"group": "Identification",
+			"translations": {
+				"default": "Description",
+				"fr": "Description"
+			}
+		}
+	],
+	"ui": {
+		"defaultThumbnail": "images/operationLogo.png",
+		"gridColumns": [
+			{
+				"id": "uigc_438992b0-bf80-11ea-b926-03d996f3eee5",
+				"type": "version",
+				"order": 1,
+				"property": "operation._version",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_18d47f80-bf80-11ea-b926-03d996f3eee5",
+				"type": "string",
+				"order": 2,
+				"property": "operation._ref"
+			},
+			{
+				"id": "uigc_1af319c0-bf80-11ea-b926-03d996f3eee5",
+				"type": "state",
+				"order": 3,
+				"property": "operation._state",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_267878d0-bf80-11ea-b926-03d996f3eee5",
+				"type": "string",
+				"order": 4,
+				"property": "operation.name",
+				"editable": true
+			},
+			{
+				"id": "uigc_2be46950-bf80-11ea-b926-03d996f3eee5",
+				"type": "string",
+				"order": 5,
+				"property": "operation.description",
+				"editable": true
+			},
+			{
+				"id": "uigc_2fc525f0-bf80-11ea-b926-03d996f3eee5",
+				"type": "date",
+				"order": 6,
+				"property": "operation._createdOn",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_387c97f0-bf80-11ea-b926-03d996f3eee5",
+				"type": "date",
+				"order": 7,
+				"property": "operation._modifiedOn",
+				"cellRendered": true
+			}
+		],
+		"form": {
+			"definition": {
+				"A": [
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "false",
+						"id": "co_20dce54b-076a-4363-bfac-777ae4f37382",
+						"label": "Identification",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_d85fe12f-4c25-4a2c-8095-1f1e564bae58",
+									"property": "_ref",
+									"size": "3",
+									"propertyType": "string",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_bc735e44-d624-4e1e-99b3-a8c5776f74bb",
+									"property": "name",
+									"size": "3",
+									"propertyType": "text",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_254349e4-99b6-44ef-b847-181400116ba4",
+									"property": "description",
+									"size": "12",
+									"propertyType": "text",
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					},
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "true",
+						"id": "co_2ce238c2-7a14-4b72-ae90-4da8f8d49cb3",
+						"label": "Traceability",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_229450c9-b42e-42f3-b06d-4490cf20d4a3",
+									"property": "_createdOn",
+									"size": "2",
+									"propertyType": "date",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_69d8ac56-7067-4405-8195-76cb261c4447",
+									"property": "_modifiedOn",
+									"size": "2",
+									"propertyType": "date",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_5057d58a-c348-49bf-8181-a19ef30ef4f3",
+									"property": "_createdBy",
+									"size": "2",
+									"propertyType": "text",
+									"readOnly": true,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					}
+				]
+			},
+			"ng": {},
+			"labelCase": "capitalize"
+		},
+		"tabs": [
+			{
+				"id": "tab_6fe73050-bf81-11ea-b926-03d996f3eee5",
+				"name": "operationTool",
+				"tabContentType": "relatedObject",
+				"attachMode": "both",
+				"relationships": "nt_800c46a84b3bf38dba7fb733ed0a0a52",
+				"translations": {
+					"default": "operationTool",
+					"en": "Tools",
+					"fr": "Outillage"
+				}
+			}
+		]
+	},
+	"codification": {
+		"prefixes": [
+			{
+				"type": "text",
+				"value": "OPER"
+			}
+		],
+		"value": {
+			"size": "6",
+			"fillWith": "0",
+			"type": "highest"
+		},
+		"prefix": "OP-",
+		"size": 8,
+		"fillWith": "0"
+	},
+	"category": 9,
+	"id": "nt_3ce62483afc40d46473981849823f52c",
+	"versionnable": true,
+	"changeMethod": "manual",
+	"versioningRule": {
+		"major": "nonInterchangeable",
+		"minor": "interchangeable"
+	},
+	"maidenName": {
+		"elements": [
+			"_ref",
+			"name"
+		]
+	},
+	"translations": {
+		"default": "Operation",
+		"en": "Operation",
+		"fr": "Opération",
+		"el": "Λειτουργία"
+	}
+}

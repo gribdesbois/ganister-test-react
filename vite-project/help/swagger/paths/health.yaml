@@ -1,0 +1,261 @@
+processItems:
+  parameters:
+    - name: ecoId
+      in: path
+      description: ECO id
+      required: true
+      type: string
+  get:
+    security:
+      - JWT: []
+    description: Get Health Report
+    tags:
+      - Health Report
+    responses:
+      "200":
+        description: Returns array of objects
+      "401":
+        description: "Error: Not Authenticated"
+        schema:
+          $ref: "#/definitions/Error"
+      "403":
+        description: "Error: Unauthorised Access"
+        schema:
+          $ref: "#/definitions/Error"
+      "500":
+        description: "Error: Server Error"
+
+lockstate:
+  post:
+    security:
+      - JWT: []
+    parameters: []
+    description: "Fix Nodes Missing LockState Property - Check for missing _lockState property in each node"
+    tags:
+      - Health Report
+    responses:
+      "200":
+        description: Returns object
+      "401":
+        description: "Error: Not Authenticated"
+        schema:
+          $ref: "#/definitions/Error"
+      "403":
+        description: "Error: Unauthorised Access"
+        schema:
+          $ref: "#/definitions/Error"
+      "500":
+        description: "Error: Server Error"
+
+lockable:
+  post:
+    security:
+      - JWT: []
+    parameters: []
+    description: "Fix 'Nodetypes Missing Translation - Check for missing translation for each nodetype"
+    tags:
+      - Health Report
+    responses:
+      "200":
+        description: Returns object
+      "401":
+        description: "Error: Not Authenticated"
+        schema:
+          $ref: "#/definitions/Error"
+      "403":
+        description: "Error: Unauthorised Access"
+        schema:
+          $ref: "#/definitions/Error"
+      "500":
+        description: "Error: Server Error"
+
+forms:
+  post:
+    security:
+      - JWT: []
+    parameters: []
+    description: Regenerates UI Forms for all nodetypes
+    tags:
+      - Health Report
+    responses:
+      "200":
+        description: Returns object
+      "401":
+        description: "Error: Not Authenticated"
+        schema:
+          $ref: "#/definitions/Error"
+      "403":
+        description: "Error: Unauthorised Access"
+        schema:
+          $ref: "#/definitions/Error"
+      "500":
+        description: "Error: Server Error"
+
+boolean:
+  post:
+    security:
+      - JWT: []
+    parameters: []
+    description: "Fix boolean Properties stored as string - Check for several boolean properties that are stored as string"
+    tags:
+      - Health Report
+    responses:
+      "200":
+        description: Returns object
+      "401":
+        description: "Error: Not Authenticated"
+        schema:
+          $ref: "#/definitions/Error"
+      "403":
+        description: "Error: Unauthorised Access"
+        schema:
+          $ref: "#/definitions/Error"
+      "500":
+        description: "Error: Server Error"
+
+permissions:
+  post:
+    security:
+      - JWT: []
+    parameters: []
+    description: Fix Nodetype Permissions - Check for missing nodetype permissions
+    tags:
+      - Health Report
+    responses:
+      "200":
+        description: Returns object
+      "401":
+        description: "Error: Not Authenticated"
+        schema:
+          $ref: "#/definitions/Error"
+      "403":
+        description: "Error: Unauthorised Access"
+        schema:
+          $ref: "#/definitions/Error"
+      "500":
+        description: "Error: Server Error"
+
+lockedByName:
+  post:
+    security:
+      - JWT: []
+    parameters: []
+    description: "Fix Nodes Missing LockedByName - Check for missing _lockedByName property in each node"
+    tags:
+      - Health Report
+    responses:
+      "200":
+        description: Returns object
+      "401":
+        description: "Error: Not Authenticated"
+        schema:
+          $ref: "#/definitions/Error"
+      "403":
+        description: "Error: Unauthorised Access"
+        schema:
+          $ref: "#/definitions/Error"
+      "500":
+        description: "Error: Server Error"
+
+coreItems:
+  post:
+    security:
+      - JWT: []
+    parameters: []
+    description: Fix Nodetypes Missing Core Items - Check for missing nodetype core items
+    tags:
+      - Health Report
+    responses:
+      "200":
+        description: Returns object
+      "401":
+        description: "Error: Not Authenticated"
+        schema:
+          $ref: "#/definitions/Error"
+      "403":
+        description: "Error: Unauthorised Access"
+        schema:
+          $ref: "#/definitions/Error"
+      "500":
+        description: "Error: Server Error"
+
+states:
+  post:
+    security:
+      - JWT: []
+    parameters: []
+    description: Fix Lifecycle with transitions missing a from or a to state
+    tags:
+      - Health Report
+    responses:
+      "200":
+        description: Returns object
+      "401":
+        description: "Error: Not Authenticated"
+        schema:
+          $ref: "#/definitions/Error"
+      "403":
+        description: "Error: Unauthorised Access"
+        schema:
+          $ref: "#/definitions/Error"
+      "500":
+        description: "Error: Server Error"
+
+resources:
+  get:
+    security:
+      - JWT: []
+    parameters: []
+    description: Get Resources State
+    tags:
+      - Health Report
+    responses:
+      "200":
+        description: Returns array of object
+      "401":
+        description: "Error: Not Authenticated"
+        schema:
+          $ref: "#/definitions/Error"
+      "403":
+        description: "Error: Unauthorised Access"
+        schema:
+          $ref: "#/definitions/Error"
+      "500":
+        description: "Error: Server Error"
+
+lifecycleState:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        required: true
+        in: path
+        description: Nodetype Name
+        type: string
+      - name: fromState
+        required: true
+        in: path
+        description: From State
+        type: string
+      - name: toState
+        required: true
+        in: path
+        description: To State
+        type: string
+    description: Maps Lifecycle State
+    tags:
+      - Health Report
+    responses:
+      "200":
+        description: Returns object
+      "401":
+        description: "Error: Not Authenticated"
+        schema:
+          $ref: "#/definitions/Error"
+      "403":
+        description: "Error: Unauthorised Access"
+        schema:
+          $ref: "#/definitions/Error"
+      "500":
+        description: "Error: Server Error"

@@ -1,0 +1,41 @@
+$kanbanViewContainerBG: #F3F9FE;
+$borderColor: #999;
+$assignmentShadowStart: rgba(0,0,0,0.14);
+$assignmentShadowMiddle: rgba(0,0,0,0.12);
+$assignmentShadowEnd: rgba(0,0,0,0.2);
+
+.kanbanView-container{
+  background: $kanbanViewContainerBG;
+  margin-bottom: 15px;
+
+  .assignment  {
+    padding: 5px;
+    margin: 5px;
+    border: solid 1px $borderColor;
+    border-radius: 5px;
+    list-style: none;
+    background-color: white;
+    -webkit-box-shadow: 0 1px 1px 0 $assignmentShadowStart, 0 2px 1px -1px $assignmentShadowMiddle, 0 1px 3px 0 $assignmentShadowEnd;
+    box-shadow: 0 1px 1px 0 $assignmentShadowStart, 0 2px 1px -1px $assignmentShadowMiddle, 0 1px 3px 0 $assignmentShadowEnd;
+  }
+
+  .close {
+  margin-top: -10px;
+  }
+  .dndPlaceholder{
+    height: 100px;
+    list-style: none;
+    padding: 5px;
+    margin: 5px;
+    border: dashed 1px $borderColor;
+    border-radius: 5px;
+    background-color: $brand-info;
+    color: white;
+  }
+}
+
+
+.kanbanView-container .assignment .progress{
+  height: 10px;
+}
+

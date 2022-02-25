@@ -1,0 +1,47 @@
+<div ng-controller="tabsController" class="fill">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs mainNavigationTabs" role="tablist">
+        <li role="presentation" ng-class="{active:appContext.user.appSession.dashActive}">
+            <a aria-controls="dashboard" role="tab" data-toggle="tab" data-target="#dashboard" ng-click="activeTab('dashboard')">
+                <span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>
+            </a>
+        </li>
+        <li role="presentation" ng-class="{active:appContext.user.appSession.searchActive}">
+            <a aria-controls="searchPanel" role="tab" data-toggle="tab" data-target="#searchPanel" ng-click="activeTab('searchPanel')">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </a>
+        </li>
+        <li role="presentation" ng-class="{active:appContext.user.appSession.listActive}" context-menu="ctxMenuNodetypeList">
+            <a aria-controls="home" role="tab" data-toggle="tab" data-target="#home" ng-click="activeTab('list')">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+            </a>
+        </li>
+        <li role="presentation" ng-repeat="node in appContext.user.appSession.openNodes" class="nodeTab" ng-class="{active:node._ui.isActive}" title="{{node._type}} - {{node.properties._labelRef}}" context-menu="ctxMenuOptions">
+            <a aria-controls="{{node._id}}" data-target="#{{node._id}}" role="tab" data-toggle="tab" ng-click="activeTab(node)">
+                <span class="glyphicon glyphicon-remove-circle tabIcon" aria-hidden="true" ng-click="closeNode(node)"></span>
+                <span class="tab-versionBadge" ng-if="node.versionnable">{{node.properties._versionLabel}}</span>
+                <img class="tabNodetypeIcon" ng-src="{{node._typeObject.ui.defaultThumbnail}}" width="20px" /> 
+                {{node.properties._labelRef}} 
+            </a>
+        </li>
+        <li role="presentation"  ng-repeat="tabLoad in tabLoading">
+            <a aria-controls="{{tabLoad}}" data-target="#{{tabLoad}}" role="tab" data-toggle="tab" > 
+                <div class="messageDiv"><div class="lds-ellipsis loadingtab"><div></div><div></div><div></div><div></div></div></div>            
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content fill">
+        <div role="tabpanel " class="tab-pane fill" ng-class="{active:appContext.user.appSession.dashActive || !(appContext.user.appSession)}" id="dashboard">
+            <div ng-include="'app/components/tabs/customPanel/customPanel.html'" class="fill"></div>
+        </div>
+        <div role="tabpanel " class="tab-pane fill" ng-class="{active:appContext.user.appSession.searchActive}" id="searchPanel">
+            <div ng-include="'app/components/tabs/searchPanel/searchPanel.html'" class="fill"></div>
+        </div>
+        <div role="tabpanel " class="tab-pane fill" ng-class="{active:appContext.user.appSession.listActive}"  id="home">
+            <div ng-include="'app/components/tabs/mainNodeListing/mainNodeListing.html'" class="fill"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="{{node._id}}-{{node._version}}" ng-class="{active:node._ui.isActive}" ng-repeat="node in appContext.user.appSession.openNodes">
+            <div ng-include="'app/components/tabs/node/nodeForm/nodeForm.html'" class="nodeFormTab"></div>
+        </div>
+    </div>
+</div>

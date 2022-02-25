@@ -1,0 +1,16 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+  build:
+    commands:
+  post_build:
+    commands:
+      - echo Build completed on `date`
+    finally:
+      - npm run dev

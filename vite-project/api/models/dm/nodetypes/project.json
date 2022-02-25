@@ -1,0 +1,682 @@
+{
+	"package": "pm",
+	"elementType": "node",
+	"codification": {
+		"prefixes": [
+			{
+				"type": "text",
+				"value": "SFT"
+			}
+		],
+		"value": {
+			"size": "8",
+			"fillWith": "0",
+			"type": "highest"
+		},
+		"prefix": "PRJ-",
+		"size": 6,
+		"fillWith": "0"
+	},
+	"actions": [],
+	"name": "project",
+	"gridColumnsHeader": "",
+	"changeMethod": "none",
+	"lifecycle": {
+		"states": [
+			{
+				"name": "planning",
+				"label": "Planning",
+				"start": true,
+				"lockable": true,
+				"id": "state_aed535f764873b03ef8ac4e0af093b2a",
+				"positionY": 100,
+				"positionX": 0,
+				"ui_color": "primary",
+				"owner": "role_4ad13b1519e39a2167ea836144db21d6"
+			},
+			{
+				"name": "inProgress",
+				"label": "in Progress",
+				"start": false,
+				"lockable": true,
+				"id": "state_425958954e3673fe8a244b348337c426",
+				"ui_color": "success",
+				"positionY": 100,
+				"positionX": 160,
+				"owner": "role_4ad13b1519e39a2167ea836144db21d6"
+			},
+			{
+				"name": "hold",
+				"label": "Hold",
+				"start": false,
+				"lockable": true,
+				"id": "state_d368f681d6424db359de7f0a1e41eba1",
+				"positionY": 220,
+				"positionX": 260,
+				"ui_color": "warning",
+				"owner": "role_4ad13b1519e39a2167ea836144db21d6"
+			},
+			{
+				"name": "finished",
+				"label": "Finished",
+				"start": false,
+				"lockable": false,
+				"id": "state_82198fa970308a03c82a7d651911ec98",
+				"positionY": 100,
+				"positionX": 320,
+				"ui_color": "info"
+			},
+			{
+				"name": "cancelled",
+				"label": "Cancelled",
+				"start": false,
+				"lockable": false,
+				"id": "state_135910720bd41e9c47d4601385ccc639",
+				"positionY": 220,
+				"positionX": 80,
+				"ui_color": "default",
+				"owner": "role_4ad13b1519e39a2167ea836144db21d6"
+			}
+		],
+		"transitions": [
+			{
+				"from": "state_425958954e3673fe8a244b348337c426",
+				"to": "state_135910720bd41e9c47d4601385ccc639",
+				"id": "trans_60c395ca3040bce038326d43154e2b1f"
+			},
+			{
+				"from": "state_d368f681d6424db359de7f0a1e41eba1",
+				"to": "state_135910720bd41e9c47d4601385ccc639",
+				"id": "trans_2b5d38a367714688c4fcb1cc703c7124"
+			},
+			{
+				"from": "state_425958954e3673fe8a244b348337c426",
+				"to": "state_82198fa970308a03c82a7d651911ec98",
+				"id": "trans_5d71ad003a97b01d2556a39ce50abf8f"
+			},
+			{
+				"from": "state_425958954e3673fe8a244b348337c426",
+				"to": "state_d368f681d6424db359de7f0a1e41eba1",
+				"id": "trans_81b343092cfa09729453b502e02f7f6c"
+			},
+			{
+				"from": "state_d368f681d6424db359de7f0a1e41eba1",
+				"to": "state_aed535f764873b03ef8ac4e0af093b2a",
+				"id": "trans_9c084b5020569d394566bfb0dde259dc"
+			},
+			{
+				"from": "state_425958954e3673fe8a244b348337c426",
+				"to": "state_aed535f764873b03ef8ac4e0af093b2a",
+				"id": "trans_2a8b0339c1015d2082b0326ef135c9a9"
+			},
+			{
+				"from": "state_aed535f764873b03ef8ac4e0af093b2a",
+				"to": "state_425958954e3673fe8a244b348337c426",
+				"id": "trans_6ba23d18969d933ee7f761890c39ad06"
+			},
+			{
+				"from": "state_aed535f764873b03ef8ac4e0af093b2a",
+				"to": "state_135910720bd41e9c47d4601385ccc639",
+				"id": "trans_86e1983a12df5086aca9eda0b7fc2641"
+			},
+			{
+				"from": "state_135910720bd41e9c47d4601385ccc639",
+				"to": "state_aed535f764873b03ef8ac4e0af093b2a",
+				"id": "trans_989d7ee3af9684faec038b673c71a14a"
+			}
+		],
+		"roles": [
+			{
+				"name": "manager",
+				"label": "Manager",
+				"id": "role_4ad13b1519e39a2167ea836144db21d6"
+			}
+		]
+	},
+	"category": 6,
+	"configuration": true,
+	"properties": [
+		{
+			"id": "prop_376efbe4c47504348ac9ad0dc4d48e9f",
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"group": "hidden",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"id": "prop_5bd2f982d01f1e37efac0221eba7a7f8",
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "codification",
+			"core": true,
+			"group": "Identification",
+			"translations": {
+				"default": "Ref",
+				"fr": "Ref",
+				"el": "ref"
+			}
+		},
+		{
+			"id": "prop_0c7b22186a989959710a2ed22eaa969c",
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"group": "hidden",
+			"translations": {
+				"default": "State",
+				"fr": "Statut",
+				"el": "State"
+			}
+		},
+		{
+			"id": "prop_4f259f66593f3371bfe2b64a8eaf03e6",
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"group": "Tracking",
+			"translations": {
+				"default": "Created On",
+				"fr": "Créé le"
+			}
+		},
+		{
+			"id": "prop_ffa766f0508a84bada08fc98e78c11fe",
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"group": "Tracking",
+			"translations": {
+				"default": "Modified On",
+				"fr": "Modifié le"
+			}
+		},
+		{
+			"id": "prop_5fae58d859953f212333d3e555acc3d2",
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"group": "hidden",
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"id": "prop_30aeb5cb6792a81167833e4c732025a5",
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"group": "hidden",
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"id": "prop_19cff3574a55b04871cc3b9282d26d86",
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"group": "hidden",
+			"translations": {
+				"default": "Locked"
+			}
+		},
+		{
+			"name": "_thumbnail",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"relationship": "nt_5d79e3adnkcd25615637df85e122bcac",
+			"id": "prop_b7bed8db-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_thumbnail"
+			}
+		},
+		{
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed8dc-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_releasedOn"
+			}
+		},
+		{
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed8dd-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_version"
+			}
+		},
+		{
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed8de-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_versionedOn"
+			}
+		},
+		{
+			"name": "_history",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed8e0-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_history"
+			}
+		},
+		{
+			"name": "_promotions",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed8e1-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_promotions"
+			}
+		},
+		{
+			"name": "_serialized",
+			"type": "multiselect",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_b7bed8e2-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_serialized"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed8e3-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "Created By",
+				"fr": "Créé par",
+				"el": "_createdBy"
+			}
+		},
+		{
+			"name": "_lockedBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed8e4-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedBy"
+			}
+		},
+		{
+			"name": "_lockedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed8e5-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedOn"
+			}
+		},
+		{
+			"id": "prop_34d9ebc0-1026-11ea-a8cf-4d227389fbe4",
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created By Name",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_releasedUntil",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"id": "prop_3fbeef90-6557-11eb-94db-07bad80f0c9e",
+			"translations": {
+				"default": "_releasedUntil"
+			}
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"id": "prop_82aca9ea241c444c2f57c188dc335a10",
+			"group": "Identification",
+			"core": false,
+			"translations": {
+				"default": "Name",
+				"fr": "Nom",
+				"el": "name"
+			}
+		},
+		{
+			"name": "type",
+			"type": "select",
+			"id": "prop_e5dc4a4c21f412c29e3dbade2ab9e877",
+			"group": "Identification",
+			"core": false,
+			"listSource": "projectTypes",
+			"translations": {
+				"default": "Type",
+				"fr": "Type",
+				"el": "type"
+			}
+		},
+		{
+			"name": "description",
+			"type": "text",
+			"id": "prop_2ae9efd9d9d7de6186c436ceade3aa95",
+			"group": "Identification",
+			"core": false,
+			"translations": {
+				"default": "Description",
+				"fr": "Description",
+				"el": "description"
+			}
+		},
+		{
+			"id": "prop_a6a861d15482272ac339759ecb867911",
+			"name": "_kanbanList1",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": false,
+			"headers": [
+				{
+					"name": "test",
+					"key": "test",
+					"type": "string",
+					"cellClass": "",
+					"editable": true
+				},
+				{
+					"name": "test2",
+					"key": "test2",
+					"type": "string",
+					"cellClass": "",
+					"editable": true
+				}
+			],
+			"translations": {
+				"default": "Kanban List1"
+			}
+		},
+		{
+			"id": "prop_5edaab946fc059fea8774276de3913b5",
+			"name": "_kanbanList2",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": false,
+			"translations": {
+				"default": "Kanban List2"
+			}
+		}
+	],
+	"maidenName": {
+		"elements": [
+			"_ref",
+			"type"
+		],
+		"separator": "-"
+	},
+	"ui": {
+		"defaultThumbnail": "images/projectLogo.png",
+		"gridColumns": [
+			{
+				"id": "uigc_5b1af080-bd10-11ea-af43-b96c1223dbcd",
+				"type": "state",
+				"order": 1,
+				"property": "project._state",
+				"cellRendered": true,
+				"width": 120
+			},
+			{
+				"id": "uigc_604df6b0-bd10-11ea-af43-b96c1223dbcd",
+				"type": "string",
+				"order": 2,
+				"property": "project._ref",
+				"width": 150
+			},
+			{
+				"id": "uigc_25ae5cf0-488f-11ec-a517-25dd9b5cb3ba",
+				"name": "col_6",
+				"type": "dropdown",
+				"order": 3,
+				"property": "project.type",
+				"cellRendered": true
+			},
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_12fa40e20aa99b21ebdbf61fc8489bd4",
+				"property": "project.name",
+				"order": 4,
+				"width": 160
+			},
+			{
+				"label": "description",
+				"type": "text",
+				"id": "uigc_7210fe38292b7521c9f2627960f46a60",
+				"property": "project.description",
+				"order": 5,
+				"width": 500
+			},
+			{
+				"label": "_modifiedOn",
+				"type": "date",
+				"id": "uigc_8aaf26aba4f90954eba0c133cb4ac9c5",
+				"property": "project._modifiedOn",
+				"cellRendered": true,
+				"order": 6
+			},
+			{
+				"id": "uigc_3792ca30-1026-11ea-a9f6-3976348ecdf3",
+				"type": "string",
+				"property": "project._createdByName",
+				"order": 7
+			}
+		],
+		"tabs": [
+			{
+				"id": "tab_1f8c3e6ae919b122af97eb5a2e06cc26",
+				"name": "projectGantt",
+				"tabContentType": "ganttView",
+				"relationships": "nt_6daa4f5d46a76726b84ac33628e80f65",
+				"order": 1,
+				"translations": {
+					"default": "Gantt",
+					"fr": "Gantt"
+				}
+			},
+			{
+				"id": "tab_5c0499d42e8eca3e8bef5f2e161e0434",
+				"name": "projectAssignments",
+				"tabContentType": "relatedObject",
+				"relationships": "nt_6daa4f5d46a76726b84ac33628e80f65",
+				"attachMode": "both",
+				"order": 2,
+				"translations": {
+					"default": "Assignments",
+					"fr": "Activités"
+				}
+			},
+			{
+				"id": "tab_195fdadd70f058d7f2a1db5ab7d0f81f",
+				"name": "projectDocuments",
+				"tabContentType": "relatedObject",
+				"relationships": "nt_dd50c289ad31fe533c4c39e272152505",
+				"order": 3,
+				"attachMode": "both",
+				"translations": {
+					"default": "Documents",
+					"fr": "Documents"
+				}
+			},
+			{
+				"id": "tab_09468c05358592a16a0871563b5e8e76",
+				"name": "projectKanban",
+				"tabContentType": "kanbanView",
+				"relationships": "nt_6daa4f5d46a76726b84ac33628e80f65",
+				"property": "prop_a6a861d15482272ac339759ecb867911",
+				"kanbasCard": "<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <h4 style=\"font-weight: 600\">{{node.properties.name || node.properties._labelRef}}<a href=\"#\" class=\"close\" aria-label=\"close\" ng-click=\"updateKanbanValue(node,'')\">&times;</a></h4>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <h5>{{node.properties.description}}</h6>\n  </div>\n</div>\n<br>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    Assignment Completed: {{node.properties.progress}}%\n  </div>\n  <div class=\"col-xs-12\">\n    <div class=\"progress\">\n      <div class=\"progress-bar progress-bar-success progress-bar-striped\" role=\"progressbar\"\naria-valuenow=\"{{node.properties.progress}}\" aria-valuemin=\"0\" aria-valuemax=\"100\" ng-style=\"{ 'width' : node.properties.progress + '%' }\">\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12 col-md-12\">\n    Due Date: {{node.properties.dueDate | date:'medium'}}\n  </div>\n</div>",
+				"order": 4,
+				"translations": {
+					"default": "Kanban",
+					"fr": "Kanban"
+				}
+			}
+		],
+		"form": {
+			"definition": {
+				"A": [
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "false",
+						"id": 1,
+						"label": "Identification",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": 1,
+									"property": "_ref",
+									"size": "2",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": 2,
+									"property": "name",
+									"size": "2",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": 3,
+									"property": "type",
+									"size": "2",
+									"readOnly": false,
+									"offset": "0",
+									"propertyType": "select"
+								},
+								{
+									"type": "item",
+									"id": 4,
+									"property": "description",
+									"size": "6",
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					},
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "true",
+						"id": 2,
+						"label": "Tracking",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": 5,
+									"property": "_createdOn",
+									"size": "3",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": 6,
+									"property": "_modifiedOn",
+									"size": "3",
+									"readOnly": true,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					}
+				]
+			},
+			"ng": {},
+			"labelCase": "capitalize"
+		}
+	},
+	"id": "nt_3e0c34030d5bd366ab0217d3f99b9698",
+	"translations": {
+		"default": "Project",
+		"en": "Project",
+		"fr": "Projet",
+		"el": "Εργο"
+	}
+}

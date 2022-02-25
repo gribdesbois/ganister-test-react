@@ -1,0 +1,277 @@
+swagger: '2.0'
+info:
+  description: >
+    # Ganister API Documentation
+
+    ## Tech Notes
+
+    * Decimal number must be sent with a . for decimal separator.
+  title: Ganister
+  version: 2.0.0
+  contact:
+    name: Ganister Support
+    email: support@ganister.eu
+host: 'localhost:8008'
+basePath: /api/v0
+produces:
+  - application/json
+schemes:
+  - https
+  - http
+securityDefinitions:
+  JWT:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: apiKey
+paths:
+  /users/test:
+    $ref: './paths/users.yaml#/test'
+  /users/signup:
+    $ref: './paths/users.yaml#/signup'
+  /users/signin:
+    $ref: './paths/users.yaml#/signin'
+  /users/changepassword:
+    $ref: './paths/users.yaml#/changePassword'
+  /users/requestchangepassword:
+    $ref: './paths/users.yaml#/requestChangePassword'
+
+  /nodes/search:
+    $ref: './paths/nodes.yaml#/search'
+  /nodes/{nodetype}:
+    $ref: './paths/nodes.yaml#/nodes'
+  /nodes/{nodetype}/search:
+    $ref: './paths/nodes.yaml#/nodetypeSearch'
+  /nodes/{nodetype}/checkNodeCreationRight:
+    $ref: './paths/nodes.yaml#/creationRight'
+  /nodes/{nodetype}/actions/{actionId}:
+    $ref: './paths/nodes.yaml#/nodetypeAction'
+  /nodes/{nodetype}/{nodeId}:
+    $ref: './paths/nodes.yaml#/node'
+  /nodes/{nodetype}/{nodeId}/history:
+    $ref: './paths/nodes.yaml#/history'
+  /nodes/{nodetype}/{nodeId}/customTableView/{customViewName}:
+    $ref: './paths/nodes.yaml#/customTableView'
+  /nodes/{nodetype}/{nodeId}/promotions:
+    $ref: './paths/nodes.yaml#/promotions'
+  /nodes/{nodetype}/{nodeId}/actions/{actionId}:
+    $ref: './paths/nodes.yaml#/nodeAction'
+  /nodes/{nodetype}/{nodeId}/subscription/{active}:
+    $ref: './paths/nodes.yaml#/subscription'
+  /nodes/{nodetype}/{nodeId}/notifyIdentityChange/{relationship}:
+    $ref: './paths/nodes.yaml#/identityChange'
+
+  /nodes/{nodetype}/relationships/{relationshipName}:
+    $ref: './paths/relationships.yaml#/nodetypeRelationships' 
+  /nodes/{nodetype}/{nodeId}/relationships:
+    $ref: './paths/relationships.yaml#/searchRelationships' 
+  /nodes/{nodetype}/{nodeId}/relationships/{relationshipName}:
+    $ref: './paths/relationships.yaml#/relationships'
+  /nodes/{nodetype}/{nodeId}/relationships/{relationshipName}/{relationshipId}:
+    $ref: './paths/relationships.yaml#/relationship'
+
+  /plm/eco/{ecoId}/controlledItems:
+    $ref: './paths/plm.yaml#/controlledItems'
+  /plm/eco/{ecoId}/controlledItems/extended:
+    $ref: './paths/plm.yaml#/controlledItemsExtended'
+  /plm/eco/{ecoId}/processedItems/extended:
+    $ref: './paths/plm.yaml#/processedItemsExtended'
+  /plm/eco/{ecoId}/controlledItem/{nodeId}:
+    $ref: './paths/plm.yaml#/controlledItem'
+  /plm/processECONode/{nodetype}/{nodeId}:
+    $ref: './paths/plm.yaml#/processECONode'
+  /plm/instanciateNode/{nodetype}/{nodeId}:
+    $ref: './paths/plm.yaml#/instanciateNode'
+  /plm/CAD/CADDocument:
+    $ref: './paths/plm.yaml#/CADDocument'
+  /plm/CAD/CADDocument/public/{nodeId}:
+    $ref: './paths/plm.yaml#/CADDocumentPublic'
+  /plm/CAD/CADDocument/revision/{id}:
+    $ref: './paths/plm.yaml#/CADDocumentRevision'
+  /plm/CAD/CADDocuments:
+    $ref: './paths/plm.yaml#/CADDocuments'
+  /plm/CAD/CADDocument/flatList/{id}:
+    $ref: './paths/plm.yaml#/flatList'
+
+  /nodetypes/{nodetype}:
+    $ref: './paths/nodetypes.yaml#/nodetype'
+  /nodetypes/{nodetype}/updateobject:
+    $ref: './paths/nodetypes.yaml#/updateObject'
+  /nodetypes/{nodetype}/properties:
+    $ref: './paths/nodetypes.yaml#/properties'
+  /nodetypes/{nodetype}/properties/{id}:
+    $ref: './paths/nodetypes.yaml#/property'
+  /nodetypes/{nodetype}/methods:
+    $ref: './paths/nodetypes.yaml#/methods'
+  /nodetypes/{nodetype}/methods/{id}:
+    $ref: './paths/nodetypes.yaml#/method'
+  /nodetypes/{nodetype}/actions:
+    $ref: './paths/nodetypes.yaml#/actions'
+  /nodetypes/{nodetype}/actions/{id}:
+    $ref: './paths/nodetypes.yaml#/action'
+  /nodetypes/{nodetype}/tabs:
+    $ref: './paths/nodetypes.yaml#/tabs'
+  /nodetypes/{nodetype}/tabs/{id}:
+    $ref: './paths/nodetypes.yaml#/tab'
+  /nodetypes/{nodetype}/tabs/move:
+    $ref: './paths/nodetypes.yaml#/moveTab'
+  /nodetypes/{nodetype}/form/definition:
+    $ref: './paths/nodetypes.yaml#/form'
+  /nodetypes/{nodetype}/columns/{gridName}:
+    $ref: './paths/nodetypes.yaml#/columns'
+  /nodetypes/{nodetype}/columns/{gridName}/move:
+    $ref: './paths/nodetypes.yaml#/moveColumn'
+  /nodetypes/{nodetype}/columns/{gridName}/{columnId}:
+    $ref: './paths/nodetypes.yaml#/column'
+  /nodetypes/{nodetype}/lifecycle/roles:
+    $ref: './paths/nodetypes.yaml#/lifecycleRoles'
+  /nodetypes/{nodetype}/lifecycle/roles/{id}:
+    $ref: './paths/nodetypes.yaml#/lifecycleRole'
+  /nodetypes/{nodetype}/lifecycle/states:
+    $ref: './paths/nodetypes.yaml#/lifecycleStates'
+  /nodetypes/{nodetype}/lifecycle/states/{id}:
+    $ref: './paths/nodetypes.yaml#/lifecycleState'
+  /nodetypes/{nodetype}/lifecycle/transitions:
+    $ref: './paths/nodetypes.yaml#/lifecycleTransitions'
+  /nodetypes/{nodetype}/lifecycle/transitions/{id}:
+    $ref: './paths/nodetypes.yaml#/lifecycleTransition'
+  /nodetypes/{nodetype}/updateStateConfig:
+    $ref: './paths/nodetypes.yaml#/stateConfig'
+  /nodetypes/{nodetype}/updatePermission:
+    $ref: './paths/nodetypes.yaml#/permission'
+
+  /nodetypes/datamodel:
+    $ref: './paths/datamodel.yaml#/datamodel'
+  /nodetypes/datamodel/generateGanisterDatamodel:
+    $ref: './paths/datamodel.yaml#/generate'
+  /nodestypes/datamodel/patch:
+    $ref: './paths/datamodel.yaml#/patchDatamodel'
+  /nodetypes/datamodel/updateDmPackagesFromDatamodel:
+    $ref: './paths/datamodel.yaml#/updatePackages'
+  /nodetypes/_packages:
+    $ref: './paths/datamodel.yaml#/packages'
+  /nodetypes/_packages/{id}:
+    $ref: './paths/datamodel.yaml#/package'
+  /nodetypes/methods:
+    $ref: './paths/datamodel.yaml#/methods'
+  /nodetypes/methods/{id}:
+    $ref: './paths/datamodel.yaml#/method'
+  /nodetypes/lovs:
+    $ref: './paths/datamodel.yaml#/listsOfValues'
+  /nodetypes/lovs/{id}:
+    $ref: './paths/datamodel.yaml#/listOfValues'
+  /nodetypes/categories:
+    $ref: './paths/datamodel.yaml#/categories'
+
+  /health/eco/{ecoId}/processedItems/extended:
+    $ref: './paths/health.yaml#/processItems'
+  /health/nodesmissinglockstate:
+    $ref: './paths/health.yaml#/lockstate'
+  /health/nodesmissinglockable:
+    $ref: './paths/health.yaml#/lockable'
+  /health/nodetypesRegenerateUIForms:
+    $ref: './paths/health.yaml#/forms'
+  /health/nodesbooleanPropertiesAsstring:
+    $ref: './paths/health.yaml#/boolean'
+  /health/nodetypePermissions:
+    $ref: './paths/health.yaml#/permissions'
+  /health/nodesMissingLockedByName:
+    $ref: './paths/health.yaml#/lockedByName'
+  /health/nodetypeFixMissingCoreItems:
+    $ref: './paths/health.yaml#/coreItems'
+  /health/lifecycleFixMissingStates:
+    $ref: './paths/health.yaml#/states'
+  /health/ressources:
+    $ref: './paths/health.yaml#/resources'
+  /health/mapLifecycleState/{nodetype}/{fromState}/{toState}:
+    $ref: './paths/health.yaml#/lifecyleState'
+
+  /translations/languages:
+    $ref: './paths/translations.yaml#/languages'
+  /translations/{lang}:
+    $ref: './paths/translations.yaml#/language'
+  /translations/add/{lang}:
+    $ref: './paths/translations.yaml#/addLanguage'
+  /translations/updateConfig:
+    $ref: './paths/translations.yaml#/updateLanguage'
+  /translations/removeProps:
+    $ref: './paths/translations.yaml#/removeProperties'
+  /translations/clearNodetypeTranslation:
+    $ref: './paths/translations.yaml#/clear'
+
+  /users:
+    $ref: './paths/deprecated.yaml#/users'
+  /users/{userId}:
+    $ref: './paths/deprecated.yaml#/user'
+  /nodes/checkUniqueFields:
+    $ref: './paths/deprecated.yaml#/uniqueFields'
+  /nodes/{nodetype}/action/{actionId}:
+    $ref: './paths/deprecated.yaml#/nodetypeAction'
+  /nodes/{nodetype}/{nodeId}/lock:
+    $ref: './paths/deprecated.yaml#/lock'
+  /nodes/{nodetype}/{nodeId}/unlock:
+    $ref: './paths/deprecated.yaml#/unlock'
+  /nodes/{nodetype}/{nodeId}/lockstate:
+    $ref: './paths/deprecated.yaml#/lockstate'
+  /nodes/{nodetype}/{nodeId}/isLifecycleStateOwner:
+    $ref: './paths/deprecated.yaml#/lifecycleStateOwner'
+  /nodes/{nodetype}/{nodeId}/recursive:
+    $ref: './paths/deprecated.yaml#/recursive'
+  /nodes/{nodetype}/{nodeId}/promote/{currentStateId}/{targetStateId}:
+    $ref: './paths/deprecated.yaml#/promote'
+  /nodes/{nodetype}/{nodeId}/serializeNode:
+    $ref: './paths/deprecated.yaml#/serializations'
+  /nodes/{nodetype}/{nodeId}/action/{actionId}:
+    $ref: './paths/deprecated.yaml#/nodeAction'
+  /nodes/{nodetype}/{nodeId}/permissions:
+    $ref: './paths/deprecated.yaml#/permissions'
+  /nodes/{nodetype}/{nodeId}/nodeAccessRoles:
+    $ref: './paths/deprecated.yaml#/accessRoles'
+  /nodes/{nodetype}/{nodeId}/nodeAccessRole/{rolename}/{identity}:
+    $ref: './paths/deprecated.yaml#/accessRole'
+  /nodes/{nodetype}/{nodeId}/nodeLifecycleRole/{rolename}/{userId}:
+    $ref: './paths/deprecated.yaml#/lifecycleRole'
+  /nodes/lifecycleAssignments/{nodetype}/{nodeId}:
+    $ref: './paths/deprecated.yaml#/lifecycleAssignments'
+  /nodes/{nodetype}/{nodeId}/relationship/{relname}/{targetNodeType}/{targetnodeId}:
+    $ref: './paths/deprecated.yaml#/newRelationship'
+  /nodes/{nodetype}/{nodeId}/relationship/{relname}/{relId}:
+    $ref: './paths/deprecated.yaml#/relationship'
+  /nodes/{nodetype}/{nodeId}/allRelationships:
+    $ref: './paths/deprecated.yaml#/allRelationships'
+  /nodes/{nodetype}/{nodeId}/getReverseRelatedNodes:
+    $ref: './paths/deprecated.yaml#/reverseRelatedNodes'
+  /nodes/{nodetype}/updatePermission:
+    $ref: './paths/deprecated.yaml#/updatePermission'
+  /nodes/{nodetype}/updateStateConfig:
+    $ref: './paths/deprecated.yaml#/updateStateConfig'
+
+definitions:
+  Node:
+    $ref: ./definitions/nodes.yaml#/Node
+  Permission:
+    $ref: ./definitions/others.yaml#/Permission
+  Relationship:
+    $ref: ./definitions/relationships.yaml#/Relationship
+
+tags:
+  - name: Users
+    description: Operations about Users
+  - name: Nodes
+    description: Operations about Nodes
+  - name: Relationships
+    description: Operations about Relationships
+  - name: PLM
+    description: Operations about PLM
+  - name: Nodetypes
+    description: Operations about Nodetypes
+  - name: Datamodel
+    description: Operations about Datamodel
+  - name: Health Report
+    description: Operations about Health Report
+  - name: Translations
+    description: Operations about Translation
+  - name: Error Log
+    description: Operations about error log
+  - name: Deprecated
+    description: Deprecated routes since 2.0.0

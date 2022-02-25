@@ -1,0 +1,37 @@
+<!-- graph view collapse start -->
+<div class="col-xs-12 col-md-12 collapse" id="graphViewCollapse-{{node._id}}-{{nodeVersion}}">
+    <div class="col-xs-12 col-md-12 ">
+        <div class="well " style="overflow:auto;padding:0px;">
+            <span class="wellTitle">{{ 'default.node.graphView' | translate }}</span>
+            <div class="messageDiv" ng-show="graphLoading">
+                <div class="lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div id="graphViewCollapse-container-{{node._id}}-{{nodeVersion}}" class="nodeGraph">
+            </div>
+            <div class="list-group" style="position: absolute;top: 5px;left: 20px; width: 180px; text-transform: capitalize;">
+                <a href="#" class="list-group-item list-group-item-info" style="padding: 4px 10px;" ng-click="createNodeGraph(node)" >
+                    <i class="fas fa-sync-alt"></i> Reset
+                </a>
+                <a href="#" class="list-group-item disabled" style="padding: 4px 10px;" >Nodetypes</a>
+                <a href="#" class="list-group-item " style="padding: 4px 10px;" ng-repeat='ntelt in ntelements'
+                    ng-click="toggleNtVisibility(ntelt)" ng-class="{'list-group-item-success':ntelt.active}">
+                    <img ng-src="{{ntelt.icon}}" width="16" alt="nodetype icon" /> {{ntelt.name}}
+                </a>
+            </div>
+            
+            <div class="list-group" style="position: absolute;top: 5px;left: 220px; width: 180px; text-transform: capitalize;">
+                <a href="#" class="list-group-item disabled" style="padding: 4px 10px;" >Relationships</a>
+                <a href="#" class="list-group-item " style="padding: 4px 10px;" ng-repeat='ntrel in ntrels'
+                    ng-click="toggleNtVisibility(ntrel)" ng-class="{'list-group-item-success':ntrel.active}">
+                     {{ntrel.name}}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- graph view collapse end -->

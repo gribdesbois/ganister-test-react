@@ -1,0 +1,369 @@
+Node:
+  properties:
+    _id:
+      type: string
+      description: Unique UUID (generated)
+      example: 1a9e34f0-9c60-11ac-9e72-590f097l678c
+    _type:
+      type: string
+      description: Nodetype name
+      example: part
+    properties:
+      type: object
+      properties:
+        _ref:
+          type: string
+          description: Reference
+          example: ABCD-1234
+        current:
+          type: boolean
+          description: custom node property (must be in datamodel)
+        dueTo:
+          type: integer
+          description: custom node property (must be in datamodel)
+          example: 1612277565925
+        _state:
+          type: string
+          description: State
+          example: draft
+        _version:
+          type: string
+          description: Current Version
+          example: 1.0.0
+        _history:
+          type: array
+          description: JSON string includes node history
+          items:
+            type: object
+            $ref: "./others.yaml#/History"
+        _lockable:
+          type: boolean
+          description: If is allowed to be locked or not
+        _lockState:
+          type: boolean
+          description: If is locked or not
+        _lockedOn:
+          type: integer
+          description: Locked Date
+          example: 1612267565925
+        _lockedBy:
+          type: string
+          description: Node _id (user) who locks the node
+          example: 5c1e7750-654f-11eb-ae25-fd01lol4824a
+        _lockedByName:
+          type: string
+          description: Name of the user who locked the node
+          example: John Doe
+        _createdOn:
+          type: integer
+          description: Creation Date (generated)
+          example: 1612267565925
+        _createdBy:
+          type: string
+          description: User Id
+          example: 5c1e2250-654f-11eb-a8635-fd0dfghjk4a
+        _createdByName:
+          type: string
+          description: User Name
+          example: Max Mustermann
+
+PromotedNode:
+  properties:
+    _id:
+      type: string
+      description: Unique UUID (generated)
+      example: 1a9e34f0-9c60-11ac-9e72-590f097l678c
+    _type:
+      type: string
+      description: Nodetype name
+      example: part
+    properties:
+      type: object
+      properties:
+        _ref:
+          type: string
+          description: Reference
+          example: ABCD-1234
+        current:
+          type: boolean
+          description: custom node property (must be in datamodel)
+        dueTo:
+          type: integer
+          description: custom node property (must be in datamodel)
+          example: 1612277565925
+        _state:
+          type: string
+          description: State
+          example: inreview
+        _version:
+          type: string
+          description: Current Version
+          example: 1.0.0
+        _history:
+          type: array
+          description: JSON string includes node history
+          items:
+            type: object
+            $ref: "./others.yaml#/History"
+        _promotions:
+          type: array
+          description: JSON string includes node promotions
+          items:
+            type: object
+            $ref: "./others.yaml#/Promotion"
+        _lockable:
+          type: boolean
+          description: If is allowed to be locked or not
+        _lockState:
+          type: boolean
+          description: If is locked or not
+        _lockedOn:
+          type: integer
+          description: Locked Date
+          example: 1612267565925
+        _lockedBy:
+          type: string
+          description: Node _id (user) who locks the node
+          example: 5c1e7750-654f-11eb-ae25-fd01lol4824a
+        _lockedByName:
+          type: string
+          description: Name of the user who locked the node
+          example: John Doe
+        _createdOn:
+          type: integer
+          description: Creation Date (generated)
+          example: 1612267565925
+        _createdBy:
+          type: string
+          description: User Id
+          example: 5c1e2250-654f-11eb-a8635-fd0dfghjk4a
+        _createdByName:
+          type: string
+          description: User Name
+          example: Max Mustermann
+
+SerializedNode:
+  properties:
+    _id:
+      type: string
+      description: Unique UUID (generated)
+      example: 1a9e34f0-9c60-11ac-9e72-590f097l678c
+    _type:
+      type: string
+      description: Nodetype name
+      example: part
+    properties:
+      type: object
+      properties:
+        _ref:
+          type: string
+          description: Reference
+          example: ABCD-1234
+        current:
+          type: boolean
+          description: custom node property (must be in datamodel)
+        dueTo:
+          type: integer
+          description: custom node property (must be in datamodel)
+          example: 1612277565925
+        _state:
+          type: string
+          description: State
+          example: draft
+        _version:
+          type: string
+          description: Current Version
+          example: 1.0.0
+        _history:
+          type: array
+          description: JSON string includes node history
+          items:
+            type: object
+            $ref: "./others.yaml#/History"
+        _promotions:
+          type: array
+          description: JSON string includes node promotions
+          items:
+            type: object
+            $ref: "./others.yaml#/Promotion"
+        _serialized:
+          type: array
+          description: Array of instanciation Ids
+          items:
+            type: string
+            example: nti_1d16e880-8cb2-11eb-895c-9781a94f62a0
+        _lockable:
+          type: boolean
+          description: If is allowed to be locked or not
+        _lockState:
+          type: boolean
+          description: If is locked or not
+        _lockedOn:
+          type: integer
+          description: Locked Date
+          example: 1612267565925
+        _lockedBy:
+          type: string
+          description: Node _id (user) who locks the node
+          example: 5c1e7750-654f-11eb-ae25-fd01lol4824a
+        _lockedByName:
+          type: string
+          description: Name of the user who locked the node
+          example: John Doe
+        _createdOn:
+          type: integer
+          description: Creation Date (generated)
+          example: 1612267565925
+        _createdBy:
+          type: string
+          description: User Id
+          example: 5c1e2250-654f-11eb-a8635-fd0dfghjk4a
+        _createdByName:
+          type: string
+          description: User Name
+          example: Max Mustermann
+
+DeletedNode:
+  properties:
+    _id:
+      type: string
+      description: Unique UUID (generated)
+      example: 1a9e34f0-9c60-11ac-9e72-590f097l678c
+    _type:
+      type: string
+      description: Nodetype name
+      example: part
+    message:
+      type: string
+      description: Success message
+      example: 'Successfully deleted.'
+
+User:
+  type: object
+  properties:
+    _id:
+      type: string
+      description: Id
+      example: 5c1e7750-654f-11eb-ae25-fd01lol4824a
+    _type:
+      type: string
+      description: Nodetype
+      example: user
+    properties:
+      type: object
+      description: User Properties
+      properties:
+        firstName:
+          type: string
+          description: First Name
+          example: John
+        lastName:
+          type: string
+          description: Last Name
+          example: Doe
+        email:
+          type: string
+          description: User Email
+          example: john@doe.com
+        pict:
+          type: string
+          description: User Picture
+          example: uploads/1612267769469-johndoe.png
+        _isAdmin:
+          type: boolean
+          description: Admin Rights true or false
+        language:
+          type: string
+          description: Preferred Language
+          example: en
+        active:
+          type: boolean
+          description: Active Status
+        _createdOn:
+          type: string
+          description: Creation Date
+          example: 1612267708724
+        _createdBy:
+          type: string
+          description: User Id
+          example: 5c1e2250-654f-11eb-a8635-fd0dfghjk4a
+        _createdByName:
+          type: string
+          description: User Name
+          example: Max Mustermann
+    access:
+      type: boolean
+      example: true
+    highestAccess:
+      type: string
+      example: manager
+    canCreate:
+      type: boolean
+      example: true
+
+authenticatedUser:
+  type: object
+  properties:
+    _id:
+      type: string
+      description: Id
+      example: 5c1e7750-654f-11eb-ae25-fd01lol4824a
+    _type:
+      type: string
+      description: Nodetype
+      example: user
+    properties:
+      type: object
+      description: User Properties
+      properties:
+        firstName:
+          type: string
+          description: First Name
+          example: John
+        lastName:
+          type: string
+          description: Last Name
+          example: Doe
+        email:
+          type: string
+          description: User Email
+          example: john@doe.com
+        token:
+          type: string
+          description: authorization API Key
+          example: Hic962mSDFGHribu$olm78Etvoluptatu^*ù$iatmolestiaecorp@2365ètateml85d3e-5g54rem96Quirend832%ù#onema#4ef85musut12Rerumhicipsamnu862+89=quodu9ullam
+        pict:
+          type: string
+          description: User Picture
+          example: uploads/1612267769469-johndoe.png
+        _isAdmin:
+          type: boolean
+          description: Admin Rights true or false
+        language:
+          type: string
+          description: Preferred Language
+          example: en
+        active:
+          type: boolean
+          description: Active Status
+        _createdOn:
+          type: string
+          description: Creation Date
+          example: 1612267708724
+        _createdBy:
+          type: string
+          description: User Id
+          example: 5c1e2250-654f-11eb-a8635-fd0dfghjk4a
+        _createdByName:
+          type: string
+          description: User Name
+          example: Max Mustermann
+    access:
+      type: boolean
+      example: true
+    highestAccess:
+      type: string
+      example: manager
+    canCreate:
+      type: boolean
+      example: true

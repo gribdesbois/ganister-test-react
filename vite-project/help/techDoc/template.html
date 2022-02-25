@@ -1,0 +1,725 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <style>
+    /*! ADAPTED
+    Typeplate : Starter Kit
+    URL ........... http://typeplate.com
+    Version ....... 3.0.2
+    Github ........ https://github.com/typeplate/starter-kit
+    Authors ....... Dennis Gaebel (@gryghostvisuals) & Zachary Kain (@zakkain)
+    License ....... Creative Commmons Attribution 3.0
+    License URL ... https://github.com/typeplate/starter-kit/blob/master/license.txt
+    */
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-rendering: optimizeLegibility;
+      line-height: 1.5;
+      margin-top: 0;
+      color: #222;
+    }
+
+
+
+    blockquote+figcaption cite {
+      display: block;
+      font-size: inherit;
+      text-align: right;
+    }
+
+    body {
+      word-wrap: break-word;
+      font-size: 1.2em;
+    }
+
+    pre code {
+      word-wrap: normal;
+    }
+
+    body {
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+      hyphens: auto;
+      color: #444;
+    }
+
+    h1 {
+      font-size: 2em;
+      font-weight: 500;
+      /* 2*16 = 32 */
+    }
+
+    h2 {
+      font-size: 1.5em;
+      background-color: antiquewhite;
+      margin: 20px -20px;
+      padding: 20px;
+      /* 1.5*16 = 24 */
+    }
+
+    h3 {
+      font-size: 1.17em;
+      background-color:#ADD8E699;
+      margin: 15px -15px;
+      padding: 15px;
+      /* 1.17*16 = 18.72 */
+    }
+
+    h4 {
+      font-size: 1em;
+      background-color:#86ca80aa;
+      padding: 15px;
+      /* 1*16 = 16 */
+    }
+
+    h5 {
+      font-size: 0.83em;
+      /* 0.83*16 = 13.28 */
+    }
+
+    h6 {
+      font-size: 0.75em;
+      /* 0.75*16 = 12 */
+    }
+
+    h1 {
+      margin: 2.42424rem 0 1.454544rem -20px;
+    }
+
+    h2 {
+      margin: 2.0202rem 0 1.21212rem -10px;
+    }
+
+    h3 {
+      margin: 1.61616rem 0 1rem;
+    }
+
+    h4 {
+      margin: 1.21212rem 0 1;
+    }
+
+    h5 {
+      margin: 0.80808rem 0;
+    }
+
+    h6 {
+      margin: 0.70707rem 0;
+    }
+
+    p {
+      margin: auto auto 1.5rem;
+    }
+
+    small {
+      font-size: 65%;
+    }
+
+    input,
+    abbr,
+    acronym,
+    blockquote,
+    code,
+    kbd,
+    q,
+    samp,
+    var {
+      -webkit-hyphens: none;
+      -ms-hyphens: none;
+      hyphens: none;
+    }
+
+    pre {
+      white-space: pre;
+    }
+
+    pre code {
+      white-space: -moz-pre-wrap;
+      white-space: pre-wrap;
+    }
+
+    code {
+      white-space: pre;
+      font-family: SF Mono, Consolas, Dejavu Sans Mono, Menlo, monospace;
+    }
+
+    abbr {
+      -webkit-font-variant: small-caps;
+      -moz-font-variant: small-caps;
+      -ms-font-variant: small-caps;
+      font-variant: small-caps;
+      font-weight: 600;
+      text-transform: lowercase;
+      color: gray;
+    }
+
+    abbr[title]:hover {
+      cursor: help;
+    }
+
+    /* FROM http://purecss.io/layouts/side-menu/  adapted to remove pure classes*/
+
+    body {
+      font-family: Content-font, Roboto, sans-serif;
+      color: #444;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: auto;
+    }
+
+    code,
+    pre {
+      background-color: #f5f5f5;
+      color: #444;
+      border-radius: 2px;
+      text-shadow: 0px 1px 0px white;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    }
+
+    pre code {
+      border: none;
+      box-shadow: none;
+    }
+
+    pre {
+      padding: 0.5em;
+    }
+
+    code {
+      display: inline-block;
+      padding: 0 0.5em;
+      line-height: 1.4;
+      font-size: 0.9em;
+    }
+
+    table {
+      border-spacing: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    table th,
+    table td {
+      padding: 0.3em 0.7em;
+    }
+
+    table th {
+      background-color: #f4f4f4;
+      border-bottom: 2px solid #444;
+    }
+
+    table td {
+      border: 1px solid #f5f5f5;
+    }
+
+    /* Add transition to containers so they can push in and out. */
+
+    #layout,
+    #menu,
+    .menu-link {
+      -webkit-transition: all 0.2s ease-out;
+      -moz-transition: all 0.2s ease-out;
+      -ms-transition: all 0.2s ease-out;
+      -o-transition: all 0.2s ease-out;
+      transition: all 0.2s ease-out;
+    }
+
+    /* This is the parent `<div>` that contains the menu and the content area. */
+
+    #layout {
+      position: relative;
+      padding-left: 0;
+    }
+
+    #layout.active #menu {
+      left: 300px;
+      width: 300px;
+    }
+
+    #layout.active .menu-link {
+      left: 300px;
+    }
+
+    /* The content `<div>` is where all your content goes. */
+
+    .content {
+      margin: 50px auto;
+      padding: 0 2em;
+      max-width: 120ex;
+      line-height: 1.6em;
+    }
+
+    /*
+    The `#menu` `<div>` is the parent `<div>` that contains the menu that
+    appears on the left side of the page.
+    */
+
+    #menu {
+      margin-left: -300px;
+      padding-bottom: 50px;
+      /* "#menu" width */
+      width: 300px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 1000;
+      /* so the menu or its navicon stays above all content */
+      background: #f4f4f4;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      font-size: 0.8em;
+    }
+
+    a,
+    a * {
+      text-decoration: none;
+      color: #2483cc;
+    }
+
+    a:visited {
+      text-decoration: none;
+      color: #2483cc;
+    }
+
+    /* All anchors inside the menu should be styled like this. */
+
+    #menu a {
+      display: block;
+      padding: 0.5em 0.5em;
+    }
+
+    #menu a:first-letter {
+      text-transform: capitalize;
+    }
+
+    #menu ul {
+      list-style-type: none;
+      padding: 0;
+      margin: .1em 0.5em;
+    }
+
+    #menu ul ul {
+      margin-top: 0.5em;
+      margin-left: 0.5em;
+      border-left: 4px solid rgb(0, 128, 198);
+    }
+
+    /* Change color of the anchor links on hover/focus. */
+
+    #menu li a:hover,
+    #menu li a:focus {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* This styles the selected menu item `<li>`. */
+
+    #menu li a.active {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    /* This styles a link within a selected menu item `<li>`. */
+
+    #menu li a.active {
+      color: #222;
+    }
+
+    /* This styles the menu heading. */
+
+    #menu li.heading {
+      font-size: 0.9em;
+      text-transform: uppercase;
+      color: #000;
+    }
+
+    #menu li.heading>* {
+      padding: 0.2em;
+      display: block;
+    }
+
+    #menu li.heading a {
+      color: #0c68af;
+    }
+
+    #menu li.heading::before {
+      content: "📂 ";
+      padding: 0em 0.1em 0em .1em;
+      float: left;
+    }
+
+    /* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+    /*
+    `.menu-link` represents the responsive menu toggle that shows/hides on
+    small screens.
+    */
+
+    .menu-link {
+      position: fixed;
+      display: block;
+      /* show this only on small screens */
+      top: 0;
+      left: 0;
+      /* "#menu width" */
+      background: #f4f4f4;
+      font-size: 10px;
+      /* change this value to increase/decrease button size */
+      z-index: 10;
+      width: 2em;
+      height: auto;
+      padding: 1.6em 1.2em;
+      border-radius: 0 2px 2px 0;
+    }
+
+    .menu-link:hover {
+      background:
+        /* #f4f4f4 * 0.8 */
+        #eee;
+    }
+
+    .menu-link span {
+      position: relative;
+      display: block;
+    }
+
+    .menu-link span,
+    .menu-link span:before,
+    .menu-link span:after {
+      background-color: #555;
+      width: 100%;
+      height: 0.2em;
+      border-radius: 1em;
+    }
+
+    .menu-link span:before,
+    .menu-link span:after {
+      position: absolute;
+      margin-top: -0.6em;
+      content: " ";
+    }
+
+    .menu-link span:after {
+      margin-top: 0.6em;
+    }
+
+    /* Hides the menu at `48em`, but modify this based on your app's needs. */
+
+    @media (min-width: 48em) {
+
+      .header,
+      .content {
+        padding-left: 2em;
+        padding-right: 2em;
+      }
+
+      #layout {
+        padding-left: 300px;
+        /* left col width "#menu" */
+        left: 0;
+      }
+
+      #menu {
+        left: 300px;
+      }
+
+      .menu-link {
+        position: fixed;
+        left: 300px;
+        display: none;
+      }
+
+      #layout.active .menu-link {
+        left: 300px;
+      }
+    }
+
+    @media (max-width: 48em) {
+
+      /* Only apply this when the window is small. Otherwise, the following case results in extra padding on the left:
+       * Make the window small.
+       * Tap the menu to trigger the active state.
+       * Make the window large again.
+       */
+      #layout.active {
+        position: relative;
+        left: 300px;
+      }
+    }
+
+
+    input[type='text'] {
+
+      width: 10;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      appearance: none;
+      border-radius: .25rem;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.2;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    input[type='text']:focus {
+      color: #212529;
+      background-color: #fff;
+      border-color: #86b7fe;
+      outline: 0;
+      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+    }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <title>Technical Documentation - Ganister</title>
+  <link rel="icon" type="image/png" href="/images/docIcon.webp">
+</head>
+
+<body>
+  <div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+      <!-- Hamburger icon -->
+      <span></span>
+    </a>
+    <nav id="menu">
+      <img src="/images/LogoGanisterColorSquare.webp" style="width:50%;margin-top:10px;margin-bottom:10px;" />
+      <hr>
+      <a href="/g-config">🏠 Back to G-config</a>
+      <hr>
+      <input id='searchTerms' type="text" placeholder="Search terms..." onchange="runSearch()">
+
+      <hr>
+      <!--NAV-->
+    </nav>
+    <article id="main" class="content">
+      <!--CONTENT-->
+    </article>
+    <div class="content">
+      <a href="mailto:support@ganister.eu">📧 Please notify us of any documentation issue or enhancement request</a>
+    </div>
+  </div>
+  <!-- SEARCH RESULTS PANEL-->
+  <style>
+    .cd-panel {
+      /*...*/
+      visibility: hidden;
+      transition: visibility 0s 0.6s;
+    }
+
+    .cd-panel.cd-panel--is-visible {
+      visibility: visible;
+      transition: visibility 0s 0s;
+    }
+
+
+    .cd-panel__container {
+      /*...*/
+      position: fixed;
+      width: 50%;
+      background-color: #EEE;
+      height: 100%;
+      top: 0;
+      transition: transform 0.3s 0.3s;
+      box-shadow: -5px 0 5px #888;
+      border-left: solid 1px black;
+      overflow-y: auto;
+    }
+
+    .cd-panel--from-right .cd-panel__container {
+      right: 0;
+      transform: translate3d(100%, 0, 0);
+    }
+
+    .cd-panel--from-left .cd-panel__container {
+      left: 0;
+      transform: translate3d(-100%, 0, 0);
+    }
+
+    .cd-panel--is-visible .cd-panel__container {
+      transform: translate3d(0, 0, 0);
+      transition-delay: 0s;
+    }
+
+    h1.search {
+      margin: 20px auto 20px 20px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border: 1px solid rgba(0, 0, 0, .125);
+      border-radius: .25rem;
+      margin: 10px;
+      padding: 10px;
+    }
+  </style>
+  <div class="cd-panel cd-panel--from-right js-cd-panel-main" id="searchResultPanel" style="
+  box-shadow: -5px 0 3px 0px #999;
+  box-shadow: black;
+  border-left: solid 1px black;
+">
+
+    <div class="cd-panel__container">
+      <header class="" style="
+      display: flex;
+      align-items: center;
+    ">
+        <h1 class="search">Search Results</h1>
+        <a href="#0" class="cd-panel__close js-cd-close" style="margin: 20px;"
+          onclick="document.getElementById('searchResultPanel').classList.remove('cd-panel--is-visible');">Close</a>
+      </header>
+      <div class="cd-panel__content" id="cd-panel__content">
+      </div>
+    </div>
+  </div>
+  <script>
+    // FROM http://purecss.io/js/ui.js
+    (function (window, document) {
+
+      var layout = document.getElementById('layout'),
+        menu = document.getElementById('menu'),
+        menuLink = document.getElementById('menuLink');
+
+      function toggleClass(element, className) {
+        var classes = element.className.split(/\s+/),
+          length = classes.length,
+          i = 0;
+
+        for (; i < length; i++) {
+          if (classes[i] === className) {
+            classes.splice(i, 1);
+            break;
+          }
+        }
+        // The className is not found
+        if (length === classes.length) {
+          classes.push(className);
+        }
+
+        element.className = classes.join(' ');
+      }
+
+      menuLink.onclick = function (e) {
+        var active = 'active';
+
+        e.preventDefault();
+        toggleClass(layout, active);
+        toggleClass(menu, active);
+        toggleClass(menuLink, active);
+      };
+
+    }(this, this.document));
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.11.3/flowchart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/lunr/lunr.js"></script>
+  <script>
+    $(document).ready(function () {
+
+      $("pre > code.language-flow:contains('=>start')").each((index) => {
+        let ref = $("pre > code.language-flow:contains('=>start'):eq(" + index + ")");
+        let content = ref.text();
+        let diagram = flowchart.parse(content)
+        $(ref).after("<div id='diagram" + index + "' style='text-align: center;'></div>");
+        // you can also try to pass options:
+
+        diagram.drawSVG('diagram' + index);
+      });
+      $("pre > code.language-flow:contains('=>start')").remove()
+    });
+
+
+
+    let techHelpSearch, techHelpIndex;
+    fetch('/help/tech/techHelpIndex.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+        }
+        return response.json();
+      })
+      .then(json => {
+        techHelpIndex = json;
+        techHelpSearch = lunr(function () {
+          this.ref('name')
+          this.field('text')
+
+          techHelpIndex.forEach(function (doc) {
+            this.add(doc)
+          }, this)
+        })
+
+      })
+      .catch(function () {
+        this.dataError = true;
+      });
+
+    function runSearch() {
+      console.log("LOG / file: template.html / line 644 / runSearch / runSearch", runSearch);
+      // Selecting the input element and get its value 
+      var inputVal = document.getElementById("searchTerms").value;
+
+      // Displaying the value     
+      const results = techHelpSearch.search(inputVal)
+      console.log("LOG / file: markdownParser.js / line 162 / parseFnt / results", JSON.stringify(results));
+      var resultPages = results.map((match) => {
+        return {
+          article: techHelpIndex.find((art) => (art.name === match.ref)),
+          result: match.score,
+        }
+      }).sort((v1, v2) => v1 > v2);
+
+      document.getElementById('cd-panel__content').innerHTML = '';
+      resultPages.forEach((res) => {
+        const resultItm = document.createElement('div');
+        const title = document.createElement('div');
+        const titleLink = document.createElement('a');
+        titleLink.appendChild(document.createTextNode(res.article.file));
+        // get page + anchor link
+        const remTitleTags = /^#* /gm;
+        let anchor = res.article.name.replace(remTitleTags, "");
+        anchor = anchor.toLowerCase();
+        anchor = anchor.split(' ').join('-');
+        const url = res.article.filepath.substring(1) + '#' + anchor;
+        titleLink.setAttribute('href', url);
+        titleLink.setAttribute('onclick', 'document.getElementById("searchResultPanel").classList.remove("cd-panel--is-visible");');
+
+        title.appendChild(titleLink);
+        const content = document.createElement('div');
+        content.appendChild(document.createTextNode(res.article.name.replace(remTitleTags, "")));
+        const accuracy = document.createElement('div');
+        accuracy.appendChild(document.createTextNode("Score: " + res.result.toFixed(2)));
+        resultItm.appendChild(title);
+        resultItm.appendChild(content);
+        resultItm.appendChild(accuracy);
+        const contentDiv = document.getElementById('cd-panel__content').appendChild(resultItm);
+      })
+
+
+
+      document.getElementById('searchResultPanel').classList.add('cd-panel--is-visible');
+    }
+
+  </script>
+</body>
+
+</html>

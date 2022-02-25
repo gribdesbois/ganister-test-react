@@ -1,0 +1,145 @@
+<div ng-controller="healthReportController" class="container-fluid">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        Reports
+        <button style="margin-left:5px;" class="btn btn-info btn-xs" ng-click="loadReports();">
+          <span class="glyphicon glyphicon-refresh"></span>
+        </button>
+      </h3>
+    </div>
+    <div class="panel-body" style="padding:0px;">
+      <div class="messageDiv" ng-show="assignmentLoading">
+        <div class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <style>
+        .conteneur {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+      </style>
+      <div class="conteneur" ng-show="!assignmentLoading">
+        <div class="col-xs-6 col-sm-4 col-md-2 text-center" style="border:1px solid #eeeeee; padding:15px;"
+          ng-repeat="report in reports">
+          <i class="{{report.icon}} fa-5x"></i>
+          <h6>{{report.title}} <i class="fa fa-info-circle" rel="tooltip" title="{{report.description}}"></i></h6>
+            <div ng-show="{{report.error}}">
+              <div class="text-danger" style="font-size:8px;margin-bottom:10px;">
+                <i class="fa fa-exclamation-circle"></i> {{report.message}}
+                <a style="font-weight: 600;" ng-show="report.list.length && report.viewProblemList" role="button" data-toggle="collapse"
+                  href="#reportCollapse{{report.id}}" aria-expanded="false" aria-controls="reportCollapse{{report.id}}">
+                  View List of Problems
+                </a>
+              </div>
+            <div class="collapse" id="reportCollapse{{report.id}}">
+              <ul ng-show="report.list.length" class="list-group">
+                <li ng-repeat="item in report.list" class="list-group-item" style="font-size:10px;">{{item.errorMsg}}
+                </li>
+                </ul>
+              </div>
+              <button class="btn btn-danger form-control"
+                ng-click="runResolveMethod(report.resolveMethod,report.list, this)"
+                ng-bind-html="report.button"></button>
+            </div>
+            <div ng-show="{{report.error === false && !report.executable}}">
+              <div class="text-success" style="font-size:8px;margin-bottom:10px;"><i class="fa fa-check-circle"></i>
+              No errors found!</div>
+            <button class="btn btn-success disabled form-control">{{report.button}}</button>
+          </div>
+          <div ng-show="{{report.error === false && report.executable === true}}">
+              <div class="text-success" style="font-size:8px;margin-bottom:10px;"><i class="fa fa-check-circle"></i>
+                No errors found!</div>
+              <button class="btn btn-info form-control"
+                ng-click="runResolveMethod(report.resolveMethod,report.list, this)"
+                ng-bind-html="report.button"></button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="col-lg-12 col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Error Log
+          <button style="margin-left:5px;" class="btn btn-info btn-xs" ng-click="loadErrorLog();">
+            <span class="glyphicon glyphicon-refresh"></span>
+          </button>
+          <button style="margin-left:5px;" class="btn btn-danger btn-xs" ng-click="deleteErrorLogs();">
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </h3>
+      </div>
+      <div class="panel-body" style="padding:0px;">
+        <div ag-grid="errorsGrid" class="ag-theme-balham"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-12 col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="fromDate">From</label>
+            <input type="date" class="form-control" id="fromDate" placeholder="fromDate" ng-model="fromDate">
+          </div>
+          <div class="form-group">
+            <label for="toDate">To</label>
+            <input type="date" class="form-control" id="toDate" placeholder="toDate" ng-model="toDate">
+          </div>
+          <button class="btn btn-default" ng-click="refreshRessourcesGraph();">Go</button>
+        </form>
+      </div>
+      <div class="panel-body" style="padding:0px;">
+        <div class="container col-md-6">
+          <h3>CPU Usage</h3>
+          <canvas id="cpuUsage" class="chart chart-line col-md-6" chart-data="cpuUsage.data"
+            chart-labels="cpuUsage.labels" chart-options="cpuUsage.options">
+          </canvas>
+        </div>
+        <div class="container col-md-6">
+          <h3>Memory Usage</h3>
+          <canvas id="memoryUsage" class="chart chart-line col-md-6" chart-data="memoryUsage.data"
+            chart-labels="memoryUsage.labels" chart-options="memoryUsage.options">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12 col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="dbFromDate">From</label>
+            <input type="date" class="form-control" id="dbFromDate" placeholder="fromDate" ng-model="dbFromDate">
+          </div>
+          <div class="form-group">
+            <label for="dbToDate">To</label>
+            <input type="date" class="form-control" id="dbToDate" placeholder="toDate" ng-model="dbToDate">
+          </div>
+          <button class="btn btn-default" ng-click="refreshDBAnalyticsGraph();">Go</button>
+        </form>
+      </div>
+      <div class="panel-body" style="padding:0px;">
+        <div class="container col-md-6">
+          <h3>Nodes Usage</h3>
+          <canvas id="nodesUsage" class="chart chart-line col-md-6" chart-data="dbAnalytics.nodes"
+            chart-labels="nodesUsage.labels" chart-options="nodesUsage.options">
+          </canvas>
+        </div>
+        <div class="container col-md-6">
+          <h3>Relationships Usage</h3>
+          <canvas id="relationshipsUsage" class="chart chart-line col-md-6" chart-data="dbAnalytics.relationships"
+            chart-labels="relationshipsUsage.labels" chart-options="relationshipsUsage.options">
+          </canvas>
+        </div>
+      </div>
+    </div>

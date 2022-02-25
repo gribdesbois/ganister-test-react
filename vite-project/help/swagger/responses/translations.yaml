@@ -1,0 +1,11 @@
+language:
+  '200':
+    description: Language file content
+  '401':
+    $ref: './errors.yaml#/401'
+  '403':
+    $ref: './errors.yaml#/403'
+  '404':
+    $ref: './errors.yaml#/404'
+  '500':
+    $ref: './errors.yaml#/500'

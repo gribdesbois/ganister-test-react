@@ -1,0 +1,584 @@
+{
+	"package": "core",
+	"name": "user",
+	"elementType": "node",
+	"core": true,
+	"category": -1,
+	"maidenName": {
+		"elements": [
+			"firstName",
+			"lastName"
+		],
+		"separator": " "
+	},
+	"properties": [
+		{
+			"name": "_createdOn",
+			"label": "_createdOn",
+			"type": "date",
+			"custom": false,
+			"id": "prop_cab6fe5e7f8d22fc882a29f435f17b69",
+			"group": "IDENTIFICATION",
+			"core": true,
+			"generated": "api",
+			"translations": {
+				"default": "Created On",
+				"fr": "Créé le"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"label": "_createdBy",
+			"type": "text",
+			"custom": false,
+			"id": "prop_38d6281bf330834f4606ebe32701f78b",
+			"group": "",
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created By",
+				"fr": "Créé par",
+				"el": "_createdBy"
+			}
+		},
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf000a-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_id",
+				"fr": "ID"
+			}
+		},
+		{
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_b7bf000b-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_ref",
+				"fr": "Ref"
+			}
+		},
+		{
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf000c-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_state",
+				"fr": "Statut"
+			}
+		},
+		{
+			"name": "_thumbnail",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"relationship": "nt_5d79e3adnkcd25615637df85e122bcac",
+			"id": "prop_b7bf000d-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_thumbnail",
+				"fr": "Vignette"
+			}
+		},
+		{
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf000e-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_releasedOn",
+				"fr": "Validé le"
+			}
+		},
+		{
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf000f-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_version",
+				"fr": "Révision"
+			}
+		},
+		{
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0010-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_versionedOn",
+				"fr": "Révisé le"
+			}
+		},
+		{
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0012-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_modifiedOn",
+				"fr": "Modifié le"
+			}
+		},
+		{
+			"name": "_history",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0013-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_history"
+			}
+		},
+		{
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0016-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_b7bf0017-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockState"
+			}
+		},
+		{
+			"name": "_lockedBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0018-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedBy"
+			}
+		},
+		{
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf0019-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"name": "_lockedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bf001a-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedOn"
+			}
+		},
+		{
+			"id": "prop_88155d30-1024-11ea-9aed-759742a202ea",
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created By Name",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_promotions",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_8c0f4078-282a-11ec-bd11-b101c33f774a",
+			"translations": {}
+		},
+		{
+			"name": "_serialized",
+			"type": "multiselect",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": [],
+			"id": "prop_8c0f4079-282a-11ec-bd11-b101c33f774a",
+			"translations": {}
+		},
+		{
+			"name": "_releasedUntil",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"id": "prop_98a8d160-6558-11eb-94db-07bad80f0c9e",
+			"translations": {
+				"default": "_releasedUntil",
+				"fr": "Valide jusqu'à"
+			}
+		},
+		{
+			"name": "_isAdmin",
+			"type": "boolean",
+			"id": "prop_a84390f732f856032fa744cc1a731a6c",
+			"group": "",
+			"default": false,
+			"mandatory": true,
+			"core": true,
+			"translations": {
+				"default": "Adminisrator"
+			}
+		},
+		{
+			"name": "active",
+			"type": "boolean",
+			"id": "prop_951a4205660007a38499b9ab8fb5dbef",
+			"group": "",
+			"core": true,
+			"default": false,
+			"mandatory": true,
+			"translations": {
+				"default": "active"
+			}
+		},
+		{
+			"name": "language",
+			"type": "string",
+			"id": "prop_a84390f732f856332fa744cc1a731a6c",
+			"group": "",
+			"core": false,
+			"mandatory": true,
+			"default": "default",
+			"translations": {
+				"default": "Language"
+			}
+		},
+		{
+			"name": "pict",
+			"type": "string",
+			"id": "prop_951a4205660777a38499b9ab8fb5dbef",
+			"group": "",
+			"core": false,
+			"translations": {
+				"default": "Picture"
+			}
+		},
+		{
+			"name": "login",
+			"type": "string",
+			"custom": false,
+			"id": "prop_e169357cc80e7eed6b8d4ce1d76cbc36",
+			"group": "",
+			"core": false,
+			"translations": {
+				"default": "Login",
+				"fr": "Login",
+				"el": "login"
+			}
+		},
+		{
+			"name": "firstName",
+			"type": "string",
+			"custom": false,
+			"id": "prop_e478f5253e8e6003599da6728616ad17",
+			"group": "",
+			"mandatory": true,
+			"core": false,
+			"translations": {
+				"default": "First Name",
+				"fr": "Prénom"
+			}
+		},
+		{
+			"name": "lastName",
+			"type": "string",
+			"custom": false,
+			"id": "prop_a84390f732f856032fa74ecc1a731a6c",
+			"group": "",
+			"mandatory": true,
+			"core": false,
+			"translations": {
+				"default": "Last Name",
+				"fr": "Nom de Famille"
+			}
+		},
+		{
+			"name": "email",
+			"type": "email",
+			"custom": false,
+			"id": "prop_951a42056600e7a38499b9ab8fb5dbef",
+			"unique": true,
+			"group": "IDENTIFICATION",
+			"core": true,
+			"mandatory": true,
+			"translations": {
+				"default": "Email",
+				"fr": "Email",
+				"el": "email"
+			}
+		},
+		{
+			"name": "password",
+			"type": "string",
+			"custom": false,
+			"id": "prop_951a42050066e7a38499b9ab8fb5dbef",
+			"unique": false,
+			"mandatory": false,
+			"core": true,
+			"translations": {
+				"default": "Password",
+				"fr": "Mot de passe",
+				"el": "password"
+			}
+		},
+		{
+			"name": "apiKey",
+			"type": "string",
+			"custom": false,
+			"id": "prop_951a42050066e7a38499b9afhgjkldbef",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "API Key",
+				"fr": "Clé API"
+			}
+		},
+		{
+			"id": "prop_a61e9f00-1160-11ec-9013-e7f1daf60d0a",
+			"name": "TWOFA",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": true,
+			"translations": {
+				"default": "TWOFA",
+				"fr": "TWOFA"
+			}
+		},
+		{
+			"id": "prop_d7e9cbe0-8401-11ec-aab0-2f0cd7270a8c",
+			"name": "pict",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"translations": {
+				"default": "Pict",
+				"en": "Pict"
+			}
+		}
+	],
+	"ui": {
+		"defaultThumbnail": "images/userLogo.png",
+		"gridColumns": [
+			{
+				"label": "last name",
+				"type": "text",
+				"id": "uigc_c257a682c3af2775aacdee66ab496815",
+				"property": "user.lastName",
+				"order": 1,
+				"rowSortBy": "asc"
+			},
+			{
+				"label": "first name",
+				"type": "text",
+				"id": "uigc_16132cbf924d4d789f5a3d52dc2a60a9",
+				"property": "user.firstName",
+				"order": 2
+			},
+			{
+				"label": "email",
+				"type": "email",
+				"id": "uigc_4f0f658d075d9d4edc1b43da5b4a30ae",
+				"property": "user.email",
+				"order": 3
+			},
+			{
+				"label": "_createdOn",
+				"type": "date",
+				"id": "uigc_b4188c6137997b0f3f927a688ac3379a",
+				"property": "user._createdOn",
+				"cellRendered": true,
+				"order": 4
+			},
+			{
+				"label": "_createdByName",
+				"type": "string",
+				"id": "uigc_81d67233522be3ea65dd7a5ae76c6267",
+				"property": "user._createdByName",
+				"order": 5
+			}
+		],
+		"form": {
+			"definition": {
+				"A": [
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "false",
+						"id": 2,
+						"label": "IDENTIFICATION",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": 2,
+									"property": "firstName",
+									"propertyType": "string",
+									"readOnly": true,
+									"size": "2",
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": 3,
+									"property": "lastName",
+									"propertyType": "string",
+									"readOnly": true,
+									"size": "2",
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": 5,
+									"property": "email",
+									"size": "4",
+									"propertyType": "email",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": 6,
+									"property": "_createdOn",
+									"size": "2",
+									"readOnly": true,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					}
+				]
+			},
+			"ng": {},
+			"labelCase": "capitalize"
+		},
+		"tabs": []
+	},
+	"lifecycle": {
+		"states": [
+			{
+				"name": "draft",
+				"label": "draft",
+				"start": true,
+				"lockable": true,
+				"id": "state_f8434adbd085f6fc307246a539d8ebf6"
+			},
+			{
+				"name": "active",
+				"label": "Active",
+				"start": false,
+				"lockable": true,
+				"id": "state_6b47c7568e273e0b0696f5a4eff9e5af"
+			},
+			{
+				"name": "inactive",
+				"label": "Inactive",
+				"start": false,
+				"lockable": true,
+				"id": "state_4c776d595b25f41d046266587908155a"
+			}
+		],
+		"transitions": [
+			{
+				"from": "state_f8434adbd085f6fc307246a539d8ebf6",
+				"to": "state_6b47c7568e273e0b0696f5a4eff9e5af",
+				"method": "",
+				"id": "trans_186b5d3ddad37798c40d9fd593f91735"
+			},
+			{
+				"from": "state_6b47c7568e273e0b0696f5a4eff9e5af",
+				"to": "state_4c776d595b25f41d046266587908155a",
+				"id": "trans_2f98b8a1b69781013154b0d72431627e"
+			},
+			{
+				"from": "state_4c776d595b25f41d046266587908155a",
+				"to": "state_6b47c7568e273e0b0696f5a4eff9e5af",
+				"id": "trans_0da5781dff4300895933e6fb70f1b5c4"
+			}
+		],
+		"roles": [
+			{
+				"name": "manager",
+				"label": "User Manager",
+				"id": "role_a75bcd86db767b1e03e6ecc94acd1678"
+			}
+		]
+	},
+	"id": "nt_028c9f0fd1e08b63efd909825c864cd9",
+	"hasThumbnail": true,
+	"hiddenLifecycle": true,
+	"translations": {
+		"default": "User",
+		"en": "User",
+		"fr": "Utilisateur",
+		"el": "Χρήστης"
+	}
+}

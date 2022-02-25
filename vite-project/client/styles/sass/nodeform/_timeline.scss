@@ -1,0 +1,96 @@
+
+$mainBackground : white;
+$brand-primary: darken(#428bca, 6.5%); // #337ab7
+$brand-success: #5cb85c;
+$brand-info: #5bc0de;
+$brand-warning: #f0ad4e;
+$brand-danger: #d9534f;
+$visItemShadowStart: rgb(217, 237, 247);
+$visItemShadowEnd: rgb(222, 222, 222);
+$visCurrentTime: #367392;
+$visMinorBorder: #f6f6f6;
+$visMajorBorder: #cccccc;
+$visTopBorder: #eeeeee;
+$ganttProgress: #63ed63;
+$visProgress: #65e281;
+$visProggressImage: rgba(255, 255, 255, .15);
+
+.vis-item {
+  border-color:$brand-primary;
+  background-color: $brand-info;
+  border-radius: 5px;
+  color: #000000;
+  box-shadow: $visItemShadowStart 1px 0px 0px , $visItemShadowStart -1px 0px 0px , $visItemShadowEnd 0px 1px 2px 0px, $visItemShadowEnd 0px 6px 4px 0px;
+}
+.vis-item.vis-selected {
+  border-color: $brand-warning;
+  background-color:$brand-warning;
+  color: #000000;
+  box-shadow: $visItemShadowStart 1px 0px 0px , $visItemShadowStart -1px 0px 0px , $visItemShadowEnd 0px 1px 2px 0px, $visItemShadowEnd 0px 6px 4px 0px;
+}
+
+.vis-item .progress {
+  border-radius: 0px;
+  background: $visProgress;
+  background-image: linear-gradient(45deg, $visProggressImage 25%, transparent 25%, transparent 50%, $visProggressImage 50%, $visProggressImage 75%, transparent 75%, transparent);
+  background-size: 2rem 2rem;
+}
+
+.vis-time-axis .vis-text {
+  color: black;
+  font-weight: 600;
+}
+
+.vis-current-time {
+  background-color: $visCurrentTime;
+}
+
+.vis-time-axis .vis-grid.vis-minor {
+  border-color: $visMinorBorder;
+}
+
+.vis-time-axis .vis-grid.vis-major {
+  border-color: $visMajorBorder;
+}
+
+.vis-panel.vis-bottom,
+.vis-panel.vis-center,
+.vis-panel.vis-left,
+.vis-panel.vis-right,
+.vis-panel.vis-top {
+  border: 0px;
+  border-bottom: 1px solid $visTopBorder;
+}
+
+.vis-panel.vis-left {
+  box-shadow: 5px 0px 7px -5px grey;
+  background-color: $visTopBorder;
+  z-index: 1500;
+}
+
+.ganttDiv .progress-wrapper {
+  background: white;
+  width: 100%;
+  height: 18px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ganttDiv .progress {
+  height: 100%;
+  width: 60%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: $ganttProgress;
+}
+
+.ganttDiv .progress-label {
+  position: absolute;
+  z-index: 1;
+}
+
+.ganttDiv .vis-timeline {
+  visibility: visible !important;
+}

@@ -1,0 +1,36 @@
+<div class="modal fade"
+    id="modal-itemLCAccess-{{modal.nodeId}}"
+    ng-controller="itemLCAccessModalController"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="{{modal.modalLabel}}"
+    aria-hidden="true"
+    data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">{{ 'default.shared.close' | translate }}</span>
+                </button>
+                <h4 class="modal-title">{{modal.modalLabel | capitalize}} {{ 'default.shared.selection' | translate }} :</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-6">
+                    <select class="form-control " ng-options="user as user.properties._labelRef for user in users | orderBy:'_labelRef' track by user._id" ng-model="userSelected"
+                        placeholder="Select">
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <input class="form-control" type="text" ng-model="lifecycleRole" disabled>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="loading">{{ 'default.shared.close' | translate }}</button>
+                <button type="button" class="btn btn-primary" ng-click="addLCAccessRole(userSelected._id,lifecycleRole)" ng-disabled="loading">{{ 'default.shared.add' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

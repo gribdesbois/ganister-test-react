@@ -1,0 +1,378 @@
+<div class="panel-body" ng-controller="nodetypeController">
+  <div class="row">
+
+
+    <!-- NODE FORM -->
+    <div class="col-md-2" style="margin-bottom: 24px;" ng-show="nodetype.elementType === 'node'">
+
+      <div ng-show="nodetype.elementType === 'node'" ngf-drop ngf-select ng-model="file"
+        ngf-drag-over-class="'dragover'" ngf-allow-dir="true" ngf-pattern="'image/*'" accept="image/*">
+        <a class="thumbnail">
+          <img ng-src="{{nodetype.ui.defaultThumbnail}}" height="120px" width="120px" class="img-rounded" />
+        </a>
+      </div>
+      <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+    </div>
+
+
+    <div class="col-md-10" ng-if="nodetype.elementType === 'node'">
+      <div class="col-xs-12">
+        <div class="btn-group col-md-12" style="vertical-align: none;">
+          <button type="button" class="btn btn-warning dropdown-toggle pull-right" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Actions <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" ng-if="nodetype.elementType === 'node'">
+            <li><a href="" ng-click="deleteNodetype()"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+            </li>
+            <li><a href="" ng-click="copyId()"><span class="glyphicon glyphicon-copy"></span> Copy Id</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="" ng-click="updateNodesStateConfig(nodetype.name)">Update States Config in DB</a></li>
+            <li><a href="" ng-click="updateCodificationCounter(nodetype.name)">Update codification counter in
+                db</a></li>
+            <li><a href="" ng-click="resetNodesAccess(nodetype.name)">Reset Nodes Access</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="" ng-click="translateUIGrid(nodetype.name)">Translate UI Grid</a></li>
+            <li><a href="" ng-click="clearNodetypeTranslation(nodetype.name)">Clear Nodetype Translation</a></li>
+          </ul>
+        </div>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <div class="col-md-4">
+              <label class="control-label" for="nodeType_Name">Name</label>
+              <input type="text" class="form-control" disabled ng-model="nodetype.name">
+            </div>
+            <div class="col-md-4">
+              <label class="control-label" for="nodeType_MenuCategory">Packages</label>
+              <input type="text" class="form-control" ng-model="nodetype.package" ng-blur="updateNodetypeMeta('package', nodetype.package)">
+            </div>
+            <div class="col-md-4">
+              <label class="control-label" for="nodeType_MenuCategory">Menu</label>
+              <select ng-change="updateNodetypeMeta('category', nodetype.category)" class="form-control"
+                id="nodeType_MenuCategory" ng-model="nodetype.category"
+                ng-options="opt.catid as opt.label for opt in datamodel.categories | orderBy:'name'"></select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="versionnableswitch">Versionnable</label>
+            <div class="col-md-1 material-switch ">
+              <input ng-change="updateNodetypeMeta('versionnable', nodetype.versionnable)" id="versionnableswitch"
+                name="versionnableswitch" type="checkbox" ng-model="nodetype.versionnable" />
+              <label for="versionnableswitch" class="label-success"></label>
+            </div>
+            <label class="col-md-4 control-label" for="thumbnailSwitch">Thumbnail</label>
+            <div class="col-md-1 material-switch pull-left">
+              <input ng-change="updateNodetypeMeta('hasThumbnail', nodetype.hasThumbnail)" id="hasThumbnail"
+                name="hasThumbnail" type="checkbox" ng-model="nodetype.hasThumbnail" />
+              <label for="hasThumbnail" class="label-success"></label>
+            </div>
+            <label class="col-md-4 control-label" for="hiddenLifecycle">Hidden Lifecycle</label>
+            <div class="col-md-1 material-switch ">
+              <input ng-change="updateNodetypeMeta('hiddenLifecycle', nodetype.hiddenLifecycle)" id="hiddenLifecycle"
+                name="hiddenLifecycle" type="checkbox" ng-model="nodetype.hiddenLifecycle" />
+              <label for="hiddenLifecycle" class="label-success"></label>
+            </div>
+            <label class="col-md-4 control-label" for="formDisabled">Form Disabled</label>
+            <div class="col-md-1 material-switch ">
+              <input ng-change="updateNodetypeMeta('formDisabled', nodetype.formDisabled)" id="formDisabled"
+                  name="formDisabled" type="checkbox" ng-model="nodetype.formDisabled" />
+              <label for="formDisabled" class="label-success"></label>
+            </div>
+            <!-- Single button -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-12" ng-if="nodetype.elementType === 'relationship'">
+      <!-- REL FORM -->
+      <div class="form-horizontal">
+        <div class="form-group">
+
+          <label class="col-md-3 control-label" for="nodeType_Name">Name</label>
+          <div class="col-md-6">
+            <input type="text" class="form-control" disabled ng-model="nodetype.name">
+          </div>
+          <div class="btn-group col-md-2" ">
+              <button type=" button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Actions <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" ng-if="nodetype.elementType === 'relationship'">
+              <li><a href="" ng-click="deleteNodetype()"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+              </li>
+              <li><a href="" ng-click="copyId()"><span class="glyphicon glyphicon-copy"></span> Copy Id</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="nodeType_linkName">Link Name <i class="fas fa-info-circle"
+              data-toggle="tooltip" data-placement="bottom"
+              title="The link name is the semantic used in the Graph it should be something meaningful for your business"></i></label>
+          <div class="col-md-6 ">
+            <input ng-blur="updateNodetypeMeta('linkName', nodetype.linkName)" class="form-control"
+              id="nodeType_linkName" name="nodeType_linkName" type="text" ng-model="nodetype.linkName" />
+          </div>
+        </div>
+        <div class="form-group">
+
+          <label for="nodetype_cardinality" class="col-md-3 control-label">Cardinality</label>
+          <div class="col-md-6">
+            <select ng-change="updateNodetypeMeta('cardinality', nodetype.cardinality)" class="form-control"
+              id="nodetype_cardinality" ng-model="nodetype.cardinality" name="nodetype_cardinality">
+              <option value="free">Free</option>
+              <option value="NtoN">N to N</option>
+              <option value="1toN">1 to N</option>
+              <option value="Nto1">N to 1</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="lockLinkedswitch">Lock Linked <i class="fas fa-info-circle"
+              data-toggle="tooltip" data-placement="bottom"
+              title="If true, you limit the creation, removal and updates of this relationship to when the parent node is locked (in edit mode)"></i></label>
+          <div class="col-md-1 material-switch">
+            <input ng-change="updateNodetypeMeta('lockLinked', nodetype.lockLinked)" id="lockLinkedswitch"
+              name="lockLinkedswitch" type="checkbox" ng-model="nodetype.lockLinked" />
+            <label for="lockLinkedswitch" class="label-success"></label>
+          </div>
+          <label class="col-md-4 control-label" for="parentConfigFreeze">Parent
+            Config Freeze <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="bottom"
+              title="If true, when a node is versionned, it doesn't get connected to the parents the previous version had."></i></label>
+          <div class="col-md-1 material-switch">
+            <input ng-change="updateNodetypeMeta('parentConfigFreeze', nodetype.parentConfigFreeze)"
+              id="parentConfigFreeze" name="parentFreezed" type="checkbox" ng-model="nodetype.parentConfigFreeze" />
+            <label for="parentConfigFreeze" class="label-success"></label>
+          </div>
+          <label class="col-md-4 control-label" for="configManager">Config Manager <i class="fas fa-info-circle"
+              data-toggle="tooltip" data-placement="bottom"
+              title="If true, it allows to browse this relationship when running an impact analysis of a change"></i></label>
+          <div class="col-md-1 material-switch">
+            <input ng-change="updateNodetypeMeta('configManager', nodetype.configManager)" id="configManager"
+              name="configManager" type="checkbox" ng-model="nodetype.configManager" />
+            <label for="configManager" class="label-success"></label>
+          </div>
+          <label class="col-md-4 control-label" for="forbidDuplRels">Forbid Duplicate
+            Rels <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="bottom"
+              title="If true, you are forbidding to attach twice the same node with this relationship to a same parent node"></i></label>
+          <div class="col-md-1 material-switch">
+            <input ng-change="updateNodetypeMeta('forbidDuplRels', nodetype.forbidDuplRels)" id="forbidDuplRels"
+              name="forbidDuplRels" type="checkbox" ng-model="nodetype.forbidDuplRels" />
+            <label for="forbidDuplRels" class="label-success"></label>
+          </div>
+          <label class="col-md-4 control-label" for="undirectedRelationship">Undirected Relationship <i
+              class="fas fa-info-circle" data-toggle="tooltip" data-placement="bottom"
+              title="If true, the relation won't have direction. Position of the related nodetypes (source/target) won't matter."></i></label>
+          <div class="col-md-1 material-switch">
+            <input ng-change="updateNodetypeMeta('undirectedRelationship', nodetype.undirectedRelationship)"
+              id="undirectedRelationship" name="undirectedRelationship" type="checkbox"
+              ng-model="nodetype.undirectedRelationship" />
+            <label for="undirectedRelationship" class="label-success"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-md-12" ng-if="nodetype.elementType === 'node'">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-warning">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a style="user-select: none;" role="button" class="collapsed" data-toggle="collapse"
+                data-parent="#accordion" ng-click='toggleConfgDetails();' aria-expanded="false"
+                aria-controls="collapseOne">
+                Configuration Details
+              </a>
+            </h4>
+          </div>
+          <div id="details" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body" style="background-color:#F9F9F9">
+              <div class="form-group innerConf row">
+                <div class="container-fluid" style="padding: 0;">
+                  <label for="nodetype_maidenName" class="col-md-3 control-label">Display Name <i
+                      class="fas fa-info-circle" data-toggle="tooltip" data-placement="bottom"
+                      title="Typically displayed in Tabs, Graph views, Impact matrix,..."></i></label>
+                  <div class="col-md-5">
+                    <select multiple size="3" class="form-control" id="nodetype_maidenName"
+                      ng-dblclick="addMaidenNameElt($event)">
+                      <option ng-repeat="item in nodetype.properties | orderBy:'name'" value="{{item.name}}">
+                        {{item.name}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <span class="label label-info maidenNameTag" ng-repeat="elt in nodetype.maidenName.elements">{{elt}}
+                      <span class="glyphicon glyphicon-remove-circle"
+                        ng-click="removeMaidenNameItem(elt)"></span></span>
+                  </div>
+                </div>
+
+                <div class="container-fluid" style="padding: 0;">
+                  <label for="nodetype_maidenName" class="col-md-3 control-label">Separator</label>
+                  <div class="col-md-5">
+                    <select ng-change="updateNodetypeMeta('maidenName', nodetype.maidenName)" class="form-control"
+                      id="nodetype_maidenName_separator" ng-model="nodetype.maidenName.separator">
+                      <option value=" "> </option>
+                      <option value="-">-</option>
+                      <option value=" - "> - </option>
+                      <option value=":">:</option>
+                      <option value=",">,</option>
+                      <option value="|">|</option>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+              <div class="form-group innerConf row">
+                <label class="col-md-2 control-label" for="nodeType_Name"
+                  style="  margin-top: 5px;">Codification</label>
+                <div class="col-md-4">
+                  <input ng-blur="updateNodetypeMeta('codification.prefix', nodetype.codification.prefix)" type="text"
+                    class="form-control" id="nodeType_Codification_Prefix" ng-model="nodetype.codification.prefix"
+                    placeholder="Prefix">
+                </div>
+                <div class="col-md-3">
+                  <input ng-blur="updateNodetypeMeta('codification.size', nodetype.codification.size)" type="number"
+                    class="form-control" id="nodeType_Codification_Size" ng-model="nodetype.codification.size"
+                    placeholder="Size">
+                </div>
+                <div class="col-md-3">
+                  <input ng-blur="updateNodetypeMeta('codification.fillWith', nodetype.codification.fillWith)"
+                    type="text" class="form-control" id="nodeType_Codification_FillWith"
+                    ng-model="nodetype.codification.fillWith" placeholder="Fill With">
+                </div>
+              </div>
+              <div class="form-group innerConf row table-responsive"
+                ng-if="nodetype.elementType === 'node' && nodetype.versionnable === true">
+                <div class="container-fluid" style="padding: 0px;">
+                  <label for="nodetype_changeMethods" class="col-md-3 control-label" style="  margin-top: 5px;">Change
+                    Method</label>
+                  <div class="col-md-5">
+                    <select ng-change="updateNodetypeMeta('changeMethod', nodetype.changeMethod)" class="form-control"
+                      id="nodetype_changeMethods" ng-model="nodetype.changeMethod"
+                      ng-options="item.value as item.label for item in changeMethods | orderBy:'label'"></select>
+                  </div>
+                </div>
+                <table class="table " style="text-align: center;">
+                  <thead>
+                    <tr>
+                      <th>Major</th>
+                      <th>Minor</th>
+                      <th>Patch</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <select ng-change="updateNodetypeMeta('versioningRule', nodetype.versioningRule)"
+                          class="form-control" id="versioningRule-major" ng-model="nodetype.versioningRule.major">
+                          <option value="nonInterchangeable">Non Interchangebale Rev</option>
+                          <option value="interchangeable">Interchangebale Rev</option>
+                          <option value="">Disabled</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select ng-change="updateNodetypeMeta('versioningRule', nodetype.versioningRule)"
+                          class="form-control" id="versioningRule-minor" ng-model="nodetype.versioningRule.minor">
+                          <option value="nonInterchangeable">Non Interchangebale Rev</option>
+                          <option value="interchangeable">Interchangebale Rev</option>
+                          <option value="">Disabled</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select ng-change="updateNodetypeMeta('versioningRule', nodetype.versioningRule)"
+                          class="form-control" id="versioningRule-patch" ng-model="nodetype.versioningRule.patch">
+                          <option value="nonInterchangeable">Non Interchangebale Rev</option>
+                          <option value="interchangeable">Interchangebale Rev</option>
+                          <option value="">Disabled</option>
+                        </select>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist" id="mainTabs">
+        <li role="presentation" class="active"><a href="#properties-{{nodetype.name}}"
+            aria-controls="properties-{{nodetype.name}}" role="tab" data-toggle="tab"><span
+              class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Properties</a></li>
+        <li role="presentation"><a ng-click="translateProps()" href="#ui-{{nodetype.name}}"
+            aria-controls="ui-{{nodetype.name}}" role="tab" data-toggle="tab"><span
+              class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> UI</a></li>
+        <li role="presentation" ng-if="nodetype.elementType === 'node'"><a href="#tabs-{{nodetype.name}}"
+            aria-controls="tabs-{{nodetype.name}}" role="tab" data-toggle="tab" ng-click="translateProps()"><span
+              class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> Tabs</a>
+        </li>
+        <li role="presentation" ng-if="nodetype.elementType === 'node'"><a href="#lifecycle-{{nodetype.name}}"
+            aria-controls="lifecycle-{{nodetype.name}}" role="tab" data-toggle="tab"><span
+              class="glyphicon glyphicon-random" aria-hidden="true"></span>
+            Lifecycle</a></li>
+        <li role="presentation" ng-if="nodetype.elementType === 'node'"><a ng-click="translateProps()"
+            href="#actions-{{nodetype.name}}" aria-controls="actions-{{nodetype.name}}" role="tab"
+            data-toggle="tab"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Actions</a>
+        </li>
+        <li role="presentation"><a href="#methods-{{nodetype.name}}" aria-controls="methods-{{nodetype.name}}"
+            role="tab" data-toggle="tab"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Triggered
+            Methods
+          </a>
+        </li>
+        <li role="presentation" ng-if="nodetype.elementType === 'node'">
+          <a href="#external-apis-mapping-{{nodetype.name}}" aria-controls="external-apis-mapping-{{nodetype.name}}"
+            role="tab" data-toggle="tab">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> External APIs
+          </a>
+        </li>
+        <li role="presentation" ng-if="nodetype.elementType === 'node'"><a ng-click="translateProps()" href="#instanciations-{{nodetype.name}}"
+            aria-controls="instanciations-{{nodetype.name}}" role="tab" data-toggle="tab"><span
+              class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Instanciation</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active" id="properties-{{nodetype.name}}">
+          <div ng-include="'config/app/components/nodetype/properties/properties.html'"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="ui-{{nodetype.name}}">
+          <div ng-include="'config/app/components/nodetype/ui/ui.html'"> </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tabs-{{nodetype.name}}" ng-if="nodetype.elementType === 'node'">
+          <div ng-include="'config/app/components/nodetype/tabs/tabs.html'"> </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="lifecycle-{{nodetype.name}}" ng-if="nodetype.elementType === 'node'">
+          <div ng-include="'config/app/components/nodetype/lifecycle/lifecycle.html'"> </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="actions-{{nodetype.name}}" ng-if="nodetype.elementType === 'node'">
+          <div ng-include="'config/app/components/nodetype/actions/actions.html'"> </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="methods-{{nodetype.name}}">
+          <div ng-include="'config/app/components/nodetype/methods/methods.html'"> </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="external-apis-mapping-{{nodetype.name}}"
+          ng-if="nodetype.elementType === 'node'">
+          <div ng-include="'config/app/components/nodetype/external-apis-mapping/external-apis-mapping.html'"> </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="instanciations-{{nodetype.name}}"
+          ng-if="nodetype.elementType === 'node'">
+          <div ng-include="'config/app/components/nodetype/instanciations/instanciations.html'"> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,407 @@
+{
+	"name": "supplierRef",
+	"package": "purchasing",
+	"elementType": "node",
+	"versionnable": false,
+	"promotionControlled": false,
+	"ui": {
+		"defaultThumbnail": "images/1634910081557-manufPartLogo.png",
+		"gridColumns": [
+			{
+				"id": "uigc_b7df69b0-089a-11eb-9152-596414692613",
+				"name": "col_0",
+				"type": "string",
+				"property": "supplierRef.partId",
+				"order": 1
+			},
+			{
+				"id": "uigc_bdba48a0-089a-11eb-9152-596414692613",
+				"name": "col_1",
+				"type": "string",
+				"property": "supplierRef.name",
+				"order": 3
+			},
+			{
+				"id": "uigc_c0de6c00-089a-11eb-9152-596414692613",
+				"name": "col_2",
+				"type": "string",
+				"property": "supplierRef.description",
+				"order": 4
+			},
+			{
+				"id": "uigc_6c80d380-29df-11eb-8fdb-dbd6661e410f",
+				"name": "col_3",
+				"type": "string",
+				"order": 2,
+				"property": "supplierRef._ref",
+				"cellRendered": true
+			}
+		],
+		"tabs": [
+			{
+				"id": "tab_244cc690-08bb-11eb-9152-596414692613",
+				"name": "supplierPartZ2Info",
+				"label": "tab0",
+				"tabContentType": "externalAPI",
+				"attachMode": "",
+				"relationships": "",
+				"order": 1,
+				"externalAPI": "z2Data",
+				"externalAPIAction": "Search Parts",
+				"translations": {
+					"en": "Sourcing Analytics",
+					"fr": "Information Sourcing"
+				}
+			}
+		],
+		"form": {
+			"definition": {
+				"A": [
+					{
+						"type": "container",
+						"id": "co_226c7fe5-4956-4c01-b460-eaf25469a84a",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_c468df31-20a7-4198-b52b-a3adad8024e5",
+									"size": "2",
+									"property": "partId",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_27d8c9a6-0bb3-4542-bbd7-f39a4635c2f11",
+									"size": "3",
+									"property": "_ref",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_27d8c9a6-0bb3-4542-bbd7-f39a4635c2f1",
+									"size": "2",
+									"property": "name",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_27d8c9a6-0bb3-4542-bbd7-f39a4635c2f111",
+									"size": "5",
+									"property": "description",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"size": "12",
+						"containerType": "accordion",
+						"readOnly": false,
+						"offset": "0",
+						"label": "Identification"
+					}
+				]
+			},
+			"ng": {},
+			"labelCase": "capitalize"
+		}
+	},
+	"lifecycle": {
+		"states": [
+			{
+				"id": "state_3935fcb2-0899-11eb-9152-596414692613",
+				"name": "draft",
+				"label": "Draft",
+				"start": true,
+				"lockable": true,
+				"owner": "role_3935fcb1-0899-11eb-9152-596414692613",
+				"ui_color": "primary"
+			}
+		],
+		"transitions": [],
+		"roles": [
+			{
+				"id": "role_3935fcb1-0899-11eb-9152-596414692613",
+				"name": "manager",
+				"label": "Manager"
+			}
+		]
+	},
+	"category": 7,
+	"configuration": false,
+	"classification": [],
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcb3-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_3935fcb4-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcb5-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_thumbnail",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"relationship": "nt_5d79e3adnkcd25615637df85e122bcac",
+			"id": "prop_3935fcb6-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcb7-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"default": "1.0.0",
+			"id": "prop_3935fcb8-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcb9-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcba-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcbb-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_history",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"default": "[]",
+			"id": "prop_3935fcbc-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_promotions",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcbd-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_serialized",
+			"type": "multiselect",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_3935fcbe-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_createdBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcbf-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_createdByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcc0-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcc1-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_3935fcc2-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_lockedBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcc3-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcc4-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"name": "_lockedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_3935fcc5-0899-11eb-9152-596414692613",
+			"translations": {}
+		},
+		{
+			"id": "prop_b27fd540-089a-11eb-9152-596414692613",
+			"name": "partId",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"translations": {}
+		},
+		{
+			"id": "prop_bd20a0b0-089a-11eb-9152-596414692613",
+			"name": "name",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"translations": {}
+		},
+		{
+			"id": "prop_c03310d0-089a-11eb-9152-596414692613",
+			"name": "description",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"translations": {}
+		}
+	],
+	"maidenName": {
+		"elements": [
+			"_ref"
+		],
+		"separator": ""
+	},
+	"actions": [],
+	"id": "nt_3935fcb0-0899-11eb-9152-596414692613",
+	"permissionSet": "supplierRef",
+	"externalAPIs": [
+		{
+			"name": "z2Data",
+			"enabled": true,
+			"mapping": {
+				"partNumber": "partId"
+			}
+		},
+		{
+			"name": "github",
+			"enabled": false,
+			"mapping": {}
+		},
+		{
+			"name": "element14",
+			"enabled": false,
+			"mapping": {
+				"term": "partId"
+			}
+		},
+		{
+			"name": "ihs",
+			"enabled": false,
+			"mapping": {}
+		}
+	],
+	"translations": {
+		"default": "Supplier Ref",
+		"en": "Supplier Ref",
+		"fr": "Référence Fournisseur"
+	}
+}

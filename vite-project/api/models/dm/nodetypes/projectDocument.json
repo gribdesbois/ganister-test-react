@@ -1,0 +1,181 @@
+{
+	"package": "pm",
+	"name": "projectDocument",
+	"gridColumnsHeader": "",
+	"elementType": "relationship",
+	"lockLinked": true,
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f1328b-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f1328c-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created On"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f1328d-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created By"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f1328e-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd699988-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e76e4-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e76e5-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37e76e6-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		}
+	],
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"category": null,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [
+			{
+				"label": "_ref",
+				"type": "text",
+				"id": "uigc_da9e2c1d693015b711286e9e1aed315b",
+				"property": "document._ref",
+				"order": 1
+			},
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_9c7c6d40232a1c5c675f77d5955a0649",
+				"property": "document.name",
+				"order": 2
+			},
+			{
+				"label": "description",
+				"type": "text",
+				"id": "uigc_b931db0950510e08238bf6daabd6f041",
+				"property": "document.description",
+				"order": 3
+			},
+			{
+				"label": "modified on",
+				"type": "date",
+				"id": "uigc_0edae9c51fc7edc3a77ab41f4f68d6f3",
+				"property": "document._modifiedOn",
+				"order": 4
+			},
+			{
+				"label": "Version",
+				"type": "version",
+				"width": 60,
+				"cellRendered": true,
+				"cellStyle": {
+					"text-align": "center"
+				},
+				"id": "uigc_fc483876f3d2f639931aa4a1d070cd3b",
+				"property": "document._version",
+				"order": 5
+			},
+			{
+				"label": "_createdOn",
+				"type": "date",
+				"id": "uigc_3a582d1538811ab2388fd13a7a3f4e7b",
+				"property": "document._createdOn",
+				"order": 6
+			}
+		],
+		"form": {
+			"definition": {},
+			"ng": {}
+		},
+		"tabs": []
+	},
+	"id": "nt_dd50c289ad31fe533c4c39e272152505",
+	"linkName": "documentedBy",
+	"directions": [
+		{
+			"source": "nt_3e0c34030d5bd366ab0217d3f99b9698",
+			"target": "nt_a029737d551a7a46b1444c8e8e46cab4"
+		}
+	],
+	"translations": {
+		"default": "projectDocument"
+	}
+}

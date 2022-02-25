@@ -1,0 +1,53 @@
+<div
+  id="modal-infoDataModal-{{modal.id}}"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="{{modal.modalLabel}}"
+  aria-hidden="true"
+  ng-controller="infoDataModalController">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">{{ 'default.shared.close' | translate }}</span>
+        </button>
+        <h4 class="modal-title">{{modal.label | capitalize}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid" style="margin-bottom: 20px;">
+          <form sf-schema="modal.form.schema" sf-form="modal.form.form" sf-model="modal.node" sf-options="{
+            formDefaults: {
+              ngModelOptions: {
+                updateOn: 'default blur click',
+                debounce: {
+                  default: 2000,
+                  blur: 0,
+                  '*': 1000
+                }
+              }
+            }
+          }">
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-success btn-md"
+          style="margin-bottom: 4px;"
+          ng-click="saveInfoData()">
+          {{ 'default.shared.save' | translate }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-default btn-md"
+          style="margin-bottom: 4px;"
+          data-dismiss="modal">
+          {{ 'default.shared.cancel' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

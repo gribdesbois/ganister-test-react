@@ -1,0 +1,79 @@
+[
+	{
+		"catid": -1,
+		"name": "hidden",
+		"label": "hidden",
+		"icon": "fas fa-eye-slash",
+		"hidden": true
+	},
+	{
+		"catid": 0,
+		"name": "MyBOM",
+		"label": "MyBOM",
+		"icon": "fas fa-user-tie",
+		"hidden": false
+	},
+	{
+		"catid": 1,
+		"name": "Requirements",
+		"label": "Requirements",
+		"icon": "fas fa-file-alt",
+		"hidden": false
+	},
+	{
+		"catid": 2,
+		"name": "SystemEngineering",
+		"label": "System Engineering",
+		"icon": "fab fa-searchengin",
+		"hidden": true
+	},
+	{
+		"catid": 3,
+		"name": "Design",
+		"label": "Design",
+		"icon": "fas fa-cogs",
+		"hidden": false
+	},
+	{
+		"catid": 4,
+		"name": "DesignChanges",
+		"label": "Design Changes",
+		"icon": "fas fa-pencil-alt",
+		"hidden": false
+	},
+	{
+		"catid": 9,
+		"name": "Manufacturing",
+		"label": "Manufacturing",
+		"icon": "fas fa-industry",
+		"hidden": false
+	},
+	{
+		"catid": 5,
+		"name": "MRO",
+		"label": "MRO",
+		"icon": "fas fa-tag",
+		"hidden": false
+	},
+	{
+		"catid": 6,
+		"name": "Portfolio",
+		"label": "Portfolio",
+		"icon": "fas fa-folder",
+		"hidden": false
+	},
+	{
+		"catid": 7,
+		"name": "Purchasing",
+		"label": "Purchasing",
+		"icon": "fas fa-shopping-cart",
+		"hidden": false
+	},
+	{
+		"catid": 8,
+		"name": "administration",
+		"label": "Administration",
+		"icon": "fas fa-users-cog",
+		"hidden": true
+	}
+]

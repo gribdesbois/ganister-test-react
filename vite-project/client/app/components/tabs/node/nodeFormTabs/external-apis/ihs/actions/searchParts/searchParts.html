@@ -1,0 +1,57 @@
+<div ng-controller="externalAPIsIhsSearchTermController">
+  <nav class="navbar navbar-default ">
+    <div class="container-fluid">
+      <div class='btn-group'>
+        <button type='button' class='btn btn-default btn-info btn-sm navbar-btn' ng-click="fetchData(true)"
+          title="Refresh">
+          <span class='glyphicon glyphicon-refresh' aria-hidden='true'></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#tab-alerts-{{node._id}}">Alerts</a></li>
+    <li><a data-toggle="tab" href="#tab-alt-{{node._id}}">Alt</a></li>
+    <li><a data-toggle="tab" href="#tab-altCombined-{{node._id}}">Alt Combined</a></li>
+    <li><a data-toggle="tab" href="#tab-details-{{node._id}}">Details</a></li>
+    <li><a data-toggle="tab" href="#tab-docs-{{node._id}}">Docs</a></li>
+    <li><a data-toggle="tab" href="#tab-hazmat-{{node._id}}">Hazmat</a></li>
+    <li><a data-toggle="tab" href="#tab-latestDatasheet-{{node._id}}">Latest Datasheet</a></li>
+    <li><a data-toggle="tab" href="#tab-lifecycle-{{node._id}}">Lifecycle</a></li>
+    <li><a data-toggle="tab" href="#tab-nsn-{{node._id}}">NSN</a></li>
+    <li><a data-toggle="tab" href="#tab-transfers-{{node._id}}">Transfers</a></li>
+  </ul>
+  
+  <div class="tab-content">
+    <div id="tab-alerts-{{node._id}}" class="tab-pane fade in active">
+      <div ag-grid="alertsGridOptions" class="ag-theme-balham" style="height: 450px; width:100%;"></div>
+    </div>
+    <div id="tab-alt-{{node._id}}" class="tab-pane fade">
+      <div ag-grid="altGridOptions" class="ag-theme-balham" style="height: 450px; width:100%;"></div>
+    </div>
+    <div id="tab-altCombined-{{node._id}}" class="tab-pane fade">
+      <div ag-grid="altCombinedGridOptions" class="ag-theme-balham" style="height: 450px; width:100%;"></div>
+    </div>
+    <div id="tab-details-{{node._id}}" class="tab-pane fade">
+      <div ag-grid="detailsGridOptions" class="ag-theme-balham" style="height: 450px; width:100%;"></div>
+    </div>
+    <div id="tab-docs-{{node._id}}" class="tab-pane fade">
+      <div ag-grid="docsGridOptions" class="ag-theme-balham" style="height: 450px; width:100%;"></div>
+    </div>
+    <div id="tab-hazmat-{{node._id}}" class="tab-pane fade">
+      <div ag-grid="hazmatGridOptions" class="ag-theme-balham" style="height: 450px; width:100%;"></div>
+    </div>
+    <div id="tab-latestDatasheet-{{node._id}}" class="tab-pane fade">
+      <div ag-grid="latestDatasheetGridOptions" class="ag-theme-balham" style="height: 450px; width:100%;"></div>
+    </div>
+    <div id="tab-lifecycle-{{node._id}}" class="tab-pane fade">
+      <div ag-grid="lifecycleGridOptions" class="ag-theme-balham" style="height: 450px; width:100%;"></div>
+    </div>
+    <div id="tab-nsn-{{node._id}}" class="tab-pane fade">
+      <div ag-grid="nsnGridOptions" class="ag-theme-balham" style="height: 450px; width:100%;"></div>
+    </div>
+    <div id="tab-transfers-{{node._id}}" class="tab-pane fade">
+      <div ag-grid="transfersGridOptions" class="ag-theme-balham" style="height: 450px; width:100%;"></div>
+    </div>
+  </div>
+</div>

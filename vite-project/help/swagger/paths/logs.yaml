@@ -1,0 +1,79 @@
+/log/errors:
+  get:
+    security:
+      - JWT: []
+    parameters: []
+    description: Get Error logs
+    tags:
+      - Error Log
+    responses:
+      "200":
+        description: array of error logs
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/ErrorLog"
+      "500":
+        description: "Error: Server Error"
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        required: true
+        schema:
+          properties:
+            title:
+              type: string
+              description: Error Title
+            message:
+              type: string
+              description: Error Message
+            statusCode:
+              description: Error Status Code
+              type: string
+
+    description: Create Error Log
+    tags:
+      - Error Log
+    responses:
+      "200":
+        description: array of error logs
+        schema:
+          type: array
+          items:
+            $ref: "../definitions/logs.yaml#/ErrorLog"
+      "401":
+        description: "Error: Unauthorized Access"
+        schema:
+          $ref: "../definitions/errors.yaml#/UnauthorizedError"
+      "500":
+        description: "Error: Server Error"
+
+/log/errors/{id}:
+  delete:
+    security:
+      - JWT: []
+    parameters:
+      - name: id
+        in: path
+        description: Error Log Id
+        required: true
+        type: string
+    description: Delete Error log
+    tags:
+      - Error Log
+    responses:
+      "200":
+        description: array of error logs
+        schema:
+          type: array
+          items:
+            $ref: "../definitions/logs.yaml#/ErrorLog"
+      "401":
+        description: "Error: Unauthorized Access"
+        schema:
+          $ref: "../definitions/errors.yaml#/UnauthorizedError"
+      "500":
+        description: "Error: Server Error"

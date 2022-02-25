@@ -1,0 +1,2 @@
+# System Engineering
+System engineering is becoming a key aspects of product lifecycle management. Ganister will continuously implement more processes and business objects allowing to execute system engineering in combination with all the product lifecycle information.

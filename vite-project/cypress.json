@@ -1,0 +1,12 @@
+{
+  "baseUrl": "http://localhost:8008",
+  "env": {
+    "API_URL": "/api/v0"
+  },
+  "testFiles": [
+    "api/users/*",
+    "client/users/*",
+    "client/nodes/*"
+  ],
+  "ignoreTestFiles": []
+}

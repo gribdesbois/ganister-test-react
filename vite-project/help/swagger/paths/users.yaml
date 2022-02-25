@@ -1,0 +1,153 @@
+test:
+  get:
+    security:
+      - JWT: []
+    description: Test if user is logged in
+    tags:
+      - Users
+    responses:
+      '200':
+        description: Returns user
+        schema:
+          $ref: "../definitions/nodes.yaml#/User"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+signup:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: User identity
+        required: true
+        schema:
+          type: object
+          required:
+            - email
+            - firstName
+            - lastName
+          properties:
+            email:
+              type: string
+              example: john@doe.com
+            firstName:
+              type: string
+              example: John
+            lastName:
+              type: string
+              example: Doe
+    description: Sign Up User
+    tags:
+      - Users
+    responses:
+      "200":
+        description: Returns user
+        schema:
+          $ref: "../definitions/nodes.yaml#/User"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+signin:
+  post:
+    parameters:
+      - name: content
+        in: body
+        description: Credentials
+        required: true
+        schema:
+          type: object
+          required:
+            - email
+            - password
+          properties:
+            email:
+              type: string
+              example: john@doe.com
+            password:
+              type: string
+              example: AgN53@oçer
+    description: Sign In User
+    tags:
+      - Users
+    responses:
+      '200':
+        description: Returns user
+        schema:
+          $ref: "../definitions/nodes.yaml#/authenticatedUser"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+changePassword:
+  post:
+    parameters:
+      - name: content
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+            - email
+            - password
+            - token
+          properties:
+            email:
+              type: string
+              example: john@doe.com
+            password:
+              type: string
+              example: AgN53@oçer
+            token:
+              type: string
+              example: HictemSDFGHribusnam78Etvoluptatu^*ù$iatmolestiaecorp@2365ètatemlaborelaboriosamrem96Quirend832%ù#onemaccsamusut12Rerumhicipsamnumquamquodutullam
+    description: "Change User Password"
+    tags:
+      - Users
+    responses:
+      '200':
+        description: Returns user
+        schema:
+          $ref: "../definitions/nodes.yaml#/User"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+requestChangePassword:
+  post:
+    parameters:
+      - name: content
+        in: body
+        description: Email
+        required: true
+        schema:
+          type: object
+          required:
+            - email
+          properties:
+            email:
+              type: string
+              example: john@doe.com
+    description: Request Password Change
+    tags:
+      - Users
+    responses:
+      "200":
+        description: Returns always 200 even if user not exists
+      '500':
+        $ref: '../responses/errors.yaml#/500'

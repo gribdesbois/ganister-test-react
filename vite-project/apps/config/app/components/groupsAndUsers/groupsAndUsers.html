@@ -1,0 +1,649 @@
+<style>
+  .flexbox {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  a.btn {
+    margin-right: 6px;
+  }
+
+  .group-title {
+    background-color: #687074 !important;
+    color: #FFF !important;
+  }
+
+  .nodeElement {
+    margin: 5px;
+    background: #f8faff;
+    border: 1px solid #dae2ea;
+    color: #7c9eb2;
+    padding: 10px 10px;
+  }
+
+  .nodeElement.groupNodeElement {
+    background: #fff8f8;
+  }
+
+  .nodeElement.userNodeElement {
+    background: hsl(60, 100%, 99%);
+  }
+
+  .details .nodeElement {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  td {
+    border: none !important;
+  }
+
+  button.userDefinition>a.userBtn {
+    visibility: hidden;
+  }
+
+  button.userDefinition:hover>a.userBtn {
+    visibility: visible;
+  }
+
+  /* The switch - the box around the slider */
+  .switch {
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    position: absolute;
+    right: 80px;
+    top: 6px;
+  }
+
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #5cb85c;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked+.slider {
+    background-color: #2196F3;
+  }
+
+  input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .stickyPanel {
+    position: sticky;
+    top: 60px;
+  }
+
+  div::-webkit-scrollbar {
+    width: .4em;
+  }
+
+  div::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  div::-webkit-scrollbar-thumb {
+    background-color: #337ab7;
+    outline: 1px solid slategrey;
+  }
+
+  th {
+    background-color: rgba(240, 240, 240, 1);
+    position: sticky;
+    top: 50px;
+    z-index: 10;
+
+    /* Don't forget this, required for the stickiness */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  }
+
+  th.subMenu {
+    top: 81px;
+  }
+</style>
+
+<div class="row-container" ng-controller="groupsAndUsers">
+  <!-- PANNEAU LATERAL GAUCHE -->
+  <div class="col-md-12">
+    <div class="col-lg-3 col-md-3 col-sm-12 stickyPanel">
+
+      <!-- USERS LISTING-->
+      <div class="panel panel-primary transparent " style="height: 90vh; overflow-y: auto;">
+        <div class="panel-heading">
+          Users
+          <div class="btn btn-success btn-xs pull-right" ng-click="openAddUserPrompt()">
+            <span class="glyphicon glyphicon-plus"></span>
+          </div>
+        </div>
+        <div class="panel-body">
+
+          <div class="well" ng-show='selectedUser'>
+            <div class="row">
+              <div class="col-md-12">
+                <div ngf-drop ngf-select ng-model="file" ngf-drag-over-class="'dragover'" ngf-allow-dir="false"
+                  accept="image/*" ngf-pattern="'image/*'"><a class="thumbnail" style="margin-bottom:10px"><img
+                      ng-src="{{selectedUser.properties.pict || 'images/userLogo.png'}}" class="img-responsive" /></a>
+                </div>
+                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+              </div>
+              <div class="col-md-8 col-md-offset-2" style="margin-bottom:20px">
+                <button ng-if="selectedUser.properties.pict" class="btn btn-warning form-control"
+                  ng-click="removeUserPhoto()">Remove
+                  Photo</button>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="firstName" class="col-md-4 control-label">First Name</label>
+              <div class="col-md-8">
+                <input ng-model="selectedUser.properties.firstName" type="text" placeholder="First Name" class="form-control"
+                  autofocus ng-model-options="{updateOn: 'blur'}"
+                  ng-change="patchUserProperty(selectedUser,'firstName')">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="lastName" class="col-md-4 control-label">Last Name</label>
+              <div class="col-md-8">
+                <input ng-model="selectedUser.properties.lastName" type="text" placeholder="Last Name" class="form-control"
+                  ng-model-options="{updateOn: 'blur'}" ng-change="patchUserProperty(selectedUser,'lastName')">
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="email" class="col-md-4 control-label">Email</label>
+
+              <div class="col-md-8">
+                <input ng-model="selectedUser.properties.email" type="email" placeholder="Email" class="form-control"
+                  ng-model-options="{updateOn: 'blur'}" ng-change="patchUserProperty(selectedUser,'email')">
+              </div>
+            </div>
+            <!-- Add a switch to isAdmin user -->
+            <div class="form-group row">
+              <label for="isAdminSwitch" class="col-md-4 control-label" style="margin-top: 5px;">Is Admin</label>
+              <div class="col-md-8">
+                <div class="material-switch col-md-1">
+                  <input ng-change="updateUserAdmin(selectedUser.properties._isAdmin)" id="isAdminSwitch"
+                    name="isAdminSwitch" type="checkbox" ng-model="selectedUser.properties._isAdmin" />
+                  <label for="isAdminSwitch" class="label-primary"></label>
+                </div>
+              </div>
+            </div>
+            <!-- Add a switch to activate user -->
+            <div class="form-group row">
+              <label for="activeSwitch" class="col-md-4 control-label" style="margin-top: 5px;">Active</label>
+              <div class="col-md-8">
+                <div class="material-switch col-md-1">
+                  <input ng-change="updateUserActive(selectedUser.properties.active)" id="activeSwitch"
+                    name="activeSwitch" type="checkbox" ng-model="selectedUser.properties.active" />
+                  <label for="activeSwitch" class="label-primary"></label>
+                </div>
+              </div>
+            </div>
+            <!-- <a class="pull-right btn btn-warning btn-xs" data-nodrag ng-click="addToGroup(user)" ng-class="{'disabled': !selectedGroupData}" title="Add User to Group">
+              <span class="glyphicon glyphicon glyphicon-log-in"></span>
+            </a> -->
+            <div class="row">
+              <div class="col-md-12" style="text-align: center;">
+                <a class=" btn btn-danger btn-sm userBtn" data-nodrag ng-click="deleteUser(selectedUser)"
+                  title="Delete User">
+                  <span class="glyphicon glyphicon glyphicon-trash"></span>
+                </a>
+                <a class=" btn btn-success btn-sm userBtn" data-nodrag ng-click="inviteUser(selectedUser, false)"
+                  title="Invite User">
+                  <span class="glyphicon glyphicon glyphicon-envelope"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" ng-model="userName" class="form-control" placeholder="Filter by name">
+          </div>
+          <div ng-show="permissionsLoading" class="messageDiv">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+
+          <div class="list-group" ng-show="!permissionsLoading">
+            <button class="list-group-item userDefinition" ng-repeat="user in users | filter : userName"
+              ng-click="selectUser(user)"
+              ng-class="{ 'list-group-item-info': user.properties.active&&user._id!=selectedUser._id,'list-group-item-success': user.properties.active&&user._id==selectedUser._id }">
+              {{user.properties._labelRef}} ({{user.properties.email}})
+
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="col-lg-2 col-md-3 col-sm-12 stickyPanel">
+
+
+
+
+      <div class="panel panel-primary transparent " style="height: 90vh; overflow-y: auto;"
+        ng-if=" groupType == 'Group'">
+        <div class="panel-heading">
+          Groups
+          <div class="btn btn-success btn-xs pull-right" ng-click="openAddGroupPrompt()">
+            <span class="glyphicon glyphicon-plus"></span>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="well" ng-show='selectedGroup'>
+            <div class="row">
+              <div class="form-group ">
+                <div class="col-md-12">
+                  <label class="control-label">Group Name</label>
+                  <input class="form-control" ng-model="selectedGroup.properties.name"
+                    ng-blur="patchGroupProperty(selectedGroup._id,{group:selectedGroup.properties.name})">
+                  <button style="margin-top: 5px;" ng-click="removeGroup()"
+                    class="btn btn-xs btn-block btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" ng-model="groupName.name" ng-if="groupType === 'Group'" class="form-control"
+              placeholder="Filter by name">
+          </div>
+
+          <div ng-show="permissionsLoading" class="messageDiv">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <div class="list-group" ng-show="!permissionsLoading" ng-if="groupType === 'Group'">
+            <button href="" class="list-group-item " ng-class="{'list-group-item-success':selectedGroup._id==group._id}"
+              ng-repeat="group in groups | filter : groupName | orderBy: 'properties.name'" ng-click="selectGroup(group)">
+              {{ group.properties.name }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="panel panel-primary transparent " style="height: 50vh; overflow-y: auto;"
+        ng-if=" groupType !== 'Group'">
+        <div class="panel-heading">
+          Teams
+          <div class="btn btn-success btn-xs pull-right" ng-click="openAddTeamPrompt()">
+            <span class="glyphicon glyphicon-plus"></span>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="well" ng-show='selectedTeam'>
+            <div class="row">
+              <div class="form-group ">
+                <div class="col-md-12">
+                  <label class="control-label">Team Name</label>
+                  <input class="form-control" ng-model="selectedTeam.properties.name"
+                    ng-blur="patchGroupProperty(selectedTeam._id,{groupName:selectedTeam.properties.name})">
+                  <button style="margin-top: 5px;" ng-click="removeTeam()" class="btn btn-xs btn-block btn-danger"><span
+                      class="glyphicon glyphicon-trash"></span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" ng-model="teamName.name" ng-if="groupType === 'Team'" class="form-control"
+              placeholder="Filter by name">
+          </div>
+
+          <div ng-show="permissionsLoading" class="messageDiv">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <div class="list-group" ng-if="groupType === 'Team'" ng-show="!permissionsLoading">
+            <button href="" class="list-group-item " ng-class="{'list-group-item-success':selectedTeam._id==team._id}"
+              ng-repeat="team in teams | filter : teamName | orderBy: 'properties.name'" ng-click="selectTeam(team)">
+              {{ team.properties.name }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEAM ROLES DEFINITION -->
+      <div class="panel panel-success transparent " style="height: 40vh; overflow-y: auto;"
+        ng-if="groupType === 'Team'">
+        <div class="panel-heading">
+          Role Definitions
+          <div class="btn btn-success btn-xs pull-right" ng-click="openAddRolePrompt()">
+            <span class="glyphicon glyphicon-plus"></span>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="well" ng-show='selectedRoleDefinition'>
+            <div class="row">
+              <div class="form-group ">
+                <div class="col-md-12">
+                  <label class="control-label">Role Name</label>
+                  <input class="form-control" ng-model="selectedRoleDefinition.name"
+                    ng-blur="patchTeamRoleDefinition()">
+                  <label class="control-label">Role Access</label>
+                  <select ng-change="patchTeamRoleDefinition()" class="form-control"
+                    ng-model="selectedRoleDefinition.accessLevel">
+                    <option value="none">None</option>
+                    <option value="visitor">Visitor</option>
+                    <option value="reader">Reader</option>
+                    <option value="writer">Writer</option>
+                    <option value="manager">Manager</option>
+                  </select>
+                  <button style="margin-top: 5px;" ng-click="removeRole()" class="btn btn-xs btn-block btn-danger"><span
+                      class="glyphicon glyphicon-trash"></span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" ng-model="roleName" class="form-control" placeholder="Filter by name">
+          </div>
+          <div class="list-group">
+            <button href="" class="list-group-item" ng-click="selectRoleDefinition(role)"
+              ng-repeat="role in allRoles | filter : roleName | orderBy: 'name'">
+              {{ role.name }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- PANNEAU PRINCIPAL -->
+    <div class="col-lg-7 col-md-6 col-sm-12">
+
+      <!-- GRAPH PANEL -->
+      <div class="panel panel-primary transparent ">
+        <div class="panel-heading">Graph Access View
+          <div class="btn-group">
+            <div class="btn btn-success btn-xs " ng-click="buildGraph();">
+              <span class="glyphicon glyphicon-refresh"></span>Refresh
+            </div>
+
+            <div class="btn btn-info btn-xs " ng-click="cy.fit();">
+              <span class="glyphicon glyphicon glyphicon-fullscreen"></span> Fit
+            </div>
+          </div>
+          <style>
+            label.switch-label {
+              position: absolute;
+              top: 5px;
+            }
+
+            label.switch-left-label {
+              left: -60px;
+            }
+
+            label.switch-right-label {
+              right: -52px;
+            }
+          </style>
+          <!-- Rounded switch -->
+          <label class="switch ">
+            <label class="switch-left-label switch-label">Groups</label>
+            <input type="checkbox" ng-change="changeGroupType()" ng-model='groupTypeSelection'>
+            <span class="slider round"></span>
+            <label class="switch-right-label  switch-label">Teams</label>
+          </label>
+        </div>
+        <div class="panel-body" style="padding:0px">
+          <div ng-show="permissionsLoading" class="messageDiv">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <div id="permissionsGraph" ng-show="!permissionsLoading" style="height:500px;"></div>
+        </div>
+      </div>
+
+      <style>
+        li>a.disconnectBtn {
+          visibility: hidden;
+        }
+
+        li:hover>a.disconnectBtn {
+          visibility: visible;
+        }
+      </style>
+      <div class="row">
+        <!-- 'ADD' GROUPS OR TEAMS PANEL -->
+        <!-- PARENT GROUPS PANEL -->
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="panel panel-info transparent" ng-if="groupType === 'Group' && selectedNode">
+            <div class="panel-heading">
+              Groups it belongs to :
+              <div class="btn btn-success btn-xs pull-right" ng-click='openPotentialParents()'> Add
+                {{selectedNode.properties.name}} to other
+                Groups</div>
+            </div>
+            <div class=" panel-body">
+              <ul class="list-group">
+                <li href="" class="list-group-item" ng-repeat="parentNode in parentsNodes">
+                  {{ parentNode.properties.name }}
+                  <a class="btn btn-xs btn-warning disconnectBtn pull-right"
+                    ng-click="openDisconnectionConfirm(parentNode,selectedNode)">Disconnect</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- MEMBERS GROUPS PANEL -->
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="panel panel-info transparent" ng-if="groupType === 'Group'  && selectedNode && !selectedUser">
+            <div class="panel-heading">
+              Members it has:
+              <div class="btn-group pull-right">
+                <button type="button" class="btn btn-success btn-xs " ng-click='openAddGroupMember()'>Add a
+                  Group
+                </button>
+                <button type="button" s class="btn btn-success btn-xs " ng-click='openAddUserMember()'>
+                  Add a User
+                </button>
+              </div>
+            </div>
+            <div class=" panel-body">
+              <ul class="list-group">
+                <li href="" class="list-group-item" ng-repeat="member in members">
+                  {{ member.name || (member.firstName + ' ' + member.lastName) }}
+                  <a class="btn btn-xs btn-warning disconnectBtn pull-right"
+                    ng-click="openDisconnectionConfirm(selectedNode,member)">Disconnect</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- TEAMS PANELS -->
+
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="panel panel-info transparent" ng-if="groupType === 'Team' && selectedRole">
+            <div class="panel-heading">
+              Team Members
+              <div class="btn btn-success btn-xs" ng-click='openTeamMemberAdd()'>Add Team Member</div>
+              <div class="btn btn-danger btn-xs" ng-click='openTeamMemberRemove()'>Remove Team Role</div>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li href="" class="list-group-item" ng-repeat="member in members">
+                  {{ member.name || (member.firstName + ' ' + member.lastName) }}
+                  <a class="btn btn-xs btn-warning disconnectBtn pull-right"
+                    ng-click="openDisconnectionConfirm(selectedNode,member)">Disconnect</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class=" col-md-12 col-sm-12">
+          <div class="panel panel-info transparent" ng-if="groupType === 'Team' && selectedTeam">
+            <div class="panel-heading">
+              Team Details
+              <div class="btn btn-warning  btn-xs" ng-click='initTeamRoles()'>Init/Reset Team</div>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li href="" class="list-group-item" ng-repeat="member in teamMembers track by $index">
+                  <span class="label label-info">{{member.teamRole}}</span>
+                  {{ member.name || (member.firstName + ' ' + member.lastName) }}
+                  <a class="btn btn-xs btn-warning disconnectBtn pull-right"
+                    ng-click="openDisconnectionConfirm(member.teamRoleNode,member)">Disconnect</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERMISSIONS PANEL -->
+      <div class="panel panel-warning transparent" ng-if="nodePermissions.length > 0 && groupType=='Group'">
+        <div class="panel-heading">
+          Permissions
+        </div>
+        <div class=" panel-body">
+
+          <div class="form-group">
+            <input type="text" ng-model="permissionName.name" class="form-control"
+              placeholder="Filter by Permission name">
+          </div>
+          <style>
+            th {
+              text-align: center;
+              vertical-align: middle !important;
+            }
+          </style>
+          <table class="table table-responsive table-condensed table-striped">
+            <thead>
+              <tr>
+                <th width="24%" rowspan="2">Nodetype</th>
+                <th width="10%" rowspan="2" ng-show="groupType === 'Group'">Can Create?</th>
+                <th width="60%" colspan="6">Access Levels</th>
+                <th width="6%" ng-show="!selectedUser">Update</th>
+              </tr>
+              <tr>
+                <th width="10%" class="subMenu">None</th>
+                <th width="10%" class="subMenu">Visitor</th>
+                <th width="10%" class="subMenu">Reader</th>
+                <th width="10%" class="subMenu">Writer</th>
+                <th width="10%" class="subMenu">Manager</th>
+                <th width="10%" class="subMenu">Result</th>
+                <th ng-show="!selectedUser" class="subMenu">
+                  <div class="btn btn-warning btn-xs saveBtn" style="text-align: center;"
+                    ng-click='updateAllPermissions(permission)'>
+                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="permission in nodePermissions | filter: permissionName | orderBy : 'name'" ng-if="permission.name!='permissionSet'">
+                <td>
+                  {{permission.label}} (<small>{{ permission.name }}</small>)
+                </td>
+                <td ng-show="groupType === 'Group'">
+                  <div class="material-switch" style="margin-bottom: 2px; margin-top: 2px;">
+                    <input ng-disabled='selectedUser || permission.inherited.canCreate'
+                      id="overwrite-switch-{{ permission.name }}" name="overwrite-can-create" type="checkbox"
+                      ng-model='permission.canCreate'
+                      ng-change="checkIfLowerAccess(permission);triggerChangeCheck(permission,'canCreate');" />
+                    <label for="overwrite-switch-{{ permission.name }}" class="label-success"></label>
+                  </div>
+                </td>
+                <td colspan="5" style="vertical-align: middle;">
+                  <div class='rangeWrapper' ng-class="{'inherited':permission.inheritedMin}">
+                    <input ng-disabled='selectedUser' style="width: 86%;margin-left: auto; margin-right: auto"
+                      ng-change="checkIfLowerAccess(permission);triggerChangeCheck(permission,'role')" type="range"
+                      ng-model='permission.role' id="acces-level" name="access-level" min="0" max="4" value="0"
+                      step="1">
+                  </div>
+                </td>
+                <style>
+                  .rangeWrapper {
+                    border: dotted 1px #d9534f;
+                    border-radius: 15px;
+                    padding-top: 2px;
+                    padding-bottom: 2px;
+                  }
+
+                  .rangeWrapper.inherited {
+                    border: solid 2px gray;
+                  }
+                </style>
+                <td class="accessLevelLive" style="text-align: center;"><span class="label " ng-class="{
+                'label-default':permission.role==0,
+                'label-info':permission.role==1,
+                'label-primary':permission.role==2,
+                'label-success':permission.role==3,
+                'label-warning':permission.role==4}">{{accessLevels[permission.role]}}</span>
+                </td>
+
+                <td ng-show="!selectedUser">
+                  <div class="btn btn-info btn-xs saveBtn" style="text-align: center;"
+                    ng-click='updatePermission(permission,true)' ng-show="permission.changed"><span
+                      class="glyphicon glyphicon-floppy-disk"></span></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-include src="'config/app/components/groupsAndUsers/modals/addUser.html'"></ng-include>
+  <ng-include src="'config/app/components/groupsAndUsers/modals/userApiKey.html'"></ng-include>
+</div>

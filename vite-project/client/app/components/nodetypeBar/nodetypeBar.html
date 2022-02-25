@@ -1,0 +1,42 @@
+<div ng-controller="nodetypeBarController">
+    <ul>
+        <div class="thumbnail userNavBlock" >
+            <img ng-src="{{appContext.user.properties.pict}}" ng-click="openAccountModal()" href="" check-image alt="user picture" class="img-circle" title="{{appContext.user.properties.email}}" >
+        </div>
+    </ul>
+
+    <ul id="sidebar-menu-list">
+        <div class="panel-group nodetypeBar" id="accordion">
+            <div class="panel panel-default" id="panel-{{category.name}}"
+                ng-repeat="category in datamodel.categories | filter:{ hidden: 'false'}" style="margin-top:0px">
+                <a data-toggle="collapse" data-parent="#accordion" href="#{{category.name}}"
+                data-i18n="sidebar.{{category.name}}" ng-click="setCurrentCategory(category)">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <!-- <img ng-src="images/categories/{{category.icon}}" class="categoryIcon img-responsive pull-left" /> -->
+
+                            <i class="{{category.icon}}"></i> {{ 'default.category.' + category.name | translate }}
+                      
+                    </h4>
+                </div>  </a>
+                <div id="{{category.name}}" class="panel-collapse collapse <%= catIndex< 1 ? 'in' : '' %>">
+                    <div class="panel-body">
+                        <ul class="nav nav-sidebar leftPanelNavigation">
+                            <li listNodes="1" searchFirst="1" customList="0" customPage="0"
+                                nodeTypeName="{{nodetype.name}}" nodeTypeLabel="{{nodetype.name}}"
+                                ng-repeat="nodetype in datamodel.nodetypes | filter: { category: '!-1', category: category.catid }: true">
+                                <a sidebarjs-toggle data-i18n="leftPanelItems.{{nodetype.name}}"
+                                    ng-click="setCurrentNodetype(nodetype);"
+                                    style="text-transform: capitalize; cursor:pointer;">
+                                    <img ng-src="{{nodetype.ui.defaultThumbnail}}" class=" img-responsive pull-left"
+                                        style="max-width:20px;margin-right:5px;margin-left:-8px;" />
+                                    {{ 'default.nodetype.' + nodetype.name | translate }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ul>
+</div>

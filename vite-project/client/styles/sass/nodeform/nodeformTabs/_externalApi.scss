@@ -1,0 +1,44 @@
+$lightGray: #eee;
+$boxShadow: rgba(0, 0, 0, 0.15);
+
+.tab-partScores h4 {
+  font-weight: 600;
+  margin-top: 0px;
+  margin-bottom: 16px;
+}
+
+.score-card {
+  --tw-shadow: 0 1px 3px 0 #0000001a,0 1px 2px 0 #0000000f!important;
+  box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)!important;
+
+  padding: 16px 32px;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px $boxShadow;
+  border: 1px solid $lightGray;
+  border: 1px solid #bdc3c7;
+  margin-bottom: 16px;
+}
+
+.tab-partScores .score-label {
+  padding: 8px 24px;
+  border-radius: 16px;
+  font-size: 16px;
+  color: white;
+  background-color: #999;
+}
+
+.low-risk {
+  background-color: green!important;
+}
+
+.medium-risk {
+  background-color: orange!important;
+}
+
+.high-risk {
+  background-color: red!important;
+}
+
+.strong-risk {
+  background-color: green!important;
+}

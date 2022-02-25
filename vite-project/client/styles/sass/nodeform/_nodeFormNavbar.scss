@@ -1,0 +1,87 @@
+$gold: #ecc389;
+$purple: #725a8d;
+$darkBlue: rgb(103, 145, 182);
+$lightBlue: #5bc0de8f;
+$darkRed: rgba(248, 23, 23,1);
+$lightRed: #d09999;
+$skyGray: rgba(133, 192, 222,1);
+$bgImageLinear: rgba(255, 255, 255, 1);
+$navbarEditingborderRight: #e6e6e6;
+$navbarEditingborderLeft: #a7a7a7;
+$navbarViewingLockedBorderRight: #eee;
+$navbarViewingLockedEditableBorderLeft: #ddd;
+$navbarInverseBorderRight: #222222;
+$navbarInverseBorderLeft: #111111;
+$navbarUnsavedChangesBorderLeft: #ffbfbf;
+$navbarUnsavedChangesBorderRight: #9c1b1b;
+
+.navbar-editing {
+  background-color: $gold;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 5px, $bgImageLinear 5px, $bgImageLinear 10px);
+}
+
+.navbar-viewing {
+  background-color: $lightBlue;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 5px, $bgImageLinear 5px, $bgImageLinear 10px);
+}
+
+.navbar-locked {
+  background-color: $lightRed;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 5px, $bgImageLinear 5px, $bgImageLinear 10px);
+}
+
+.navbar-editable {
+  background-color: $skyGray;
+}
+
+.navbar-unsavedChanges {
+  background-color: $gold;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 5px, $lightRed 5px, $lightRed 10px);
+}
+
+
+/* navbar divider */
+.navbar .divider-vertical {
+  height: 40px;
+  margin: 5px 12px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.navbar-editing .divider-vertical {
+  border-right: 1px solid $navbarEditingborderRight;
+  border-left: 1px solid $navbarEditingborderLeft;
+}
+
+.navbar-viewing .divider-vertical {
+  border-right: 1px solid $navbarViewingLockedBorderRight;
+  border-left: 1px solid $navbarViewingLockedEditableBorderLeft;
+}
+
+.navbar-locked .divider-vertical {
+  border-right: 1px solid $navbarViewingLockedBorderRight;
+  border-left: 1px solid $navbarViewingLockedEditableBorderLeft;
+}
+
+.navbar-editable .divider-vertical {
+  border-right: 1px solid white;
+  border-left: 1px solid $navbarViewingLockedEditableBorderLeft;
+}
+
+.navbar-unsavedChanges .divider-vertical {
+  border-right: 1px solid $navbarUnsavedChangesBorderRight;
+  border-left: 1px solid $navbarUnsavedChangesBorderLeft;
+}
+
+
+.navbar-inverse .divider-vertical {
+  border-right-color: $navbarInverseBorderRight;
+  border-left-color: $navbarInverseBorderLeft;
+}
+
+@media (max-width: 767px) {
+  .navbar-collapse .nav>.divider-vertical {
+    display: none;
+  }
+}

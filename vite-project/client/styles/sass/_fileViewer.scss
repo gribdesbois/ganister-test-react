@@ -1,0 +1,57 @@
+$fileViewerShadowColor: rgba(0, 0, 0, 0.72);
+$fileViewerBG: #eee;
+$fileViewerIconBorder: #bbbbbb;
+$fileViewerIconHoverBG: #D99;
+
+/* FILE VIEWER */
+#fileViewer {
+  display: none;
+  height: 100%;
+  right: 0;
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  background-color: $fileViewerBG;
+  z-index: 1000;
+  border-left: solid 2px black;
+  -webkit-box-shadow: -5px 5px 25px 0px $fileViewerShadowColor;
+  -moz-box-shadow: -5px 5px 25px 0px $fileViewerShadowColor;
+  box-shadow: -5px 5px 25px 0px $fileViewerShadowColor;
+  border-bottom-left-radius: 1px;
+}
+
+#fileViewerContent {
+  overflow-y: none;
+  float: left;
+  height: 100% !important;
+  width: 100%;
+}
+
+#fileViewerTools {
+  height: 100%;
+  width: 20px;
+  float: left;
+}
+
+#fileViewerCADOptions {
+  width: 100%;
+  float: left;
+}
+
+.firstFileViewerIcon {
+  border-top: 2px solid $fileViewerIconBorder;
+}
+
+.fileViewerIcons {
+  padding: 2px 0px;
+  border-bottom: 2px solid $fileViewerIconBorder;
+}
+
+.fileViewerIcons:hover {
+  cursor: pointer;
+  background-color: $fileViewerIconHoverBG;
+}
+
+.fileViewerIcons span {
+  margin-left: 3px;
+}

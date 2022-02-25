@@ -1,0 +1,42 @@
+<div ng-controller="relatedObjectController">
+    <nav class="navbar navbar-default " style="margin-bottom: 0px;">
+        <div class="container-fluid">
+            <div class='btn-group'>
+                <button type='button' class='btn btn-default btn-info btn-sm navbar-btn' ng-click="refreshTable()" title="Refresh">
+                    <span class='glyphicon glyphicon-refresh' aria-hidden='true'></span>
+                </button>
+                <button type='button' class='btn btn-default btn-success btn-sm navbar-btn' title="Add New"
+                    ng-show="rel.attachMode==='create' || rel.attachMode==='both' || rel.attachMode === 'createAttach'"
+                    ng-disabled="!isLatestVersion || (!lockedByCurrentUser && rel._definition.lockLinked)"
+                    ng-click="createAsRelationship(rel)">
+                    <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+                    <span data-i18n='relationships.buttons.create' />
+                </button>
+                <button type='button' class='btn btn-default btn-success btn-sm navbar-btn' title="Add Existing"
+                ng-show="rel.attachMode==='attach' || rel.attachMode==='both' || rel.attachMode === 'createAttach'"
+                    ng-disabled="!isLatestVersion || (!lockedByCurrentUser && rel._definition.lockLinked)"
+                    ng-click="addAsRelationship(rel)">
+                    <span class='glyphicon glyphicon-log-in' aria-hidden='true'></span>
+                    <span data-i18n='relationships.buttons.attach' />
+                </button>
+                <button type='button' class='btn btn-default btn-warning btn-sm selectionLinked navbar-btn'
+                    ng-disabled="!isLatestVersion || (!lockedByCurrentUser && rel._definition.lockLinked)"
+                    ng-click="detach(rel)" title="Detach"
+                    ng-show="rel.attachMode==='attach' || rel.attachMode==='both' || rel.attachMode === 'createAttach'">
+                    <span class='glyphicon glyphicon-log-out' aria-hidden='true'></span>
+                    <span data-i18n='relationships.buttons.unlink' />
+                </button>
+                <button type='button' class='btn btn-danger btn-sm selectionLinked navbar-btn'
+                    ng-show="rel.attachMode==='both' || rel.attachMode==='create'"
+                    ng-disabled="!isLatestVersion || (!lockedByCurrentUser && rel._definition.lockLinked)"
+                    ng-click="detachAndDelete(rel)" title="Detach & Delete">
+                    <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
+                    <span data-i18n='relationships.buttons.delete' />
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div ag-grid="gridOptions" class="ag-theme-balham" style="height: 75vh; width:100%; "></div>
+    <div ng-include="'app/shared/modals/relationshipModal/relationshipModal.html'"></div>
+    <div ng-include="'app/shared/modals/nodeRelModal/nodeRelModal.html'"></div>
+</div>

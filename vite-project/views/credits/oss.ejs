@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app.ganister" class="js">
+
+<head profile="http://www.w3.org/2005/10/profile">
+  <link rel="icon" href="images/G.ico">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Ganister is Powered By...</title>
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap core CSS -->
+  <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h1>Open Source Credits</h1>
+    <h2>We are powered by...</h2>
+    <h4><a href="/g-config">Back to G-config</a></h4>
+    <ul style="column-count: 3;">
+      <% Object.keys(packages).forEach(function(pack) { %>
+        <li>
+          <a href="https://www.npmjs.com/package/<%- pack %>" target="_blank">
+            <%- pack %> <span class="badge">
+                <%- packages[pack] %>
+              </span>
+          </a>
+        </li>
+        <% }) %>
+    </ul>
+  </div>
+</body>

@@ -1,0 +1,161 @@
+<div ng-controller="settingsController">
+  <div class="row-container" style="padding: 30px;">
+
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-6 table-responsive">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">UX Settings</h3>
+          </div>
+          <div class="panel-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-4 control-label">Nodetype Name</label>
+                <div class="col-sm-8">
+                  <select ng-model="settings.ux.nodetypeNameLocation"
+                    ng-change="updateUX('nodetypeNameLocation',settings.ux.nodetypeNameLocation)" class="form-control">
+                    <option value="L">LEFT</option>
+                    <option value="R">RIGHT</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-4 control-label">Notification Duration (ms)</label>
+                <div class="col-sm-8">
+                  <input type="integer" ng-blur="updateUX('notificationTime',settings.ux.notificationTime)"
+                    class="form-control" ng-model="settings.ux.notificationTime" placeholder="3">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputhideOrganicPermissionsInNode" class="col-sm-4 control-label">Hide Organic Permissions in Nodes</label>
+                <div class="col-sm-8">
+                  <input type="checkbox" id="inputhideOrganicPermissionsInNode"
+                    ng-change="updateUX('hideOrganicPermissionsInNode',settings.ux.hideOrganicPermissionsInNode)" class=""
+                    ng-model="settings.ux.hideOrganicPermissionsInNode">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputpaginationEnabled" class="col-sm-4 control-label">Pagination Enabled</label>
+                <div class="col-sm-8">
+                  <input type="checkbox" id="inputpaginationEnabled"
+                    ng-change="updateUX('paginationEnabled',settings.ux.paginationEnabled)" class=""
+                    ng-model="settings.ux.paginationEnabled">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputpromotionByNodeManager" class="col-sm-4 control-label">Allow Promotion by Node Manager</label>
+                <div class="col-sm-8">
+                  <input type="checkbox" id="inputpromotionByNodeManager"
+                    ng-change="updateUX('promotionByNodeManager',settings.ux.promotionByNodeManager)" class=""
+                    ng-model="settings.ux.promotionByNodeManager">
+                </div>
+              </div>
+              <div class="form-group" ng-show="settings.ux.paginationEnabled">
+                <label for="inputDefaultPaginationSize" class="col-sm-4 control-label">Default Pagination Size</label>
+                <div class="col-sm-8">
+                  <input type="integer" id="inputDefaultPaginationSize"
+                    ng-blur="updateUX('defaultPaginationSize',settings.ux.defaultPaginationSize)" class="form-control"
+                    ng-model="settings.ux.defaultPaginationSize" placeholder="100">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputactiveGoogleLogin" class="col-sm-4 control-label">Active Google Login</label>
+                <div class="col-sm-8">
+                  <input type="checkbox" id="inputactiveGoogleLogin"
+                    ng-change="updateUX('activeGoogleLogin',settings.ux.activeGoogleLogin)" class=""
+                    ng-model="settings.ux.activeGoogleLogin" >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="appLogo" class="col-sm-4 control-label">App Logo</label>
+                <div id="appLogo" ngf-drop ngf-select ng-model="appLogo" ngf-drag-over-class="'dragover'"
+                  ngf-allow-dir="true" ngf-pattern="'image/*'" accept="image/*" class="col-sm-8"
+                  style="max-height: 200px; max-width: 200px">
+                  <a class="thumbnail" style="min-height: 30px;">
+                    <img ng-src="{{settings.ux.appLogo}}" class="img-rounded" />
+                  </a>
+                </div>
+                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+              </div>
+              <div class="form-group">
+                <label for="logo" class="col-sm-4 control-label">Logo</label>
+                <div id="logo" ngf-drop ngf-select ng-model="logo" ngf-drag-over-class="'dragover'" ngf-allow-dir="true"
+                  ngf-pattern="'image/*'" accept="image/*" class="col-sm-8" style="max-height: 200px; max-width: 200px">
+                  <a class="thumbnail" style="min-height: 30px;">
+                    <img ng-src="{{settings.ux.logo}}" class="img-rounded" />
+                  </a>
+                </div>
+                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+              </div>
+              <div class="form-group">
+                <label for="logoSmaller" class="col-sm-4 control-label">Logo Smaller</label>
+                <div id="logoSmaller" ngf-drop ngf-select ng-model="logoSmaller" ngf-drag-over-class="'dragover'"
+                  ngf-allow-dir="true" ngf-pattern="'image/*'" accept="image/*" class="col-sm-8"
+                  style="max-height: 200px; max-width: 200px">
+                  <a class="thumbnail" style="min-height: 30px;">
+                    <img ng-src="{{settings.ux.logoSmaller}}" class="img-rounded" />
+                  </a>
+                </div>
+                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Versioning labels</label>
+                <div class="col-sm-8">
+                  <div class="col-sm-12" ng-repeat="label in settings.ux.versioningLabels">
+                    <label for="{{label.value}}" class="col-sm-2 text-capitalize">{{label.value}}</label>
+                    <input type="text" id="{{label.value}}" class="form-control" ng-model="label.name"
+                      ng-blur="updateVersioningLabels(label)">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 table-responsive">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Read Only Settings</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hovered table-striped table-responsive">
+              <thead>
+                <tr>
+                  <th>Setting</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Hostname</td>
+                  <td>{{settings.hostName}}</td>
+                </tr>
+                <tr>
+                  <td>URL</td>
+                  <td>{{settings.url}}</td>
+                </tr>
+                <tr>
+                  <td>Port</td>
+                  <td>{{settings.port}}</td>
+                </tr>
+                <tr>
+                  <td>Active Emails</td>
+                  <td>{{settings.activeEmails}}</td>
+                </tr>
+                <tr>
+                  <td>Vault</td>
+                  <td>{{settings.vault.name}}</td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>{{settings.email.auth.user}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1027 @@
+{
+	"package": "cmii",
+	"elementType": "node",
+	"name": "eco",
+	"codification": {
+		"prefixes": [
+			{
+				"type": "text",
+				"value": "ECO"
+			}
+		],
+		"value": {
+			"size": "6",
+			"fillWith": "0",
+			"type": "highest"
+		}
+	},
+	"gridColumnsHeader": "",
+	"category": 4,
+	"lifecycle": {
+		"states": [
+			{
+				"name": "draft",
+				"label": "Draft",
+				"start": true,
+				"owner": "role_71a6a3c573f44f4755349e31c52dba0f",
+				"lockable": true,
+				"id": "state_b94f720169871dac37a62d7b68e26d39",
+				"ui_color": "primary",
+				"positionY": 140,
+				"positionX": -20
+			},
+			{
+				"name": "reviewingRequest",
+				"label": "Reviewing Request",
+				"start": false,
+				"owner": "role_30d31470127fa204e04b94d8d667ff98",
+				"lockable": false,
+				"id": "state_c860a0cb67a99998f96c507141d1e77d",
+				"ui_color": "info",
+				"positionY": 260,
+				"positionX": 80
+			},
+			{
+				"name": "inWork",
+				"label": "In Work",
+				"start": false,
+				"owner": "role_71a6a3c573f44f4755349e31c52dba0f",
+				"lockable": true,
+				"id": "state_7d3282a6170745778baef3fb66130be4",
+				"ui_color": "warning",
+				"positionY": 160.72183002953076,
+				"positionX": 183.91524542754516
+			},
+			{
+				"name": "validatingChange",
+				"label": "Validating Change",
+				"start": false,
+				"owner": "role_eb248639ed399f8a928a162d093207b1",
+				"lockable": false,
+				"id": "state_3dfe5d764f2a10550685a6df0cb27475",
+				"ui_color": "info",
+				"positionY": 227.67824921944302,
+				"positionX": 311.5078887732509
+			},
+			{
+				"name": "released",
+				"label": "Released",
+				"start": false,
+				"lockable": false,
+				"id": "state_74f1f5f916ba170508658d988d53f168",
+				"ui_color": "success",
+				"released": true,
+				"positionY": 226.95900617111485,
+				"positionX": 457.5394438662541
+			},
+			{
+				"name": "cancelled",
+				"label": "Cancelled",
+				"start": false,
+				"lockable": false,
+				"id": "state_26c274da426d7a28cfd399feb7743669",
+				"ui_color": "default",
+				"positionY": 110.44163234195027,
+				"positionX": 306.52361999972055
+			}
+		],
+		"transitions": [
+			{
+				"from": "state_b94f720169871dac37a62d7b68e26d39",
+				"to": "state_c860a0cb67a99998f96c507141d1e77d",
+				"server_pre": [],
+				"server_post": [],
+				"id": "trans_4d164763b14d571cbf46770cc0492828"
+			},
+			{
+				"from": "state_c860a0cb67a99998f96c507141d1e77d",
+				"to": "state_7d3282a6170745778baef3fb66130be4",
+				"client_pre": [],
+				"server_pre": [
+					{
+						"name": "processECOActions"
+					}
+				],
+				"server_post": [],
+				"id": "trans_72b5113bd9b43dd4254976f10f0ffc71"
+			},
+			{
+				"from": "state_7d3282a6170745778baef3fb66130be4",
+				"to": "state_3dfe5d764f2a10550685a6df0cb27475",
+				"server_pre": [],
+				"id": "trans_68146c78b4758495d42331bcb742272b"
+			},
+			{
+				"from": "state_3dfe5d764f2a10550685a6df0cb27475",
+				"to": "state_7d3282a6170745778baef3fb66130be4",
+				"server_pre": [],
+				"id": "trans_899e1a8633c7e46ee6660e40bbd65bad"
+			},
+			{
+				"from": "state_3dfe5d764f2a10550685a6df0cb27475",
+				"to": "state_74f1f5f916ba170508658d988d53f168",
+				"server_pre": [],
+				"id": "trans_75ccde72d232c3c848595dca487c4bc1"
+			},
+			{
+				"from": "state_c860a0cb67a99998f96c507141d1e77d",
+				"to": "state_b94f720169871dac37a62d7b68e26d39",
+				"id": "trans_cc12f6df484a8b8613aae4e0c737a88f"
+			},
+			{
+				"from": "state_7d3282a6170745778baef3fb66130be4",
+				"to": "state_26c274da426d7a28cfd399feb7743669",
+				"server_pre": [
+					{
+						"name": ""
+					}
+				],
+				"server_post": [],
+				"id": "trans_74bc396bc47eb88da5d248d4742cd7f8"
+			},
+			{
+				"from": "state_7d3282a6170745778baef3fb66130be4",
+				"to": "state_b94f720169871dac37a62d7b68e26d39",
+				"server_pre": [
+					{
+						"name": "cancelECO"
+					}
+				],
+				"preMethods": [],
+				"postMethods": [],
+				"id": "trans_e5a14d24ee1f9066a8e8c58740928cb4"
+			}
+		],
+		"roles": [
+			{
+				"name": "changeManager",
+				"label": "Change Manager",
+				"id": "role_eb248639ed399f8a928a162d093207b1"
+			},
+			{
+				"name": "changeReviewer",
+				"label": "Change Reviewer",
+				"id": "role_30d31470127fa204e04b94d8d667ff98"
+			},
+			{
+				"id": "role_71a6a3c573f44f4755349e31c52dba0f",
+				"name": "creator",
+				"label": "Creator"
+			}
+		]
+	},
+	"properties": [
+		{
+			"id": "prop_376efbe4c47504348ac9ad0dc4d48e9f",
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "ID",
+				"fr": "ID"
+			}
+		},
+		{
+			"id": "prop_5bd2f982d01f1e37efac0221eba7a7f8",
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"group": "IDENTIFICATION",
+			"translations": {
+				"default": "Ref",
+				"fr": "Ref",
+				"el": "ref"
+			}
+		},
+		{
+			"id": "prop_0c7b22186a989959710a2ed22eaa969c",
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "State",
+				"fr": "Statut",
+				"el": "State"
+			}
+		},
+		{
+			"id": "prop_4f259f66593f3371bfe2b64a8eaf03e6",
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"group": "IDENTIFICATION",
+			"translations": {
+				"default": "Created On",
+				"fr": "Créé le"
+			}
+		},
+		{
+			"id": "prop_ffa766f0508a84bada08fc98e78c11fe",
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Modified On",
+				"fr": "Modifié le"
+			}
+		},
+		{
+			"id": "prop_5fae58d859953f212333d3e555acc3d2",
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"id": "prop_30aeb5cb6792a81167833e4c732025a5",
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"id": "prop_19cff3574a55b04871cc3b9282d26d86",
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"translations": {
+				"default": "_lockState"
+			}
+		},
+		{
+			"name": "_thumbnail",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"relationship": "nt_5d79e3adnkcd25615637df85e122bcac",
+			"id": "prop_b7bed8fc-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_thumbnail",
+				"fr": "Vignette"
+			}
+		},
+		{
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed8fd-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_releasedOn",
+				"fr": "Validé le"
+			}
+		},
+		{
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed8fe-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_version",
+				"fr": "Révision"
+			}
+		},
+		{
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed8ff-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_versionedOn",
+				"fr": "Révisé le"
+			}
+		},
+		{
+			"name": "_history",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed901-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_history",
+				"fr": "Historique"
+			}
+		},
+		{
+			"name": "_promotions",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed902-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_promotions",
+				"fr": "Promotions"
+			}
+		},
+		{
+			"name": "_serialized",
+			"type": "multiselect",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_b7bed903-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_serialized"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed904-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_createdBy",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_lockedBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed905-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedBy"
+			}
+		},
+		{
+			"name": "_lockedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed906-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedOn"
+			}
+		},
+		{
+			"id": "prop_f97fc9b0-1024-11ea-9253-71f6df956a85",
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created By Name",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_releasedUntil",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"id": "prop_42c0ef80-6558-11eb-94db-07bad80f0c9e",
+			"translations": {
+				"default": "_releasedUntil",
+				"fr": "Valide jusqu'à"
+			}
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"id": "prop_db24d269f719f95be62ce814981af9ef",
+			"group": "IDENTIFICATION",
+			"core": false,
+			"translations": {
+				"default": "Name",
+				"fr": "Nom",
+				"el": "name"
+			}
+		},
+		{
+			"name": "type",
+			"type": "select",
+			"id": "prop_252c521872ba9e4e5cfecbe840b4b5fa",
+			"group": "DESCRIPTION",
+			"core": false,
+			"listSource": "ecoTypes",
+			"translations": {
+				"default": "Type",
+				"fr": "Type",
+				"el": "type"
+			}
+		},
+		{
+			"name": "relDate",
+			"type": "date",
+			"id": "prop_603c000d5a82ad35db11ae290cb456d8",
+			"core": false,
+			"translations": {
+				"default": "Rel Date",
+				"fr": "Date Release",
+				"el": "relDate"
+			}
+		},
+		{
+			"name": "effDate",
+			"type": "date",
+			"id": "prop_e482ff61716477008ed1047e8fb58312",
+			"core": false,
+			"translations": {
+				"default": "Eff Date",
+				"fr": "Date Effective",
+				"el": "effDate"
+			}
+		},
+		{
+			"name": "changeCreator",
+			"type": "string",
+			"nodeType": "User",
+			"diplayprop": [
+				"firstName",
+				"lastName"
+			],
+			"id": "prop_fe0f8f77cbac3b8e2901c944649a7039",
+			"core": false,
+			"group": "IDENTIFICATION",
+			"translations": {
+				"default": "Change Creator",
+				"fr": "Créateur",
+				"el": "changeCreator"
+			}
+		},
+		{
+			"name": "changeActor",
+			"type": "string",
+			"nodeType": "User",
+			"diplayprop": [
+				"firstName",
+				"lastName"
+			],
+			"id": "prop_2a5b052d8c2057fa9af013a1cac210b5",
+			"core": false,
+			"group": "IDENTIFICATION",
+			"translations": {
+				"default": "Change Actor",
+				"fr": "Acteur",
+				"el": "changeActor"
+			}
+		},
+		{
+			"id": "prop_ead073a0-68f4-11ea-9fee-05fe1fcbdbf9",
+			"name": "basis",
+			"type": "richText",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"group": "DESCRIPTION",
+			"translations": {
+				"default": "basis",
+				"fr": "Base"
+			}
+		},
+		{
+			"id": "prop_eff2b0f0-68f4-11ea-9fee-05fe1fcbdbf9",
+			"name": "proposedSolution",
+			"type": "richText",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"group": "DESCRIPTION",
+			"translations": {
+				"default": "proposedSolution",
+				"fr": "Solution Proposée"
+			}
+		},
+		{
+			"id": "prop_f5a60ab0-68f4-11ea-9fee-05fe1fcbdbf9",
+			"name": "fastTrack",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"group": "DESCRIPTION",
+			"translations": {
+				"default": "fastTrack",
+				"fr": "Fast Track"
+			}
+		},
+		{
+			"id": "prop_fe1f6240-68f4-11ea-9fee-05fe1fcbdbf9",
+			"name": "techReviewPriority",
+			"type": "select",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"listSource": "techReviewPriority",
+			"group": "REVIEW",
+			"translations": {
+				"default": "techReviewPriority",
+				"fr": "Priorité Revue Tech"
+			}
+		},
+		{
+			"id": "prop_0903ed70-68f5-11ea-9fee-05fe1fcbdbf9",
+			"name": "techReviewAndRecommandations",
+			"type": "richText",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"group": "REVIEW",
+			"translations": {
+				"default": "techReviewAndRecommandations",
+				"fr": "Revue Tech et recommandations"
+			}
+		},
+		{
+			"id": "prop_192f7c00-68f5-11ea-9fee-05fe1fcbdbf9",
+			"name": "nonRecurringCost",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"group": "REVIEW",
+			"translations": {
+				"default": "nonRecurringCost",
+				"fr": "Coût non récurrent"
+			}
+		},
+		{
+			"id": "prop_1f026bb0-68f5-11ea-9fee-05fe1fcbdbf9",
+			"name": "recurringCost",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"group": "REVIEW",
+			"translations": {
+				"default": "recurringCost",
+				"fr": "Coût récurrent"
+			}
+		},
+		{
+			"id": "prop_26ba20f0-68f5-11ea-9fee-05fe1fcbdbf9",
+			"name": "techReviewDecision",
+			"type": "select",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"listSource": "techReviewDecision",
+			"group": "REVIEW",
+			"translations": {
+				"default": "techReviewDecision",
+				"fr": "Décision de Revue Tech"
+			}
+		},
+		{
+			"id": "prop_2e729980-68f5-11ea-9fee-05fe1fcbdbf9",
+			"name": "disposition",
+			"type": "richText",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"group": "DECISION",
+			"translations": {
+				"default": "disposition",
+				"fr": "Disposition"
+			}
+		},
+		{
+			"id": "prop_376e6780-68f5-11ea-9fee-05fe1fcbdbf9",
+			"name": "comments",
+			"type": "richText",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"group": "DECISION",
+			"translations": {
+				"default": "comments",
+				"fr": "Commentaires"
+			}
+		}
+	],
+	"ui": {
+		"defaultThumbnail": "images/ecoLogo.png",
+		"form": {
+			"definition": {
+				"A": [
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "false",
+						"id": "co_6cbba46d-31c1-4b8b-88ae-7a1c61989018",
+						"label": "IDENTIFICATION",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_be5b4f77-8328-450b-bfb5-9a4aa6c0d1d2",
+									"property": "_ref",
+									"size": "2",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_0e9e8364-80a4-446a-a4d1-f923e02705c6",
+									"property": "_createdOn",
+									"size": "2",
+									"propertyType": "date",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_e2fbe1b7-ea2e-4c74-baa2-4f0b70dc4695",
+									"property": "name",
+									"size": "2",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_7722190e-597b-4303-b968-1633c2e021d9",
+									"property": "changeCreator",
+									"size": "2",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_3b6efb2f-82db-4fd1-ac3d-18efb6257687",
+									"property": "changeActor",
+									"size": "2",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					},
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "true",
+						"id": "co_6f874227-8f6d-4fca-bb7f-fca4443ecaef",
+						"label": "DESCRIPTION",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_22608a72-a2dc-4ef8-a737-13bf2d942ed1",
+									"property": "type",
+									"size": "4",
+									"propertyType": "select",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_76658b31-bb5c-4dd0-b807-8e9d769df07b",
+									"property": "fastTrack",
+									"size": "4",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_b4bf3d5d-306e-4a2e-87ba-205c1088a3f9",
+									"property": "basis",
+									"size": "6",
+									"propertyType": "richText",
+									"textareaRows": 4,
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_6dc0196e-4b51-4d76-aeca-ddf999fa74c8",
+									"property": "proposedSolution",
+									"size": "6",
+									"propertyType": "richText",
+									"textareaRows": 4,
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					},
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "true",
+						"id": "co_48225154-c4b3-4834-92fb-2c6a38574714",
+						"label": "REVIEW",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_d7a9b285-be7a-4add-a569-20b7fc1cb95d",
+									"property": "techReviewPriority",
+									"size": "2",
+									"propertyType": "select",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_684b5f79-74cf-4cbe-9e27-d8341a6531ff",
+									"property": "nonRecurringCost",
+									"size": "2",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_d53ff1dd-bfad-40e6-a45a-bb02deea4715",
+									"property": "recurringCost",
+									"size": "2",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_245efbee-3589-4c31-b0de-5cf9a9be6697",
+									"property": "techReviewDecision",
+									"size": "4",
+									"propertyType": "select",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_e450832e-cb09-481e-bbe2-6a2a669beac3",
+									"property": "techReviewAndRecommandations",
+									"size": "12",
+									"propertyType": "richText",
+									"textareaRows": 3,
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					},
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "true",
+						"id": "co_c2e21c54-2a1b-468b-bfa6-26ac3374e16c",
+						"label": "DECISION",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_12cb94c9-7e28-4fde-8334-d489b65f1571",
+									"property": "disposition",
+									"size": "7",
+									"propertyType": "richText",
+									"textareaRows": 4,
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_78b7f5a3-372b-453f-a234-a19a05971041",
+									"property": "comments",
+									"size": "5",
+									"propertyType": "richText",
+									"textareaRows": 4,
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					}
+				]
+			},
+			"ng": {},
+			"labelCase": "capitalize"
+		},
+		"gridColumns": [
+			{
+				"label": "Title",
+				"type": "text",
+				"id": "uigc_6986498b13bbdb7a9007a71f7fd9cefa",
+				"property": "eco.name",
+				"order": 1
+			},
+			{
+				"label": "_modifiedOn",
+				"type": "date",
+				"id": "uigc_cb23bfc80463b9c0107b58fceff440fc",
+				"cellRendered": true,
+				"property": "eco._modifiedOn",
+				"order": 2
+			},
+			{
+				"label": "_createdOn",
+				"type": "date",
+				"id": "uigc_1739159d7ed6bd1c91b986034dec439b",
+				"cellRendered": true,
+				"property": "eco._createdOn",
+				"order": 3
+			},
+			{
+				"id": "uigc_ebec9200-68f4-11ea-9fee-05fe1fcbdbf9",
+				"type": "markdown",
+				"property": "eco.basis",
+				"order": 4,
+				"autoHeight": true,
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_f05458f0-68f4-11ea-9fee-05fe1fcbdbf9",
+				"type": "markdown",
+				"property": "eco.proposedSolution",
+				"order": 5,
+				"autoHeight": true,
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_f6991d40-68f4-11ea-9fee-05fe1fcbdbf9",
+				"type": "string",
+				"property": "eco.fastTrack",
+				"order": 6
+			},
+			{
+				"id": "uigc_fea50d00-68f4-11ea-9fee-05fe1fcbdbf9",
+				"type": "string",
+				"property": "eco.techReviewPriority",
+				"order": 7
+			},
+			{
+				"id": "uigc_09fca550-68f5-11ea-9fee-05fe1fcbdbf9",
+				"type": "markdown",
+				"property": "eco.techReviewAndRecommandations",
+				"order": 8
+			},
+			{
+				"id": "uigc_1a065400-68f5-11ea-9fee-05fe1fcbdbf9",
+				"type": "string",
+				"property": "eco.nonRecurringCost",
+				"order": 9
+			},
+			{
+				"id": "uigc_1f838290-68f5-11ea-9fee-05fe1fcbdbf9",
+				"type": "double",
+				"property": "eco.recurringCost",
+				"order": 10
+			},
+			{
+				"id": "uigc_27430000-68f5-11ea-9fee-05fe1fcbdbf9",
+				"type": "string",
+				"property": "eco.techReviewDecision",
+				"order": 11
+			},
+			{
+				"id": "uigc_2eefdfd0-68f5-11ea-9fee-05fe1fcbdbf9",
+				"type": "markdown",
+				"property": "eco.disposition",
+				"order": 12
+			},
+			{
+				"id": "uigc_37e5ba60-68f5-11ea-9fee-05fe1fcbdbf9",
+				"type": "markdown",
+				"property": "eco.comments",
+				"order": 13
+			}
+		],
+		"tabs": [
+			{
+				"id": "tab_5a107c56d5a38adac0fbbe122044ea31",
+				"name": "Impact Matrix",
+				"tabContentType": "ECOimpactMatrix",
+				"translations": {
+					"default": "Impact Matrix",
+					"fr": "Matrice d'impact"
+				}
+			},
+			{
+				"id": "tab_5c107c56d5a38adac0fbbe122044ea31",
+				"name": "ecoAssignment",
+				"tabContentType": "relatedObject",
+				"relationships": "nt_b5ac67d2d6c12fe7f6f3e76fcc674271",
+				"translations": {
+					"default": "ecoAssignment",
+					"en": "Assignments",
+					"fr": "Activités"
+				}
+			},
+			{
+				"id": "tab_f148afa636d60910528fc06831671ab4",
+				"name": "PRs",
+				"tabContentType": "relatedObject",
+				"relationships": "nt_fc47033da5af7bb0fc44494dd4b4cdc1",
+				"translations": {
+					"default": "PRs",
+					"fr": "PRs"
+				}
+			},
+			{
+				"id": "tab_e99d994ac67eecf7d902f635e0e91c10",
+				"name": "Documents",
+				"tabContentType": "relatedObject",
+				"relationships": "nt_763d2eb5091097b4a4edad0f3aedc8ed",
+				"attachMode": "both",
+				"openOnCreation": true,
+				"translations": {
+					"default": "Documents",
+					"fr": "Documents"
+				}
+			}
+		]
+	},
+	"id": "nt_417412cb36773c3659cfc0ac0347f43f",
+	"maidenName": {
+		"elements": [
+			"_ref"
+		]
+	},
+	"translations": {
+		"default": "ECO",
+		"en": "ECO",
+		"fr": "ECO"
+	}
+}

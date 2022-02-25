@@ -1,0 +1,13 @@
+node:
+  '200':
+    description: Returns node
+    schema:
+      $ref: '../definitions/nodes.yaml#/Node'
+  '401':
+    $ref: './errors.yaml#/401'
+  '403':
+    $ref: './errors.yaml#/403'
+  '404':
+    $ref: './errors.yaml#/404'
+  '500':
+    $ref: './errors.yaml#/500'

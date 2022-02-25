@@ -1,0 +1,82 @@
+<div class="navbar" id="TOPBAR" role="navigation" ng-controller="topBarController"
+    ng-style="{'background-image': topBarBackgroundColor }">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left ">
+                <img ng-src="{{appDefinition.uxConfig.appLogo}}" height="50" title="{{instanceType}}" />
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a ng-show="online" href="#" title="{{'default.topbar.online'|translate}}"><i
+                            class="fas fa-wifi"></i></a>
+                    <a ng-show="!online" href="#" title="{{'default.topbar.offline'|translate}}"><i class="fas fa-wifi"
+                            style="opacity: 0.3;color: black;"></i></a>
+                </li>
+                <li>
+                    <a href="#" ng-click="loginElectron()"
+                        title="{{gfsLogged ?  'default.topbar.GFSLoggedIn' : 'default.topbar.GFSLogIn' | translate}}">
+                        <img ng-show="gfsLogged" src="images/ganistergfsactive.webp" style="width:24px; height:24px;" />
+                        <img ng-show="!gfsLogged" src="images/ganistergfsinactive.webp"
+                            style="width:24px; height:24px;" />
+                    </a>
+                </li>
+                <li class="dropdown" ng-show="users.length > 1">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <span id="active-users-newMessage" class="badge badge-message"
+                            ng-show="youGotMail.length > 0">{{yougotmail.length}} <span
+                                class="glyphicon glyphicon-envelope"></span></span>
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span id="active-users-badge" class="badge badge-light">{{users.length-1}}</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="languageselector" ng-repeat="user in users | filter: {_id:'!'+appContext.user._id}"
+                            sidebarjs-toggle="chatBar">
+                            <a href="#" ng-click="selectInterlocutor(user)">
+                                <span class="badge user-newMessage"
+                                    ng-show="user.youGotMail && user.numOfMsgs.length>0">{{user.numOfMsgs}}</span>
+                                <span>{{user.properties._labelRef}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="/help/documentation" target="_blank"><i class="fas fa-book"></i></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <img ng-src="images/flags/{{appContext.user.language.key}}.png" class="flag"
+                            style="margin-right:5px;" /><span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="languageselector" ng-repeat="lang in appDefinition.app.languages"
+                            value="{{lang.key}}" ng-click="setActiveLanguage(lang.key)">
+                            <a href="#"><img ng-src="images/flags/{{lang.key}}.png" class="pull-left flag" />
+                                {{lang.name}}</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li ng-if="appContext.user.properties._isAdmin || appContext.user.properties._isAdmin"><a
+                        href="/g-config" title="{{'default.topbar.gotoappconfig'|translate}}"> <span
+                            class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+                <li><a ng-click="search.openSearch()" href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+
+
+                <li><a ng-click="logout()" href="#"><span class="glyphicon glyphicon-off"></span></a></li>
+                <li>
+                    <img ng-src="{{appContext.user.properties.pict}}" alt="user picture"
+                        title="{{appContext.user.properties.email}}" ng-click="openAccountModal()"
+                        class="img-circle userBadge">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

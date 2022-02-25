@@ -1,0 +1,38 @@
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"
+    ng-controller="reverseRelationshipControllerToolbar">
+    <nav class="navbar navbar-default ">
+        <div class="container-fluid">
+            <form class="form-inline navbar-form">
+                <div class="form-group">
+                    <!-- toolbar -->
+                    <div class="btn btn-info btn-sm" ng-click="reloadTables()">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <div ng-controller="reverseRelationshipController">
+        <div class="panel panel-default" ng-repeat="reverseRelationship in reverseRelationships">
+            <div class="panel-heading" role="tab" id="heading-{{node._id}}-{{reverseRelationship.id}}">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion"
+                        href="#collapse-{{node._id}}-{{reverseRelationship.id}}" aria-expanded="true"
+                        aria-controls="collapse-{{node._id}}-{{reverseRelationship.id}}"
+                        title="Semantic link = {{reverseRelationship.name}}">
+                        {{'default.nodetype.'+ reverseRelationship.sourceNode.name | translate | capitalize}} [{{reverseRelationship.linkName | capitalize}}]
+                        [{{reverseRelationship.nodesCount}}]
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse-{{node._id}}-{{reverseRelationship.id}}" class="panel-collapse collapse in"
+                role="tabpanel" aria-labelledby="heading-{{node._id}}-{{reverseRelationship.id}}"
+                ng-show="reverseRelationship.nodesCount > 0">
+                <div class="panel-body">
+                    <div ng-if="reverseRelationship.gridOptions" ag-grid="reverseRelationship.gridOptions"
+                        class="ag-theme-balham" style="height: 360px; width:100%; "></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

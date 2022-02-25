@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Ganister - Password Reset</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/ganister.png"/>
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" />
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/changePassword/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/changepassword/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<img src="/images/LogoGanisterColorSquare.webp" style="width: 100%" />
+
+					<span class="login100-form-title p-b-34 p-t-27">
+						Set Password for <br><%=firstname%> <br>(<%=email%>)<span id="username"></span>
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Enter password">
+						<input id="pass" class="input100" type="password" name="pass" placeholder="Password">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter same password">
+						<input id="pass2" class="input100" type="password" name="pass2" placeholder="Validate Password">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button type="submit" class="login100-form-btn">
+							Set New Password
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!--===============================================================================================-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<!--===============================================================================================-->
+<script>
+	const token = <%-JSON.stringify(token)%>;
+	const firstname = <%-JSON.stringify(firstname)%>;
+	const email = <%-JSON.stringify(email)%>;
+(function ($) {
+    "use strict";
+
+    /*==================================================================
+    [ Focus input ]*/
+    $('.input100').each(function(){
+        $(this).on('blur', function(){
+            if($(this).val().trim() != "") {
+                $(this).addClass('has-val');
+            }
+            else {
+                $(this).removeClass('has-val');
+            }
+        })    
+    })
+  
+  
+    /*==================================================================
+    [ Validate ]*/
+    var input = $('.validate-input .input100');
+    var pass = $('#pass');
+    var pass2 = $('#pass2');
+    $('.validate-form').on('submit',function(e){
+		var check = true;
+		e.preventDefault();
+		for(var i=0; i<input.length; i++) {
+				if(validate(input[i]) == false){
+						showValidate(input[i]);
+						check = false;
+				}
+		}
+
+		if (pass.val() !== pass2.val()) {
+				showValidate(pass2);
+				check = false;
+		}
+		
+		if (!check) return false;
+		console.log('Processing ');
+		//  Process Form
+		$.ajax({
+			url: '/api/v0/users/changepassword/',
+			dataType: 'json',
+			type: 'post',
+			contentType: 'application/json',
+			data: JSON.stringify({ email, token, password: pass.val() }),
+			processData: false,
+			complete: (jqXHR, textStatus) => {
+				if (jqXHR.status === 200) {
+					Swal.fire({
+						type: 'success',
+						title: 'Success',
+						text: jqXHR.responseText,
+					}).then((result) => {
+						if (result.value) {
+							window.location.href = "/";
+						}
+					});
+				} else {
+					Swal.fire({
+						type: 'error',
+						title: 'Error',
+						text: jqXHR.responseText,
+					})
+				}
+			}
+		});
+    });
+
+
+    $('.validate-form .input100').each(function(){
+        $(this).focus(function(){
+           hideValidate(this);
+        });
+    });
+
+    function validate (input) {
+        if($(input).val().trim() == ''){
+            return false;
+        }
+    }
+
+    function showValidate(input) {
+        var thisAlert = $(input).parent();
+        $(thisAlert).addClass('alert-validate');
+    }
+
+    function hideValidate(input) {
+        var thisAlert = $(input).parent();
+        $(thisAlert).removeClass('alert-validate');
+    }
+    
+    /*==================================================================
+    [ Show pass ]*/
+    // var showPass = 0;
+    // $('.btn-show-pass').on('click', function(){
+    //     if(showPass == 0) {
+    //         $(this).next('input').attr('type','text');
+    //         $(this).addClass('active');
+    //         showPass = 1;
+    //     }
+    //     else {
+    //         $(this).next('input').attr('type','password');
+    //         $(this).removeClass('active');
+    //         showPass = 0;
+    //     }
+        
+    // });
+
+		console.log(token)
+})(jQuery);
+
+//  Fetch User from Ganister based on token
+
+//  Update user if form is valid
+ 
+
+</script>
+</body>
+</html>

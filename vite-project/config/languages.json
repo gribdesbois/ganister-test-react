@@ -1,0 +1,51 @@
+[
+	{
+		"name": "Default",
+		"key": "default",
+		"fallbackLanguage": true,
+		"preferredLanguage": false,
+		"active": true
+	},
+	{
+		"name": "English",
+		"key": "en",
+		"fallbackLanguage": false,
+		"preferredLanguage": false,
+		"active": true
+	},
+	{
+		"name": "Deutsche",
+		"key": "de",
+		"fallbackLanguage": false,
+		"preferredLanguage": false,
+		"active": false
+	},
+	{
+		"key": "fr",
+		"name": "Français",
+		"fallbackLanguage": false,
+		"preferredLanguage": true,
+		"active": true
+	},
+	{
+		"key": "el",
+		"name": "Greek, Modern",
+		"fallbackLanguage": false,
+		"preferredLanguage": false,
+		"active": false
+	},
+	{
+		"key": "sp",
+		"name": "Español",
+		"fallbackLanguage": false,
+		"preferredLanguage": false,
+		"active": false
+	},
+	{
+		"key": "it",
+		"name": "Italiano",
+		"fallbackLanguage": false,
+		"preferredLanguage": false,
+		"active": false
+	}
+]

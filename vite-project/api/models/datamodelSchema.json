@@ -1,0 +1,595 @@
+{
+	"type": "object",
+	"properties": {
+		"nodetypeDefinitions": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"package": {
+						"type": [
+							"integer",
+							"string"
+						]
+					},
+					"lifecycle": {
+						"type": "object",
+						"properties": {
+							"states": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string"
+										},
+										"label": {
+											"type": "string"
+										},
+										"labelClass": {
+											"type": "string"
+										},
+										"start": {
+											"type": "boolean"
+										},
+										"lockable": {
+											"type": "boolean"
+										},
+										"owner": {
+											"type": "string"
+										},
+										"ui_color": {
+											"type": "string"
+										},
+										"id": {
+											"type": "string"
+										},
+										"released": {
+											"type": "boolean"
+										},
+										"tracked": {
+											"type": "boolean"
+										},
+										"configFreeze": {
+											"type": "boolean"
+										}
+									},
+									"required": [
+										"name",
+										"label",
+										"start",
+										"lockable",
+										"id"
+									]
+								}
+							},
+							"transitions": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"from": {
+											"type": "string"
+										},
+										"to": {
+											"type": "string"
+										},
+										"id": {
+											"type": "string"
+										},
+										"method": {
+											"type": "string"
+										},
+										"server_pre": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"name": {
+														"type": "string"
+													},
+													"params": {
+														"type": "object"
+													}
+												},
+												"required": [
+													"name"
+												]
+											}
+										},
+										"server_post": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"name": {
+														"type": "string"
+													},
+													"params": {
+														"type": "object"
+													}
+												},
+												"required": [
+													"name"
+												]
+											}
+										},
+										"client_pre": {
+											"type": "array"
+										},
+										"client_post": {
+											"type": "array"
+										}
+									},
+									"required": [
+										"id",
+										"from",
+										"to"
+									]
+								}
+							},
+							"roles": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string"
+										},
+										"label": {
+											"type": "string"
+										},
+										"id": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"name",
+										"label",
+										"id"
+									]
+								}
+							}
+						},
+						"required": [
+							"states",
+							"transitions",
+							"roles"
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"category": {
+						"type": [
+							"integer",
+							"null"
+						]
+					},
+					"category_event": {
+						"type": "object",
+						"properties": {
+							"listItems": {
+								"type": "boolean"
+							},
+							"searchFirst": {
+								"type": "boolean"
+							},
+							"customPage": {
+								"type": "boolean"
+							},
+							"customList": {
+								"type": "boolean"
+							}
+						},
+						"required": [
+							"listItems",
+							"searchFirst",
+							"customPage",
+							"customList"
+						]
+					},
+					"properties": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"name": {
+									"type": "string"
+								},
+								"type": {
+									"type": "string"
+								},
+								"label": {
+									"type": "string"
+								},
+								"id": {
+									"type": "string"
+								},
+								"core": {
+									"type": "boolean"
+								},
+								"unique": {
+									"type": "boolean"
+								},
+								"mandatory": {
+									"type": "boolean"
+								},
+								"relationship": {
+									"type": "string"
+								},
+								"generated": {
+									"type": [
+										"string",
+										"boolean"
+									]
+								},
+								"listSource": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"name",
+								"type",
+								"id"
+							]
+						}
+					},
+					"ui": {
+						"type": "object",
+						"properties": {
+							"gridColumns": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"property": {
+											"type": "string"
+										},
+										"type": {
+											"type": "string"
+										},
+										"width": {
+											"type": [
+												"integer",
+												"null"
+											]
+										},
+										"height": {
+											"type": [
+												"integer",
+												"null"
+											]
+										},
+										"hide": {
+											"type": "boolean"
+										},
+										"autoHeight": {
+											"type": "boolean"
+										},
+										"cellClass": {
+											"type": "string"
+										},
+										"editable": {
+											"type": "boolean"
+										},
+										"cellRendered": {
+											"type": "boolean"
+										},
+										"orgCellRendered": {
+											"type": "boolean"
+										}
+									},
+									"required": [
+										"type"
+									]
+								}
+							},
+							"tabs": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "string"
+										},
+										"name": {
+											"type": "string"
+										},
+										"tabContentType": {
+											"type": "string"
+										},
+										"relationships": {
+											"type": [
+												"string",
+												"array"
+											]
+										},
+										"attachMode": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"id",
+										"name"
+									]
+								}
+							},
+							"form": {
+								"type": "object",
+								"properties": {
+									"definition": {
+										"type": "object"
+									},
+									"ng": {
+										"type": "object",
+										"properties": {
+											"schema": {
+												"type": "object"
+											},
+											"form": {
+												"type": "array"
+											}
+										}
+									}
+								},
+								"required": [
+									"definition",
+									"ng"
+								]
+							}
+						},
+						"required": [
+							"gridColumns",
+							"defaultThumbnail",
+							"tabs",
+							"form"
+						]
+					},
+					"parentConfigFreeze": {
+						"type": "boolean"
+					},
+					"forbidDuplRels": {
+						"type": "boolean"
+					},
+					"actions": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"preClientMethod": {
+									"type": "string"
+								},
+								"serverMethod": {
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string"
+										},
+										"params": {
+											"type": "object"
+										}
+									},
+									"required": [
+										"name"
+									]
+								},
+								"postClientMethod": {
+									"type": "string"
+								},
+								"availableOn": {
+									"type": "string"
+								},
+								"accessLevel": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"name",
+								"id"
+							]
+						}
+					},
+					"methods": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "string"
+								},
+								"trigger": {
+									"type": "string"
+								},
+								"description": {
+									"type": "string"
+								},
+								"params": {
+									"type": "object"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"id",
+								"name"
+							]
+						}
+					}
+				},
+				"required": [
+					"package",
+					"elementType",
+					"lifecycle",
+					"name",
+					"category",
+					"properties",
+					"ui"
+				]
+			}
+		},
+		"methods": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"package": {
+						"type": [
+							"integer",
+							"string"
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"serverOrClient": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"package",
+					"name",
+					"serverOrClient",
+					"code"
+				]
+			}
+		},
+		"packages": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"id": {
+						"type": [
+							"string",
+							"integer"
+						]
+					},
+					"dependencies": {
+						"type": "array",
+						"items": {
+							"type": [
+								"string",
+								"integer"
+							]
+						}
+					}
+				},
+				"required": [
+					"name",
+					"id",
+					"dependencies"
+				]
+			}
+		},
+		"leftPanelCategories": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"catid": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"label": {
+						"type": "string"
+					},
+					"icon": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"catid",
+					"name",
+					"icon"
+				]
+			}
+		},
+		"listOfValues": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"items": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"value": {
+									"type": "string"
+								},
+								"label": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"value",
+								"label"
+							]
+						}
+					}
+				},
+				"required": [
+					"name",
+					"id",
+					"items"
+				]
+			}
+		},
+		"reports": {
+			"type": "array"
+		},
+		"uxConfig": {
+			"type": "object",
+			"properties": {
+				"logo": {
+					"type": "string"
+				},
+				"logoSmaller": {
+					"type": "string"
+				},
+				"appLogo": {
+					"type": "string"
+				},
+				"nodetypeNameLocation": {
+					"type": "string"
+				},
+				"notificationTime": {
+					"type": "string"
+				},
+				"activeGoogleLogin": {
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"required": [
+		"nodetypeDefinitions",
+		"methods",
+		"packages",
+		"leftPanelCategories",
+		"listOfValues",
+		"reports"
+	]
+}

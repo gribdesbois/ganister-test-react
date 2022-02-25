@@ -1,0 +1,824 @@
+{
+	"category": {
+		"Design": {
+			"default": "Design",
+			"fr": "Conceptions"
+		},
+		"DesignChanges": {
+			"default": "Design Changes",
+			"fr": "Evolutions"
+		},
+		"MRO": {
+			"default": "MRO",
+			"fr": "MCO"
+		},
+		"Manufacturing": {
+			"default": "Manufacturing",
+			"fr": "Fabrication"
+		},
+		"MyBOM": {
+			"default": "MyBOM",
+			"fr": "Accueil"
+		},
+		"Portfolio": {
+			"default": "Portfolio",
+			"fr": "Portfolio"
+		},
+		"Purchasing": {
+			"default": "Purchasing",
+			"fr": "Achats"
+		},
+		"Requirements": {
+			"default": "Requirements",
+			"fr": "Exigences"
+		},
+		"SystemEngineering": {
+			"default": "System Engineering",
+			"fr": "Ingénierie Systèmes"
+		},
+		"administration": {
+			"default": "Administration",
+			"fr": "Administration"
+		},
+		"hidden": {
+			"default": "hidden",
+			"fr": "masqué"
+		}
+	},
+	"dashboard": {
+		"showActives": {
+			"default": "Show Actives",
+			"fr": "Afficher les actifs"
+		},
+		"showInactives": {
+			"default": "Show Inactives",
+			"fr": "Afficher les inactifs"
+		},
+		"activeWorkflows": {
+			"default": "Active Workflows",
+			"en": "Active Workflows",
+			"fr": "Workflows Actifs",
+			"el": "Active Workflows"
+		},
+		"assignments": {
+			"default": "Assignments",
+			"en": "Assignments",
+			"fr": "Activités",
+			"el": "Αναθέσεις"
+		},
+		"engineeringChangeRequest": {
+			"default": "Engineering Change Request",
+			"en": "Engineering Change Request ",
+			"fr": "ECR",
+			"el": "Engineering Change Request"
+		},
+		"inactiveWorkflows": {
+			"default": "Inactive Workflows",
+			"en": "Inactive Workflows",
+			"fr": "Workflows Inactifs",
+			"el": "Inactive Workflows"
+		},
+		"problemReports": {
+			"default": "Problem Reports",
+			"en": "Problem Reports",
+			"fr": "Rapport d'Anomalie",
+			"el": "Problem Reports"
+		},
+		"recentItems": {
+			"default": "Recent Items",
+			"en": "Recent Items",
+			"fr": "items récents",
+			"el": "Recent Items"
+		},
+		"refresh": {
+			"default": "Refresh",
+			"en": "Refresh",
+			"fr": "Rafraichir",
+			"el": "Refresh"
+		},
+		"removeItems": {
+			"default": "Remove Items",
+			"en": "Remove Items",
+			"fr": "Retirer les items",
+			"el": "Remove Items"
+		},
+		"tasksProgress": {
+			"default": "Tasks",
+			"fr": "Taches"
+		},
+		"workflows": {
+			"default": "Workflows",
+			"fr": "Workflows"
+		}
+	},
+	"node": {
+		"locked": {
+			"default": "Locked",
+			"fr": "Noeud en Edition"
+		},
+		"unlocked": {
+			"default": "Unlocked",
+			"fr": "Noeud Libéré"
+		},
+		"highestaccess": {
+			"default": "Highest Access",
+			"fr": "Accès Max"
+		},
+		"toggleGraphView": {
+			"default": "Toggle Graph View",
+			"fr": "Afficher/Masquer Vue Graph"
+		},
+		"toggleTimeline": {
+			"default": "Toggle History Timeline Panel",
+			"fr": "Afficher/Masquer Historique"
+		},
+		"relationshipCreated": {
+			"default": "Relationship created",
+			"fr": "Relation Créée"
+		},
+		"nodeDeleted": {
+			"default": "Node deleted",
+			"fr": "Noeud Supprimé"
+		},
+		"valueUpdated": {
+			"default": "Value updated",
+			"fr": "Valeur mise à jour"
+		},
+		"relationshipDeleted": {
+			"default": "Relationship deleted",
+			"fr": "Relation Supprimée"
+		},
+		"toggleUserAccessPanel": {
+			"default": "Toggle User Access Panel",
+			"fr": "Afficher/Masquer Accès Utilisateur"
+		},
+		"toggleUserAccessPathPanel": {
+			"default": "Toggle User Access Path Panel",
+			"fr": "Afficher/Masquer Chemin d'Accès Utilisateur"
+		},
+		"nodeLockableState": {
+			"default": "Not in a Lockable State",
+			"fr": "Statut non-éditable"
+		},
+		"alreadyInEco": {
+			"default": "Already in an ECO",
+			"fr": "Déjà Controllé par un ECO"
+		},
+		"clickToAccessEco": {
+			"default": "Click to Access Impacting ECO",
+			"fr": "Accéder à l'ECO rattaché"
+		},
+		"saveUnlockClose": {
+			"default": "Save, Unlock and Close",
+			"fr": "Enregistrer & Fermer."
+		},
+		"version": {
+			"default": "Version",
+			"fr": "Version"
+		},
+		"toggleLifecyclePanel": {
+			"default": "Toggle Lifecycle Panel",
+			"fr": "Afficher/Masquer le cycle de vie"
+		},
+		"CM": {
+			"default": "CM",
+			"fr": "CM",
+			"el": "CM"
+		},
+		"_ref": {
+			"default": "Ref",
+			"fr": "Ref",
+			"el": "Ref"
+		},
+		"_state": {
+			"default": "State",
+			"fr": "Statut",
+			"el": "State"
+		},
+		"action": {
+			"default": "Action",
+			"fr": "Action",
+			"el": "Action"
+		},
+		"actions": {
+			"default": "Actions",
+			"en": "Actions",
+			"de": "Actions",
+			"fr": "Actions",
+			"el": "Actions"
+		},
+		"actualStateManager": {
+			"default": "Actual State Manager",
+			"fr": "Responsable u Statut",
+			"el": "Actual State Manager"
+		},
+		"addAccess": {
+			"default": "Add Access",
+			"fr": "Ajouter Accès",
+			"el": "Add Access"
+		},
+		"addToECO": {
+			"default": "add to ECO",
+			"fr": "Ajouter à l'ECO",
+			"el": "add to ECO"
+		},
+		"addToHandledNotes": {
+			"default": "Add to Handled Notes",
+			"fr": "Ajouter à l'ECO",
+			"el": "Add to Handled Notes"
+		},
+		"addToPR": {
+			"default": "add to PR",
+			"fr": "Ajouter au PR",
+			"el": "add to PR"
+		},
+		"applicability": {
+			"default": "Applicability",
+			"fr": "Applicabilité",
+			"el": "Applicability"
+		},
+		"askMandatoryFieldsText": {
+			"default": "Please enter below the value for the above field:"
+		},
+		"change": {
+			"default": "Change",
+			"fr": "Evolution"
+		},
+		"comment": {
+			"default": "Comment",
+			"fr": "Commentaire",
+			"el": "Comment"
+		},
+		"compare": {
+			"default": "Compare",
+			"en": "compare",
+			"fr": "Comparer",
+			"el": "Compare"
+		},
+		"compareWithOther": {
+			"default": "with other",
+			"fr": "Avec autre Ref",
+			"el": "with other"
+		},
+		"compareWithVersion": {
+			"default": "with version",
+			"fr": "Avec autre Version",
+			"el": "with version"
+		},
+		"copyNodeId": {
+			"default": "Copy node ID",
+			"en": "Copy node ID",
+			"de": "Copy node ID",
+			"fr": "Copier l'ID du noeud"
+		},
+		"fileOpen": {
+			"default": "Open File",
+			"en": "Open File",
+			"de": "Open File",
+			"fr": "Ouvrir le Fichier"
+		},
+		"fileDownload": {
+			"default": "Download File",
+			"en": "Download File",
+			"de": "Download File",
+			"fr": "Télécharger le Fichier"
+		},
+		"editInfoData": {
+			"default": "Edit Info Data"
+		},
+		"getCypherQuery": {
+			"default": "Get Cypher Query",
+			"en": "Get Cypher Query",
+			"de": "Get Cypher Query",
+			"fr": "Copier la requête Cypher"
+		},
+		"graphView": {
+			"default": "Node Graph View"
+		},
+		"history": {
+			"default": "Node History",
+			"fr": "Historique",
+			"el": "History"
+		},
+		"impactedNodes": {
+			"default": "Impacted Nodes",
+			"fr": "Items Impactés",
+			"el": "Impacted Nodes"
+		},
+		"lifecycle": {
+			"default": "Lifecycle",
+			"fr": "Cycle de vie",
+			"el": "Lifecycle"
+		},
+		"lifecyclePromotions": {
+			"default": "Lifecycle Promotions",
+			"en": "Promotions",
+			"fr": "Promotions",
+			"el": "Promotions"
+		},
+		"lifecycleRoles": {
+			"default": "Lifecycle Roles",
+			"fr": "Responsabilités",
+			"el": "Lifecycle Roles"
+		},
+		"name": {
+			"default": "Name",
+			"fr": "Nom",
+			"el": "Όνομα"
+		},
+		"nodeDetail": {
+			"default": "Node Detail",
+			"fr": "Detail de l'Item",
+			"el": "Node Detail"
+		},
+		"open": {
+			"default": "Open",
+			"fr": "Ouvrir",
+			"el": "Open"
+		},
+		"option": {
+			"default": "Option",
+			"fr": "Option",
+			"el": "Option"
+		},
+		"permissionType": {
+			"default": "Permission Type",
+			"en": "Permission Type",
+			"fr": "Type de permission",
+			"el": "Τύπος άδειας"
+		},
+		"promote": {
+			"default": "Promote",
+			"fr": "Promouvoir",
+			"el": "Promote"
+		},
+		"mandatoryProperties": {
+			"default": "Mandatory Properties",
+			"fr": "Propriétés Obligatoires"
+		},
+		"mandatoryRelationships": {
+			"default": "Mandatory Relationships",
+			"fr": "Relations Obligatoires"
+		},
+		"others": {
+			"default": "Others",
+			"fr": "Autres"
+		},
+		"state": {
+			"default": "State",
+			"fr": "Statut"
+		},
+		"stateOwner": {
+			"default": "State Owner",
+			"fr": "Responsable"
+		},
+		"removeFromHandledNodes": {
+			"default": "Remove From Handled Nodes",
+			"fr": "Retirer le Controle de l'ECO",
+			"el": "Remove From Handled Nodes"
+		},
+		"replacementSelection": {
+			"default": "Replacement Selection",
+			"fr": "Selection d'un remplacement",
+			"el": "Replacement Selection"
+		},
+		"replacementType": {
+			"default": "Replacement Type",
+			"fr": "Type de Remplacement",
+			"el": "Replacement Type"
+		},
+		"revise": {
+			"default": "Revise",
+			"fr": "Réviser"
+		},
+		"role": {
+			"default": "Role",
+			"en": "Role",
+			"fr": "Rôle",
+			"el": "Role"
+		},
+		"select": {
+			"default": "Select",
+			"fr": "Selectionner",
+			"el": "Select"
+		},
+		"selectedStateManager": {
+			"default": "Selected State Manager",
+			"fr": "Selectionner le responsable du statut",
+			"el": "Selected State Manager"
+		},
+		"showLatest": {
+			"default": "Show Latest",
+			"fr": "Afficher les derniers",
+			"el": "Show Latest"
+		},
+		"submit": {
+			"default": "Submit",
+			"fr": "Soumettre",
+			"el": "Submit"
+		},
+		"userAccess": {
+			"default": "User Access",
+			"fr": "Accès Utilisateur",
+			"el": "User Access"
+		},
+		"userAccessPath": {
+			"default": "User Access Path",
+			"fr": "Chemin d'accès"
+		},
+		"versionOrForkNode": {
+			"default": "Version or Fork Node",
+			"fr": "Réviser ou Copier le noeud"
+		},
+		"versions": {
+			"default": "Versions",
+			"fr": "Versions",
+			"el": "Versions"
+		},
+		"warning": {
+			"default": "Warning",
+			"fr": "Warning",
+			"el": "Warning"
+		},
+		"reports": {
+			"default": "Reports",
+			"en": "Reports",
+			"fr": "Rapports"
+		},
+		"instanciateNode": {
+			"default": "Instanciate Node",
+			"fr": "Instancier le Noeud"
+		}
+	},
+	"nodeListing": {
+		"resultCountQueryMax": {
+			"default": "Result Count / Query Max limit",
+			"fr": "# Résultats / Limite Max"
+		},
+		"actions": {
+			"default": "Actions",
+			"fr": "Actions"
+		},
+		"add": {
+			"default": "Add",
+			"fr": "Ajouter",
+			"el": "Add"
+		},
+		"advancedSearch": {
+			"default": "Advanced Search",
+			"fr": "Recherche Avancée",
+			"el": "Advanced Search"
+		},
+		"clearFilters": {
+			"default": "Clear Filters",
+			"de": "Filter löschen",
+			"fr": "Effacer les filtres"
+		},
+		"delete": {
+			"default": "Delete",
+			"fr": "Supprimer",
+			"el": "Delete"
+		},
+		"listing": {
+			"default": "Listing",
+			"fr": "Liste",
+			"el": "Listing"
+		},
+		"resetColumns": {
+			"default": "Reset Columns Configuration",
+			"de": " Spaltenkonfiguration zurücksetzen",
+			"fr": "Reinitialiser la configuration des colonnes"
+		},
+		"runSearch": {
+			"default": "Run Search",
+			"de": "Suche starten",
+			"fr": "Lancer la recherche"
+		},
+		"unlock": {
+			"default": "Unlock",
+			"fr": "Deverrouiller"
+		},
+		"reports": {
+			"default": "Reports",
+			"en": "Reports",
+			"fr": "Rapport"
+		}
+	},
+	"shared": {
+		"topdown":{
+			"default": "Top-Down",
+			"en": "Top-Down",
+			"fr": "Haut->Bas"
+		},
+		"changelayout": {
+			"default": "Change Layout",
+			"en": "Change Layout",
+			"fr": "Modifier l'affichage"
+		},
+		"leftright":{
+			"default": "value updated",
+			"en": "Left-Right",
+			"fr": "Gauche->Droite"
+		},
+		"valueUpdated": {
+			"default": "value updated",
+			"en": "Value updated",
+			"fr": "Valeur mise à jour",
+			"el": "value updated"
+		},
+		"uploadFile": {
+			"default": "Upload File",
+			"fr": "Transférer le fichier"
+		},
+		"insertOrAttach": {
+			"default": "Insert new or Attach Node",
+			"fr": "Insérer ou Attacher"
+		},
+		"refresh": {
+			"default": "Refresh",
+			"en": "Refresh",
+			"fr": "Rafraichir",
+			"el": "Refresh"
+		},
+		"logoGanister": {
+			"default": "Ganister Logo",
+			"fr": "Logo Ganister"
+		},
+		"actor": {
+			"default": "Actor",
+			"fr": "Acteur",
+			"el": "Actor"
+		},
+		"add": {
+			"default": "Add",
+			"fr": "Ajouter",
+			"el": "Add"
+		},
+		"below": {
+			"default": "Below",
+			"fr": "Sous",
+			"el": "Below"
+		},
+		"cancel": {
+			"default": "Cancel",
+			"fr": "Annuler",
+			"el": "Cancel"
+		},
+		"cancelUnsavedChanges": {
+			"default": "You have unsaved items, do you want to cancel your changes?",
+			"fr": "Vous avez des éléments non enregistrés, annuler vos modifications?",
+			"el": "You have unsaved items, do you want to cancel your changes?"
+		},
+		"close": {
+			"default": "Close",
+			"en": "Close",
+			"fr": "Fermer",
+			"el": "Close"
+		},
+		"comment": {
+			"default": "Comment",
+			"fr": "Commentaire",
+			"el": "Comment"
+		},
+		"confirm": {
+			"default": "Confirm",
+			"fr": "Confirmer",
+			"el": "Confirm"
+		},
+		"confirmRemoveRole": {
+			"default": "Do you confirm removing the role?",
+			"fr": "Confirmez vous le retrait du rôle?",
+			"el": "Do you confirm removing the role?"
+		},
+		"content": {
+			"default": "Content",
+			"fr": "Contenu",
+			"el": "Content"
+		},
+		"createNew": {
+			"default": "Create New",
+			"fr": "Créer nouveau",
+			"el": "Create New"
+		},
+		"criteriaList": {
+			"default": "Criteria List",
+			"fr": "List de critères",
+			"el": "Criteria List"
+		},
+		"date": {
+			"default": "Date",
+			"fr": "Date",
+			"el": "Date"
+		},
+		"edit": {
+			"default": "Edit",
+			"fr": "Editer"
+		},
+		"identityOrUser": {
+			"default": "Group or User",
+			"fr": "Groupes ou Utilisateurs",
+			"el": "Identity or User"
+		},
+		"group": {
+			"default": "Group",
+			"fr": "Groupe"
+		},
+		"user": {
+			"default": "User",
+			"fr": "Utilisateur"
+		},
+		"leaveUnread": {
+			"default": "Leave Unread",
+			"fr": "Leave Unread",
+			"el": "Leave Unread"
+		},
+		"messages": {
+			"default": "Messages",
+			"fr": "Messages",
+			"el": "Messages"
+		},
+		"no": {
+			"default": "No",
+			"fr": "Non",
+			"el": "No"
+		},
+		"node": {
+			"default": "Node",
+			"fr": "Noeud",
+			"el": "Node"
+		},
+		"open": {
+			"default": "Open",
+			"en": "Open",
+			"fr": "Ouvrir",
+			"el": "Open"
+		},
+		"permissionSet": {
+			"default": "Permission Set",
+			"fr": "Permissions",
+			"el": "Permission Set"
+		},
+		"removeAssignee": {
+			"default": "Remove Assignee",
+			"fr": "Retirer l'assigné",
+			"el": "Remove Assignee"
+		},
+		"reset": {
+			"default": "Reset",
+			"fr": "Reset",
+			"el": "Reset"
+		},
+		"resize": {
+			"default": "Resize",
+			"en": "Resize",
+			"fr": "Redimensionner",
+			"el": "Resize"
+		},
+		"role": {
+			"default": "Role",
+			"fr": "Role",
+			"el": "Role"
+		},
+		"runAction": {
+			"default": "Run Action",
+			"fr": "Lancer Action"
+		},
+		"save": {
+			"default": "Save",
+			"fr": "Enregistrer"
+		},
+		"search": {
+			"default": "Search",
+			"fr": "Recherche",
+			"el": "Search"
+		},
+		"searchQuery": {
+			"default": "Search Query",
+			"fr": "Requète",
+			"el": "Search Query"
+		},
+		"selectANodetype": {
+			"default": "Select a Nodetype",
+			"fr": "Choisir un type d'objet"
+		},
+		"select": {
+			"default": "Select",
+			"fr": "Selectionner"
+		},
+		"selection": {
+			"default": "Selection",
+			"fr": "Selection",
+			"el": "Selection"
+		},
+		"setAsRead": {
+			"default": "Set as Read",
+			"fr": "Set as Read",
+			"el": "Set as Read"
+		},
+		"structure": {
+			"default": "Structure",
+			"en": "Structure",
+			"fr": "Structure",
+			"el": "Structure"
+		},
+		"team": {
+			"default": "Team",
+			"fr": "Equipe"
+		},
+		"type": {
+			"default": "Type",
+			"fr": "Type",
+			"el": "Type"
+		},
+		"unselect": {
+			"default": "Unselect",
+			"fr": "Déselectionner",
+			"el": "Unselect"
+		},
+		"update": {
+			"default": "Update",
+			"en": "Update",
+			"fr": "Mise à jour"
+		},
+		"yes": {
+			"default": "Yes",
+			"fr": "Oui",
+			"el": "Yes"
+		},
+		"false": {
+			"default": "No",
+			"en": "No",
+			"fr": "Non"
+		},
+		"true": {
+			"default": "Yes",
+			"en": "Yes",
+			"fr": "Oui"
+		}
+	},
+	"topbar": {
+		"gotoappconfig": {
+			"default": "G-Config",
+			"en": "G-Config",
+			"fr": "G-Config"
+		},
+		"online": {
+			"default": "You are online",
+			"en": "You are online",
+			"fr": "Vous êtes connectés à internet"
+		},
+		"offline": {
+			"default": "You are offline",
+			"en": "You are offline",
+			"fr": "Vous êtes déconnectés d'internet"
+		},
+		"logout": {
+			"default": "Logout",
+			"en": "Logout",
+			"fr": "Déconnecter",
+			"el": "Logout"
+		},
+		"GFSLoggedIn": {
+			"default": "Ganister File Sync: Logged In",
+			"en": "Ganister File Sync: Logged In",
+			"fr": "Ganister File Sync: Connecté"
+		},
+		"GFSLogIn": {
+			"default": "Ganister File Sync: Log In",
+			"en": "Ganister File Sync: Log In",
+			"fr": "Ganister File Sync: Se Connecter"
+		}
+	},
+	"widget": {
+		"workflows": {
+			"_type": {
+				"default": "Type",
+				"fr": "Type"
+			},
+			"_state": {
+				"default": "State",
+				"fr": "Statut"
+			},
+			"_id": {
+				"default": "Id",
+				"fr": "ID"
+			},
+			"name": {
+				"default": "Name",
+				"fr": "Nom"
+			},
+			"role": {
+				"default": "Role",
+				"fr": "Rôle"
+			},
+			"_createdOn": {
+				"default": "Created On",
+				"fr": "Créé le"
+			},
+			"_ref": {
+				"default": "Reference",
+				"fr": "Ref"
+			}
+		}
+	}
+}

@@ -1,0 +1,118 @@
+<!-- toolbar -->
+<div class="row fill" ng-controller="nodetypelistController">
+  <div class="col-xs-12 col-md-12 nodeTypeFormButtons fill">
+    <div class="navbar navbar-default " style="margin-bottom: 0px;">
+      <div class="container-fluid ">
+
+        <a class="navbar-brand navbar-left" ng-show="appDefinition.uxConfig.nodetypeNameLocation==='L'"> <span
+            class="label label-primary mainNodeListingLabel">{{ 'default.nodetype.'+ context.currentNodetype.name |
+            translate }}</span>
+        </a>
+        <button ng-show="context.currentNodetype.name!='file'" type="button"
+          class="btn btn-default btn-primary btn-sm  navbar-btn" ng-disabled="!nodeTypeCreationAllowed"
+          ng-click="createNew(context.currentNodetype)">{{
+          'default.nodeListing.add' | translate }}
+          {{ 'default.nodetype.'+ context.currentNodetype.name | translate }} <span
+            class="glyphicon glyphicon-plus"></span></button>
+        <button ng-show="context.currentNodetype.name=='file'" type="button"
+          class="btn btn-default btn-primary btn-sm  navbar-btn" ng-disabled="!nodeTypeCreationAllowed" ngf-drop ngf-select
+          ng-model="fileUpload" ngf-drag-over-class="'dragover'" ngf-allow-dir="false" accept="*"
+           data-toggle="tooltip" title="{{'default.shared.uploadFile' | translate}}"
+          >{{
+          'default.nodeListing.add' | translate }}
+          {{ 'default.nodetype.'+ context.currentNodetype.name | translate }} <span
+            class="glyphicon glyphicon-plus"></span></button>
+
+        <button type="button" class="btn btn-default btn-danger btn-sm  navbar-btn"
+          ng-click="delete(context.currentNodetype)" ng-disabled="nodeNotSelected">{{ 'default.nodeListing.delete' |
+          translate }}
+          {{ 'default.nodetype.'+ context.currentNodetype.name | translate }} <span
+            class="glyphicon glyphicon-trash"></span></button>
+        <div class="btn-group" ng-if="context.hasReports">
+          <button type="button" class="btn btn-default btn-primary btn-sm dropdown-toggle" id="reportNodeType"
+            data-toggle="dropdown">
+            {{ 'default.nodeListing.reports' | translate }} <span ng-if="!nodeReportingProcess"
+              class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+            <div ng-if="nodeReportingProcess" style="float: left; margin-right: 5px;"><i
+                class="fas fa-sync-alt rotate"></i></div>
+
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="report in context.currentNodetype.reports" ng-if='report.sourceType=="nodetype"'>
+              <a class='nodeTypeReportLaunchButton' reportid='{{report.id}}'
+                ng-click='launchNodetypeReport(report.id)'>{{report.name}}</a>
+            </li>
+            <li ng-repeat="report in context.currentNodetype.reports" ng-if='report.sourceType=="node"'
+              ng-class="{'disabled':nodeNotSelected}">
+              <a class='nodeTypeReportLaunchButton' reportid='{{report.id}}'
+                ng-click='nodeNotSelected||launchNodeReport(report.id)'>{{report.name}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-warning btn-sm dropdown-toggle" id="actionNodeType"
+            data-toggle="dropdown">
+            {{ 'default.nodeListing.actions' | translate }} <span class="glyphicon glyphicon-play-circle"
+              aria-hidden="true"></span>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="action in context.nodetype.actions | filter: { availableOn: 'nodetype' } | orderBy: 'name'">
+              <a class='nodeTypeReportLaunchButton' ng-click='runNodetypeAction(action)'
+                actionid='{{action.id}}'>{{ 'nodetype.'+context.nodetype.name+'.'+action.name | translate }}</a>
+            </li>
+            <li>
+              <a class='nodeTypeReportLaunchButton' ng-click="clearColumnConfig()"><i class="fas fa-solar-panel"></i>
+                {{ 'default.nodeListing.resetColumns' | translate }}</a>
+            </li>
+            <li role="separator" class="divider" ng-if="nodetype.actions.length && context.currentNodetype.name==='file'">
+            <li ng-click="openCardFile(node)" ng-if="context.currentNodetype.name==='file'"  ng-class="{'disabled':nodeNotSelected}">
+              <a id="openFileFromMainList">
+                <span class="glyphicon  glyphicon-eye-open" aria-hidden="true" style="margin-right:5px;"></span>
+                {{ 'default.node.fileOpen' | translate }}
+              </a>
+            </li>
+            <li ng-click="downloadFile(node)" ng-if="context.currentNodetype.name==='file'"  ng-class="{'disabled':nodeNotSelected}">
+              <a id="downloadFileFromMainList">
+                <span class="glyphicon glyphicon-cloud-download" aria-hidden="true" style="margin-right:5px;"></span>
+                {{ 'default.node.fileDownload' | translate }}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <a class="navbar-brand navbar-right" ng-show="appDefinition.uxConfig.nodetypeNameLocation!=='L'"> <span
+            class="label label-primary mainNodeListingLabel">{{ 'default.nodetype.'+ context.currentNodetype.name |
+            translate }}</span>
+        </a>
+        <form class="navbar-form navbar-right">
+          <button class="btn" title="{{'default.nodeListing.resultCountQueryMax' | translate}}"
+            ng-class="{'btn-info':!maxResultsClass,'btn-danger':maxResultsClass}" ng-click="editMaxResult();"><span
+              ng-show="waitingResults" class="glyphicon glyphicon-hourglass"></span><span ng-show="!waitingResults">
+              {{context.mainGridOptions.data.length}} </span>/ {{maxResults}}</span></h3>
+          </button>
+          <button class="btn btn-warning" ng-click="clearFilters()"
+            title="{{ 'default.nodeListing.clearFilters' | translate }}" ng-disabled="noFilter"><span
+              class="glyphicon glyphicon-erase"></span></button>
+          <button class="btn btn-success" ng-click="runSearch()"
+            title="{{ 'default.nodeListing.runSearch' | translate }}">
+            <span class="glyphicon glyphicon-play"></span>
+          </button>
+        </form>
+        <form class="navbar-form navbar-right">
+          <div class="form-group">
+            <select class="form-control" ng-model="searchType">
+              <option value="currentOn">Current On</option>
+              <option value="releasedOn">Released On</option>
+            </select>
+            <input type="date" class="form-control" ng-model="searchDate">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div ag-grid="context.mainGridOptions" class="ag-theme-balham" style="height: 100%;width: 100%;"></div>
+  </div>
+  <div ng-include="'app/shared/modals/nodeRelModal/nodeRelModal.html'"></div>
+</div>
+<div ng-include="'app/shared/modals/addToCmModal/addToCmModal.html'"></div>
+<div ng-include="'app/shared/modals/versionOrForkNode/versionOrForkNode.html'"></div>

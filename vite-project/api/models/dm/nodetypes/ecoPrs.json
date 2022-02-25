@@ -1,0 +1,156 @@
+{
+	"package": "cmii",
+	"name": "ecoPrs",
+	"elementType": "relationship",
+	"lockLinked": true,
+	"gridColumnsHeader": "",
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132bb-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132bc-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created On"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132bd-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created By"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f132be-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd694b67-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e01b2-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e01b3-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37e01b4-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		}
+	],
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"category": null,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [
+			{
+				"label": "_state",
+				"type": "state",
+				"cellRendered": true,
+				"cellStyle": {
+					"text-align": "center"
+				},
+				"id": "uigc_90ce1280-d00c-11e9-b829-b71638363138",
+				"property": "ecoPrs._state"
+			},
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_90ce1281-d00c-11e9-b829-b71638363138",
+				"property": "ecoPrs.name"
+			},
+			{
+				"label": "_modifiedOn",
+				"type": "date",
+				"id": "uigc_90ce1282-d00c-11e9-b829-b71638363138",
+				"property": "ecoPrs._modifiedOn"
+			}
+		],
+		"form": {
+			"definition": {},
+			"ng": {}
+		},
+		"tabs": []
+	},
+	"id": "nt_fc47033da5af7bb0fc44494dd4b4cdc1",
+	"linkName": "createdFrom",
+	"directions": [
+		{
+			"source": "nt_417412cb36773c3659cfc0ac0347f43f",
+			"target": "nt_17e2140d30bd01bffb6a1f03623ed336"
+		}
+	],
+	"translations": {
+		"default": "ecoPrs"
+	}
+}

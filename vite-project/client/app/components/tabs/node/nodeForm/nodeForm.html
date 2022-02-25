@@ -1,0 +1,352 @@
+<div ng-controller="FormController">
+  <nav class="navbar navBarNodeSticky" ng-class="{
+        'navbar-unsavedChanges': node.unsavedChanges,
+        'navbar-editable': isLatestVersion && node.properties._lockable && !lockedByCurrentUser && !node.properties._lockState,
+        'navbar-editing': lockedByCurrentUser,
+        'navbar-locked': node.properties._lockState && !lockedByCurrentUser,
+        'navbar-viewing': !node.properties._lockable,
+        }">
+    <!-- nodeform toolbar start -->
+    <div class="col-xs-12 col-md-12">
+
+      <!-- nodetype label (left verison)-->
+      <p class="navbar-text navbar-left" style="margin-right:10px;"
+        ng-show="appDefinition.uxConfig.nodetypeNameLocation==='L'">
+        <img class="tabNodetypeIcon" ng-src="{{node._typeObject.ui.defaultThumbnail}}"
+          title="{{ 'default.nodetype.'+node._type | translate }}"
+          style=" margin-top: -12px;width: 30px;margin-bottom: -10px;" /> <span class="label label-primary btnText1200"
+          style="font-size: 135%;">
+          {{ 'default.nodetype.'+node._type | translate }}</span>
+      </p>
+      <!-- version button-->
+      <div class="btn-group" ng-show="nodetypeIsVersionable">
+        <button type="button" class="btn btn-primary versionBtn" title="{{'default.node.version'| translate}}"
+          disabled>{{node.properties._versionLabel}}</button>
+        <button ng-if="node.versions.length > 0" ng-show="nodetypeIsVersionable" type="button"
+          class="btn btn-primary dropdown-toggle versionBtn" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" ng-if="node.versions.length > 0" ng-show="nodetypeIsVersionable">
+          <li ng-repeat="item in node.versions | orderBy:'_version'"><a href="#"
+              ng-click="openNodeVersion(item)">{{formatVersion(item._version)}}</a></li>
+        </ul>
+      </div>
+
+      <!-- state/lifecycle button-->
+      <button type="button" class="btn btn-{{stateColor}} navbar-btn" ng-if="nodetype.hiddenLifecycle !== true"
+        ng-click="openLifecycleView(node)" id="lifecycleNode-{{node._id}}-{{nodeVersion}}"
+        title="{{'default.node.toggleLifecyclePanel'|translate}}">{{currentState.label}}</button>
+
+      <div class="divider-vertical" ng-show="nodetypeIsVersionable || !nodetype.hiddenLifecycle"></div>
+
+      <!-- locking switch-->
+      <label class="switch" data-toggle="tooltip" data-placement="bottom"
+        ng-attr-title="{{node.properties._lockState ? 'Switch Edit/Read Modes | Locked On: ' + _lockedOn : 'Switch Edit/Read Modes'}}"
+        ng-show="lockedByCurrentUser || ( appContext.user.properties._isAdmin && (node.properties._lockState === false) || (isLatestVersion && ((node.properties._lockable) && ((node.properties._lockState === false) || (node.properties._lockState && lockedByCurrentUser))) && !(node.user.highestAccess === 'reader' || !node.user.highestAccess)))">
+        <input type="checkbox" ng-model="lockedByCurrentUserSwitch" ng-click="triggerNodeLockStatus()"
+          ng-disabled="nodeLockStatusChanging">
+        <span class="slider round" style="background-color:#d9534f;" title="⚠️ Admin Only Privilege ⚠️"
+          ng-if="appContext.user.properties._isAdmin && !node.properties._lockable"
+          ng-class="{waiting:nodeLockStatusChanging}"></span>
+        <span class="slider round" ng-if="!(appContext.user.properties._isAdmin && !node.properties._lockable)"
+          ng-class="{waiting:nodeLockStatusChanging}"></span>
+        <span class="state round" ng-class="{waiting:nodeLockStatusChanging}"></span>
+      </label>
+
+
+      <div class="btn-group">
+        <!-- Save Node -->
+        <button type="button" class="btn btn-success navbar-btn" ng-click="updateNode(node)"
+          ng-disabled="!lockedByCurrentUser || nodeSaving" data-toggle="tooltip" data-placement="bottom"
+          title="{{'default.shared.save'|translate}}"><i class="fas fa-save" ng-if="!nodeSaving"></i>
+          <div ng-if="nodeSaving"><i class="fas fa-sync-alt rotate"></i></div>
+        </button>
+
+        <!-- Save, Unlock, Close Node -->
+        <button type="button" class="btn btn-primary navbar-btn" ng-mousedown="updateNodeUnlockAndClose(node)"
+          ng-disabled="!lockedByCurrentUser || nodeSaving" data-toggle="tooltip" data-placement="bottom"
+          title="{{'default.node.saveUnlockClose'|translate}}">
+          <i class="fas fa-sign-out-alt "></i>
+        </button>
+      </div>
+
+      <div class="divider-vertical"></div>
+
+      <button ng-if="node.user.highestAccess === 'reader' || !node.user.highestAccess" type="button"
+        class="btn btn-warning disabled">
+        <span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span>
+        Read Only
+      </button>
+      <button ng-if="!isLatestVersion" type="button" class="btn btn-grey" ng-if="!node.properties._lockable">
+        <span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>
+        Archived
+      </button>
+      <button type="button" class="btn btn-danger navbar-btn" context-menu="unlockRightClick"
+        ng-if="(isLatestVersion) && (node.properties._lockable || appContext.user.properties._isAdmin) && (node.properties._lockState && lockedByCurrentUser === false)"
+        ng-attr-title="{{'Locked On: ' + node.properties._lockedOn}}">
+        <span class='glyphicon glyphicon-lock' aria-hidden='true'></span>
+        {{node.properties._lockedByName}}
+      </button>
+
+      <!-- subscribing button-->
+      <!-- <div id="subscriberButton" class="subscriberButton  navbar-btn navbar-right" style="margin-right:2px;"
+        ng-class="{subscribing:isSubscriber}" ng-click="toggleSubscriberState(node)" data-toggle="tooltip"
+        data-placement="bottom" title="Subscribe"></div>   -->
+      <!-- obsolescence button-->
+      <div id="obsoBtn" class="navbar-btn btn btn-danger navbar-right" style="margin-right:2px;"
+        ng-if="node.obsoFlag && !node.properties._releasedUntil" data-toggle="tooltip" data-placement="bottom"
+        title="Contains Obsolete Content"><span class="glyphicon glyphicon-bullhorn"></span></div>
+      <!-- ECO Handled button-->
+      <div id="ecoHandledButton" class="navbar-btn btn btn-warning navbar-right" style="margin-right:2px;"
+        ng-if="node.properties._ecoHandled" ng-click="openECO(node.properties._ecoHandled)" data-toggle="tooltip"
+        data-placement="bottom" title="{{'default.node.clickToAccessEco' | translate}}"><span
+          class="glyphicon glyphicon-alert"></span>
+      </div>
+
+      <div class="btn-group">
+        <!-- user access button-->
+        <button type="button" class="btn btn-info navbar-btn" id="userAccess-{{node._id}}-{{nodeVersion}}"
+          ng-click="toggleUserAccess(node)" ng-if="isLatestVersion"
+          title="{{'default.node.toggleUserAccessPanel' | translate}}" data-toggle="tooltip" data-placement="bottom">
+          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+          <span data-i18n="nodetype.standard.accesses"></span>
+        </button>
+
+        <!-- user access button-->
+        <button type="button" class="btn btn-info navbar-btn" id="userAccessPath-{{node._id}}-{{nodeVersion}}"
+          ng-click="toggleUserAccessPath(node)" title="{{'default.node.toggleUserAccessPathPanel' | translate}}"
+          data-toggle="tooltip" data-placement="bottom">
+          <span class="fa fa-user-circle" aria-hidden="true"></span>
+          <span data-i18n="nodetype.standard.accesses"></span>
+        </button>
+
+        <!-- history timeline button-->
+        <button type="button" class="btn btn-info navbar-btn" id="historyBtn-{{node._id}}-{{nodeVersion}}"
+          data-toggle="tooltip" data-placement="bottom" title="{{'default.node.toggleTimeline' | translate}}"
+          ng-click="toggleNodeHistory(node)"><span class="glyphicon glyphicon-road"></span></button>
+
+        <!-- graph access button-->
+        <button type="button" class="btn btn-info navbar-btn" id="graphView-{{node._id}}-{{nodeVersion}}"
+          ng-click="toggleGraphView(node)" data-toggle="tooltip" data-placement="bottom"
+          title="{{'default.node.toggleGraphView' | translate}}">
+          <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+          <span data-i18n="nodetype.standard.graphView"></span>
+        </button>
+
+      </div>
+      <!-- actions button-->
+      <div class="btn-group" ng-show="nodetype.actions.length || appContext.user.properties._isAdmin">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+          <span class="btnText1200">{{ 'default.node.actions' | translate }}</span>
+          <span data-i18n="nodetype.actions"></span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-click="openInfoDataModal()"
+            ng-if="nodetypeHasInfoData && (node.user.highestAccess === 'writer' || node.user.highestAccess === 'manager')">
+            <a>
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right:5px;"></span>
+              {{ 'default.node.editInfoData' | translate }}
+            </a>
+          </li>
+          <li ng-repeat="action in nodeActions | orderBy: 'name'">
+            <a class='nodeReportLaunchButton' ng-click='runNodeAction(action)' actionName='{{action.name}}'>{{
+              'nodetype.'+node._type+'.'+action.name | translate }}</a>
+          </li>
+          <li role="separator" class="divider" ng-if="nodetype.actions.length && nodetype.name==='file'">
+          <li ng-click="openCardFile(node)" ng-if="nodetype.name==='file'">
+            <a id="openFile-{{node._id}}-{{node.properties._version.split('.').join('')}}">
+              <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true" style="margin-right:5px;"></span>
+              {{ 'default.node.fileOpen' | translate }}
+            </a>
+          </li>
+          <li ng-click="downloadFile(node)" ng-if="nodetype.name==='file'">
+            <a id="downloadFile-{{node._id}}-{{node.properties._version.split('.').join('')}}">
+              <span class="glyphicon glyphicon-cloud-download" aria-hidden="true" style="margin-right:5px;"></span>
+              {{ 'default.node.fileDownload' | translate }}
+            </a>
+          </li>
+          <li role="separator" class="divider"
+            ng-if="(nodetype.actions.length || nodetype.name==='file') && appContext.user.properties._isAdmin">
+          <li ng-click="copyNodeId()" ng-if="appContext.user.properties._isAdmin">
+            <a id="copyNodeId-{{node._id}}-{{nodeVersion}}">
+              <span class="glyphicon glyphicon-barcode" aria-hidden="true" style="margin-right:5px;"></span>
+              {{ 'default.node.copyNodeId' | translate }}
+            </a>
+          </li>
+          <li ng-click="getCypherQuery()" ng-if="appContext.user.properties._isAdmin">
+            <a id="getCypherQuery-{{node._id}}-{{nodeVersion}}">
+              <i class="fas fa-code"></i>
+              {{ 'default.node.getCypherQuery' | translate }}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- change button-->
+      <button ng-if="nodetype.versionnable && nodetype.changeMethod === 'eco'" class="btn navbar-btn btn-warning"
+        id="addToEco-{{node._id}}-{{nodeVersion}}`" ng-click="openAddToCmForm('eco')"
+        ng-disabled="!currentState.released || node.properties._ecoHandled"
+        title="{{ node.properties._ecoHandled ? 'default.node.alreadyInEco' : '' |translate }}">
+        <span class="glyphicon glyphicon-retweet" aria-hidden="true" style="margin-right:5px;"></span>
+        {{ 'default.node.addToECO' | translate }}
+
+      </button>
+      <button ng-click="openVersionOrForkModal()" class="btn navbar-btn btn-warning"
+        ng-disabled="!currentState.released" ng-if="nodetype.versionnable && nodetype.changeMethod=='manual'">
+        <span class="glyphicon glyphicon-retweet" aria-hidden="true" style="margin-right:5px;"></span>
+        {{ 'default.node.versionOrForkNode' | translate }}
+      </button>
+
+      <!-- reports button-->
+      <div class="btn-group" ng-if="reports.length>0">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-stats" ng-if="!nodeReportingProcess" aria-hidden="true"></span>
+          <div ng-if="nodeReportingProcess" style="float: left; margin-right: 5px;"><i
+              class="fas fa-sync-alt rotate"></i></div>
+          <span class="btnText1200">{{ 'default.node.reports' | translate }}</span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="report in reports">
+            <a class='nodeReportLaunchButton' ng-click='launchNodeReport(report.id)'>{{report.name}}</a>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="divider-vertical"></div>
+
+      <!-- Delete button-->
+      <button id="deleteNode" type="button" class="btn navbar-btn btn-danger lockSensitive" ng-click="deleteNode()"
+        ng-if="node.user.highestAccess === 'manager' && isLatestVersion && node.properties._lockable"
+        data-toggle="tooltip" data-placement="bottom" title="Delete Node">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        <span data-i18n="nodetype.standard.delete"></span>
+      </button>
+
+      <!-- nodetype label-->
+      <p class="navbar-text navbar-right" style="margin-right:10px;"
+        ng-show="appDefinition.uxConfig.nodetypeNameLocation!=='L'">
+        <img class="tabNodetypeIcon" ng-src="{{node._typeObject.ui.defaultThumbnail}}"
+          title="{{ 'default.nodetype.'+node._type | translate }}"
+          style=" margin-top: -12px;width: 30px;margin-bottom: -10px;" /> <span class="label label-primary btnText1200"
+          style="font-size: 135%;">
+          {{ 'default.nodetype.'+node._type | translate }}</span>
+      </p>
+      <div class="divider-vertical navbar-right" ng-show="appDefinition.uxConfig.nodetypeNameLocation!=='L'">
+      </div>
+
+      <!-- Instanciate Node button-->
+      <div class="btn-group navbar-btn navbar-right" style="margin-right: 8px"
+        ng-if="nodetype.instanciations.length > 1">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          <span class="fa fa-clone" aria-hidden="true"></span>
+          <span class="btnText1200"> {{ 'default.node.instanciateNode' | translate }}</span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu instanciateNodeMenu" role="menu">
+          <li ng-repeat="item in nodetype.instanciations | orderBy:'name'">
+            <div style="display: flex; align-items: center; padding: 3px 20px;">
+              <div class="checkbox" style="display: flex; align-items: center; margin: 0px;">
+                <label>
+                  <input type="checkbox" ng-checked="node.properties._serialized.includes(item.id)"
+                    ng-click="serializeNode($event, item.id)">
+                </label>
+              </div>
+              {{ item.translation || item.name }}
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="btn-group navbar-btn navbar-right" style="margin-right: 8px"
+        ng-if="nodetype.instanciations.length === 1">
+        <div style="display: flex; align-items: center; padding: 3px 20px;
+        border-color: #2e6da4;
+        color: #fff;
+        background-color: #337ab7;
+        border: 1px solid ;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        border-radius: 4px;">
+          <div class="checkbox" style="display: flex; align-items: center; margin: 0px;">
+            <label>
+              <input type="checkbox" ng-checked="node.properties._serialized.includes(nodetype.instanciations[0].id)"
+                ng-click="serializeNode($event, nodetype.instanciations[0].id)">
+            </label>
+          </div>
+          {{ nodetype.instanciations[0].translation || nodetype.instanciations[0].name }}
+        </div>
+      </div>
+    </div>
+    <!-- nodeform toolbar end -->
+  </nav>
+
+  <!-- collapse elements start -->
+  <div class="row">
+    <div ng-include="'app/components/tabs/node/nodeForm/lifecycleCollapse/lifecycleCollapse.html'"></div>
+    <div ng-include="'app/components/tabs/node/nodeForm/userAccessCollapse/userAccessCollapse.html'"></div>
+    <div ng-include="'app/components/tabs/node/nodeForm/graphViewCollapse/graphViewCollapse.html'"></div>
+    <div ng-include="'app/components/tabs/node/nodeForm/historyTimeline/historyTimeline.html'"></div>
+    <div ng-include="'app/components/tabs/node/nodeForm/userAccessPath/userAccessPath.html'"></div>
+  </div>
+  <!-- collapse elements start -->
+
+  <div class="container-fluid" style="margin-bottom: 20px;">
+
+    <!-- Node Updated - Socket -->
+    <div class="col-md-12" ng-if="nodeUpdated">
+      <div class="alert alert-warning">
+        <a href="#" class="btn btn-xs btn-primary pull-right" ng-click="reloadNode()"><strong>{{
+            'default.node.showLatest' | translate }}</strong></a>
+        <strong>{{ 'default.node.warning' | translate }}:</strong> <span>{{nodeUpdated}}</span>
+      </div>
+    </div>
+
+    <!-- Form thumbnail -->
+    <div class="col-md-2 formThumbnail" ng-show="node._typeObject.hasThumbnail">
+      <div class="btn-group btn-group-sm formThumbnailButtons" ng-show="lockedByCurrentUser" role="group"
+        aria-label="...">
+        <button type="button" class="btn btn-primary" ngf-drop ngf-select ng-model="$parent.thumbnailUpload"
+          ngf-drag-over-class="'dragover'" ngf-allow-dir="true" accept="image/*" ng-disabled="!lockedByCurrentUser"
+          ngf-pattern="'image/*'">
+          <span class="glyphicon glyphicon-cloud-upload"></span>
+        </button>
+        <button type="button" class="btn btn-danger" ng-click="removeThumbnail()"
+          ng-if="node._typeObject.hasThumbnail && node.properties._thumbnail">
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
+      </div>
+
+      <a href="{{_thumbnail}}" class="thumbnail" ng-attr-data-lightbox="{{'_thumbnail'+node._id}}" ng-click="test"
+        ng-disabled="!lockedByCurrentUser">
+        <img ng-src="{{_thumbnail}}" height="160px" width="120px" class="img-rounded" />
+      </a>
+
+      <div ng-if="lockedByCurrentUser === true" ngf-no-file-drop>
+        File Drag/Drop is not supported for this browser
+      </div>
+    </div>
+
+    <!-- generated form -->
+    <div ng-class="node._typeObject.hasThumbnail?'col-md-10':'col-md-12'">
+      <form sf-schema="schema" sf-form="form" sf-model="node.properties"
+        sf-options="{ formDefaults: { ngModelOptions: { updateOn: 'blur' } } }">
+      </form>
+    </div>
+
+  </div>
+
+  <div ng-include="'app/components/tabs/node/nodeFormTabs/nodeFormTabs.html'"></div>
+  <div ng-include="'app/shared/modals/addToCmModal/addToCmModal.html'"></div>
+  <div ng-include="'app/shared/modals/nodePropModal/nodePropModal.html'"></div>
+  <div ng-include="'app/shared/modals/itemAccessModal/itemAccessModal.html'"></div>
+  <div ng-include="'app/shared/modals/itemLCAccessModal/itemLCAccessModal.html'"></div>
+  <div ng-include="'app/shared/modals/versionOrForkNode/versionOrForkNode.html'"></div>
+  <div ng-include="'app/shared/modals/infoDataModal/infoDataModal.html'"></div>
+  <div ng-include="'app/shared/modals/ihsModal/ihsModal.html'"></div>
+  <div ng-include="'app/shared/modals/z2dataModal/z2dataModal.html'"></div>
+</div>

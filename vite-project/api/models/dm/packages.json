@@ -1,0 +1,50 @@
+[
+	{
+		"id": "core",
+		"name": "core",
+		"label": "Core Package",
+		"dependencies": []
+	},
+	{
+		"id": "cmii",
+		"name": "cmii",
+		"label": "Change Management",
+		"dependencies": []
+	},
+	{
+		"id": "syseng",
+		"name": "syseng",
+		"label": "System Engineering",
+		"dependencies": []
+	},
+	{
+		"id": "mro",
+		"name": "mro",
+		"label": "MCO/SLI",
+		"dependencies": []
+	},
+	{
+		"id": "purchasing",
+		"name": "purchasing",
+		"label": "Purchasing",
+		"dependencies": []
+	},
+	{
+		"id": "pe",
+		"name": "pe",
+		"label": "Product Engineering",
+		"dependencies": []
+	},
+	{
+		"id": "pm",
+		"name": "pm",
+		"label": "Project Management",
+		"dependencies": []
+	},
+	{
+		"id": "mpp",
+		"name": "mpp",
+		"label": "Manufacturing",
+		"dependencies": []
+	}
+]

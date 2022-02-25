@@ -1,0 +1,116 @@
+<div ng-controller="ECOimpactMatrixController">
+  <style>
+    .cell-wrap-text {
+      white-space: normal !important;
+    }
+  </style>
+  <nav class="navbar navbar-default " style="margin-bottom: 5px;">
+    <div class="container-fluid">
+      <form class="form-inline navbar-form">
+        <div class="btn-group">
+          <!-- toolbar -->
+          <button class="btn btn-info btn-sm" ng-click="reloadGraph();reloadMatrix();"><span
+              class="glyphicon glyphicon-refresh"></span></button>
+          <button class="btn btn-success btn-sm" ng-click="addNode('addControlledNodes')"
+            ng-disabled="!lockedByCurrentUser"><span class="glyphicon glyphicon-log-in"></span></button>
+          <button class="btn btn-success btn-sm" ng-click="graphView=false;"
+            ng-disabled="!graphView">Matrix View</button>
+          <button class="btn btn-success btn-sm" ng-click="graphView=true;"
+            ng-disabled="graphView">Graph View</button>
+        </div>
+      </form>
+    </div>
+  </nav>
+  <div class="row" ng-show="graphView">
+    <div class="col-xs-12 col-sm-12 col-md-12 ecoImpactMatrixBlock" >
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <span class="label label-primary">Impact Graph</span>
+          <div class="pull-right col-lg-2 col-md-3 col-sm-4">
+            <input type="range" id="beforeAfter" name="beforeAfter" ng-model='graphVisibility'
+              ng-change="updateGraphVisibility()" list="tickmarks" step="12.5">
+              <datalist id="tickmarks">
+                <option value="0" label="Before">
+                <option value="25">
+                <option value="50">
+                <option value="75">
+                <option value="100" label="After">
+              </datalist>
+          </div>
+        </div>
+
+        <div class="panel-body" style="padding:0px;">
+          <div id="ecoGraph" style="height:75vh;width:100%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="!graphView">
+    <div class="col-xs-12 col-sm-12 col-md-9 ecoImpactMatrixBlock" ng-mouseover="before=true;"
+      ng-class="{'col-xs-12 col-sm-12 col-md-9': before, 'col-xs-12 col-sm-12 col-md-6': !before}">
+      <div class="panel panel-info">
+        <div class="panel-heading"><span class="label label-warning">ECO Actions</span>
+          <div class="btn btn-info btn-xs" ng-click='toggleImpactedVisibility()'>
+            <i ng-hide="!filterImpacted" class="far fa-check-square"></i>
+            <i ng-hide="filterImpacted" class="far fa-square"></i>
+            Filter Impacted</div>
+          </div>
+
+        <div class="panel-body" style="padding:0px;">
+          <div id="impactMatrixFromGrid" ag-grid="gridOptionsBefore" class="ag-theme-balham"
+            style="height: 75vh; width:100%; "></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-3 ecoImpactMatrixBlock" ng-mouseover="before=false;"
+      ng-class="{'col-xs-12 col-sm-12 col-md-3': before, 'col-xs-12 col-sm-12 col-md-6': !before}">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <span class="label label-primary">ECO Progress Control</span>
+          <span class="label label-warning" ng-show="controlledTree_data.length<1">No Post ECO data</span>
+          <div class="btn btn-info btn-xs" ng-click='toggleImpactedVisibility()'>
+            <i ng-hide="!filterImpacted" class="far fa-check-square"></i>
+            <i ng-hide="filterImpacted" class="far fa-square"></i>
+            Filter Impacted</div>
+        </div>
+
+        <div class="panel-body" style="padding:0px;">
+          <div id="impactMatrixFromGrid" ag-grid="gridOptionsAfter" class="ag-theme-balham"
+            style="height: 75vh; width:100%; "></div>
+          <!-- <div id="ecoGraph" style="height:75vh;width:100%;"></div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ecoRelationshipModal-{{node._id}}" role="dialog">
+    <div class="modal-dialog modal-lg modal-90-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+              class="sr-only">{{ 'default.shared.close' | translate }}</span></button>
+          <form class="navbar-form navbar-right">
+            <button class="btn" title="Result Count / Query Max limit"
+              ng-class="{'btn-info':!maxResultsClass,'btn-danger':maxResultsClass}" ng-click="editMaxResult();"><span
+                ng-show="waitingResults" class="glyphicon glyphicon-hourglass"></span><span ng-show="!waitingResults">
+                {{ecoGridOptions.data.length}} </span>/ {{maxResults}}</span></h3>
+            </button>
+            <button type="submit" class="btn btn-success" title="{{ 'default.nodeListing.runSearch' | translate }}"
+              ng-click="executeFilter(selectedNodetype)"><span class="glyphicon glyphicon-search"></span></button>
+            <button type="submit" class="btn btn-warning" title="{{ 'default.nodeListing.clearCriterias' | translate }}"
+              ng-click="clearFilters()"><span class="glyphicon glyphicon-erase"></span></button>
+          </form>
+        </div>
+        <div ag-grid="ecoGridOptions" class="ag-theme-balham" style="height: 400px;margin:5px;"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'default.shared.close' | translate
+            }}</button>
+          <button ng-if="modalType === 'addControlledNodes'" type="button" class="btn btn-primary" id="ModalAdd"
+            ng-click="addControlledNodes()" ng-disabled="rowSelected">{{ 'default.shared.add' | translate }}</button>
+          <button ng-if="modalType === 'addAlternativeNode'" type="button" class="btn btn-primary" id="ModalAdd"
+            ng-click="addAlternativeNode()" ng-disabled="rowSelected">{{ 'default.shared.add' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+$decoratorBorderLeft: #bbb;
+
+sf-decorator > .schema-form-section:not(.notSection){
+  padding: 10px;
+  border-left: double 3px $decoratorBorderLeft; 
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+
+sf-decorator > .schema-form-section.noBorder{
+  padding: 0px;
+  border-left: none; 
+  margin-bottom: 0px;
+}
+sf-decorator > .schema-form-section.noBorder > .panel{
+  margin-bottom:5px;
+}
+
+sf-decorator > .schema-form-section.noBorder > .panel > .panel-body{
+  padding: 5px 2px;
+}
+
+.form-group, .schema-form-section  {
+  margin-bottom: 0px!important;
+  font-size: 12px!important;
+}
+.form-control:not(textarea){
+  padding: 4px 6px!important;
+  height: 28px; 
+}
+
+input[type=date].form-control::-webkit-inner-spin-button, input[type=date].form-control::-webkit-calendar-picker-indicator  {
+  // -webkit-appearance: none;
+  // display: none;
+}
+
+label {
+  margin-bottom: 2px!important;
+}
+
+
+div.booleanSchemaForm{
+  margin-bottom: 8px !important;
+}

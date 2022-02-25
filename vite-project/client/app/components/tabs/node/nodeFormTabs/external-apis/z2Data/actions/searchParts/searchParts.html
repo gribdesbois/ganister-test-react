@@ -1,0 +1,94 @@
+<div ng-controller="externalAPIsZ2DataSearchTermController">
+  <nav class="navbar navbar-default ">
+    <div class="container-fluid">
+      <div class='btn-group'>
+        <button type='button' class='btn btn-default btn-info btn-sm navbar-btn' ng-click="fetchData(true)"
+          title="Refresh">
+          <span class='glyphicon glyphicon-refresh' aria-hidden='true'></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#tab-summary-{{node._id}}">Summary</a></li>
+    <li><a data-toggle="tab" href="#tab-partScores-{{node._id}}">Part Scores</a></li>
+    <li><a data-toggle="tab" href="#tab-parametric-{{node._id}}">Parametric </a></li>
+    <li><a data-toggle="tab" href="#tab-pcn-{{node._id}}">PCN</a></li>
+  </ul>
+  
+  <div class="tab-content">
+    <div id="tab-summary-{{node._id}}" class="tab-pane fade in active">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <th>Property</th>
+          <th>Value</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="column in partSummaryData.columns">
+            <td>{{column.headerName}}</td>
+            <td ng-if="column.field !== 'dataSheet'">{{partSummaryData.data[column.field]}}</td>
+            <td ng-if="column.field === 'dataSheet'">
+              <a href="{{partSummaryData.data[column.field]}}" target="_blank">{{partSummaryData.data[column.field]}}</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="tab-partScores-{{node._id}}" class="tab-pane fade tab-partScores" style="padding: 32px;">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <div class="score-card">
+            <h4>Obsolescence <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="The Obsolescence Risk Score takes into account factors such as current lifecycle status, estimated years to end of life, the supplier's obsolescence behavior in the past and more. A high obsolescence risk score means this part is not recommended for continued use or for selection in your bill of materials."></span></h4>
+            <span ng-class="appliedClass(partScores.Obsolescence)"> {{ partScores.Obsolescence }} </span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="score-card">
+            <h4>Compliance <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="The Compliance Risk Score takes into account this part's compliance with environmental regulations such as RoHS, REACH, China RoHS and more. It is suggested to find compliant crosses or replacements for parts that have a high compliant risk score."></span></h4>
+            <span ng-class="appliedClass(partScores.Compliance)"> {{ partScores.Compliance }} </span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="score-card">
+            <h4>Market <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="The Market Availability Risk Score takes into account factors such as current inventory availability from authorized distributors, shortages, lead-times and more. See distributors currently stocking this part by clicking the Sellers link in the sections below."></span></h4>
+            <span ng-class="appliedClass(partScores.Market)"> {{ partScores.Market }} </span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="score-card">
+            <h4>Technology <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="The Technology Risk Score measures whether this part has newer technology upgrades available or is a legacy technology. It is suggested to find newer technology upgrades for parts with high technology risk scores."></span></h4>
+            <span ng-class="appliedClass(partScores.Technology)"> {{ partScores.Technology }} </span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="score-card">
+            <h4>Multi-Sourcing <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="The Multi-Sourcing Risk Score measures whether this part can easily be crossed to other suppliers. Certain products cannot be crossed easily due to their technology types which makes your dependency risk higher on those parts."></span></h4>
+            <span ng-class="appliedClass(partScores['Multi-Sourcing'])"> {{ partScores['Multi-Sourcing'] }} </span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="score-card">
+            <h4>Supplier Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="The Supplier Risk Score takes into account factors such as this supplier's financial performance, impactful current litigations, years in business, employee count and more. A higher supplier risk score may indicate a need to find viable alternatives for its products due to potential upcoming instability in the supplier's business operations."></span></h4>
+            <span ng-class="appliedClass(partScores.SupplierScore)"> {{ partScores.SupplierScore }} </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="tab-parametric-{{node._id}}" class="tab-pane fade">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <th>Property</th>
+          <th>Value</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="column in parametricData.columns">
+            <td>{{column.headerName}}</td>
+            <td>{{parametricData.data[column.field]}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="tab-pcn-{{node._id}}" class="tab-pane fade">
+      <div ag-grid="pcnGridOptions" class="ag-theme-balham" style="height: 450px; width:100%;"></div>
+    </div>
+</div>

@@ -1,0 +1,191 @@
+{
+	"name": "prImpactedParts",
+	"linkName": "impacts",
+	"versionnable": false,
+	"package": "pe",
+	"elementType": "relationship",
+	"lockLinked": true,
+	"promotionControlled": false,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [
+			{
+				"label": "_ref",
+				"type": "text",
+				"id": "uigc_17d62879876ccfa0077bf392e6f767be",
+				"property": "part._ref"
+			},
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_a9b59296cc31bbb8bfd13a4c28d96bfb",
+				"property": "part.name"
+			},
+			{
+				"label": "description",
+				"type": "text",
+				"id": "uigc_bbe563144765c11664a1d4a7b879e0c7",
+				"property": "part.description"
+			},
+			{
+				"label": "modified on",
+				"type": "date",
+				"id": "uigc_a2fe6b6afcf26f9d348f508f2bd11f53",
+				"cellRendered": true,
+				"property": "part._modifiedOn"
+			},
+			{
+				"label": "Version",
+				"type": "version",
+				"width": 60,
+				"cellRendered": true,
+				"cellStyle": {
+					"text-align": "center"
+				},
+				"id": "uigc_3f052ec245b852f329116ded5d959ec3",
+				"property": "part._version"
+			},
+			{
+				"label": "_createdOn",
+				"type": "date",
+				"cellRendered": true,
+				"id": "uigc_265bfc9d1d4da10946ff136ab32d2d0a",
+				"property": "part._createdOn"
+			},
+			{
+				"label": "_createdBy",
+				"type": "string",
+				"id": "uigc_15541f23ff1fc8cea852415e358bd507",
+				"property": "part._createdByName"
+			}
+		],
+		"tabs": [],
+		"form": {
+			"definition": {},
+			"ng": {}
+		}
+	},
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"category": null,
+	"configuration": false,
+	"classification": [],
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f15996-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f15997-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created On"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f15998-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created By"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f15999-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd699985-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e76d8-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e76d9-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37e76da-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		}
+	],
+	"maidenName": {
+		"elements": [],
+		"separator": "-"
+	},
+	"actions": [],
+	"id": "nt_3a1e768a034c086a00eccb1faa0aede7",
+	"directions": [
+		{
+			"source": "nt_17e2140d30bd01bffb6a1f03623ed336",
+			"target": "nt_d118235ccf0285283a2b679200ac375a"
+		}
+	],
+	"translations": {
+		"default": "prImpactedParts"
+	}
+}

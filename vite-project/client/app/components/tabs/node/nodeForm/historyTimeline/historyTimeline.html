@@ -1,0 +1,11 @@
+<!-- version collapse start -->
+<div class="col-xs-12 col-md-12 collapse" id="historyCollapse-{{node._id}}-{{nodeVersion}}">
+  <div class="container-fluid col-md-12 ">
+      <div class="well" style="overflow:auto; ">
+          <span class="wellTitle">{{ 'default.node.history' | translate }}</span>
+          <div class="messageDiv" ng-show="timelineLoading"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+          <div id="history-timeline-{{node._id}}-{{nodeVersion}}"></div>
+      </div>
+  </div>
+</div>
+<!-- version collapse end -->

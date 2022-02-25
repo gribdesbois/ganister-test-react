@@ -1,0 +1,666 @@
+search:
+  post:
+    parameters:
+      - name: maxResults
+        in: query
+        type: integer
+        description: Max Number of nodes in response
+      - name: filters
+        in: body
+        description: Research paramaters.
+        schema:
+          type: object
+          properties:
+            searchCriterias:
+              type: object
+              description: Object containing options and n* research parameters objects
+              properties:
+                0:
+                  type: object
+                  description: Object representing research parameters. Can contains n* nested research parameters associated with 'operator'
+                  properties:
+                    0:
+                      type: object
+                      description: Object representing a research parameter. Works only associated with 'operator'
+                    operator:
+                      type: string
+                      description: "Logical statement between research parameters: 'AND' or 'OR'. Works only associated with n* nested research paramters"
+                      example: AND
+                    nodetypes:
+                      type: array
+                      items:
+                        type: string
+                      description: Searched nodetype names
+                      example: ['part', 'document']
+                    property:
+                      type: string
+                      description: Node's property name or 'all' for any properties
+                      example: description
+                    type:
+                      type: string
+                      description: Cypher comparison operator
+                      example: CONTAINS
+                    filterType:
+                      type: string
+                      description: "Searched values type: ['string', 'number', 'boolean', 'date', 'set']"
+                      example: string
+                    filter:
+                      type: string
+                      description: Value to compare
+                      example: technical
+                    values:
+                      type: array
+                      description: Array which node property should be part of. Works only associated with 'filterType' = 'set' OR 'boolean'
+                      items:
+                        type: [string, number, 'null']
+                      example: [0, 1]
+                    dateFrom:
+                      type: integer
+                      description: Starting date timestamp. Works only associated with 'dateTo'
+                      example: 1612267565925
+                    dateTo:
+                      type: integer
+                      description: Ending date timestamp. Works only associated with 'dateFrom'
+                      example: 1618322214334
+            allVersions:
+              type: boolean
+              description: If true, returns all versions of a node, otherwise returns only the latest
+              example: false
+            searchType:
+              type: string
+              description: Criterias on node properties
+              example: currentOn
+            searchDate:
+              type: integer
+              example: 1618322214334
+              description: Criterias on node properties
+    description: Search nodes of any given nodetypes
+    security:
+      - JWT: []
+    tags:
+      - Nodes
+    responses:
+      '200':
+        description: Returns an array of nodes
+        schema:
+          type: array
+          items:
+            $ref: '../definitions/nodes.yaml#/Node'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+nodes:
+  parameters:
+    - name: nodetype
+      in: path
+      description: Nodetype Name
+      required: true
+      type: string
+  get:
+    description: Get all nodes of a nodetype
+    security:
+      - JWT: []
+    tags:
+      - Nodes
+    responses:
+      '200':
+        description: Returns an array of nodes
+        schema:
+          type: array
+          items:
+            $ref: '../definitions/nodes.yaml#/Node'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  post:
+    description: Add Node
+    security:
+      - JWT: []
+    parameters:
+      - name: properties
+        in: body
+        description: Properties to add to node
+        schema:
+          type: object
+          properties:
+            properties:
+              type: object
+              example:
+                _ref: ABCD-1234
+                dueTo: 1612267838739
+                current: true
+            lock:
+              type: boolean
+    tags:
+      - Nodes
+    responses:
+      $ref: '../responses/nodes.yaml#/node'
+
+nodetypeSearch:
+  post:
+    parameters:
+      - name: nodetype
+        in: path
+        description: Nodetype name
+        required: true
+        type: string
+      - name: maxResults
+        in: query
+        type: integer
+        description: Max Number of nodes in response
+      - name: filters
+        in: body
+        description: Research paramaters.
+        schema:
+          type: object
+          properties:
+            searchCriterias:
+              type: object
+              description: Object containing options and n* research parameters objects
+              properties:
+                0:
+                  type: object
+                  description: Object representing research parameters. Can contains n* nested research parameters associated with 'operator'
+                  properties:
+                    0:
+                      type: object
+                      description: Object representing a research parameter. Works only associated with 'operator'
+                    operator:
+                      type: string
+                      description: "Logical statement between research parameters: 'AND' or 'OR'. Works only associated with n* nested research paramters"
+                      example: AND
+                    property:
+                      type: string
+                      description: Node's property name or 'all' for any properties
+                      example: description
+                    type:
+                      type: string
+                      description: Cypher comparison operator
+                      example: CONTAINS
+                    filterType:
+                      type: string
+                      description: "Searched values type: ['string', 'number', 'boolean', 'date', 'set']"
+                      example: string
+                    filter:
+                      type: string
+                      description: Value to compare
+                      example: technical
+                    values:
+                      type: array
+                      description: Array which node property should be part of. Works only associated with 'filterType' = 'set' OR 'boolean'
+                      items:
+                        type: [string, number, 'null']
+                      example: [0, 1]
+                    dateFrom:
+                      type: integer
+                      description: Starting date timestamp. Works only associated with 'dateTo'
+                      example: 1612267565925
+                    dateTo:
+                      type: string
+                      description: Ending date timestamp. Works only associated with 'dateFrom'
+                      example: 1618322214334
+            allVersions:
+              type: boolean
+              description: If true, returns all versions of a node, otherwise returns only the latest
+              example: false
+            searchType:
+              type: string
+              description: Criterias on node properties
+              example: currentOn
+            searchDate:
+              type: string
+              description: Criterias on node properties
+    description: Search nodes of a nodetype
+    security:
+      - JWT: []
+    tags:
+      - Nodes
+    responses:
+      '200':
+        description: Returns an array of nodes
+        schema:
+          type: array
+          items:
+            $ref: '../definitions/nodes.yaml#/Node'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+creationRight:
+  parameters:
+    - name: nodetype
+      in: path
+      description: Nodetype Name
+      required: true
+      type: string
+  get:
+    security:
+      - JWT: []
+    description: Check if user can create a nodetype's node
+    tags:
+      - Nodes
+    responses:
+      '200':
+        description: Returns User object with accesses
+        schema:
+          $ref: '../definitions/nodes.yaml#/Node'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+node:
+  parameters:
+    - name: nodetype
+      in: path
+      description: Nodetype Name
+      required: true
+      type: string
+    - name: nodeId
+      in: path
+      description: Node Id
+      required: true
+      type: string
+  get:
+    security:
+      - JWT: []
+    description: Get Node
+    tags:
+      - Nodes
+    responses:
+        '200':
+          description: Returns node
+          schema:
+            $ref: '../definitions/nodes.yaml#/Node'
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+  patch:
+    security:
+      - JWT: []
+    parameters:
+      - name: properties
+        in: body
+        description: New properties values
+        schema:
+          type: object
+          properties:
+            properties:
+              type: object
+              properties:
+                _ref:
+                  type: string
+                  description: new '_ref' value
+                  example: ABCD-1234
+      - name: lock
+        in: body
+        description: Lock/Unlock node
+        schema:
+          type: object
+          properties:
+            lock:
+              type: boolean
+              description: true to lock node, false to unlock it
+              example: true
+    description: Update node values or Lock/Unlock node
+    tags:
+      - Nodes
+    responses:
+        '200':
+          description: Returns node
+          schema:
+            $ref: '../definitions/nodes.yaml#/Node'
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    description: Delete Node
+    tags:
+      - Nodes
+    responses:
+      '200':
+        description: Returns deleted node's _type and _id
+        schema:
+          $ref: '../definitions/nodes.yaml#/DeletedNode'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+history:
+  get:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: Nodetype Name
+        required: true
+        type: string
+      - name: nodeId
+        in: path
+        description: Node Id
+        required: true
+        type: string
+    description: Get Node's History
+    tags:
+      - Nodes
+    responses:
+      "200":
+        description: Returns history array
+        schema:
+          type: array
+          items:
+            $ref: "../definitions/others.yaml#/HistoryItem"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+customTableView:
+  parameters:
+    - name: nodetype
+      in: path
+      description: Nodetype Name
+      required: true
+      type: string
+    - name: nodeId
+      in: path
+      description: Node Id
+      required: true
+      type: string
+    - name: customViewName
+      in: path
+      description: Customview name
+      required: true
+      type: string
+  get:
+    security:
+      - JWT: []
+    description: Get Node's custom table view content
+    tags:
+      - Nodes
+    responses:
+      "200":
+        description: Returns object
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+promotions:
+  parameters:
+    - name: promotion
+      in: body
+      required: true
+      description: Node promotion
+      schema:
+        type: object
+        properties:
+          state:
+            type: string
+            description: Target state to promote node
+          comment:
+            type: string
+            description: Comment attached to promotion
+        example:
+          state: inreview
+          comment: Ok for review
+    - name: nodetype
+      in: path
+      description: Nodetype Name
+      required: true
+      type: string
+    - name: nodeId
+      in: path
+      description: Node Id
+      required: true
+      type: string
+  post:
+    security:
+      - JWT: []
+    description: Promote Node
+    tags:
+      - Nodes
+    responses:
+      '200':
+        description: Returns promoted node
+        schema:
+          $ref: '../definitions/nodes.yaml#/PromotedNode'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+nodetypeAction:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: Nodetype Name
+        required: true
+        type: string
+      - name: actionId
+        in: path
+        description: Action Id
+        required: true
+        type: string
+      - name: clientMethodData
+        in: body
+        description: object storing any data to share with client custom methods
+        type: object
+    description: Run Nodetype Action
+    tags:
+      - Nodes
+    responses:
+      '200':
+        description: Returns result of custom methods
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                _type:
+                  type: string
+                  description: nodetype name
+                  example: part
+              user:
+                $ref: '../definitions/nodes.yaml#/User'
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  message:
+                    type: string
+            clientMethodData:
+              type: object
+              description: any values to share with client custom methods
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+nodeAction:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: Nodetype Name
+        required: true
+        type: string
+      - name: nodeId
+        in: path
+        description: Node Id
+        required: true
+        type: string
+      - name: actionId
+        in: path
+        description: Action Id
+        required: true
+        type: string
+      - name: clientMethodData
+        in: body
+        description: object storing any data to share with client custom methods
+        type: object
+    description: Run Node Action
+    tags:
+      - Nodes
+    responses:
+        '200':
+          description: Returns result of custom methods
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../definitions/nodes.yaml#/Node'
+              errors:
+                type: array
+                description: Errors happened during custom methods execution
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    message:
+                      type: string
+              clientMethodData:
+                type: object
+                description: any values to share with client custom methods
+        '401':
+          $ref: '../responses/errors.yaml#/401'
+        '403':
+          $ref: '../responses/errors.yaml#/403'
+        '404':
+          $ref: '../responses/errors.yaml#/404'
+        '500':
+          $ref: '../responses/errors.yaml#/500'
+
+subscription:
+  parameters:
+    - name: nodetype
+      in: path
+      description: Nodetype Name
+      required: true
+      type: string
+    - name: nodeId
+      in: path
+      description: Node Id
+      required: true
+      type: string
+    - name: active
+      in: path
+      description: Active
+      required: true
+      type: boolean
+  put:
+    security:
+      - JWT: []
+    description: Subscribe to Node
+    tags:
+      - Nodes
+    responses:
+      "200":
+        description: Boolean - true when subscription is active, false when inactive
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+identityChange:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: Nodetype Name
+        required: true
+        type: string
+      - name: nodeId
+        in: path
+        description: Node Id
+        required: true
+        type: string
+      - name: relationship
+        in: path
+        description: Relationship Id
+        required: true
+        type: string
+    description: Notify Identity Change
+    tags:
+      - Nodes
+    responses:
+      "200":
+        description: Returns true
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'

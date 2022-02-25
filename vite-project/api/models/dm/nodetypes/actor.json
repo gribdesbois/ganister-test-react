@@ -1,0 +1,158 @@
+{
+	"name": "actor",
+	"package": "core",
+	"elementType": "relationship",
+	"lockLinked": true,
+	"versionnable": false,
+	"promotionControlled": false,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [],
+		"tabs": [],
+		"form": {
+			"definition": {},
+			"ng": {}
+		},
+		"reverseGridColumns": []
+	},
+	"lifecycle": {
+		"states": [
+			{
+				"id": "state_8070fd2aba2c97d202fc930219c01f41",
+				"name": "draft",
+				"label": "Draft",
+				"start": true,
+				"lockable": true,
+				"owner": "role_8070fd2aba2c97d202fc930219c01f41",
+				"ui_color": "primary"
+			}
+		],
+		"transitions": [],
+		"roles": [
+			{
+				"id": "role_8070fd2aba2c97d202fc930219c01f41",
+				"name": "manager",
+				"label": "Manager"
+			}
+		]
+	},
+	"category": null,
+	"configuration": false,
+	"classification": [],
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f159b2-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f159b3-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_createdOn"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f159b4-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f159b5-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd694b60-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "Created By Name",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37dda93-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37dda94-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37dda95-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		}
+	],
+	"maidenName": [],
+	"actions": [],
+	"id": "nt_e04e2affdea3167efc625e3d5ba18730",
+	"linkName": "isActedBy",
+	"directions": [
+		{
+			"source": "nt_61eabb0b9f2187dd62c8bbbeee396cb6",
+			"target": "nt_028c9f0fd1e08b63efd909825c864cd9"
+		}
+	],
+	"cardinality": "Nto1",
+	"translations": {
+		"default": "actor",
+		"fr": "Acteur"
+	}
+}

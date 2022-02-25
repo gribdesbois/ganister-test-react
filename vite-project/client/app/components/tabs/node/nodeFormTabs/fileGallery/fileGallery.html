@@ -1,0 +1,92 @@
+<div ng-controller="fileGalleryController">
+  <nav class="navbar navbar-default ">
+    <div class="container-fluid">
+
+      <!-- MAIN FILE BUTTONS (ADD/REMOVE) -->
+      <div class='btn-group'>
+        <button type='button' class='navbar-btn btn btn-default btn-success btn-sm lockSensitive' ngf-drop ngf-select
+          ng-model="fileUpload" ngf-drag-over-class="'dragover'" ngf-allow-dir="true" accept="*"
+          ng-disabled="!lockedByCurrentUser || node._releasedOn" data-toggle="tooltip" title="Upload File">
+          <span data-i18n='relationships.buttons.add'></span>
+          <span class='glyphicon glyphicon-cloud-upload'></span>
+        </button>
+        <button type='button' class='navbar-btn btn btn-default btn-danger btn-sm selectionLinked lockSensitive'
+          id='detachFile" . $tabName . "' ng-disabled="!lockedByCurrentUser || !aFileIsSelected" ng-click="detach(rel)"
+          data-toggle="tooltip" title="Detach File"><span data-i18n='relationships.buttons.delete' /> <span
+            class='glyphicon glyphicon-trash'></span></button>
+      </div>
+
+      <!-- DOWNLOAD BUTTON -->
+      <div class='btn-group'>
+        <button type='button' class='navbar-btn btn btn-primary btn-sm selectionLinked' id='download" . $tabName . "'
+          ng-disabled="!aFileIsSelected" ng-click="downloadFile(rel)" data-toggle="tooltip" title="Download File"><span
+            data-i18n='relationships.buttons.download' /> <span
+            class='glyphicon glyphicon-cloud-download'></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid equal">
+
+
+    <!-- STACK OF ORIGINAL FILES -->
+    <div class="col-md-12">
+      <div class=" panel panel-primary">
+        <div class="panel-body">
+          <div ng-if="files.length < 1">
+            <div class="alert alert-info" role="alert" style="margin-bottom: 0px;">No File Linked</div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 fileGalleryItem"
+            ng-repeat="file in files | filter:{'generated':false||undefined} | orderBy : '-_createdOn'  "
+            id="fileGalleryItem-{{file._id}}">
+            <div class="media" ng-dblclick="openCardFile(file)" ng-click="selectFile(file);"
+              style="transform: scale(1.00, 1.00);" ng-class="{'mediaSelected':file.selected}">
+              <div class="corner-ribbon top-right sticky blue" ng-if="file.properties.versionnedBy">Replaced</div>
+              <div class="media-left text-center" ng-include="'fileIcon.html'"></div>
+              <div class="media-body">
+                <h5 style="max-width: 90%;overflow: hidden;text-overflow: ellipsis;">{{file.properties.filename}}</h5>
+                <b>{{ 'nodetype.file._modifiedOn' | translate }}</b> {{file.properties.formatedCreatedOn}}<br />
+                <b>{{ 'nodetype.file.filesize' | translate }}</b> {{file.properties.filesize}}<br />
+                <div class="alert alert-warning"
+                  ng-if="!lockedByCurrentUser && file.properties._checkedOut && file.properties._checkedOutBy !== appContext.user._id">
+                  File was last checked out by {{file.properties._checkedOutByName}}.<br />
+                </div>
+                <div ng-if="gfsLogged && lockedByCurrentUser && !file._checkedOut">
+                  <button class="btn btn-primary btn-xs" ng-click="checkOut(file)" ng-disabled="node.properties._releasedOn" >Edit 
+                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button><br />
+                </div>
+                <div ng-if="gfsLogged && lockedByCurrentUser && file._checkedOutBy === appContext.user._id">
+                  <div class="btn-group" role="group" aria-label="..." style="margin-top: 5px;">
+                    <button class="btn btn-primary btn-xs" ng-click="checkOut(file)" title="Open File">Edit
+                      <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button>
+                    <!-- <button class="btn btn-success btn-xs" ng-click="checkIn(file)" title="Check In" ng-disabled="node._releasedOn">Save <span
+                        class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .corner-ribbon {
+        width: 200px;
+        background: #e43;
+        position: absolute;
+        top: 20px;
+        right: -60px;
+        text-align: center;
+        line-height: 50px;
+        letter-spacing: 1px;
+        color: #f0f0f0;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+      }
+    </style>
+  </div>
+</div>
+
+<!-- File Icon selector-->
+<script type="text/ng-template" id="fileIcon.html">
+  <img ng-src="images/filetypes/{{file.properties.fileLogo}}" alt="..." class="media-object"  >
+</script>

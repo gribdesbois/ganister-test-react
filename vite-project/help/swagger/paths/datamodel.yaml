@@ -1,0 +1,382 @@
+datamodel:
+  get:
+    security:
+      - JWT: []
+    description: Get Datamodel
+    tags:
+      - Datamodel
+    responses:
+      '200':
+        description: Datamodel object
+        schema:
+          $ref: '../definitions/datamodel.yaml#/Datamodel'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+generate:
+  post:
+    parameters:
+      - name: content
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+            - packages
+          properties:
+            packages:
+              type: string
+    description: "Generate Ganister Datamodel"
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: Contains Datamodel
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+    produces:
+      - application/json
+    consumes:
+      - application/json
+    security:
+      - JWT: []
+
+patchDatamodel:
+  post:
+    parameters:
+      - name: content
+        in: body
+        description: "Patch content"
+        required: true
+        schema:
+          type: object
+          required:
+            - patch
+          properties:
+            patch:
+              type: object
+    description: Patch Datamodel
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: Contains Datamodel and Changes
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+    produces:
+      - application/json
+    consumes:
+      - application/json
+    security:
+      - JWT: []
+
+updatePackages:
+  post:
+    parameters:
+      - name: content
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+            - token
+          properties:
+            token:
+              type: string
+    description: Update DM Packages from Datamodel
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: Contains Datamodel
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+    produces:
+      - application/json
+    consumes:
+      - application/json
+    security:
+      - JWT: []
+
+packages:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - packname
+          properties:
+            packname:
+              type: string
+    description: Add Package
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: "Returns object {package, change}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+package:
+  delete:
+    security:
+      - JWT: []
+    parameters:
+      - name: id
+        in: path
+        description: Package Id
+        required: true
+        type: string
+    description: Delete Package
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: Returns nothing
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+methods:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+    description: Add Method
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: "Returns object {id, newMethod}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+method:
+  parameters:
+    - name: id
+      in: path
+      description: The Nodetype's Method Id
+      required: true
+      type: string
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - method
+          properties:
+            method:
+              type: object
+    description: Update Method
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: "Returns object {id, newMethod}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    description: Delete Method
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: "Returns object {success, id}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+listsOfValues:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+    description: Add a List of Values
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: "Returns object {id, newLovs}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+listOfValue:
+  parameters:
+    - name: id
+      in: path
+      description: The List Of Values Id
+      required: true
+      type: string
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - lov
+          properties:
+            lov:
+              type: object
+    description: Update a List of Values
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: "Returns object {id, newLovs}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    description: Delete a List of Values
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: "Returns object {id, success}"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+categories:
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - categories
+          properties:
+            categories:
+              type: array
+              items:
+                type: string
+    description: Update Categories
+    tags:
+      - Datamodel
+    responses:
+      "200":
+        description: Returns categories
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'

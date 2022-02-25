@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app.ganister.config" style="height: 100vh;">
+
+<head profile="http://www.w3.org/2005/10/profile">
+    <link rel="icon" href="images/G.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="mydatalinx" />
+    <title>Ganister Configuration</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- angular notify -->
+    <link href="angular-ui-notification/dist/angular-ui-notification.min.css" rel="stylesheet">
+
+    <!-- standard CSS -->
+    <link href="config/style/style.css" rel="stylesheet">
+
+    <!-- Bootstrap switch -->
+    <link href="angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.css" rel="stylesheet" />
+
+    <!-- intro loader -->
+    <link href="vendor/introloader/dist/css/introLoader.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- angular-ui-tree / Groups and users -->
+    <link rel="stylesheet" href="angular-ui-tree/dist/angular-ui-tree.min.css">
+
+    <!-- ui-select -->
+    <link rel="stylesheet" href="ui-select/dist/select.min.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="@fortawesome/fontawesome-free/css/all.css">
+
+    <link rel="stylesheet" type="text/css" href="ng-tags-input/build/ng-tags-input.css">
+    <link rel="stylesheet" type="text/css" href="codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="codemirror/theme/ambiance.css">
+    <link rel="stylesheet" type="text/css" href="codemirror/theme/blackboard.css">
+    <link rel="stylesheet" type="text/css" href="codemirror/theme/cobalt.css">
+    <link rel="stylesheet" type="text/css" href="codemirror/theme/eclipse.css">
+    <link rel="stylesheet" type="text/css" href="codemirror/theme/midnight.css">
+
+    <link rel='stylesheet' href='angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
+
+</head>
+
+<body oncontextmenu="return false;" style="height: 100vh;">
+
+
+    <div id="element" class="introLoading"></div>
+
+    <!-- LOGIN SCREEN -->
+    <form id="login" ng-if="!appContext.logged" ng-controller="LoginController" ng-keypress="startLogin($event)">
+        <div class="row-container maindiv animated fadeIn" role="form" id="maindiv">
+            <div class="col-md-7">
+                <img ng-src="{{appDefinition.uxConfig.logo}}" style="max-height: 400px;"
+                    title="commit: {{appDefinition.app.versionDate}} ({{appDefinition.app.version}})"
+                    class="img-responsive center-block hidden-xs hidden-sm" />
+            </div>
+            <div class="col-md-offset-1 col-md-4  form-signin center-block">
+                <img ng-src="{{appDefinition.uxConfig.logoSmaller}}" style="max-height: 400px;"
+                    title="commit: {{appDefinition.app.versionDate}} ({{appDefinition.app.version}})"
+                    class="img-responsive center-block hidden-lg hidden-md" />
+                <img src="images/maintenance.svg" class="img-responsive center-block hidden-xs hidden-sm"
+                    style="width: 150px;" />
+                <input autocomplete="username" id="email" autofocus="autofocus" name="email" type="login"
+                    pattern="[^ @]*@[^ @]*" class="form-control input-lg" placeholder="Login" ng-model="user.name">
+                <input autocomplete="password" name="password" type="password" class="form-control input-lg"
+                    placeholder="Password" ng-model="user.password">
+                <button id="btn-login" type="submit" class="btn btn-primary form-control btn-block"
+                    data-loading-text="<i class='fa fa-spinner fa-spin'></i> Logging in..." ng-click="login(user)"><span
+                        ng-hide="logging">Login</span>
+                    <span ng-show="logging"><i class="fa fa-spinner fa-spin"></i> Logging in...</span></button>
+                <div class="alert alert-warning" style="margin-top: 10px;" ng-show="loginMessage">{{loginMessage}}</div>
+                <p style="margin-top: 10px;">Forgot Password? <a href="#" onclick="forgotPassword()">Reset Password</a>.
+                </p>
+                <a href="/">Main Application</a>
+            </div>
+        </div>
+    </form>
+
+    <style>
+        .conteneur {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    </style>
+    <!-- MAIN LOGGED SCREEN -->
+    <div ng-show="appContext.logged" ng-controller="mainController">
+        <div ng-if="categorySelected" ng-include="'config/app/components/topBar/topBar.html'"
+            ng-controller="topBarController"></div>
+        <div id="confCategories" ng-if="!categorySelected" class="">
+            <div class="container-fluid">
+                <div class="jumbotron jbt" style="padding-top: 32px;"
+                    ng-style="{'background-image': topBarBackgroundColor }">
+                    <img src="images/config/LogoGanisterColorSquare.webp" class="img-responsive col-lg-5 col-md-6"
+                        title="{{ datamodel.instanceType }}" style="margin-top: -18px;
+                    width: auto;
+                    max-height: 220px;" />
+                    <p style="
+                    font-family: 'Product Sans', Helvetica, Arial, serif;
+                    font-weight: 700;
+                    font-size: 8rem;
+              background-image: none;
+                    ">G-CONFIG </p>
+                    <p> <a href="/" class="btn btn-primary">User App <span class="glyphicon glyphicon-new-window"
+                                aria-hidden="true"></span></a>
+                        <a ng-click="logout()" class="btn btn-danger">Logout <span class="glyphicon glyphicon-off"
+                                aria-hidden="true"></span></a>
+                    </p>
+                </div>
+                <div class="conteneur">
+                    <div ng-repeat="configApp in configApps" ng-class="{'col-sm-6':configApp.big,'col-sm-4':!configApp.big,
+                    'col-md-6':configApp.big,'col-md-2':!configApp.big,
+                    'col-lg-3':configApp.big,'col-lg-2':!configApp.big}">
+                        <div class="caption">
+                            <h4>{{configApp.name}}</h4>
+                        </div>
+                        <a href="#" id="page-datamodel" class="thumbnail bg-info" ng-click="select(configApp);">
+                            <img ng-src="{{configApp.img}}" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-sm-4 col-md-2 col-lg-2">
+                        <div class="caption">
+                            <h4>API Documentation</h4>
+                        </div>
+                        <a href="/api-docs" target="_blank" id="page-datamodel" class="thumbnail bg-info" ">
+                                    <img src=" images/config/APIDoc.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-sm-4 col-md-2 col-lg-2">
+                        <div class="caption">
+                            <h4>Tech Documentation</h4>
+                        </div>
+                        <a href="/help/tech" id="page-datamodel" class="thumbnail bg-info" ">
+                                    <img src=" images/config/TechDoc.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-sm-4 col-md-2 col-lg-2">
+                        <div class="caption">
+                            <h4>Credits</h4>
+                        </div>
+                        <a href="/credits/oss" id="page-credits" class="thumbnail bg-info" ">
+                                    <img src=" images/config/OpenSourceCredits-256.png" alt="...">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div ng-repeat="configApp in configApps" class="subcategory" id="{{configApp.app}}"
+            ng-if="categoryName == configApp.ref">
+            <ng-include src="configApp.url"></ng-include>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- external libraries -->
+
+<script src="angular/angular.min.js"></script>
+<script type="text/javascript" src="/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="angular-route/angular-route.min.js"></script>
+
+<!-- codemirror -->
+<script src="codemirror/lib/codemirror.js"></script>
+<script type="text/javascript" src="angular-ui-codemirror/src/ui-codemirror.js"></script>
+<script type="text/javascript" src="codemirror/mode/javascript/javascript.js"></script>
+<script src="codemirror/addon/edit/closebrackets.js"></script>
+<!-- eslint -->
+<script src="https://unpkg.com/jshint@2.9.6/dist/jshint.js"></script>
+
+<script src="vendor/eslint/eslint.js"></script>
+<link rel="stylesheet" href="codemirror/addon/lint/lint.css">
+<script src="codemirror/addon/lint/lint.js"></script>
+<script src="vendor/eslint/javascript-lint.js"></script>
+
+
+<script src='jquery/dist/jquery.js'></script>
+<script src='angular-ui-notification/dist/angular-ui-notification.min.js'></script>
+<script src='angular-loading-bar/build/loading-bar.min.js'></script>
+
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- ag-grid -->
+<script src='ag-grid-enterprise/dist/ag-grid-enterprise.min.js'></script>
+<script src="lodash/lodash.js"></script>
+<script src='moment/moment.js'></script>
+
+<!-- Angular Translate-->
+<script src="angular-translate/dist/angular-translate.min.js"></script>
+<script src="angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+
+<!-- angular charts-->
+<script src="chart.js/dist/Chart.min.js"></script>
+<script src="angular-chart.js/dist/angular-chart.min.js"></script>
+
+<script src='ng-tags-input/build/ng-tags-input.min.js'></script>
+<script type="text/javascript" src="angular-ui-tree/dist/angular-ui-tree.js"></script>
+
+<!-- File Upload Library -->
+<script src="ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+<script src="ng-file-upload/dist/ng-file-upload.min.js"></script>
+
+<!-- ngCytoscape -->
+<script src="cytoscape/dist/cytoscape.min.js"></script>
+<script src='cytoscape-cxtmenu/cytoscape-cxtmenu.js'></script>
+<script src="dagre/dist/dagre.min.js"></script>
+<script src="cytoscape-dagre/cytoscape-dagre.js"></script>
+
+<script src="webcola/WebCola/cola.min.js"></script>
+<script src="cytoscape-cola/cytoscape-cola.js"></script>
+
+
+<script src='vendor/introloader/dist/jquery.introLoader.pack.min.js'></script>
+<script src='vendor/introloader/dist/helpers/jquery.easing.1.3.js'></script>
+
+<!-- angular drag n drop lists for Form designer-->
+<script src='angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js'></script>
+
+<!-- sweetalert -->
+<script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+<!-- angular ui-select -->
+<script type="text/javascript" src="ui-select/dist/select.min.js"></script>
+
+<!-- angular modules -->
+<script src='config/app/main.js'></script>
+<script src='config/app/components/topBar/topBar.js'></script>
+<script src='config/app/components/datamodel/datamodel.js'></script>
+<script src='config/app/components/groupsAndUsers/groupsAndUsers.js'></script>
+<script src='config/app/components/categories/categories.js'></script>
+<script src='config/app/components/nodetype/nodetype.js'></script>
+<script src='config/app/components/nodetype/properties/properties.js'></script>
+<script src='config/app/components/nodetype/lifecycle/lifecycle.js'></script>
+<script src='config/app/components/nodetype/actions/actions.js'></script>
+<script src='config/app/components/nodetype/methods/methods.js'></script>
+<script src='config/app/components/nodetype/instanciations/instanciations.js'></script>
+<script src='config/app/components/nodetype/tabs/tabs.js'></script>
+<script src='config/app/components/nodetype/ui/ui.js'></script>
+<script src='config/app/components/nodetype/external-apis-mapping/external-apis-mapping.js'></script>
+<script src='config/app/components/methods/methods.js'></script>
+<script src='config/app/components/lovs/lovs.js'></script>
+<script src='config/app/components/translations/translations.js'></script>
+<script src='config/app/components/healthReport/healthReport.js'></script>
+<script src='config/app/components/settings/settings.js'></script>
+<script src='config/app/helpers/helpers.js'></script>
+
+<!-- services -->
+<script src='config/app/services/app.nodetypes.js'></script>
+<script src='config/app/services/app.nodes.js'></script>
+<script src="app/services/app.userconfig.js"></script>
+<script src="app/services/app.languagesconfig.js"></script>
+
+<!-- filestack library -->
+<script type="text/javascript">
+    agGrid.LicenseManager.setLicenseKey("Kainotomia_Systems_KS_LTD_Ganister_1Devs11_July_2019__MTU2Mjc5OTYwMDAwMA==4c685e6305ae357738d91af198426c51");
+</script>

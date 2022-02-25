@@ -1,0 +1,394 @@
+controlledItems:
+  get:
+    security:
+      - JWT: []
+    parameters:
+      - name: ecoId
+        in: path
+        description: ECO Id
+        required: true
+        type: string
+    description: Get ECO Controlled Nodes
+    tags:
+      - PLM
+    responses:
+      '200':
+        description: Returns object
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+controlledItemsExtended:
+  get:
+    security:
+      - JWT: []
+    parameters:
+      - name: ecoId
+        in: path
+        description: ECO Id
+        required: true
+        type: string
+    description: Get ECO Controlled Items
+    tags:
+      - PLM
+    responses:
+      '200':
+        description: Returns array of objects
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+processedItemsExtended:
+  get:
+    security:
+      - JWT: []
+    parameters:
+      - name: ecoId
+        in: path
+        description: ECO Id
+        required: true
+        type: string
+    description: Get ECO Processed Nodes
+    tags:
+      - PLM
+    responses:
+      '200':
+        description: Returns array of objects
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+controlledItem:
+  get:
+    security:
+      - JWT: []
+    parameters:
+      - name: ecoId
+        in: path
+        description: ECO Id
+        required: true
+        type: string
+      - name: nodeId
+        in: path
+        description: Node Id
+        required: true
+        type: string
+    description: Get ECO Controlled Node
+    tags:
+      - PLM
+    responses:
+      '200':
+        description: Returns ECO object
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: ecoId
+        in: path
+        description: ECO Id
+        required: true
+        type: string
+      - name: nodeId
+        in: path
+        description: Node Id
+        required: true
+        type: string
+    description: Add Node to ECO
+    tags:
+      - PLM
+    responses:
+      '200':
+        description: Returns ECO object
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  put:
+    security:
+      - JWT: []
+    parameters:
+      - name: ecoId
+        in: path
+        description: ECO Id
+        required: true
+        type: string
+      - name: nodeId
+        in: path
+        description: Node Id
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - linkActions
+          properties:
+            linkActions:
+              type: array
+              items:
+                type: string
+    description: Update ECO Controlled Node Link Actions
+    tags:
+      - PLM
+    responses:
+      '200':
+        description: Returns object including Node and ECO Handle
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+  delete:
+    security:
+      - JWT: []
+    parameters:
+      - name: ecoId
+        in: path
+        description: ECO Id
+        required: true
+        type: string
+      - name: nodeId
+        in: path
+        description: Node Id
+        required: true
+        type: string
+    description: Remove Controlled node from ECO
+    tags:
+      - PLM
+    responses:
+      '200':
+        description: Returns Node
+        schema:
+          $ref: "../definitions/nodes.yaml#/DeletedNode"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+processECONode:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: Nodetype Name
+        required: true
+        type: string
+      - name: nodeId
+        in: path
+        description: Node Id
+        required: true
+        type: string
+    description: Process Individually an ECO Node
+    tags:
+      - PLM
+    responses:
+      "200":
+        description: Returns object or false if failed
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+instanciateNode:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: nodetype
+        in: path
+        description: Nodetype Name
+        required: true
+        type: string
+      - name: nodeId
+        in: path
+        description: Node Id
+        required: true
+        type: string
+    description: Instanciate Node
+    tags:
+      - PLM
+    responses:
+      "200":
+        description: Returns object or false if failed
+        schema:
+          $ref: "#/definitions/Node"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+CADDocument:
+  post:
+    security:
+      - JWT: []
+    description: Create CAD Document
+    parameters:
+      - name: "body"
+        in: body
+        required: true
+        schema:
+          properties:
+            file:
+              type: string
+            thumbnail:
+              type: string
+            properties:
+              type: array
+              items:
+                type: object
+            createPart:
+              type: boolean
+    tags:
+      - PLM
+    responses:
+      "200":
+        description: Returns Nodes and Rels Created
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+CADDocumentPublic:
+  post:
+    security:
+      - JWT: []
+    description: Set CAD Document public
+    parameters:
+      - name: nodeId
+        in: path
+        description: Node Id
+        required: true
+        type: string
+    tags:
+      - PLM
+    responses:
+      "200":
+        description: Returns True or False Boolean
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+CADDocumentRevision:
+  get:
+    security:
+      - JWT: []
+    description: Get Revision from CAD Exchanger
+    parameters:
+      - name: id
+        in: path
+        description: Node Id
+        required: true
+        type: string
+    tags:
+      - PLM
+    responses:
+      "200":
+        description: Returns the Revision from CAD Exchanger
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+CADDocuments:
+  post:
+    security:
+      - JWT: []
+    description: Create Multiple CAD Documents
+    tags:
+      - PLM
+    responses:
+      "200":
+        description: Returns array of Nodes and Rels Created
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+flatList:
+  get:
+    security:
+      - JWT: []
+    description: Get Cad Documents flatList
+    parameters:
+      - name: id
+        in: path
+        description: Node Id
+        required: true
+        type: string
+    tags:
+      - PLM
+    responses:
+      "200":
+        description: Returns an array of objects
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'

@@ -1,0 +1,201 @@
+{
+	"package": "cmii",
+	"name": "ecoAssignment",
+	"elementType": "relationship",
+	"lockLinked": false,
+	"linkName": "hasActivity",
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132a7-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132a8-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_createdOn"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132a9-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f132aa-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd69727a-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e4fd2-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e4fd3-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37e4fd4-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		}
+	],
+	"gridColumnsHeader": "",
+	"category": null,
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_a38cf620-d00c-11e9-afa1-bbb992d10fa0",
+				"property": "assignment.name"
+			},
+			{
+				"id": "uigc_a38cf621-d00c-11e9-afa1-bbb992d10fa0",
+				"type": "string",
+				"property": "assignment.status"
+			},
+			{
+				"label": "progress",
+				"type": "progress",
+				"id": "uigc_a38cf622-d00c-11e9-afa1-bbb992d10fa0",
+				"property": "assignment.progress"
+			},
+			{
+				"label": "description",
+				"type": "text",
+				"id": "uigc_a38cf623-d00c-11e9-afa1-bbb992d10fa0",
+				"property": "assignment.description"
+			},
+			{
+				"label": "start Date",
+				"type": "date",
+				"id": "uigc_a38cf624-d00c-11e9-afa1-bbb992d10fa0",
+				"property": "assignment.startDate",
+				"cellRendered": true
+			},
+			{
+				"label": "due date",
+				"type": "date",
+				"id": "uigc_a38cf625-d00c-11e9-afa1-bbb992d10fa0",
+				"property": "assignment.dueDate",
+				"cellRendered": true
+			},
+			{
+				"label": "estimated Date",
+				"type": "date",
+				"id": "uigc_a38cf626-d00c-11e9-afa1-bbb992d10fa0",
+				"property": "assignment.estimatedDate",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_a38cf627-d00c-11e9-afa1-bbb992d10fa0",
+				"type": "node",
+				"property": "actor",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_a38cf628-d00c-11e9-afa1-bbb992d10fa0",
+				"type": "node",
+				"property": "requestor",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_a38cf629-d00c-11e9-afa1-bbb992d10fa0",
+				"type": "state",
+				"property": "_state",
+				"cellRendered": true
+			},
+			{
+				"id": "uigc_a38cf62a-d00c-11e9-afa1-bbb992d10fa0",
+				"type": "string",
+				"property": "newlist"
+			}
+		],
+		"form": {
+			"definition": {},
+			"ng": {}
+		},
+		"tabs": []
+	},
+	"id": "nt_b5ac67d2d6c12fe7f6f3e76fcc674271",
+	"directions": [
+		{
+			"source": "nt_417412cb36773c3659cfc0ac0347f43f",
+			"target": "nt_61eabb0b9f2187dd62c8bbbeee396cb6"
+		}
+	],
+	"translations": {
+		"default": "ecoAssignment"
+	}
+}

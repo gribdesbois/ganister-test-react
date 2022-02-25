@@ -1,0 +1,167 @@
+<div class="container-fluid" ng-controller="searchController">
+  <div ng-show="!advancedSearch">
+
+    <div class="panel-group mt-20" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-info">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
+              aria-controls="collapseOne">
+              Main Search
+            </a>
+            <span class="badge" ng-show="searchResultMessage != null">{{searchResultMessage}}</span> <button
+              class="btn btn-warning btn-sm" style="margin-left:10px;" ng-click="changeAdvancedSearch(true)"
+              title="Advanced Search"><span class="glyphicon glyphicon-screenshot"></span></button>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+
+            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-5">
+              <label>Search Term</label>
+              <input ng-model="searchTerm" type="text" class="form-control" placeholder="Search Term">
+            </div>
+            <div class="col-xs-2 col-sm-4 col-md-2 col-lg-3 form-group">
+              <label>Max Results</label>
+              <input ng-model="searchMaxResults" type="number" class="form-control" placeholder="Max Results">
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+              <label>Actions</label><br>
+              <button class="btn btn-primary" ng-click="search('simple')">Search</button>
+              <button class="btn btn-default" ng-click="clear()">Clear Results</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-show="advancedSearch">
+    <div class="panel-group mt-20" id="accordion2" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-warning">
+        <div class="panel-heading" role="tab" id="heading2">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse2" aria-expanded="true"
+              aria-controls="collapse2">
+              Advanced Search
+            </a>
+            <span class="badge" ng-show="searchResultMessage != null">{{searchResultMessage}}</span><button
+              class="btn btn-info" style="margin-left:10px;" ng-click="advancedSearch = false;"><span
+                class="glyphicon glyphicon-th-large"></span></button>
+          </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2">
+          <div class="panel-body">
+
+            <div class="col-xs-12 col-md-6 col-lg-8 form-group">
+              <label for="search-nodetypes">Nodetype</label>
+              <button class="btn btn-success btn-xs" title="select All" ng-click="fillNodetypeSelection();"> <span
+                  class="glyphicon glyphicon-check"></span></button>
+              <button class="btn btn-warning btn-xs" title="unselect All" ng-click="emptyNodetypeSelection();"><span
+                  class="glyphicon glyphicon-unchecked"></span></button>
+              <div>
+                <a class="btn btn-info btn-xs col-lg-3" style="border-radius:0px;"
+                  ng-class="{true: 'btn-info', false: 'btn-success'}[!nodetype.selected]"
+                  ng-click="changeNodetypeSelection(nodetype); " ng-repeat="nodetype in nodetypes | orderBy:'name'">
+                  {{nodetype.name}}
+                </a>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6 col-lg-4 form-group">
+              <div class="col-xs-2 col-md-2 col-lg-6 form-group">
+                <label>Max Results</label>
+                <input ng-model="searchMaxResults" type="number" class="form-control" placeholder="Max Results">
+              </div>
+              <div class="col-xs-2 col-md-2 col-lg-6 form-group">
+                <label for="search-booleanOperation">Operation</label>
+                <select id="search-booleanOperation" class="form-control" ng-model="searchOperator">
+                  <option value="AND">AND</option>
+                  <option value="OR">OR</option>
+                </select>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-5 col-lg-12">
+                <label>Actions</label><br>
+                <button class="btn btn-primary" ng-click="search('advanced')">Search</button>
+                <button class="btn btn-default" ng-click="clear()">Clear Results</button>
+              </div>
+            </div>
+          </div>
+          <h3>Search Criterias
+            <button class="btn btn-success"
+              ng-click="addSearchCriteria({type: 'contains', filterType: 'text', property: 'all'})">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </h3>
+          <div class="row">
+            <div class="col-xs-12">
+
+            </div>
+          </div>
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Matching</th>
+                <th>Search Term</th>
+                <th>Type</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-show="!Object.keys(searchCriterias).length">
+                <td colspan="5">
+                  <h4>No Search Criteria</h4>
+                </td>
+              </tr>
+              <tr ng-repeat="searchCriteria in searchCriterias">
+                <td>
+                  <select class="form-control" ng-model="searchCriteria.property"
+                    ng-options="property for property in properties | orderBy:'toString()'"></select>
+                </td>
+                <td>
+                  <select class="form-control" ng-model="searchCriteria.type"
+                    ng-options="matchingType for matchingType in matchingTypes">
+                  </select>
+                </td>
+                <td>
+                  <input ng-model="searchCriteria.filter" type="text" class="form-control" placeholder="Search Term">
+                </td>
+                <td>
+                  <select class="form-control" ng-model="searchCriteria.filterType"
+                    ng-options="filterType for filterType in filterTypes">
+                  </select>
+                </td>
+                <td>
+                  <button class="btn btn-danger" style="margin-top:5px;"
+                    ng-click="removeSearchCriteria(searchCriteria);">
+                    <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-20">
+    <div class="col-xs-12">
+      <div class="row equal">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 search-item" ng-repeat="searchResult in searchResults">
+          <div class="media" ng-click="openNode(searchResult._type, searchResult._id)">
+            <div class="media-left text-center" style="min-width: 96px;height: 96px;">
+              <span class="label label-info">{{ 'default.nodetype.'+searchResult._type | translate }}</span>
+              <img class="media-object nodetypeIcon128" style="margin-left: auto; margin-right: auto;"
+                ng-src="{{ searchResult.properties._thumbnail.properties.publicUrl || 'images/Ellipsis-1s-20px.gif'}}">
+            </div>
+            <div class="media-body">
+              <p><b>Name:</b> {{searchResult.properties.name}}</p>
+              <p><b>Ref:</b> {{searchResult.properties._ref}}</p>
+              <p><b>Description:</b> {{searchResult.properties.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

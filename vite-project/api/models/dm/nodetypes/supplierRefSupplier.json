@@ -1,0 +1,134 @@
+{
+	"name": "supplierRefSupplier",
+	"package": "purchasing",
+	"elementType": "relationship",
+	"versionnable": false,
+	"promotionControlled": false,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [],
+		"tabs": [],
+		"form": {
+			"definition": {
+				"A": []
+			},
+			"ng": {},
+			"labelCase": "capitalize"
+		}
+	},
+	"lifecycle": {
+		"states": [
+			{
+				"id": "state_3935fcb2-0899-11eb-9152-596414692613",
+				"name": "draft",
+				"label": "Draft",
+				"start": true,
+				"lockable": true,
+				"owner": "role_3935fcb1-0899-11eb-9152-596414692613",
+				"ui_color": "primary"
+			}
+		],
+		"transitions": [],
+		"roles": [
+			{
+				"id": "role_3935fcb1-0899-11eb-9152-596414692613",
+				"name": "manager",
+				"label": "Manager"
+			}
+		]
+	},
+	"category": null,
+	"configuration": false,
+	"classification": [],
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_a99a4e61-089a-11eb-9152-596414692613"
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_a99a4e62-089a-11eb-9152-596414692613"
+		},
+		{
+			"name": "_createdBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_a99a4e63-089a-11eb-9152-596414692613"
+		},
+		{
+			"name": "_createdByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_a99a4e64-089a-11eb-9152-596414692613"
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_a99a4e65-089a-11eb-9152-596414692613"
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": false,
+			"id": "prop_a99a4e66-089a-11eb-9152-596414692613"
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_a99a4e67-089a-11eb-9152-596414692613"
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_a99a4e68-089a-11eb-9152-596414692613"
+		}
+	],
+	"maidenName": [],
+	"actions": [],
+	"id": "nt_a99a4e60-089a-11eb-9152-596414692613",
+	"permissionSet": "PS_e4195ca0-cbe8-11ea-bb53-e9739520f3a5",
+	"sourceNodetype": "nt_3935fcb0-0899-11eb-9152-596414692613",
+	"targetNodetype": "nt_9a36454795be674e7f03bb02b4b60164",
+	"directions": [
+		{
+			"source": "nt_3935fcb0-0899-11eb-9152-596414692613",
+			"target": "nt_9a36454795be674e7f03bb02b4b60164"
+		}
+	],
+	"linkName": "suppliedBy",
+	"lockLinked": true,
+	"translations": {}
+}

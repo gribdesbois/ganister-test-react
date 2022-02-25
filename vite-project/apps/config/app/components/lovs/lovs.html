@@ -1,0 +1,121 @@
+<style>
+  .lovsNodeElement.lovSelected {
+    background: #337ab7;
+  }
+
+  .lovActions {
+    visibility: hidden;
+  }
+
+  .lovsNodeElement:hover>.lovActions {
+    visibility: visible;
+  }
+</style>
+
+<div class="row-container" ng-controller="lovsController">
+  <div class="col-md-4 ">
+    <div class="panel panel-default transparent ">
+      <div class="panel-heading">
+        List of Values
+        <div class="btn btn-success btn-xs pull-right" ng-click="addLovs()">
+          <span class="glyphicon glyphicon-plus"></span>
+        </div>
+      </div>
+      <div class="panel-body" style="max-height: 80vh;overflow-y: auto;">
+        <form>
+          <div class="form-group">
+            <input type="text" ng-model="lovName" class="form-control" placeholder="Filter by name">
+          </div>
+        </form>
+        <div class="list-group">
+          <button type="button" class="list-group-item lovsNodeElement"
+            ng-class="{'list-group-item-success':lov.id==selectedLov.id}""
+            ng-repeat=" lov in lovs | filter : lovName" ng-click="selectLov(lov)">
+            {{lov.name}}
+            <div class="btn-group pull-right lovActions" role="group" aria-label="Lov Action Buttons">
+              <a class="btn btn-warning btn-xs" data-nodrag ng-click="editLov(lov,$event)">
+                <span class="glyphicon  glyphicon-pencil"></span>
+              </a>
+              <a class=" btn btn-danger btn-xs" data-nodrag ng-click="deleteLovs(lov)">
+                <span class="glyphicon  glyphicon-trash"></span>
+              </a>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="panel panel-default transparent ">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <h3><span class="label label-info">{{selectedLov.name}}</span></h3>
+          </div>
+          <div class="col-xs-12 col-md-8">
+            <form class="form-horizontal">
+              <div class="form-group" style="margin-bottom: 0px">
+                <label for="inputEmail3" class="col-sm-4 control-label">Package: </label>
+                <div class="col-sm-8">
+                  <select class="form-control" ng-change="saveLovs(selectedLov)" ng-disabled="readMode"
+                    ng-model="selectedLov.package"
+                    ng-options="item.id as item.label for item in datamodel.packages | orderBy:'name'">
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <table class="table table-responsive" ng-show="readMode">
+          <thead>
+            <tr>
+              <th>Value</th>
+              <th>Label</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="val in selectedLov.items">
+              <td>{{val.value}}</td>
+              <td>{{val.label}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-responsive" ng-show="!readMode">
+          <thead>
+            <tr>
+              <th>Value</th>
+              <th>Label</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="val in selectedLov.items">
+              <td>
+                <input type="text" class="form-control" ng-model="val.value" ng-model-options="{updateOn: 'blur'}"
+                  ng-change="saveLovs(selectedLov)" />
+              </td>
+              <td>
+                <input type="text" class="form-control" ng-model="val.label" ng-model-options="{updateOn: 'blur'}"
+                  ng-change="saveLovs(selectedLov)" />
+              </td>
+              <td>
+                <button class="btn btn-danger" ng-click="deleteValue($index)"><span
+                    class="glyphicon-trash glyphicon"></span></button>
+                <div class="btn-group" role="group" aria-label="...">
+                  <button type="button" class="btn btn-warning" ng-click="move('up',$index)"><span class="glyphicon glyphicon-arrow-up
+                      "></span></button>
+                  <button type="button" class="btn btn-warning" ng-click="move('down',$index)"><span class="glyphicon glyphicon-arrow-down
+                      "></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div ng-show="!readMode" class="btn btn-success btn-block" ng-click="addValue()">
+          <span class="glyphicon glyphicon-plus"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

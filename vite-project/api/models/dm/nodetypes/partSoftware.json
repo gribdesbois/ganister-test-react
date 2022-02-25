@@ -1,0 +1,209 @@
+{
+	"package": "pe",
+	"elementType": "relationship",
+	"lockLinked": true,
+	"linkName": "containsSoftware",
+	"name": "partSoftware",
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f13297-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f3b1328a-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3a1328b-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f13298-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created On"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f13299-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "Created By"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f1329a-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd699983-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e76d4-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"id": "prop_63b5a410-567a-11ec-90b3-a1fff477ed5f",
+			"name": "usgepoint",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": false,
+			"translations": {
+				"default": "Usgepoint",
+				"en": "Usgepoint"
+			}
+		}
+	],
+	"gridColumnsHeader": "",
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"category": null,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [
+			{
+				"label": "_ref",
+				"type": "text",
+				"id": "uigc_17443b745702389db3ac491b97551879",
+				"property": "software._ref",
+				"order": 1
+			},
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_f0e43b74cc38ef73266040f75bdae9de",
+				"property": "software.name",
+				"order": 3
+			},
+			{
+				"label": "description",
+				"type": "text",
+				"id": "uigc_324342875a79250c25762ef77e6bd564",
+				"property": "software.description",
+				"order": 4
+			},
+			{
+				"label": "modified on",
+				"type": "date",
+				"id": "uigc_e69cad1167a732a6a7c601de00e136be",
+				"property": "software._modifiedOn",
+				"order": 5,
+				"cellRendered": true
+			},
+			{
+				"label": "Version",
+				"type": "version",
+				"width": 60,
+				"cellRendered": true,
+				"cellStyle": {
+					"text-align": "center"
+				},
+				"id": "uigc_fc583876f3d2f639931aa4a1d070cd3b",
+				"property": "software._version",
+				"order": 2
+			},
+			{
+				"label": "_createdOn",
+				"type": "date",
+				"id": "uigc_fb29680332ebf6753bb6098342552d23",
+				"property": "software._createdOn",
+				"order": 6,
+				"cellRendered": true
+			},
+			{
+				"label": "_createdBy",
+				"type": "text",
+				"id": "uigc_8b33c14cc8c89cf7dd44340f9e2611ac",
+				"property": "software._createdByName",
+				"order": 7,
+				"cellRendered": true
+			}
+		],
+		"form": {
+			"definition": {},
+			"ng": {}
+		},
+		"tabs": [],
+		"reverseGridColumns": []
+	},
+	"id": "nt_438178f4e2d3918e4c60a22575256081",
+	"configManager": true,
+	"cardinality": "NtoN",
+	"forbidDuplRels": true,
+	"directions": [
+		{
+			"source": "nt_d118235ccf0285283a2b679200ac375a",
+			"target": "nt_c4c7de1d95f0bc5595425ea44d7e43e1"
+		}
+	],
+	"translations": {
+		"default": "partSoftware"
+	}
+}

@@ -1,0 +1,310 @@
+{
+	"name": "fieldPartBom",
+	"package": "mro",
+	"elementType": "relationship",
+	"lockLinked": true,
+	"versionnable": false,
+	"promotionControlled": false,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [
+			{
+				"label": "_state",
+				"type": "state",
+				"cellRendered": false,
+				"cellStyle": {
+					"text-align": "center"
+				},
+				"id": "uigc_92e140b5676def6162fca11c52334571",
+				"property": "fieldedPart._state",
+				"orgCellRendered": false
+			},
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_92e140b5676def6162fca11c52334572",
+				"property": "fieldedPart.name",
+				"orgCellRendered": true
+			},
+			{
+				"label": "_modifiedOn",
+				"type": "date",
+				"id": "uigc_92e140b5676def6162fca11c52334573",
+				"property": "fieldedPart._modifiedOn",
+				"cellRendered": true,
+				"orgCellRendered": false
+			},
+			{
+				"label": "_createdOn",
+				"type": "date",
+				"id": "uigc_92e140b5676def6162fca11c52334574",
+				"property": "fieldedPart._createdOn",
+				"cellRendered": true,
+				"orgCellRendered": false
+			}
+		],
+		"tabs": [],
+		"form": {
+			"definition": {},
+			"ng": {}
+		}
+	},
+	"lifecycle": {
+		"states": [
+			{
+				"id": "state_521a6fd4a459489e749714f9e9071246",
+				"name": "draft",
+				"label": "Draft",
+				"start": true,
+				"lockable": true,
+				"owner": "role_521a6fd4a459489e749714f9e9071246",
+				"ui_color": "primary"
+			}
+		],
+		"transitions": [],
+		"roles": [
+			{
+				"id": "role_521a6fd4a459489e749714f9e9071246",
+				"name": "manager",
+				"label": "Manager"
+			}
+		]
+	},
+	"category": null,
+	"configuration": false,
+	"classification": [],
+	"properties": [
+		{
+			"id": "prop_5c55ab8ca43c6dd3d1e71d367097cd83",
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"id": "prop_89aee06d9bee582ac6dcabc335343a03",
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created On"
+			}
+		},
+		{
+			"id": "prop_222dc3ed4e5f0d98db2230cefad43cc2",
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f159c7-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd699980-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e4fe4-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e4fe5-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37e4fe6-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		},
+		{
+			"id": "prop_9c7ff632dd3953f4968028a5fb24db8a",
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": false,
+			"core": false,
+			"translations": {
+				"default": "_ref"
+			}
+		},
+		{
+			"id": "prop_37352bf6c9d5c0fc32cd22b9d3e869cf",
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "State"
+			}
+		},
+		{
+			"id": "prop_170da1003d9467b8e442bfe7f0785feb",
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "_releasedOn"
+			}
+		},
+		{
+			"name": "_releasedUntil",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"id": "prop_b70a5580-6557-11eb-94db-07bad80f0c9e",
+			"translations": {
+				"default": "_releasedUntil"
+			}
+		},
+		{
+			"id": "prop_8d34035ce227823ff502b28dafb69550",
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "_version"
+			}
+		},
+		{
+			"id": "prop_8da0a377041f2e5bad802ee7d678c23c",
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "_versionedOn"
+			}
+		},
+		{
+			"id": "prop_b1461e86c06e631e09c0641821401c09",
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "Modified On"
+			}
+		},
+		{
+			"id": "prop_44188759d0c2e05b124f985177ac79a7",
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"id": "prop_cb627a9ec777183bcf847e3f5350338b",
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"id": "prop_087d60d34b685fabf1a01404f646a9ef",
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": false,
+			"translations": {
+				"default": "_lockState"
+			}
+		}
+	],
+	"maidenName": [],
+	"actions": [],
+	"id": "nt_816a176e608dba4053a3601f5e92c545",
+	"linkName": "composedOf",
+	"cardinality": "1toN",
+	"directions": [
+		{
+			"source": "nt_322838663e6dbca212e4804c2ee513ff",
+			"target": "nt_322838663e6dbca212e4804c2ee513ff"
+		}
+	],
+	"translations": {
+		"default": "fieldPartBom"
+	}
+}

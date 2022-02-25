@@ -1,0 +1,91 @@
+<div class="modal fade" id="modal-accountModal" ng-controller="accountModalController" tabindex="-1" role="dialog"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">{{ 'default.shared.close' | translate }}</span>
+        </button>
+        <h4 class="modal-title">My Account</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form" autocomplete="off">
+          <div class="row">
+            <div class="col-md-5">
+              <div ngf-drop ngf-select ng-model="fileUpload" ngf-drag-over-class="'dragover'" ngf-allow-dir="true"
+                accept="image/*" ngf-pattern="'image/*'"><a class="thumbnail" style="margin-bottom:10px"><img
+                    ng-src="{{currentUser.pict || 'images/userLogo.png'}}" class="img-responsive"
+                    style="object-fit: cover;height: 192px;width: 192px;border-radius: 5px;" /></a>
+              </div>
+              <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+              <button ng-if="currentUser.pict" class="btn btn-warning form-control" style="margin-bottom: 20px;"
+                ng-click="removePhoto()">Remove
+                Photo</button>
+            </div>
+
+            <div class="col-md-7">
+              <div class="form-group">
+                <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                <div class="col-sm-9">
+                  <input ng-model="currentUser.firstName" type="text" placeholder="First Name" class="form-control"
+                    autofocus ng-model-options="{updateOn: 'blur'}"
+                    ng-change="patchUserProperty(userSelectedDetail,'firstName')">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                <div class="col-sm-9">
+                  <input ng-model="currentUser.lastName" type="text" placeholder="Last Name" class="form-control"
+                    ng-model-options="{updateOn: 'blur'}" ng-change="patchUserProperty(userSelectedDetail,'lastName')">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-9">
+                  <input ng-model="currentUser.email" type="email" placeholder="Email" autocomplete="email"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">New Password</label>
+                <div class="col-sm-9">
+                  <input autocomplete="new-password" ng-model="currentUser.newPassword" type="password"
+                    placeholder="New Password" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Confirm New Password</label>
+                <div class="col-sm-9">
+                  <input autocomplete="confirm-new-password" ng-model="currentUser.confirmNewPassword" type="password"
+                    placeholder="New Password" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-7 control-label">
+                   Email Based 2-Factor Authentication <input  ng-model="currentUser.TWOFA" type="checkbox" >
+                  </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!-- Tools Download button -->
+        <!-- <div class="btn-group">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Tools <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Download Ganister File Sync</a></li>
+          </ul>
+        </div> -->
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'default.shared.close' | translate
+          }}</button>
+        <button type="button" class="btn btn-success" ng-click="updateUser()">{{ 'default.shared.update' | translate
+          }}</button>
+      </div>
+    </div>
+  </div>
+</div>

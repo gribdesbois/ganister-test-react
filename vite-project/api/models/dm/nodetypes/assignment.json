@@ -1,0 +1,898 @@
+{
+	"package": "core",
+	"name": "assignment",
+	"elementType": "node",
+	"category": 0,
+	"codification": {
+		"prefixes": [
+			{
+				"type": "text",
+				"value": "ACT"
+			}
+		],
+		"value": {
+			"size": "6",
+			"fillWith": "0",
+			"type": "highest"
+		},
+		"prefix": "ACT-",
+		"size": 10,
+		"fillWith": "0"
+	},
+	"maidenName": {
+		"elements": [
+			"_ref",
+			"name"
+		],
+		"separator": "-"
+	},
+	"gridColumnsHeader": "",
+	"lifecycle": {
+		"states": [
+			{
+				"name": "new",
+				"label": "new",
+				"labelClass": "Primary",
+				"start": true,
+				"lockable": true,
+				"id": "state_e448513864456e77d3f9f5154d5cc07f",
+				"ui_color": "primary",
+				"owner": "role_8a425afe6a9bfc17dae639fc7be888c6",
+				"positionY": 140,
+				"positionX": 0
+			},
+			{
+				"name": "inprogress",
+				"label": "In Progress",
+				"start": false,
+				"lockable": true,
+				"id": "state_9744f1ffc035e6a4eb7f9f93d86fbf45",
+				"ui_color": "success",
+				"owner": "role_73990f5f57252f866ecbeb223afea11c",
+				"positionY": 140,
+				"positionX": 100
+			},
+			{
+				"name": "onhold",
+				"label": "on hold",
+				"start": false,
+				"lockable": true,
+				"id": "state_f53c1d442081e3f3aeddcf3c36893b84",
+				"ui_color": "info",
+				"owner": "role_73990f5f57252f866ecbeb223afea11c",
+				"positionY": 240,
+				"positionX": 100
+			},
+			{
+				"name": "cancelled",
+				"label": "cancelled",
+				"start": false,
+				"lockable": true,
+				"id": "state_b6c75f42dc0c49833820a2bd02d4b9c0",
+				"ui_color": "default",
+				"positionY": 240,
+				"positionX": 300
+			},
+			{
+				"name": "commited",
+				"label": "commited",
+				"start": false,
+				"lockable": true,
+				"id": "state_88ab8b5c9f1de9780fbda25d17868442",
+				"ui_color": "warning",
+				"owner": "role_c4636f03c927739591d1ff50ef0e666d",
+				"positionY": 140,
+				"positionX": 300
+			},
+			{
+				"name": "done",
+				"label": "Done",
+				"start": false,
+				"lockable": false,
+				"id": "state_c88889928207eb0a1d68dfe3ca1fdf2a",
+				"ui_color": "success",
+				"positionY": 140,
+				"positionX": 440
+			}
+		],
+		"transitions": [
+			{
+				"from": "state_e448513864456e77d3f9f5154d5cc07f",
+				"to": "state_9744f1ffc035e6a4eb7f9f93d86fbf45",
+				"method": "",
+				"id": "trans_58d1b4fc94d8eea1f82f7cc3dd3aed99"
+			},
+			{
+				"from": "state_9744f1ffc035e6a4eb7f9f93d86fbf45",
+				"to": "state_f53c1d442081e3f3aeddcf3c36893b84",
+				"method": "",
+				"id": "trans_4f22933115b3b668b20e8fba75f9f57f"
+			},
+			{
+				"from": "state_f53c1d442081e3f3aeddcf3c36893b84",
+				"to": "state_9744f1ffc035e6a4eb7f9f93d86fbf45",
+				"method": "",
+				"id": "trans_bbf93d9270747893947551c522cabc12"
+			},
+			{
+				"from": "state_f53c1d442081e3f3aeddcf3c36893b84",
+				"to": "state_b6c75f42dc0c49833820a2bd02d4b9c0",
+				"method": "",
+				"id": "trans_6ca60f7003d6e4035eb93b8430078b54"
+			},
+			{
+				"from": "state_9744f1ffc035e6a4eb7f9f93d86fbf45",
+				"to": "state_b6c75f42dc0c49833820a2bd02d4b9c0",
+				"method": "",
+				"id": "trans_693b528d2025c1dfcfa6ccef143771db"
+			},
+			{
+				"from": "state_9744f1ffc035e6a4eb7f9f93d86fbf45",
+				"to": "state_88ab8b5c9f1de9780fbda25d17868442",
+				"method": "",
+				"id": "trans_bd0339481d9e8ef6b6b5ae61592fd884"
+			},
+			{
+				"from": "state_88ab8b5c9f1de9780fbda25d17868442",
+				"to": "state_c88889928207eb0a1d68dfe3ca1fdf2a",
+				"id": "trans_deb3f0f14f2e54fbaec7c8ab08201fc9"
+			},
+			{
+				"from": "state_88ab8b5c9f1de9780fbda25d17868442",
+				"to": "state_9744f1ffc035e6a4eb7f9f93d86fbf45",
+				"id": "trans_01510e688b02dedad1a426a7a0d86744"
+			}
+		],
+		"roles": [
+			{
+				"name": "requestor",
+				"label": "Requestor",
+				"id": "role_8a425afe6a9bfc17dae639fc7be888c6"
+			},
+			{
+				"name": "manager",
+				"label": "Manager",
+				"id": "role_c4636f03c927739591d1ff50ef0e666d"
+			},
+			{
+				"name": "actor",
+				"label": "Actor",
+				"id": "role_73990f5f57252f866ecbeb223afea11c"
+			}
+		]
+	},
+	"properties": [
+		{
+			"id": "prop_376efbe4c47504348ac9ad0dc4d48e9f",
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_id",
+				"fr": "ID"
+			}
+		},
+		{
+			"id": "prop_5bd2f982d01f1e37efac0221eba7a7f8",
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "codification",
+			"core": true,
+			"group": "Identification",
+			"translations": {
+				"default": "Ref",
+				"en": "Reference",
+				"de": "Reference",
+				"fr": "Reference",
+				"el": "ref"
+			}
+		},
+		{
+			"id": "prop_0c7b22186a989959710a2ed22eaa969c",
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "State",
+				"en": "State",
+				"de": "State",
+				"fr": "Statut",
+				"el": "State"
+			}
+		},
+		{
+			"id": "prop_4f259f66593f3371bfe2b64a8eaf03e6",
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_createdOn",
+				"fr": "Créé le"
+			}
+		},
+		{
+			"id": "prop_ffa766f0508a84bada08fc98e78c11fe",
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_modifiedOn",
+				"fr": "Modifié le"
+			}
+		},
+		{
+			"id": "prop_5fae58d859953f212333d3e555acc3d2",
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"id": "prop_30aeb5cb6792a81167833e4c732025a5",
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"id": "prop_19cff3574a55b04871cc3b9282d26d86",
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"translations": {
+				"default": "Lock State"
+			}
+		},
+		{
+			"name": "_thumbnail",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"relationship": "nt_5d79e3adnkcd25615637df85e122bcac",
+			"id": "prop_b7beb1e1-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_thumbnail",
+				"fr": "Vignette"
+			}
+		},
+		{
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1e2-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_releasedOn",
+				"fr": "Validé le"
+			}
+		},
+		{
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1e3-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_version",
+				"fr": "Version"
+			}
+		},
+		{
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1e4-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_versionedOn",
+				"fr": "Révisé le"
+			}
+		},
+		{
+			"name": "_history",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1e6-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_history",
+				"fr": "Historique"
+			}
+		},
+		{
+			"name": "_promotions",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1e7-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_promotions",
+				"fr": "Promotions"
+			}
+		},
+		{
+			"name": "_serialized",
+			"type": "multiselect",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_b7beb1e8-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_serialized"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1e9-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_createdBy",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_lockedBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1ea-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedBy"
+			}
+		},
+		{
+			"name": "_lockedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7beb1eb-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedOn"
+			}
+		},
+		{
+			"id": "prop_7a572520-1024-11ea-98f7-699ef9e465a2",
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created By Name",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_releasedUntil",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"id": "prop_74778750-6558-11eb-94db-07bad80f0c9e",
+			"translations": {
+				"default": "_releasedUntil",
+				"fr": "Valide jusqu'à"
+			}
+		},
+		{
+			"name": "name",
+			"label": "name",
+			"type": "text",
+			"id": "prop_53b3e499bf2c116ccaa441980f74b05c",
+			"group": "Identification",
+			"core": false,
+			"mandatory": true,
+			"translations": {
+				"default": "Name",
+				"en": "Name",
+				"de": "Name",
+				"fr": "Nom",
+				"el": "name"
+			}
+		},
+		{
+			"name": "progress",
+			"label": "progress",
+			"type": "integer",
+			"id": "prop_e4a656879e5f6430f5580c453dcc2c3f",
+			"group": "Identification",
+			"core": false,
+			"translations": {
+				"default": "Progress",
+				"en": "Progress",
+				"de": "Progress",
+				"fr": "Avancement",
+				"el": "progress"
+			}
+		},
+		{
+			"name": "description",
+			"label": "description",
+			"type": "text",
+			"id": "prop_3a3a3586c12e0866edb0324bf364cd37",
+			"group": "Identification",
+			"core": false,
+			"translations": {
+				"default": "Description",
+				"en": "Description",
+				"de": "Description",
+				"fr": "Description",
+				"el": "description"
+			}
+		},
+		{
+			"name": "dueDate",
+			"label": "due date",
+			"type": "date",
+			"id": "prop_63514b3d0b949c107f2615d2dcd60678",
+			"mandatory": true,
+			"group": "Tracking",
+			"core": false,
+			"order": 2,
+			"translations": {
+				"default": "Due Date",
+				"en": "Due Date",
+				"de": "Due Date",
+				"fr": "Date fin",
+				"el": "dueDate"
+			}
+		},
+		{
+			"name": "startDate",
+			"label": "start Date",
+			"type": "date",
+			"id": "prop_5cd9f50245e0b79473177a37a8411659",
+			"mandatory": true,
+			"group": "Tracking",
+			"core": false,
+			"order": 1,
+			"translations": {
+				"default": "Start Date",
+				"en": "Start Date",
+				"de": "Start Date",
+				"fr": "Date début",
+				"el": "startDate"
+			}
+		},
+		{
+			"name": "estimatedDate",
+			"label": "estimated Date",
+			"type": "date",
+			"id": "prop_0e4c6894851f38eb7e284aa9afa04edf",
+			"group": "Tracking",
+			"core": false,
+			"translations": {
+				"default": "Estimated Date",
+				"en": "Estimated Date",
+				"de": "Estimated Date",
+				"fr": "Date estimée",
+				"el": "estimatedDate"
+			}
+		},
+		{
+			"id": "prop_08305e9b3ebd1c724fcf8a529540ba27",
+			"name": "actor",
+			"type": "node",
+			"relationship": "nt_e04e2affdea3167efc625e3d5ba18730",
+			"group": "Execution",
+			"core": false,
+			"rootName": "actor",
+			"processed": true,
+			"translations": {
+				"default": "Actor",
+				"en": "Actor",
+				"de": "Actor",
+				"fr": "Responsable",
+				"el": "actor"
+			}
+		},
+		{
+			"id": "prop_b5b8febb7b899fdd586d4ff581c22971",
+			"name": "requestor",
+			"type": "node",
+			"relationship": "nt_54b4fbf033447eb9c4bb1c9dee2ce243",
+			"group": "Execution",
+			"core": false,
+			"rootName": "requestor",
+			"processed": true,
+			"translations": {
+				"default": "Requestor",
+				"en": "Requestor",
+				"de": "Requestor",
+				"fr": "Demandeur",
+				"el": "requestor"
+			}
+		},
+		{
+			"id": "prop_eaea39a0-f376-11e9-8aae-e11c2bdc13c6",
+			"name": "category",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": false,
+			"group": "Identification",
+			"translations": {
+				"default": "Category",
+				"fr": "Catégorie"
+			}
+		},
+		{
+			"id": "prop_c1f27da0-3921-11ea-9339-af2065185da0",
+			"name": "duration",
+			"type": "integer",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"translations": {
+				"default": "duration",
+				"fr": "Durée"
+			}
+		},
+		{
+			"id": "prop_0e5e3df0-ebb4-11eb-8e46-296979bbe2a8",
+			"name": "_kanbanList",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"infoData": false,
+			"core": true,
+			"translations": {
+				"default": "Kanban List",
+				"fr": "Kanban List"
+			}
+		}
+	],
+	"ui": {
+		"defaultThumbnail": "images/assignmentLogo.png",
+		"gridColumns": [
+			{
+				"id": "uigc_c7ed8ec0-3921-11ea-a41f-673c35482765",
+				"type": "string",
+				"property": "assignment._ref",
+				"order": 1,
+				"width": 140
+			},
+			{
+				"id": "uigc_632990e4e63e45331e98e37a153b1d3b",
+				"type": "state",
+				"property": "assignment._state",
+				"cellRendered": true,
+				"order": 2,
+				"width": 100
+			},
+			{
+				"label": "progress",
+				"type": "progress",
+				"id": "uigc_5148e65c9584febc56e633b58e4e73ec",
+				"property": "assignment.progress",
+				"cellRendered": true,
+				"order": 3,
+				"width": 100
+			},
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_9f54c184bbe02dee0c9a998d595a8f17",
+				"property": "assignment.name",
+				"order": 4,
+				"width": 250
+			},
+			{
+				"label": "start Date",
+				"type": "date",
+				"id": "uigc_4341b2d401bb243c2ef355d3a328220d",
+				"property": "assignment.startDate",
+				"cellRendered": true,
+				"order": 5,
+				"width": 120
+			},
+			{
+				"label": "due date",
+				"type": "date",
+				"id": "uigc_304b1f74c93382f733d3fb7629f6a53a",
+				"property": "assignment.dueDate",
+				"cellRendered": true,
+				"order": 6,
+				"width": 120
+			},
+			{
+				"id": "uigc_c3186000-3921-11ea-9339-af2065185da0",
+				"type": "string",
+				"property": "assignment.duration",
+				"editable": false,
+				"order": 7,
+				"width": 100
+			},
+			{
+				"id": "uigc_03a897815576e8aa9d6098a15e9167f5",
+				"type": "node",
+				"property": "assignment.requestor",
+				"cellRendered": true,
+				"order": 8,
+				"width": 140
+			},
+			{
+				"id": "uigc_5242e4daabdaf7fcb2f115c8a6ce09af",
+				"type": "node",
+				"property": "assignment.actor",
+				"cellRendered": true,
+				"order": 9,
+				"width": 140
+			},
+			{
+				"label": "description",
+				"type": "text",
+				"id": "uigc_3908dbf5136e43c1677cd480b81e276a",
+				"property": "assignment.description",
+				"order": 10,
+				"width": 300
+			},
+			{
+				"id": "uigc_ee8ab8f0-f376-11e9-9400-3f86fc4de569",
+				"type": "string",
+				"property": "assignment.category",
+				"order": 11,
+				"width": 120
+			},
+			{
+				"label": "estimated Date",
+				"type": "date",
+				"id": "uigc_9f294d74b93f0819dfdd6ba1b7dd3776",
+				"property": "assignment.estimatedDate",
+				"cellRendered": true,
+				"order": 12,
+				"width": 120
+			}
+		],
+		"form": {
+			"definition": {
+				"A": [
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "false",
+						"id": "co_827e7707-a28f-4b76-81d9-268a55319a1f",
+						"label": "Identification",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_45a4fe9c-9549-4a2f-a301-181b831e62fe",
+									"property": "_ref",
+									"size": "2",
+									"propertyType": "string",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_dd21b449-ee9d-418f-8d98-52e44477cd9a",
+									"property": "name",
+									"size": "3",
+									"propertyType": "text",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_10b101a1-632c-43f9-943a-9e5d88ca98f5",
+									"property": "progress",
+									"size": "2",
+									"propertyType": "integer",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_c2ed6d4d-a115-4e2b-a5c1-04ed353bd73b",
+									"size": "2",
+									"property": "duration",
+									"propertyType": "string",
+									"readOnly": true,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_5b1cf27e-70bf-4e32-b606-1ae1c66a4418",
+									"property": "category",
+									"size": "2",
+									"propertyType": "string",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_bae0c1f8-b2f2-4bbe-b791-031f308064ee",
+									"property": "description",
+									"size": "12",
+									"propertyType": "text",
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					},
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "true",
+						"id": "co_7528eb12-19f4-424e-88d5-ba07d0a1aef4",
+						"label": "Tracking",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_4ea09be4-aa6f-4c76-ab4f-7ec611df21be",
+									"property": "startDate",
+									"size": "3",
+									"propertyType": "date",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_30956b2a-4fe8-49f6-b45a-f89308d3a799",
+									"property": "dueDate",
+									"size": "3",
+									"propertyType": "date",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_6f590f09-af2c-4a03-a04d-ff27203dba70",
+									"property": "estimatedDate",
+									"size": "3",
+									"propertyType": "date",
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					},
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "true",
+						"id": "co_241b8b4b-a2b5-4faf-a6ee-fdc6af43a003",
+						"label": "Execution",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": "it_a0baa92c-ebbe-4acc-a96c-0aa9833559e4",
+									"property": "actor",
+									"size": "3",
+									"propertyType": "node",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": "it_a299e4c6-5ff2-4d00-a07f-69c9e23c74ad",
+									"property": "requestor",
+									"size": "3",
+									"propertyType": "node",
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					}
+				]
+			},
+			"ng": {},
+			"labelCase": "capitalize"
+		},
+		"tabs": [
+			{
+				"id": "tab_a1ade8d0-3b6b-11ea-a979-07c135c8a805",
+				"name": "Predecessors",
+				"tabContentType": "relatedObject",
+				"attachMode": "both",
+				"relationships": "nt_5d79e3ad56cd25615633df69e122bb0a",
+				"translations": {
+					"default": "Predecessors",
+					"fr": "Prédecesseurs"
+				}
+			},
+			{
+				"id": "tab_b5410c60-3b6b-11ea-b10f-bfacce5ccfaf",
+				"name": "Successors",
+				"tabContentType": "reverseRelationships",
+				"attachMode": "",
+				"relationships": [
+					"nt_5d79e3ad56cd25615633df69e122bb0a"
+				],
+				"translations": {
+					"default": "Successors",
+					"fr": "Successeurs"
+				}
+			}
+		]
+	},
+	"id": "nt_61eabb0b9f2187dd62c8bbbeee396cb6",
+	"versionnable": false,
+	"methods": [
+		{
+			"id": "ntm_b58fc170-3922-11ea-9840-572b7d13d5bf",
+			"description": "Update Assignment Dates and Duration after creation",
+			"trigger": "afterCreate",
+			"name": "updateAssignmentDatesAndDuration"
+		},
+		{
+			"id": "ntm_c08e1630-3922-11ea-af37-8d97b9a71fb6",
+			"description": "Update Assignment Dates and Duration after update",
+			"trigger": "afterUpdate",
+			"name": "updateAssignmentDatesAndDuration"
+		}
+	],
+	"translations": {
+		"default": "Assignment",
+		"en": "Assignment",
+		"fr": "Tâche",
+		"el": "Ανάθεση Εργασίας"
+	}
+}

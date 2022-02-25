@@ -1,0 +1,499 @@
+{
+	"package": "mro",
+	"elementType": "node",
+	"name": "fieldedPart",
+	"gridColumnsHeader": "",
+	"category": 5,
+	"lifecycle": {
+		"states": [
+			{
+				"name": "newversion",
+				"label": "New Version",
+				"start": true,
+				"lockable": true,
+				"id": "state_512d1e8777771308637e9145e19e652f"
+			},
+			{
+				"name": "stock",
+				"label": "Stock",
+				"start": false,
+				"lockable": true,
+				"id": "state_a08c1639f0739f5eecfc06bd45d5287d"
+			},
+			{
+				"name": "inservice",
+				"label": "In Service",
+				"start": false,
+				"lockable": false,
+				"id": "state_23dba19796f24a63a19fcfebf6ef9a21"
+			},
+			{
+				"name": "outofservice",
+				"label": "Out Of Service",
+				"start": false,
+				"lockable": true,
+				"id": "state_efd6e470446191a3ad2202b24bffcafe"
+			},
+			{
+				"name": "maintenance",
+				"label": "Maintenance",
+				"start": false,
+				"lockable": true,
+				"id": "state_b6a53083e1224c524426ff8a1afc77f8"
+			},
+			{
+				"name": "superseded",
+				"label": "Superseded",
+				"start": false,
+				"lockable": false,
+				"id": "state_3d6eb54943e7589908d8ff906d97c789"
+			}
+		],
+		"transitions": [
+			{
+				"from": "state_512d1e8777771308637e9145e19e652f",
+				"to": "state_a08c1639f0739f5eecfc06bd45d5287d",
+				"id": "trans_488f701b25ace947a43c99750fe64c0d"
+			},
+			{
+				"from": "state_512d1e8777771308637e9145e19e652f",
+				"to": "state_23dba19796f24a63a19fcfebf6ef9a21",
+				"id": "trans_d48537c05b4058d3bd6bdb267bb443b5"
+			},
+			{
+				"from": "state_a08c1639f0739f5eecfc06bd45d5287d",
+				"to": "state_23dba19796f24a63a19fcfebf6ef9a21",
+				"id": "trans_8f84ffab6b889c1ee033f8ca4e813386"
+			},
+			{
+				"from": "state_23dba19796f24a63a19fcfebf6ef9a21",
+				"to": "state_a08c1639f0739f5eecfc06bd45d5287d",
+				"id": "trans_2d915bdfa8da4acf7f405ac32c53b368"
+			},
+			{
+				"from": "state_23dba19796f24a63a19fcfebf6ef9a21",
+				"to": "state_efd6e470446191a3ad2202b24bffcafe",
+				"id": "trans_92754d12d48ed21e3040283d118558f2"
+			},
+			{
+				"from": "state_efd6e470446191a3ad2202b24bffcafe",
+				"to": "state_b6a53083e1224c524426ff8a1afc77f8",
+				"id": "trans_d3c4e635ebef9ebe5a142d7fccbb92c3"
+			},
+			{
+				"from": "state_23dba19796f24a63a19fcfebf6ef9a21",
+				"to": "state_b6a53083e1224c524426ff8a1afc77f8",
+				"id": "trans_a27f130c3e8f28220f5c3c1b35eabd86"
+			},
+			{
+				"from": "state_b6a53083e1224c524426ff8a1afc77f8",
+				"to": "state_efd6e470446191a3ad2202b24bffcafe",
+				"id": "trans_6b4f9f7667cea9471571d935e400879e"
+			},
+			{
+				"from": "state_b6a53083e1224c524426ff8a1afc77f8",
+				"to": "state_3d6eb54943e7589908d8ff906d97c789",
+				"id": "trans_669feb5ae28cac1a8ed5ae4b3094dca4"
+			},
+			{
+				"from": "state_a08c1639f0739f5eecfc06bd45d5287d",
+				"to": "state_b6a53083e1224c524426ff8a1afc77f8",
+				"id": "trans_b2e144b484c5d4de46aad4126891ee62"
+			},
+			{
+				"from": "state_b6a53083e1224c524426ff8a1afc77f8",
+				"to": "state_a08c1639f0739f5eecfc06bd45d5287d",
+				"id": "trans_d95e70d2385bfcff7676747dc72691bd"
+			}
+		],
+		"roles": [
+			{
+				"name": "manager",
+				"label": "Manager",
+				"id": "role_6fa9e73eed6e2da1b79c2f3e1d490b6d"
+			},
+			{
+				"name": "user",
+				"label": "User",
+				"id": "role_584cec6ec6212138f89b24505095c8ee"
+			}
+		]
+	},
+	"properties": [
+		{
+			"id": "prop_376efbe4c47504348ac9ad0dc4d48e9f",
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"id": "prop_5bd2f982d01f1e37efac0221eba7a7f8",
+			"name": "_ref",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"group": "Identification",
+			"translations": {
+				"default": "Ref",
+				"fr": "Ref",
+				"el": "ref"
+			}
+		},
+		{
+			"id": "prop_0c7b22186a989959710a2ed22eaa969c",
+			"name": "_state",
+			"type": "state",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "State",
+				"fr": "Statut"
+			}
+		},
+		{
+			"id": "prop_4f259f66593f3371bfe2b64a8eaf03e6",
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created On",
+				"fr": "Créé le"
+			}
+		},
+		{
+			"id": "prop_ffa766f0508a84bada08fc98e78c11fe",
+			"name": "_modifiedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Modified On",
+				"fr": "Modifié le"
+			}
+		},
+		{
+			"id": "prop_5fae58d859953f212333d3e555acc3d2",
+			"name": "_lockable",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockable"
+			}
+		},
+		{
+			"id": "prop_30aeb5cb6792a81167833e4c732025a5",
+			"name": "_lockedByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "_lockedByName"
+			}
+		},
+		{
+			"id": "prop_19cff3574a55b04871cc3b9282d26d86",
+			"name": "_lockState",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"translations": {
+				"default": "Locked"
+			}
+		},
+		{
+			"name": "_thumbnail",
+			"type": "node",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"relationship": "nt_5d79e3adnkcd25615637df85e122bcac",
+			"id": "prop_b7bed912-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_thumbnail",
+				"fr": "Vignette"
+			}
+		},
+		{
+			"name": "_releasedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed913-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_releasedOn",
+				"fr": "Validé le"
+			}
+		},
+		{
+			"name": "_version",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed914-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_version",
+				"fr": "Révision"
+			}
+		},
+		{
+			"name": "_versionedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed915-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_versionedOn",
+				"fr": "Révisé le"
+			}
+		},
+		{
+			"name": "_history",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed917-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_history"
+			}
+		},
+		{
+			"name": "_promotions",
+			"type": "json",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed918-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_promotions"
+			}
+		},
+		{
+			"name": "_serialized",
+			"type": "multiselect",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_b7bed919-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_serialized"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed91a-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_lockedBy",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed91b-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedBy"
+			}
+		},
+		{
+			"name": "_lockedOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_b7bed91c-c426-11e9-9ce5-63afa77a96d0",
+			"translations": {
+				"default": "_lockedOn"
+			}
+		},
+		{
+			"id": "prop_b55df710-1025-11ea-babb-f3dfa56abab7",
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"translations": {
+				"default": "Created By Name",
+				"fr": "Créé par"
+			}
+		},
+		{
+			"name": "_releasedUntil",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": false,
+			"id": "prop_a39dccc0-6557-11eb-94db-07bad80f0c9e",
+			"translations": {
+				"default": "_releasedUntil",
+				"fr": "Valide jusqu'à"
+			}
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"id": "prop_d53e255ffba86e28b60b6f61ebb10048",
+			"group": "Identification",
+			"core": false,
+			"translations": {
+				"default": "Name",
+				"fr": "Nom",
+				"el": "name"
+			}
+		}
+	],
+	"ui": {
+		"defaultThumbnail": "images/fieldedPartLogo.png",
+		"gridColumns": [
+			{
+				"label": "_state",
+				"type": "state",
+				"cellRendered": true,
+				"cellStyle": {
+					"text-align": "center"
+				},
+				"id": "uigc_81917f74b3b72933c0bc99ba1a65c02f",
+				"property": "fieldedPart._state"
+			},
+			{
+				"label": "name",
+				"type": "text",
+				"id": "uigc_6210d3fcc9c9039c6db9e89a064d227c",
+				"property": "fieldedPart.name"
+			},
+			{
+				"label": "_modifiedOn",
+				"type": "date",
+				"id": "uigc_d91cf063fac91ad15cc9e9c6c4e220c5",
+				"property": "fieldedPart._modifiedOn",
+				"cellRendered": true
+			},
+			{
+				"label": "_createdOn",
+				"type": "date",
+				"id": "uigc_7934ac0bfe428563cb0abe2d18d422de",
+				"property": "fieldedPart._createdOn",
+				"cellRendered": true
+			}
+		],
+		"form": {
+			"definition": {
+				"A": [
+					{
+						"type": "container",
+						"containerType": "accordion",
+						"foldedDefault": "false",
+						"id": 1,
+						"label": "Identification",
+						"size": "12",
+						"columns": [
+							[
+								{
+									"type": "item",
+									"id": 1,
+									"property": "_ref",
+									"size": "2",
+									"readOnly": false,
+									"offset": "0"
+								},
+								{
+									"type": "item",
+									"id": 2,
+									"property": "name",
+									"size": "2",
+									"readOnly": false,
+									"offset": "0"
+								}
+							]
+						],
+						"readOnly": false,
+						"offset": "0"
+					}
+				]
+			},
+			"ng": {}
+		},
+		"tabs": [
+			{
+				"id": "tab_e3ee4d932bb110862a1edf5a667a4bfa",
+				"name": "BOM",
+				"tabContentType": "multilevelView",
+				"relationships": [
+					"nt_816a176e608dba4053a3601f5e92c545"
+				],
+				"translations": {
+					"default": "BOM"
+				}
+			}
+		]
+	},
+	"actions": [
+		{
+			"id": "action_db86db10-c7f3-11ea-b762-617baebd41b4",
+			"name": "updateSerials",
+			"label": {
+				"fr": "Editer  les n° de série",
+				"default": "Edit Serial Numbers"
+			},
+			"method": "fieldedPartSerialUpdates",
+			"translations": {}
+		},
+		{
+			"id": "action_db86db10-c7f3-11ea-b762-617baebd41b3",
+			"name": "setInService",
+			"method": "setInService",
+			"translations": {}
+		}
+	],
+	"reports": [],
+	"id": "nt_322838663e6dbca212e4804c2ee513ff",
+	"translations": {
+		"default": "Fielded Part",
+		"en": "Fielded Part",
+		"fr": "Article serialisé"
+	}
+}

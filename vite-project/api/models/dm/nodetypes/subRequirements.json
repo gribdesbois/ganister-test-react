@@ -1,0 +1,208 @@
+{
+	"package": "syseng",
+	"name": "subRequirements",
+	"linkName": "subRequirements",
+	"elementType": "relationship",
+	"lockLinked": true,
+	"category": null,
+	"lifecycle": {
+		"states": [],
+		"transitions": [],
+		"roles": []
+	},
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132cb-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132cc-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_createdOn"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_f3f132cd-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f3f132ce-c427-11e9-9658-779c064903ec",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_dd697270-1043-11ea-afe0-a31e296ecacf",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e01bb-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e01bc-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37e01bd-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		}
+	],
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"modalViewColumns": [
+			{
+				"name": "_state",
+				"label": "_state",
+				"type": "state",
+				"cellRendered": true,
+				"cellStyle": {
+					"text-align": "center"
+				}
+			},
+			{
+				"name": "name",
+				"width": "2"
+			},
+			{
+				"name": "_ref",
+				"width": "3"
+			},
+			{
+				"name": "_modifiedOn",
+				"width": "3"
+			},
+			{
+				"name": "modifiedBy",
+				"width": "2"
+			},
+			{
+				"name": "description",
+				"width": "2"
+			}
+		],
+		"gridColumns": [
+			{
+				"label": "_ref",
+				"type": "string",
+				"id": "uigc_309dc79ec96bbef050caefcdf61b0374",
+				"orgCellRendered": true,
+				"hide": true,
+				"width": 200,
+				"property": "requirements._ref"
+			},
+			{
+				"label": "_state",
+				"type": "state",
+				"cellRendered": true,
+				"cellStyle": {
+					"text-align": "center"
+				},
+				"id": "uigc_92db906a0eba418d43983d9567bf77ad",
+				"width": 80,
+				"property": "requirements._state"
+			},
+			{
+				"label": "type",
+				"type": "string",
+				"id": "uigc_0d97d7b34a40a6945b94838827e7c1f0",
+				"width": 80,
+				"property": "requirements.type"
+			},
+			{
+				"label": "title",
+				"type": "string",
+				"id": "uigc_16f5894fb77ecc04fa2851adde3fd8cc",
+				"width": 400,
+				"property": "requirements.title"
+			},
+			{
+				"label": "description",
+				"type": "markdown",
+				"id": "uigc_b071a75d4d7f538433eaa7b7f478cce1",
+				"width": 600,
+				"editable": true,
+				"property": "requirements.description",
+				"autoHeight": true,
+				"cellRendered": true
+			}
+		],
+		"form": {
+			"definition": {},
+			"ng": {}
+		},
+		"tabs": []
+	},
+	"id": "nt_30c634f91c218efefecc38f04246857f",
+	"directions": [
+		{
+			"source": "nt_c00965284520e8a0b563290d3e426e08",
+			"target": "nt_c00965284520e8a0b563290d3e426e08"
+		}
+	],
+	"translations": {
+		"default": "subRequirements"
+	}
+}

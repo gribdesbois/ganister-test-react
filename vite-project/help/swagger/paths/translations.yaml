@@ -1,0 +1,140 @@
+languages:
+  get:
+    security:
+      - JWT: []
+    parameters: []
+    description: Get Languages
+    tags:
+      - Translations
+    responses:
+      "200":
+        description: Returns object
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+language:
+  get:
+    security:
+      - JWT: []
+    parameters:
+      - name: lang
+        in: path
+        description: Language key
+        required: true
+        type: string
+    description: Get language file content
+    tags:
+      - Translations
+    responses:
+      $ref: '../responses/translations.yaml#/language'
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: lang
+        in: path
+        description: Language key
+        required: true
+        type: string
+      - name: content
+        in: body
+        description: "Relationship Ids"
+        required: true
+        schema:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+    description: Update properties translations in the language file
+    tags:
+      - Translations
+    responses:
+      $ref: '../responses/translations.yaml#/language'
+
+addLanguage:
+  post:
+    security:
+      - JWT: []
+    parameters:
+      - name: lang
+        in: path
+        description: Language key
+        required: true
+        type: string
+    description: Add a new Language
+    tags:
+      - Translations
+    responses:
+      "200":
+        description: Returns string 'OK'
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+updateLanguage:
+  post:
+    security:
+      - JWT: []
+    description: Add or Remove a language
+    tags:
+      - Translations
+    responses:
+      "200":
+        description: Returns string 'OK'
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/LanguageItem"
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+removeProperties:
+  post:
+    security:
+      - JWT: []
+    description: Remove properties from all translation files
+    tags:
+      - Translations
+    responses:
+      "200":
+        description: Properties removed
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'
+
+clear:
+  get:
+    security:
+      - JWT: []
+    description: "Clear Nodetype Translation - Remove Nodetype's translation properties for all languages not in ui grid or properties"
+    tags:
+      - Translations
+    responses:
+      "200":
+        description: Language File
+      '401':
+        $ref: '../responses/errors.yaml#/401'
+      '403':
+        $ref: '../responses/errors.yaml#/403'
+      '404':
+        $ref: '../responses/errors.yaml#/404'
+      '500':
+        $ref: '../responses/errors.yaml#/500'

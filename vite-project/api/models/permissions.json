@@ -1,0 +1,131 @@
+{
+	"groups": [
+		{
+			"_id": "GR_8ec92840-7ae4-11e8-b837-4da0b1e49f71",
+			"title": "Developers",
+			"nodes": []
+		},
+		{
+			"_id": "GR_b5e60c30-7b76-11e8-a178-bb981264a5d1",
+			"title": "Assistance",
+			"nodes": []
+		},
+		{
+			"_id": "GR_8134bc20-7ae0-11e8-b837-4da0b1e49f71",
+			"title": "Engineers",
+			"nodes": [
+				{
+					"_id": "92cf7a40-3d57-11e8-b32b-d98fe87b58e1",
+					"group": false,
+					"user": true
+				},
+				{
+					"_id": "92cf7a40-3d57-11e8-b32b-d98fe87b58d1",
+					"group": false,
+					"user": true
+				},
+				{
+					"_id": "GR_b5e60c30-7b76-11e8-a178-bb981264a5d1",
+					"group": true,
+					"user": false
+				}
+			]
+		},
+		{
+			"_id": "GR_fb016f70-ecd3-11e8-8bbf-b7908bd1ae81",
+			"title": "Administrators",
+			"nodes": [
+				{
+					"_id": "92cf7a40-3d57-11e8-b32b-d98fe87b58d2",
+					"group": false,
+					"user": true
+				}
+			]
+		}
+	],
+	"permissions": [
+		{
+			"_id": "PS_d76f7900-6905-11e8-8b41-2b81ac5aeff1",
+			"title": "Parts",
+			"nodes": [
+				{
+					"_id": "92cf7a40-3d57-11e8-b32b-d98fe87b58e1",
+					"user": true,
+					"group": false,
+					"role": "manager"
+				},
+				{
+					"_id": "92cf7a40-3d57-11e8-b32b-d98fe87b58d1",
+					"user": true,
+					"group": false,
+					"role": "manager"
+				},
+				{
+					"_id": "GR_8134bc20-7ae0-11e8-b837-4da0b1e49f71",
+					"user": false,
+					"group": true,
+					"role": "manager"
+				}
+			]
+		},
+		{
+			"_id": "PS_55bb8230-7e9c-11e8-9b57-0b863f8fb961",
+			"title": "Assignments",
+			"nodes": [
+				{
+					"_id": "GR_8134bc20-7ae0-11e8-b837-4da0b1e49f71",
+					"user": false,
+					"group": true,
+					"role": "manager"
+				}
+			]
+		},
+		{
+			"_id": "PS_f759c430-ecd3-11e8-8bbf-b7908bd1ae81",
+			"title": "Administrators",
+			"nodes": [
+				{
+					"_id": "GR_fb016f70-ecd3-11e8-8bbf-b7908bd1ae81",
+					"user": false,
+					"group": true,
+					"role": "manager"
+				}
+			]
+		}
+	],
+	"users": [
+		{
+			"_id": "92cf7a40-3d57-11e8-b32b-d98fe87b58d1",
+			"title": "iMPORT USER 1",
+			"firstName": "iMPORT",
+			"lastName": "USER 1",
+			"pict": "",
+			"email": "import1@ganister.com",
+			"_isAdmin": false,
+			"active": true,
+			"password": "ganister"
+		},
+		{
+			"_id": "92cf7a40-3d57-11e8-b32b-d98fe87b58d2",
+			"title": "Yoann Maingon",
+			"firstName": "Yoann",
+			"lastName": "Maingon",
+			"pict": "",
+			"email": "yoann.maingon@ganister.eu",
+			"_isAdmin": true,
+			"active": true,
+			"password": "ganister"
+		},
+		{
+			"_id": "92cf7a40-3d57-11e8-b32b-d98fe87b58e1",
+			"title": "Import User 2",
+			"firstName": "Import",
+			"lastName": "User 2",
+			"pict": "",
+			"email": "import2@ganister.com",
+			"_isAdmin": false,
+			"active": false,
+			"password": "ganister"
+		}
+	]
+}

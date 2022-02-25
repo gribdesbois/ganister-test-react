@@ -1,0 +1,195 @@
+{
+	"name": "partCadDoc",
+	"package": "pe",
+	"elementType": "relationship",
+	"lockLinked": true,
+	"versionnable": false,
+	"promotionControlled": false,
+	"ui": {
+		"defaultThumbnail": "images/defaultLogo.png",
+		"gridColumns": [
+			{
+				"id": "uigc_5151d3c0-c16b-11ea-b8be-b7197bef026f",
+				"type": "image",
+				"property": "cadDocument._thumbnail",
+				"height": 80,
+				"cellRendered": true,
+				"order": 1
+			},
+			{
+				"id": "uigc_5151d3c1-c16b-11ea-b8be-b7197bef026f",
+				"type": "string",
+				"property": "cadDocument._ref",
+				"order": 2
+			},
+			{
+				"id": "uigc_5151d3c2-c16b-11ea-b8be-b7197bef026f",
+				"type": "string",
+				"property": "cadDocument.name",
+				"order": 3
+			},
+			{
+				"id": "uigc_5151d3c3-c16b-11ea-b8be-b7197bef026f",
+				"type": "node",
+				"property": "cadDocument.nativeFile",
+				"cellRendered": true,
+				"order": 4
+			},
+			{
+				"id": "uigc_5151d3c4-c16b-11ea-b8be-b7197bef026f",
+				"type": "string",
+				"property": "cadDocument.neutralFile",
+				"order": 5
+			},
+			{
+				"id": "uigc_5151d3c5-c16b-11ea-b8be-b7197bef026f",
+				"type": "node",
+				"property": "cadDocument.viewableFile",
+				"cellRendered": true,
+				"order": 6
+			}
+		],
+		"tabs": [],
+		"form": {
+			"definition": {},
+			"ng": {}
+		}
+	},
+	"lifecycle": {
+		"states": [
+			{
+				"id": "state_451c29c2-0a4b-11ea-b64e-51987dde56ff",
+				"name": "draft",
+				"label": "Draft",
+				"start": true,
+				"lockable": true,
+				"owner": "role_451c29c1-0a4b-11ea-b64e-51987dde56ff",
+				"ui_color": "primary"
+			}
+		],
+		"transitions": [],
+		"roles": [
+			{
+				"id": "role_451c29c1-0a4b-11ea-b64e-51987dde56ff",
+				"name": "manager",
+				"label": "Manager"
+			}
+		]
+	},
+	"category": null,
+	"configuration": false,
+	"classification": [],
+	"properties": [
+		{
+			"name": "_id",
+			"type": "string",
+			"unique": true,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_451c29c3-0a4b-11ea-b64e-51987dde56ff",
+			"translations": {
+				"default": "_id"
+			}
+		},
+		{
+			"name": "_createdOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_451c29c4-0a4b-11ea-b64e-51987dde56ff",
+			"translations": {
+				"default": "_createdOn"
+			}
+		},
+		{
+			"name": "_createdBy",
+			"type": "text",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_451c29c5-0a4b-11ea-b64e-51987dde56ff",
+			"translations": {
+				"default": "_createdBy"
+			}
+		},
+		{
+			"name": "_sequence",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_451c29c6-0a4b-11ea-b64e-51987dde56ff",
+			"translations": {
+				"default": "_sequence"
+			}
+		},
+		{
+			"name": "_createdByName",
+			"type": "string",
+			"unique": false,
+			"mandatory": false,
+			"generated": "api",
+			"core": true,
+			"id": "prop_af74e910-3ca0-11ea-bf95-e31ec50430e3",
+			"translations": {
+				"default": "_createdByName"
+			}
+		},
+		{
+			"name": "_isEffective",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e76de-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isEffective"
+			}
+		},
+		{
+			"name": "_isLatest",
+			"type": "boolean",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"default": true,
+			"id": "prop_f37e76df-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_isLatest"
+			}
+		},
+		{
+			"name": "_effectiveOn",
+			"type": "date",
+			"unique": false,
+			"mandatory": false,
+			"generated": false,
+			"core": true,
+			"id": "prop_f37e76e0-8c82-11ea-919f-312025091013",
+			"translations": {
+				"default": "_effectiveOn"
+			}
+		}
+	],
+	"maidenName": [],
+	"actions": [],
+	"id": "nt_451c29c0-0a4b-11ea-b64e-51987dde56ff",
+	"linkName": "containsCad",
+	"directions": [
+		{
+			"source": "nt_d118235ccf0285283a2b679200ac375a",
+			"target": "nt_0da280c0-0a4b-11ea-8bf3-27ea72ff"
+		}
+	],
+	"translations": {
+		"default": "partCadDoc"
+	}
+}

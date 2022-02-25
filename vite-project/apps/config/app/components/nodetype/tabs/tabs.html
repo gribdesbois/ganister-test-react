@@ -1,0 +1,207 @@
+<div ng-controller="tabsController">
+  <div class="btn-group" data-toggle="buttons">
+    <button type="button" class="btn btn-small btn-success navbar-btn btn-xs" ng-click="addTab()">Add Tab
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="btn btn-danger navbar-btn btn-xs" ng-click="removeSelectedTabs()"
+      ng-disabled="noSelection">delete
+      Tab
+      <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="btn-group" data-toggle="buttons">
+    <button type="button" ng-click="moveTabUp()" class="btn btn-info navbar-btn btn-xs">
+      <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+    </button>
+    <button type="button" ng-click="moveTabDown()" class="btn btn-info navbar-btn btn-xs">
+      <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+    </button>
+  </div>
+  <div ag-grid="tabsGridOptions" class="ag-theme-balham" style="height: 500px;"></div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Tab Details</div>
+    <div class="panel-body">
+      <div ng-show="selectedTabType == 'reverseRelationships' || selectedTabType == 'multilevelView'">
+        <h3>Select Nodetypes</h3>
+        <div class="container-fluid">
+          <div class="col-md-6">
+            <select size="6" class="form-control" id="nodetype_reverseRelationships">
+              <option ng-if="selectedTabType == 'reverseRelationships'" ng-repeat="opt in datamodel.nodetypes | filter:
+            filterRelByTargetType() | orderBy:'name'" value="{{opt.id}}" ng-dblclick="addRelValue(opt.id)">
+                {{opt.name}}
+              </option>
+              <option ng-if="selectedTabType == 'multilevelView'"
+                ng-repeat="relationship in relationships | orderBy:'name'" value="{{relationship.id}}"
+                ng-dblclick="addRelValue(relationship.id)">
+                {{relationship.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <span style="font-size: 12pt;" class="label label-info"
+              ng-repeat="value in selectedRelValues">{{value.name}}
+              <span class="glyphicon glyphicon-remove-circle" ng-click="removeRelValue(value)"></span></span>
+          </div>
+        </div>
+      </div>
+      <div
+        ng-show="['relatedObject', 'ganttView', 'fileGallery', 'kanbanView', 'klayGraphView', 'undirectedRelationship'].includes(selectedTabType)">
+        <h3>Relationship</h3>
+        <select class="form-control" ng-model="selectedRelValue" ng-change="updateRelSource()"
+          ng-options="opt as opt.name for opt in relationships | filter: filterRelBySourceType | orderBy:'name'">
+        </select>
+      </div>
+      <div ng-show="selectedTabType == 'relatedObject' || selectedTabType === 'undirectedRelationship'">
+        <h3>Select attachement mode</h3>
+        <select class="form-control" ng-model="attachmentMode" ng-change="updateRelAttachMode()">
+          <option value="both">Both (Create, Attach, Detach, Delete)</option>
+          <option value="createAttach">Create New and Attach, Detach</option>
+          <option value="create">Create New and Delete Only</option>
+          <option value="attach">Attach Existing</option>
+        </select>
+        <div ng-if="attachmentMode !== 'attach'">
+          <h3>Open on creation</h3>
+          <select class="form-control" ng-model="openOnCreation" ng-change="updateOpenOnCreation(this)">
+            <option ng-value="true">Yes</option>
+            <option ng-value="false">No</option>
+          </select>
+        </div>
+
+      </div>
+      <div ng-show="selectedTabType === 'kanbanView'">
+        <h3>Select property</h3>
+        <select class="form-control" ng-model="selectedProperty" ng-change="updateProperty()"
+          ng-options="opt as opt.name for opt in nodetype.properties | filter:{ type: 'string' } | orderBy:'name'">
+        </select>
+      </div>
+      <div ng-show="selectedTabType === 'kanbanView'">
+        <h3>Kanbas Card Design <button class="btn btn-success" ng-click="updateKanbasCard()">Update Kanbas
+            Card</button></h3>
+        <div ui-codemirror ng-model="selectedTab.kanbasCard" cm="form" lang="html" ui-codemirror-opts="editorOptions">
+        </div>
+      </div>
+      <div ng-show="selectedTabType === 'graphView'">
+        <h3>Cypher Query</h3>
+        <textarea rows="6" 
+          style="width: 100%;
+            height: 200px;
+            font-size: 1.8em;
+            border-radius: 5px;
+            padding: 10px;font-weight: bold;" ng-model="selectedTab.graphView.cypher"
+          ng-blur="updateGraphView('Cypher Query')"></textarea>
+          <div class="alert alert-info">
+            <p><b>Hint :</b> In order to get the context node information, use the following syntax : #node._id# or
+              #node.description#</p>
+            <p><b>Example :</b> <i>MATCH (doc:document{_id:"#node._id#"}) RETURN doc</i></p>
+            <p><a href="https://neo4j.com/developer/cypher-basics-i/" target="_blank">Cypher Basics</a></p>
+            <p><a href="https://neo4j.com/docs/cypher-refcard/current/" target="_blank">Cypher cheatsheet</a></p>
+          </div>
+          
+        <textarea rows="6" 
+        style="width: 100%;
+          height: 200px;
+          font-size: 1.8em;
+          border-radius: 5px;
+          padding: 10px;font-weight: bold;" ng-model="selectedTab.graphView.config"
+        ng-blur="updateGraphView('Parse Config')"></textarea>
+        <div class="alert alert-info">
+         config should be an object containing 3 arrays:
+         <code>
+        {
+          "nodes" : [],
+          "relationships" : [],
+          "paths" : []
+        }
+        </code>
+        </div>
+      </div>
+      <div ng-show="selectedTabType === 'customTreeGridView' ">
+        <h2>Custom TreeGrid View Definition</h2>
+        <h3>Cypher Query</h3>
+        <textarea rows="6" style="width: 100%;
+        height: 200px;
+        font-size: 1.8em;
+        border-radius: 5px;
+        padding: 10px;font-weight: bold;" ng-model="selectedTab.customTreeGridView.cypher"
+          ng-blur="updateCustomTreeGridView('Cypher Query')"></textarea>
+        <div class="alert alert-info">
+          <p><b>Hint :</b> In order to get the context node information, use the following syntax : #node._id# or
+            #node.description#</p>
+          <p><b>Example :</b> <i>MATCH (doc:document{_id:"#node._id#"}) RETURN doc</i></p>
+          <p><a href="https://neo4j.com/developer/cypher-basics-i/" target="_blank">Cypher Basics</a></p>
+          <p><a href="https://neo4j.com/docs/cypher-refcard/current/" target="_blank">Cypher cheatsheet</a></p>
+        </div>
+        <h3>Columns</h3>
+        <div class="btn-group" data-toggle="buttons">
+          <button type="button" class="btn btn-small btn-success navbar-btn btn-xs"
+            ng-click="addCustomTreeGridViewColumn()">Add Column
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-danger navbar-btn btn-xs" ng-click="removeCustomTreeGridViewColumns()"
+            ng-disabled="noSelection">Delete
+            Column
+            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div ag-grid="customTreeGridViewGridOptions" class="ag-theme-balham" style="height: 400px;"></div>
+
+
+        <h3>Editable Rels <small>comma separated</small></h3>
+        <input ng-model="selectedTab.customTreeGridView.relNames" ng-blur="updateCustomTreeGridView('Editable Rels')"
+          class="form-control"></input>
+        <h3>Localizer Filter </h3>
+        <input ng-model="selectedTab.customTreeGridView.localizer" ng-blur="updateCustomTreeGridView('Localizer')"
+          class="form-control"></input>
+      </div>
+      <div ng-show="selectedTabType === 'customTableView'">
+        <h2>Custom Table View Definition</h2>
+        <h3>Columns</h3>
+        <div class="btn-group" data-toggle="buttons">
+          <button type="button" class="btn btn-small btn-success navbar-btn btn-xs"
+            ng-click="addCustomTableViewColumn()">Add Column
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-danger navbar-btn btn-xs" ng-click="removeCustomTableViewColumns()"
+            ng-disabled="noSelection">Delete
+            Column
+            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div ag-grid="customTableViewGridOptions" class="ag-theme-balham" style="height: 400px;"></div>
+        <h3>Cypher Query</h3>
+        <textarea rows="6" style="width: 100%;
+        height: 200px;
+        font-size: 1.8em;
+        border-radius: 5px;
+        padding: 10px;font-weight: bold;" ng-model="selectedTab.customTableView.cypher"
+          ng-blur="updateCypher()"></textarea>
+        <div class="alert alert-info">
+          <p><b>Hint :</b> In order to get the context node information, use the following syntax : #node._id# or
+            #node.description#</p>
+          <p><b>Example :</b> <i>MATCH (doc:document{_id:"#node._id#"}) RETURN doc</i></p>
+          <p><a href="https://neo4j.com/developer/cypher-basics-i/" target="_blank">Cypher Basics</a></p>
+          <p><a href="https://neo4j.com/docs/cypher-refcard/current/" target="_blank">Cypher cheatsheet</a></p>
+        </div>
+      </div>
+      <div ng-bind-html="kanbasCardEditor"></div>
+      <div ng-show="selectedTabType == 'custom'">
+      </div>
+      <div ng-show="selectedTabType == 'externalAPI'">
+        <h3>Select API</h3>
+        <select class="form-control" ng-model="selectedExternalAPI" ng-change="updateExternalAPI()"
+          ng-options="opt as opt.name for opt in externalAPIs"></select>
+      </div>
+      <div ng-show="selectedTabType == 'externalAPI'">
+        <h3>Select Tab Content / Action</h3>
+        <select class="form-control" ng-model="selectedExternalAPITabContent" ng-change="updateExternalAPITabContent()"
+          ng-options="opt as opt for opt in selectedExternalAPI.actions"></select>
+      </div>
+      <div ng-show="selectedTab">
+        <h3>Conditional display</h3>
+        <input type="text" class="form-control" ng-model="selectedTab.conditionalDisplay"
+          ng-blur="updateConditionalDisplay()">
+      </div>
+    </div>
+  </div>
+</div>
+</div>

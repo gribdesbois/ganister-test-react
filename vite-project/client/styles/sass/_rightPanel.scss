@@ -1,0 +1,50 @@
+$rightLeftPanelReducerBG: #eee;
+$panelReducerHoverBG: #aaa;
+
+#rightPanelReducer {
+  width: 40px;
+  height: 100%;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  z-index: 1025;
+  cursor: pointer;
+  border-right: 1px solid black;
+  background-color: $rightLeftPanelReducerBG;
+}
+
+#rightPanelReducer span {
+  color: black;
+}
+
+#rightPanelReducer:hover {
+  background-color: $panelReducerHoverBG;
+}
+
+#rightPanelReducer:hover,
+#rightPanelReducer:hover span {
+  color: white;
+}
+
+
+#leftPanelReducer {
+  border-right: 1px solid black;
+  background-color: $rightLeftPanelReducerBG;
+}
+
+#leftPanelReducer span {
+  color: black;
+}
+
+#leftPanelReducer:hover {
+  background-color: $panelReducerHoverBG;
+}
+
+#leftPanelReducer:hover,
+#leftPanelReducer:hover span {
+  color: white;
+}
+
+div.charDiv {
+  margin-bottom: 10px;
+}
